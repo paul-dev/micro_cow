@@ -3,7 +3,7 @@
 <! -- 加载样式  start -->
 <link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/supplydetailtwo.css type="text/css" rel="Stylesheet">
 
-<script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/purched.js" type="text/javascript"></script>
+<script src=catalog/view/theme/<?php echo $config_template; ?>/js/purched.js" type="text/javascript"></script>
 <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/goods_detail.css">
 <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/goods_detail.css">
 <link rel="stylesheet" href="catalog/view/theme/zbj/js/jqzoom-core/jquery.jqzoom.css" type="text/css">
@@ -135,7 +135,7 @@
 
                                         <!-- load style -->
                                         <link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/Product_MagicZoom.css type="text/css" rel="Stylesheet">
-                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/Product_MagicZoom.js type="text/javascript"></script>
+                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/js/Product_MagicZoom.js type="text/javascript"></script>
                                         <div id="tsShopContainer">
                                             <div id="tsImgS">
                                                 <a href="<?php echo $thumb; ?>" title="Images" class="MagicZoom" id="MagicZoom">
@@ -157,7 +157,7 @@
                                             </div>
                                             <img class="MagicZoomLoading" width="16" height="16" src="catalog/view/theme/<?php echo $config_template; ?>/image/product_product/loading.gif" alt="Loading..." />
                                         </div>
-                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/Product_ShopShow.js type="text/javascript"></script>
+                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/js/Product_ShopShow.js type="text/javascript"></script>
                                         <!-- load style -->
 
 
@@ -555,7 +555,9 @@
                                         </div>
                                         <div class="sup-add">
                                             <a class="button-cart"><?php echo $text_addtocart; ?></a>
-                                            <a class="sup-add-xihuan"><?php echo $text_join_myfavorite; ?></a>
+                                            <a href="javascript:void(0)" data-toggle="tooltip" title="" onclick="wishlist.add('<?php echo $product_id; ?>');" data-original-title="收藏(0)">
+                                                <?php echo $text_join_myfavorite; ?>
+                                            </a>
                                         </div>
                                         <?php } ?>
                                     </div>

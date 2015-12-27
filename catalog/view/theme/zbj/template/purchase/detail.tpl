@@ -4,8 +4,8 @@
 <link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/purchedlist.css type="text/css" rel="Stylesheet">
 <link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/supplydetail.css type="text/css" rel="Stylesheet">
 
-<script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/jquery-2.1.4.min.js type="text/javascript"></script>
-<script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/bootstrap.min.js" type="text/javascript"></script>
+<script src=catalog/view/theme/<?php echo $config_template; ?>/js/jquery-2.1.4.min.js type="text/javascript"></script>
+<script src=catalog/view/theme/<?php echo $config_template; ?>/js/bootstrap.min.js" type="text/javascript"></script>
 <! -- 加载样式  start -->
 
 <div class="container">
