@@ -1,14 +1,9 @@
 <?php echo $header; ?>
 
-<!--
-<script src=catalog/view/style/<?php echo $config_template; ?>/js/jquery-2.1.4.min.js type="text/javascript"></script>
-<script src="catalog/view/style/<?php echo $config_template; ?>/js/bootstrap.min.js" type="text/javascript"></script>
--->
-
 <! -- 加载样式  start -->
-<link href=catalog/view/style/<?php echo $config_template; ?>/css/supplydetailtwo.css type="text/css" rel="Stylesheet">
+<link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/supplydetailtwo.css type="text/css" rel="Stylesheet">
 
-<script src="catalog/view/style/<?php echo $config_template; ?>/js/purched.js" type="text/javascript"></script>
+<script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/purched.js" type="text/javascript"></script>
 <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/goods_detail.css">
 <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/goods_detail.css">
 <link rel="stylesheet" href="catalog/view/theme/zbj/js/jqzoom-core/jquery.jqzoom.css" type="text/css">
@@ -139,8 +134,8 @@
                                     <div style="border:0px solid red;">
 
                                         <!-- load style -->
-                                        <link href=catalog/view/style/<?php echo $config_template; ?>/css/Product_MagicZoom.css type="text/css" rel="Stylesheet">
-                                        <script src=catalog/view/style/<?php echo $config_template; ?>/js/Product_MagicZoom.js type="text/javascript"></script>
+                                        <link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/Product_MagicZoom.css type="text/css" rel="Stylesheet">
+                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/Product_MagicZoom.js type="text/javascript"></script>
                                         <div id="tsShopContainer">
                                             <div id="tsImgS">
                                                 <a href="<?php echo $thumb; ?>" title="Images" class="MagicZoom" id="MagicZoom">
@@ -162,7 +157,7 @@
                                             </div>
                                             <img class="MagicZoomLoading" width="16" height="16" src="catalog/view/theme/<?php echo $config_template; ?>/image/product_product/loading.gif" alt="Loading..." />
                                         </div>
-                                        <script src=catalog/view/style/<?php echo $config_template; ?>/js/Product_ShopShow.js type="text/javascript"></script>
+                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/Product_ShopShow.js type="text/javascript"></script>
                                         <!-- load style -->
 
 
@@ -175,23 +170,85 @@
                                 <!-- 商品详情 start -->
                                 <div class="goods_detail_info" id="product" style="margin-top:20px;">
                                     <div style="padding:0 0 20px 20px">
-                                        <div class="goods_title">
+                                        <div class="goods_title" style="padding-left:5px;">
                                             <h2><?php echo $heading_title; ?></h2>
                                         </div>
-                                        <div class="promo-meta clearfix">
-                                            <div class="goods_price">
-                                                <p>
-                                                    <?php if ($price) { ?>
-                                                    <?php if ($special) { ?>
-                                                    <span class="zbj_price"><?php echo $special; ?></span>
-                                                    <span class="sup_price"><?php echo $price; ?></span>
-                                                    <?php } else { ?>
-                                                    <span class="zbj_price"><?php echo $price; ?></span>
-                                                    <?php } ?>
-                                                    <?php } ?>
-                                                </p>
-                                            </div>
+
+                                        <div class="products_style">
+                                            <?php if ($price) { ?>
+                                                <?php if ($special) { ?>
+                                                    <dl>
+                                                        <dt class="label"><?php echo $special; ?></dt>
+                                                        <dd class="content"><?php echo $price; ?></dd>
+                                                    </dl>
+                                                <?php } else { ?>
+                                                    <dl>
+                                                        <dt class="label"><?php echo $text_price;?></dt>
+                                                        <dd class="content"><?php echo $price; ?></dd>
+                                                    </dl>
+                                                <?php } ?>
+                                            <?php } ?>
+                                            <?php if ($stock) { ?>
+                                            <dl>
+                                                <dt class="label"><?php echo $text_goods_num; ?></dt>
+                                                <dd class="content"><?php echo $stock; ?></dd>
+                                            </dl>
+                                            <?php } ?>
+                                            <?php if ($data['product_info']['model']) { ?>
+                                            <dl>
+                                                <dt class="label"><?php echo $text_detail_model; ?></dt>
+                                                <dd class="content"><?php echo $data['product_info']['model']; ?></dd>
+                                            </dl>
+                                            <?php } ?>
+                                            <?php if ($data['product_info']['location']) { ?>
+                                            <dl>
+                                                <dt class="label"><?php echo $text_location; ?></dt>
+                                                <dd class="content"><?php echo $data['product_info']['location']; ?></dd>
+                                            </dl>
+                                            <?php } ?>
+                                            <?php if ($data['product_info']['date_available']) { ?>
+                                            <dl>
+                                                <dt class="label"><?php echo $text_date_available; ?></dt>
+                                                <dd class="content"><?php echo $data['product_info']['date_available']; ?></dd>
+                                            </dl>
+                                            <?php } ?>
+
+
+                                            <?php if ($tax) { ?>
+                                            <dl>
+                                                <dt class="label"><?php echo $text_tax; ?></dt>
+                                                <dd class="content"><?php echo $tax; ?></dd>
+                                            </dl>
+                                            <?php } ?>
+                                            <?php if ($points) { ?>
+                                            <dl>
+                                                <dt class="label"><?php echo $text_points; ?></dt>
+                                                <dd class="content"><?php echo $points; ?></dd>
+                                            </dl>
+                                            <?php } ?>
+                                            <?php if ($discounts) { ?>
+                                                <?php foreach ($discounts as $discount) { ?>
+                                                <dl>
+                                                    <dt class="label"><?php echo $discount['quantity']; ?><?php echo $text_discount; ?></dt>
+                                                    <dd class="content"><?php echo $discount['price']; ?></dd>
+                                                </dl>
+                                                <?php } ?>
+                                            <?php } ?>
+
+                                            <?php if ($manufacturer) { ?>
+                                            <dl>
+                                                <dt class="label"><?php echo $text_manufacturer; ?></dt>
+                                                <dd class="content"><a href="<?php echo $manufacturers; ?>" target="_blank"><?php echo $manufacturer; ?></a></dd>
+                                            </dl>
+                                            <?php } ?>
+                                            <?php if ($reward) { ?>
+                                            <dl>
+                                                <dt class="label"><?php echo $text_reward; ?></dt>
+                                                <dd class="content"><?php echo $reward; ?></dd>
+                                            </dl>
+                                            <?php } ?>
                                         </div>
+
                                         <!-- 限时抢购 -->
                                         <?php if ($special_date) { ?>
                                         <div class="products_style">
@@ -232,56 +289,6 @@
                                             </dl>
                                         </div>
                                         <?php } ?>
-
-                                        <div class="products_style">
-                                            <?php if ($tax) { ?>
-                                            <dl>
-                                                <dt class="label"><?php echo $text_tax; ?></dt>
-                                                <dd class="content"><?php echo $tax; ?></dd>
-                                            </dl>
-                                            <?php } ?>
-                                            <?php if ($points) { ?>
-                                            <dl>
-                                                <dt class="label"><?php echo $text_points; ?></dt>
-                                                <dd class="content"><?php echo $points; ?></dd>
-                                            </dl>
-                                            <?php } ?>
-                                            <?php if ($discounts) { ?>
-                                            <?php foreach ($discounts as $discount) { ?>
-                                            <dl>
-                                                <dt class="label"><?php echo $discount['quantity']; ?><?php echo $text_discount; ?></dt>
-                                                <dd class="content"><?php echo $discount['price']; ?></dd>
-                                            </dl>
-                                            <?php } ?>
-                                            <?php } ?>
-
-                                            <?php if ($manufacturer) { ?>
-                                            <dl>
-                                                <dt class="label"><?php echo $text_manufacturer; ?></dt>
-                                                <dd class="content"><a href="<?php echo $manufacturers; ?>" target="_blank"><?php echo $manufacturer; ?></a></dd>
-                                            </dl>
-                                            <?php } ?>
-                                            <dl>
-                                                <dt class="label"><?php echo $text_model; ?></dt>
-                                                <dd class="content"><?php echo $model; ?></dd>
-                                            </dl>
-                                            <?php if ($reward) { ?>
-                                            <dl>
-                                                <dt class="label"><?php echo $text_reward; ?></dt>
-                                                <dd class="content"><?php echo $reward; ?></dd>
-                                            </dl>
-                                            <?php } ?>
-                                            <dl>
-                                                <dt class="label"><?php echo $text_goods_num; ?></dt>
-                                                <dd class="content"><?php echo $stock; ?></dd>
-                                            </dl>
-                                        </div>
-
-                                        <ul class="item-data">
-                                            <li>销量 <span class="item-data-wrap"> <?php echo $total_sell; ?>件 </span> </li>
-                                            <li class="item-data-middle">喜欢 <span class="item-data-wrap"> <?php echo $total_wish; ?>人 </span> </li>
-                                            <li>好评率 <span class="item-data-wrap"> <a href="#" id="js-comment"><?php echo $good_percent; ?></a> (<?php echo $total_reviews; ?>人) </span> </li>
-                                        </ul>
 
                                         <?php if ($options) { ?>
                                         <?php foreach ($options as $option) { ?>
@@ -542,8 +549,13 @@
 
                                         <?php if (!$is_preview) { ?>
                                         <div class="zbj-btn-box clearfix">
-                                            <button type="button" id="buy_now"  data-loading-text="<?php echo $text_loading; ?>" class="button-buy sup-lianximaijia-btn"><?php echo $text_begin_to_order; ?></button>
-                                            <button type="button" id="" data-loading-text="<?php echo $text_loading; ?>" class="button-cart sup-start-btn"><i class="fa fa-shopping-cart" style="font-size:17px;margin-right:7px;"></i><?php echo $text_addtocart; ?></button>
+                                            <button type="button" id="buy_now"  data-loading-text="<?php echo $text_loading; ?>" class="button-buy sup-lianximaijia-btn"><?php echo $text_contact_seller; ?></button>
+                                            <button type="button" id="" data-loading-text="<?php echo $text_loading; ?>" class="sup-start-btn"><i class="fa fa-shopping-cart" style="font-size:17px;margin-right:7px;"></i><?php echo $text_begin_to_order; ?></button>
+                                            <a href="<?php echo $url; ?>#suplly-nav-form_id" class="sup-liulan-btn"><?php echo $text_message; ?></a>
+                                        </div>
+                                        <div class="sup-add">
+                                            <a class="button-cart"><?php echo $text_addtocart; ?></a>
+                                            <a class="sup-add-xihuan"><?php echo $text_join_myfavorite; ?></a>
                                         </div>
                                         <?php } ?>
                                     </div>

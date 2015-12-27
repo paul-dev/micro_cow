@@ -74,8 +74,8 @@
 .goods_detail_info .goods_title h2{
   min-height: 21px;
   _height: 21px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 500;
   line-height: 21px;
   color: #3C3C3C;
   margin:0px;
@@ -146,7 +146,9 @@
   color:#f69;
 }
 .products_style{
-  padding:10px 0 0 20px;
+  margin-top:5px;
+  text-align:left;
+  /*padding:10px 0 0 20px;*/
 }
 .products_style dl{
   margin-bottom:10px;
@@ -164,7 +166,7 @@
 .products_style .label{
   float:left;
   width: 80px;
-  color:#666;
+  color:#b8c2bf;
   text-align:left;
   font-weight: normal;
     font-size: 85%;
@@ -299,8 +301,8 @@ input[name="quantity"]#input-quantity{
   margin-right:15px;
 }
 .zbj-btn-box{
-  padding-left: 20px;
-  padding-top: 20px;
+/*  padding-left: 20px;
+  padding-top: 20px;*/
 }
 .zbj-btn-buy,.zbj-btn-add{
   float:left;
