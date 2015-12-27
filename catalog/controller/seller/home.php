@@ -80,7 +80,7 @@ class ControllerSellerHome extends Controller {
         $this->load->model('account/wishlist');
         $this->load->model('seller/shop');
 
-        $store_id = $this->config->get('config_store_id');
+        $store_id = $this->customer->getId();
 
         $shop_rating = $this->model_seller_shop->getStoreRatings($store_id);
         $shop_info = $this->model_setting_setting->getSetting('config', $store_id);

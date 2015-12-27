@@ -1,0 +1,218 @@
+.q-xiangqing {
+  width: 100%;
+  background-color: #f2f2f2;
+  border-top: 1px solid #dfdfdf;
+}
+
+.q-xiangqing-body {
+  width: 1190px;
+  margin: 0 auto;
+}
+
+.q-xq-left {
+  width: 200px;
+  background-color: white;
+  padding: 10px 10px;
+  height: 1130px;
+}
+
+.left-people {
+  float: left;
+}
+
+.shouquankejian {
+  background-color: white;
+  /*padding: 5px;*/
+  border: 1px solid #ddd;
+  border-style: dotted;
+  margin-top: 2px;
+  width: 118px;
+  margin-left: 62px;
+  height: 38px;
+}
+
+.q-left-one {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+
+
+/*字体设置*/
+.q-xq-left {
+  color: #666;
+  line-height: 1.8;
+  font-size: 12px;
+  font-family: simson;
+  margin-left: -34px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.q-left-onel {
+  margin-top: -10px;
+}
+
+.q-xa-caigouxuqiu {
+  width: 175px;
+  height: 34px;
+  line-height: 34px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  text-align: center;
+  display: block;
+  margin: 10px 0;
+}
+
+.q-left-two {
+  border-bottom: 1px solid #ddd;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.q-xa-imgad {
+  width: 180px;
+  height: 100px;
+}
+
+.xa-right-jubao {
+  width: 960px;
+  height: 50px;
+}
+
+.q-right-ipad {
+  width: 903px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  float: left;
+  border-left: 5px solid #496abc;
+  padding: 5px 10px;
+  margin-top: 15px;
+}
+
+.q-xq-right-body {
+  margin-left: 40px;
+}
+
+.fd-right {
+  float: right;
+  margin-top: 40px;
+}
+
+a.fd-right {
+  color: #496ab4;
+}
+
+.xq-r-baojia {
+  background-color: white;
+  padding: 20px;
+  width: 960px;
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+
+.q-data-ul {
+  list-style: none;
+  display: block;
+  float: left;
+}
+
+.q-action {
+  float: right;
+  height: 72px;
+  width: 370px;
+  position: relative;
+  margin-right: -28px;
+  background: url(//cbu01.alicdn.com/cms/upload/2014/349/059/1950943_1213880884.jpg) no-repeat;
+  overflow: hidden;
+  zoom: 1;
+}
+
+.quoted-price {
+  float: left;
+  color: #4c6cb5;
+  width: 100px;
+  height: 36px;
+  background: #ecf5fe;
+  border-radius: 4px;
+  line-height: 36px;
+  text-align: center;
+  margin: 13px 0 0 50px;
+}
+
+.q-action span {
+  float: right;
+  margin: 22px 38px 0 0;
+  color: #fff;
+}
+
+.mic-data {
+  /*padding-right: 20px;*/
+  left: 630px;
+  position: relative;
+  clear: both;
+  width: 100px;
+}
+
+.q-td-l {
+  word-break: break-all;
+  width: 320px;
+  border-bottom: 1px solid #ddd;
+  padding: 18px 15px;
+  text-align: left;
+}
+
+.q-td-s {
+  border-bottom: 1px solid #ddd;
+  padding: 18px 15px;
+  text-align: left;
+
+}
+
+.q-xq-table th {
+  font-weight: normal;
+}
+
+.q-xq-table thead tr th {
+  border-bottom: 1px solid #ddd;
+}
+
+.q-xq-table th {
+  width: 320px;
+  padding: 5px 15px;
+}
+
+.q-xq-table td {
+  width: 320px;
+  text-align: left;
+}
+
+.q-table-yq {
+  text-align: right;
+}
+
+.q-xa-shoudao {
+  background-color: white;
+  /*padding: 20px;*/
+  width: 960px;
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  margin-left: 39px;
+}
+
+.q-xa-shoudao th {
+  width: 239px;
+  text-align: left;
+  padding: 10px 20px;
+  font-weight: normal;
+  border-bottom: 1px solid #ddd;
+}
+
+.q-xa-shoudao td {
+  width: 239px;
+  text-align: left;
+  padding: 10px 20px;
+  font-weight: normal;
+  border-bottom: 1px solid #ddd;
+}

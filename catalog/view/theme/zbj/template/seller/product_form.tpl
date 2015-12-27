@@ -342,8 +342,8 @@
                                         <div class="col-sm-10">
                                             <select name="product_category[]" id="input-system-category" class="form-control" onchange="getFilters(this)">
                                                 <option value="" data-path="">-请选择-</option>
-                                                <?php foreach ($shop_categories as $system_category) { ?>
-                                                <?php if (in_array($system_category['category_id'], $product_categories)) { ?>
+                                                <?php foreach ($system_categories as $system_category) { ?>
+                                                <?php if (in_array($system_category['category_id'], $select_categories)) { ?>
                                                 <option value="<?php echo $system_category['category_id']; ?>" selected="selected" data-path="<?php echo $system_category['parent_id']; ?>"><?php echo $system_category['name']; ?></option>
                                                 <?php } else { ?>
                                                 <option value="<?php echo $system_category['category_id']; ?>" data-path="<?php echo $system_category['parent_id']; ?>"><?php echo $system_category['name']; ?></option>
@@ -351,6 +351,42 @@
                                                 <?php } ?>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="input-manufacturer"><span data-toggle="tooltip" title="<?php echo $help_manufacturer; ?>"><?php echo $entry_manufacturer; ?></span></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" placeholder="<?php echo $entry_manufacturer; ?>" id="input-manufacturer" class="form-control" />
+                                            <input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="input-category"><span data-toggle="tooltip" title="<?php echo $help_category; ?>"><?php echo $entry_category; ?></span></label>
+                                        <div class="col-sm-10">
+                                            <select name="product_category[]" id="input-category" class="form-control" multiple="multiple" style="height: 100px;">
+                                                <optgroup label="-请选择-" style="font-weight: 100;">
+                                                <?php foreach ($shop_categories as $cate) { ?>
+                                                    <?php if (array_key_exists($cate['category_id'], $product_categories)) { ?>
+                                                    <option value="<?php echo $cate['category_id']; ?>" selected="selected"><?php echo $cate['name']; ?></option>
+                                                    <?php } else { ?>
+                                                    <option value="<?php echo $cate['category_id']; ?>"><?php echo $cate['name']; ?></option>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+
+                                        <!--
+                                        <div class="col-sm-10">
+                                            <input type="text" name="category" value="" placeholder="<?php echo $entry_category; ?>" id="input-category" class="form-control" />
+                                            <div id="product-category" class="well well-sm" style="height: 150px; overflow: auto;">
+                                                <?php foreach ($product_categories as $product_category) { ?>
+                                                <div id="product-category<?php echo $product_category['category_id']; ?>"><i class="fa fa-minus-circle"></i> <?php echo $product_category['name']; ?>
+                                                    <input type="hidden" name="product_category[]" value="<?php echo $product_category['category_id']; ?>" />
+                                                </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        -->
                                     </div>
 
                                     <div class="form-group">
@@ -369,14 +405,29 @@
                                         </div>
                                     </div>
 
+                                    <input type="hidden" name="product_store[]" value="<?php echo $stores[0]['store_id']; ?>" />
+                                    <!--
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-manufacturer"><span data-toggle="tooltip" title="<?php echo $help_manufacturer; ?>"><?php echo $entry_manufacturer; ?></span></label>
+                                        <label class="col-sm-2 control-label"><?php echo $entry_store; ?></label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" placeholder="<?php echo $entry_manufacturer; ?>" id="input-manufacturer" class="form-control" />
-                                            <input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" />
+                                            <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                                <?php foreach ($stores as $store) { ?>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <?php if (in_array($store['store_id'], $product_store)) { ?>
+                                                        <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
+                                                        <?php echo $store['name']; ?>
+                                                        <?php } else { ?>
+                                                        <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" />
+                                                        <?php echo $store['name']; ?>
+                                                        <?php } ?>
+                                                    </label>
+                                                </div>
+                                                <?php } ?>
+                                            </div>
                                         </div>
                                     </div>
-
+                                    -->
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-download"><span data-toggle="tooltip" title="<?php echo $help_download; ?>"><?php echo $entry_download; ?></span></label>
                                         <div class="col-sm-10">
