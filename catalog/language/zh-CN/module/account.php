@@ -20,5 +20,5 @@ $_['text_return']      = '商品退换';
 $_['text_transaction'] = '账户余额';
 $_['text_newsletter']  = '新闻订阅';
 $_['text_recurring']   = '分期付款';
-$_['text_seller']      = '卖家中心';
-$_['text_shop']        = '我要开店';
+$_['text_seller']      = '贸易中心';
+$_['text_certify']     = '申请认证';

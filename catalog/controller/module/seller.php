@@ -35,6 +35,7 @@ class ControllerModuleSeller extends Controller {
         $data['text_recurring'] = $this->language->get('text_recurring');
         $data['text_shop'] = $this->customer->isSeller() ? $this->language->get('text_shop_edit') : $this->language->get('text_shop_add');
         $data['text_product'] = $this->language->get('text_product');
+        $data['text_purchase'] = $this->language->get('text_purchase');
 /*
         $data['text_category'] = $this->language->get('text_category');
         $data['text_option'] = $this->language->get('text_option');

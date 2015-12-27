@@ -19,7 +19,7 @@ class ControllerSellerShop extends Controller {
 
             $this->response->redirect($this->url->link('account/login', '', 'SSL'));
         }
-        if ($this->customer->isSeller()) {
+        if ($this->customer->getCompanyId()) {
             $this->session->data['redirect'] = $this->url->link('seller/shop/add', '', 'SSL');
 
             $this->response->redirect($this->url->link('seller/shop/edit', '', 'SSL'));
@@ -28,28 +28,10 @@ class ControllerSellerShop extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('seller/shop');
+		$this->load->model('seller/company');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-            $_httpServer = explode('.', HTTP_SERVER);
-            array_shift($_httpServer);
-            $this->request->post['config_url'] = 'http://'.$this->request->post['config_key'].'.'.join('.', $_httpServer);
-
-            $this->request->post['config_template'] = 'zbj';
-            $this->request->post['config_layout_id'] = '1';
-
-            $this->request->post['config_cert_approve'] = '1';
-
-            $store_id = $this->customer->getShopId();
-            if ($this->customer->getShopId()) {
-                $this->model_seller_shop->editStore($this->customer->getShopId(), $this->request->post);
-            } else {
-                $store_id = $this->model_seller_shop->addStore($this->request->post);
-            }
-
-            $this->load->model('seller/setting');
-
-            $this->model_seller_setting->editSetting('config', $this->request->post, $store_id);
+            $this->model_seller_company->addCompany($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
 
@@ -65,7 +47,7 @@ class ControllerSellerShop extends Controller {
 
             $this->response->redirect($this->url->link('account/login', '', 'SSL'));
         }
-        if (!$this->customer->isSeller()) {
+        if (!$this->customer->getCompanyId()) {
             $this->session->data['redirect'] = $this->url->link('seller/shop/edit', '', 'SSL');
 
             $this->response->redirect($this->url->link('seller/shop/add', '', 'SSL'));
@@ -74,33 +56,15 @@ class ControllerSellerShop extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('seller/shop');
+		$this->load->model('seller/company');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-            $_httpServer = explode('.', HTTP_SERVER);
-            array_shift($_httpServer);
-            $this->request->post['config_url'] = 'http://'.$this->request->post['config_key'].'.'.join('.', $_httpServer);
 
-            $this->request->post['config_template'] = 'zbj';
-            $this->request->post['config_layout_id'] = '1';
-
-            foreach ($this->request->post as $key => $val) {
-                if (preg_match('/^config_legal_[a-z]+$/i', $key)) {
-                    unset($this->request->post[$key]);
-                }
-                if (preg_match('/^config_[a-z]+_license$/i', $key)) {
-                    unset($this->request->post[$key]);
-                }
-                if (in_array($key, array('config_company_name', 'config_cert_type', 'config_cert_approve', 'config_store_margin'))) {
-                    unset($this->request->post[$key]);
-                }
+            if ($this->customer->isSeller()) {
+                $this->model_seller_company->updateCompany($this->customer->getCompanyId(), $this->request->post);
+            } else {
+                $this->model_seller_company->editCompany($this->customer->getCompanyId(), $this->request->post);
             }
-
-            $this->model_seller_shop->editStore($this->customer->getShopId(), $this->request->post);
-
-			$this->load->model('seller/setting');
-
-			$this->model_seller_setting->editSetting('config', $this->request->post, $this->customer->getShopId());
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -225,329 +189,21 @@ class ControllerSellerShop extends Controller {
 
         $data['is_processing'] = false;
 
-        $data['text_form'] = !$this->customer->isSeller() ? $this->language->get('text_add') : $this->language->get('text_edit');
+        $data['text_form'] = !$this->customer->getCompanyId() ? $this->language->get('text_add') : $this->language->get('text_edit');
         $this->document->setTitle($data['text_form'].' - '.$data['heading_title']);
         $data['text_select'] = $this->language->get('text_select');
 		$data['text_none'] = $this->language->get('text_none');
 		$data['text_yes'] = $this->language->get('text_yes');
 		$data['text_no'] = $this->language->get('text_no');
-		$data['text_items'] = $this->language->get('text_items');
-		$data['text_tax'] = $this->language->get('text_tax');
-		$data['text_account'] = $this->language->get('text_account');
-		$data['text_checkout'] = $this->language->get('text_checkout');
-		$data['text_stock'] = $this->language->get('text_stock');
-		$data['text_shipping'] = $this->language->get('text_shipping');
-		$data['text_payment'] = $this->language->get('text_payment');
 
-        $data['entry_url'] = $this->language->get('entry_url');
-        $data['entry_shop_key'] = $this->language->get('entry_shop_key');
-		$data['entry_ssl'] = $this->language->get('entry_ssl');
-		$data['entry_name'] = $this->language->get('entry_name');
-		$data['entry_owner'] = $this->language->get('entry_owner');
-		$data['entry_address'] = $this->language->get('entry_address');
-		$data['entry_geocode'] = $this->language->get('entry_geocode');
-		$data['entry_email'] = $this->language->get('entry_email');
-		$data['entry_telephone'] = $this->language->get('entry_telephone');
-		$data['entry_fax'] = $this->language->get('entry_fax');
-		$data['entry_image'] = $this->language->get('entry_image');
-		$data['entry_open'] = $this->language->get('entry_open');
-		$data['entry_comment'] = $this->language->get('entry_comment');
-		$data['entry_location'] = $this->language->get('entry_location');
-		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
-		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
-		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
-		$data['entry_layout'] = $this->language->get('entry_layout');
-		$data['entry_template'] = $this->language->get('entry_template');
-		$data['entry_country'] = $this->language->get('entry_country');
-		$data['entry_zone'] = $this->language->get('entry_zone');
-		$data['entry_language'] = $this->language->get('entry_language');
-		$data['entry_currency'] = $this->language->get('entry_currency');
-		$data['entry_product_limit'] = $this->language->get('entry_product_limit');
-		$data['entry_product_description_length'] = $this->language->get('entry_product_description_length');
-		$data['entry_tax'] = $this->language->get('entry_tax');
-		$data['entry_tax_default'] = $this->language->get('entry_tax_default');
-		$data['entry_tax_customer'] = $this->language->get('entry_tax_customer');
-		$data['entry_customer_group'] = $this->language->get('entry_customer_group');
-		$data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
-		$data['entry_customer_price'] = $this->language->get('entry_customer_price');
-		$data['entry_account'] = $this->language->get('entry_account');
-		$data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
-		$data['entry_checkout_guest'] = $this->language->get('entry_checkout_guest');
-		$data['entry_checkout'] = $this->language->get('entry_checkout');
-		$data['entry_order_status'] = $this->language->get('entry_order_status');
-		$data['entry_stock_display'] = $this->language->get('entry_stock_display');
-		$data['entry_stock_checkout'] = $this->language->get('entry_stock_checkout');
-		$data['entry_ajax_cart'] = $this->language->get('entry_ajax_cart');
-		$data['entry_logo'] = $this->language->get('entry_logo');
-		$data['entry_icon'] = $this->language->get('entry_icon');
-		$data['entry_image_category'] = $this->language->get('entry_image_category');
-		$data['entry_image_thumb'] = $this->language->get('entry_image_thumb');
-		$data['entry_image_popup'] = $this->language->get('entry_image_popup');
-		$data['entry_image_product'] = $this->language->get('entry_image_product');
-		$data['entry_image_additional'] = $this->language->get('entry_image_additional');
-		$data['entry_image_related'] = $this->language->get('entry_image_related');
-		$data['entry_image_compare'] = $this->language->get('entry_image_compare');
-		$data['entry_image_wishlist'] = $this->language->get('entry_image_wishlist');
-		$data['entry_image_cart'] = $this->language->get('entry_image_cart');
-		$data['entry_image_location'] = $this->language->get('entry_image_location');
-		$data['entry_width'] = $this->language->get('entry_width');
-		$data['entry_height'] = $this->language->get('entry_height');
-		$data['entry_secure'] = $this->language->get('entry_secure');
+        $data['entry_country'] = $this->language->get('entry_country');
+        $data['entry_zone'] = $this->language->get('entry_zone');
 
-        $data['help_url'] = $this->language->get('help_url');
-        $data['help_shop_key'] = $this->language->get('help_shop_key');
-		$data['help_ssl'] = $this->language->get('help_ssl');
-		$data['help_geocode'] = $this->language->get('help_geocode');
-		$data['help_open'] = $this->language->get('help_open');
-		$data['help_comment'] = $this->language->get('help_comment');
-		$data['help_location'] = $this->language->get('help_location');
-		$data['help_currency'] = $this->language->get('help_currency');
-		$data['help_product_limit'] = $this->language->get('help_product_limit');
-		$data['help_product_description_length'] = $this->language->get('help_product_description_length');
-		$data['help_tax_default'] = $this->language->get('help_tax_default');
-		$data['help_tax_customer'] = $this->language->get('help_tax_customer');
-		$data['help_customer_group'] = $this->language->get('help_customer_group');
-		$data['help_customer_group_display'] = $this->language->get('help_customer_group_display');
-		$data['help_customer_price'] = $this->language->get('help_customer_price');
-		$data['help_account'] = $this->language->get('help_account');
-		$data['help_checkout_guest'] = $this->language->get('help_checkout_guest');
-		$data['help_checkout'] = $this->language->get('help_checkout');
-		$data['help_order_status'] = $this->language->get('help_order_status');
-		$data['help_stock_display'] = $this->language->get('help_stock_display');
-		$data['help_stock_checkout'] = $this->language->get('help_stock_checkout');
-		$data['help_icon'] = $this->language->get('help_icon');
-		$data['help_secure'] = $this->language->get('help_secure');
-
-		$data['button_save'] = $this->customer->isSeller() ? $this->language->get('button_save') : $this->language->get('button_submit');
+		$data['button_save'] = $this->customer->getCompanyId() ? $this->language->get('button_save') : $this->language->get('button_submit');
 		$data['button_cancel'] = $this->language->get('button_cancel');
 
-		$data['tab_general'] = $this->language->get('tab_general');
-		$data['tab_store'] = $this->language->get('tab_store');
-		$data['tab_local'] = $this->language->get('tab_local');
-		$data['tab_option'] = $this->language->get('tab_option');
-		$data['tab_image'] = $this->language->get('tab_image');
-		$data['tab_server'] = $this->language->get('tab_server');
-
-		if (isset($this->error['warning'])) {
-			$data['error_warning'] = $this->error['warning'];
-		} else {
-			$data['error_warning'] = '';
-		}
-
-		if (isset($this->error['url'])) {
-			$data['error_url'] = $this->error['url'];
-		} else {
-			$data['error_url'] = '';
-		}
-
-        if (isset($this->error['config_key'])) {
-            $data['error_shop_key'] = $this->error['config_key'];
-        } else {
-            $data['error_shop_key'] = '';
-        }
-
-		if (isset($this->error['name'])) {
-			$data['error_name'] = $this->error['name'];
-		} else {
-			$data['error_name'] = '';
-		}
-
-		if (isset($this->error['owner'])) {
-			$data['error_owner'] = $this->error['owner'];
-		} else {
-			$data['error_owner'] = '';
-		}
-
-		if (isset($this->error['address'])) {
-			$data['error_address'] = $this->error['address'];
-		} else {
-			$data['error_address'] = '';
-		}
-
-		if (isset($this->error['email'])) {
-			$data['error_email'] = $this->error['email'];
-		} else {
-			$data['error_email'] = '';
-		}
-
-		if (isset($this->error['telephone'])) {
-			$data['error_telephone'] = $this->error['telephone'];
-		} else {
-			$data['error_telephone'] = '';
-		}
-
-		if (isset($this->error['meta_title'])) {
-			$data['error_meta_title'] = $this->error['meta_title'];
-		} else {
-			$data['error_meta_title'] = '';
-		}
-
-		if (isset($this->error['customer_group_display'])) {
-			$data['error_customer_group_display'] = $this->error['customer_group_display'];
-		} else {
-			$data['error_customer_group_display'] = '';
-		}
-
-		if (isset($this->error['image_category'])) {
-			$data['error_image_category'] = $this->error['image_category'];
-		} else {
-			$data['error_image_category'] = '';
-		}
-
-		if (isset($this->error['image_thumb'])) {
-			$data['error_image_thumb'] = $this->error['image_thumb'];
-		} else {
-			$data['error_image_thumb'] = '';
-		}
-
-		if (isset($this->error['image_popup'])) {
-			$data['error_image_popup'] = $this->error['image_popup'];
-		} else {
-			$data['error_image_popup'] = '';
-		}
-
-		if (isset($this->error['image_product'])) {
-			$data['error_image_product'] = $this->error['image_product'];
-		} else {
-			$data['error_image_product'] = '';
-		}
-
-		if (isset($this->error['image_additional'])) {
-			$data['error_image_additional'] = $this->error['image_additional'];
-		} else {
-			$data['error_image_additional'] = '';
-		}
-
-		if (isset($this->error['image_related'])) {
-			$data['error_image_related'] = $this->error['image_related'];
-		} else {
-			$data['error_image_related'] = '';
-		}
-
-		if (isset($this->error['image_compare'])) {
-			$data['error_image_compare'] = $this->error['image_compare'];
-		} else {
-			$data['error_image_compare'] = '';
-		}
-
-		if (isset($this->error['image_wishlist'])) {
-			$data['error_image_wishlist'] = $this->error['image_wishlist'];
-		} else {
-			$data['error_image_wishlist'] = '';
-		}
-
-		if (isset($this->error['image_cart'])) {
-			$data['error_image_cart'] = $this->error['image_cart'];
-		} else {
-			$data['error_image_cart'] = '';
-		}
-
-		if (isset($this->error['image_location'])) {
-			$data['error_image_location'] = $this->error['image_location'];
-		} else {
-			$data['error_image_location'] = '';
-		}
-
-		if (isset($this->error['product_limit'])) {
-			$data['error_product_limit'] = $this->error['product_limit'];
-		} else {
-			$data['error_product_limit'] = '';
-		}
-
-		if (isset($this->error['product_description_length'])) {
-			$data['error_product_description_length'] = $this->error['product_description_length'];
-		} else {
-			$data['error_product_description_length'] = '';
-		}
-
-        if (isset($this->error['legal_name'])) {
-            $data['error_legal_name'] = $this->error['legal_name'];
-        } else {
-            $data['error_legal_name'] = '';
-        }
-
-        if (isset($this->error['legal_phone'])) {
-            $data['error_legal_phone'] = $this->error['legal_phone'];
-        } else {
-            $data['error_legal_phone'] = '';
-        }
-
-        if (isset($this->error['legal_address'])) {
-            $data['error_legal_address'] = $this->error['legal_address'];
-        } else {
-            $data['error_legal_address'] = '';
-        }
-
-        if (isset($this->error['legal_email'])) {
-            $data['error_legal_email'] = $this->error['legal_email'];
-        } else {
-            $data['error_legal_email'] = '';
-        }
-
-        if (isset($this->error['legal_qq'])) {
-            $data['error_legal_qq'] = $this->error['legal_qq'];
-        } else {
-            $data['error_legal_qq'] = '';
-        }
-
-        if (isset($this->error['legal_business'])) {
-            $data['error_legal_business'] = $this->error['legal_business'];
-        } else {
-            $data['error_legal_business'] = '';
-        }
-
-        if (isset($this->error['legal_id'])) {
-            $data['error_legal_id'] = $this->error['legal_id'];
-        } else {
-            $data['error_legal_id'] = '';
-        }
-
-        if (isset($this->error['legal_front'])) {
-            $data['error_legal_front'] = $this->error['legal_front'];
-        } else {
-            $data['error_legal_front'] = '';
-        }
-
-        if (isset($this->error['legal_back'])) {
-            $data['error_legal_back'] = $this->error['legal_back'];
-        } else {
-            $data['error_legal_back'] = '';
-        }
-
-        if (isset($this->error['company_name'])) {
-            $data['error_company_name'] = $this->error['company_name'];
-        } else {
-            $data['error_company_name'] = '';
-        }
-
-        if (isset($this->error['business_license'])) {
-            $data['error_business_license'] = $this->error['business_license'];
-        } else {
-            $data['error_business_license'] = '';
-        }
-
-        if (isset($this->error['tax_license'])) {
-            $data['error_tax_license'] = $this->error['tax_license'];
-        } else {
-            $data['error_tax_license'] = '';
-        }
-
-        if (isset($this->error['organization_license'])) {
-            $data['error_organization_license'] = $this->error['organization_license'];
-        } else {
-            $data['error_organization_license'] = '';
-        }
-
-        if (isset($this->error['bank_license'])) {
-            $data['error_bank_license'] = $this->error['bank_license'];
-        } else {
-            $data['error_bank_license'] = '';
-        }
-
-        if (isset($this->error['cert_approve'])) {
-            $data['error_cert_approve'] = $this->error['cert_approve'];
-        } else {
-            $data['error_cert_approve'] = '';
+        foreach ($this->error as $key => $error) {
+            $data['error_'.$key] = $error;
         }
 
 		$data['breadcrumbs'] = array();
@@ -562,7 +218,7 @@ class ControllerSellerShop extends Controller {
 			'href' => $this->url->link('seller/home', '', 'SSL')
 		);
 		
-		if (!$this->customer->isSeller()) {
+		if (!$this->customer->getCompanyId()) {
 			$data['breadcrumbs'][] = array(
 				'text' => $this->language->get('text_add'),
 				'href' => $this->url->link('seller/shop/add', '', 'SSL')
@@ -582,7 +238,7 @@ class ControllerSellerShop extends Controller {
 			$data['success'] = '';
 		}
 
-		if (!$this->customer->isSeller()) {
+		if (!$this->customer->getCompanyId()) {
 			$data['action'] = $this->url->link('seller/shop/add', '', 'SSL');
 		} else {
 			$data['action'] = $this->url->link('seller/shop/edit', '', 'SSL');
@@ -592,259 +248,247 @@ class ControllerSellerShop extends Controller {
 
         $data['cert_approve'] = 0;
         $data['cert_comment'] = '';
-        $data['is_seller'] = $this->customer->isSeller();
 
-		if ($this->customer->getShopId() && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+		if ($this->customer->getCompanyId() && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 
-            $this->load->model('seller/setting');
+            $this->load->model('seller/company');
 
-			$store_info = $this->model_seller_setting->getSetting('config', $this->customer->getShopId());
+			$company_info = $this->model_seller_company->getCompany($this->customer->getCompanyId());
 
-            $data['cert_approve'] = isset($store_info['config_cert_approve']) ? (int)$store_info['config_cert_approve'] : 3;
+            $data['cert_approve'] = $company_info['status'];
 
-            if (!$this->customer->isActive()) {
-                if (in_array($data['cert_approve'], array(1, 9))) {
+            if (!$this->customer->isSeller()) {
+                if (in_array($data['cert_approve'], array(1, 2))) {
                     $data['is_processing'] = true;
 
-                    if (isset($store_info['config_store_margin']) && $store_info['config_store_margin'] > 0) {
-                        $data['cert_comment'] = '<br/>您需缴纳的保证金为：' . $this->currency->format($store_info['config_store_margin']);
+                    if ($data['cert_approve'] == 2 && $company_info['company_margin'] > 0) {
+                        $data['cert_comment'] = '<br/>您需缴纳的保证金为：' . $this->currency->format($company_info['company_margin']);
                     } else {
-                        $data['cert_comment'] = '<br/>请等待开启！';
+                        $data['cert_comment'] = '<br/>审核中，请耐心等待！';
                     }
                 } else {
-                    $data['cert_approve'] = 3;
-                    $data['cert_comment'] = isset($store_info['config_cert_comment']) ? $store_info['config_cert_comment'] : '请提交完整认证所需材料，谢谢！';
+                    $data['is_processing'] = false;
+                    $data['cert_comment'] = !empty($company_info['cert_comment']) ? $company_info['cert_comment'] : $this->language->get('error_cert');
                 }
-            } else {
-                $data['cert_approve'] = 9;
             }
 		}
 
-		//$data['token'] = $this->session->data['token'];
-
-		/*if (isset($this->request->post['config_url'])) {
-			$data['config_url'] = $this->request->post['config_url'];
-		} elseif (isset($store_info['config_url'])) {
-			$data['config_url'] = $store_info['config_url'];
-		} else {
-			$data['config_url'] = '';
-		}*/
-
-        if (isset($this->request->post['config_key'])) {
-            $data['config_key'] = $this->request->post['config_key'];
-        } elseif (isset($store_info['config_key'])) {
-            $data['config_key'] = $store_info['config_key'];
+        if (isset($this->request->post['company_description'])) {
+            $data['company_description'] = $this->request->post['company_description'];
+        } elseif (!empty($company_info)) {
+            $data['company_description'] = $this->model_seller_company->getCompanyDescription($this->customer->getCompanyId());
         } else {
-            $data['config_key'] = '';
+            $data['company_description'] = '';
         }
 
-		if (isset($this->request->post['config_ssl'])) {
-			$data['config_ssl'] = $this->request->post['config_ssl'];
-		} elseif (isset($store_info['config_ssl'])) {
-			$data['config_ssl'] = $store_info['config_ssl'];
+		if (isset($this->request->post['registered_capital'])) {
+			$data['registered_capital'] = $this->request->post['registered_capital'];
+		} elseif (!empty($company_info)) {
+			$data['registered_capital'] = $company_info['registered_capital'];
 		} else {
-			$data['config_ssl'] = '';
+			$data['registered_capital'] = '';
 		}
 
-		if (isset($this->request->post['config_name'])) {
-			$data['config_name'] = $this->request->post['config_name'];
-		} elseif (isset($store_info['config_name'])) {
-			$data['config_name'] = $store_info['config_name'];
+        if (isset($this->request->post['business_category'])) {
+            $data['business_categories'] = $this->request->post['business_category'];
+        } elseif (!empty($company_info)) {
+            $data['business_categories'] = $this->model_seller_company->getCompanyCategories($this->customer->getCompanyId());
+        } else {
+            $data['business_categories'] = array();
+        }
+
+        $this->load->model('catalog/category');
+
+        $filter_data = array(
+            'sort'  => 'name',
+            'store_id' => $this->config->get('config_store_id')
+        );
+
+        $data['store_categories'] = $this->model_catalog_category->getSystemCategoriesTree($filter_data);
+
+        $this->load->model('tool/image');
+
+        $data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+
+		if (isset($this->request->post['image_business_license'])) {
+			$data['image_business_license'] = $this->request->post['image_business_license'];
+		} elseif (!empty($company_info)) {
+			$data['image_business_license'] = $company_info['image_business_license'];
 		} else {
-			$data['config_name'] = '';
+			$data['image_business_license'] = '';
 		}
 
-		if (isset($this->request->post['config_owner'])) {
-			$data['config_owner'] = $this->request->post['config_owner'];
-		} elseif (isset($store_info['config_owner'])) {
-			$data['config_owner'] = $store_info['config_owner'];
+        if (is_file(DIR_IMAGE . $data['image_business_license'])) {
+            $data['thumb_business_license'] = $this->model_tool_image->resize($data['image_business_license'], 100, 100);
+        } else {
+			$data['thumb_business_license'] = $data['placeholder'];
+		}
+
+        if (isset($this->request->post['image_tax_license'])) {
+            $data['image_tax_license'] = $this->request->post['image_tax_license'];
+        } elseif (!empty($company_info)) {
+            $data['image_tax_license'] = $company_info['image_tax_license'];
+        } else {
+            $data['image_tax_license'] = '';
+        }
+
+        if (is_file(DIR_IMAGE . $data['image_tax_license'])) {
+            $data['thumb_tax_license'] = $this->model_tool_image->resize($data['image_tax_license'], 100, 100);
+        } else {
+            $data['thumb_tax_license'] = $data['placeholder'];
+        }
+
+        if (isset($this->request->post['image_organization_license'])) {
+            $data['image_organization_license'] = $this->request->post['image_organization_license'];
+        } elseif (!empty($company_info)) {
+            $data['image_organization_license'] = $company_info['image_organization_license'];
+        } else {
+            $data['image_organization_license'] = '';
+        }
+
+        if (is_file(DIR_IMAGE . $data['image_organization_license'])) {
+            $data['thumb_organization_license'] = $this->model_tool_image->resize($data['image_organization_license'], 100, 100);
+        } else {
+            $data['thumb_organization_license'] = $data['placeholder'];
+        }
+
+        if (isset($this->request->post['image_bank_license'])) {
+            $data['image_bank_license'] = $this->request->post['image_bank_license'];
+        } elseif (!empty($company_info)) {
+            $data['image_bank_license'] = $company_info['image_bank_license'];
+        } else {
+            $data['image_bank_license'] = '';
+        }
+
+        if (is_file(DIR_IMAGE . $data['image_bank_license'])) {
+            $data['thumb_bank_license'] = $this->model_tool_image->resize($data['image_bank_license'], 100, 100);
+        } else {
+            $data['thumb_bank_license'] = $data['placeholder'];
+        }
+
+		if (isset($this->request->post['legal_card'])) {
+			$data['legal_card'] = $this->request->post['legal_card'];
+		} elseif (!empty($company_info)) {
+			$data['legal_card'] = $company_info['legal_card'];
 		} else {
-			$data['config_owner'] = '';
+			$data['legal_card'] = '';
 		}
 
-		if (isset($this->request->post['config_address'])) {
-			$data['config_address'] = $this->request->post['config_address'];
-		} elseif (isset($store_info['config_address'])) {
-			$data['config_address'] = $store_info['config_address'];
-		} else {
-			$data['config_address'] = '';
-		}
+        if (isset($this->request->post['image_legal_front'])) {
+            $data['image_legal_front'] = $this->request->post['image_legal_front'];
+        } elseif (!empty($company_info)) {
+            $data['image_legal_front'] = $company_info['image_legal_front'];
+        } else {
+            $data['image_legal_front'] = '';
+        }
 
-		if (isset($this->request->post['config_geocode'])) {
-			$data['config_geocode'] = $this->request->post['config_geocode'];
-		} elseif (isset($store_info['config_geocode'])) {
-			$data['config_geocode'] = $store_info['config_geocode'];
-		} else {
-			$data['config_geocode'] = '';
-		}
+        if (is_file(DIR_IMAGE . $data['image_legal_front'])) {
+            $data['thumb_legal_front'] = $this->model_tool_image->resize($data['image_legal_front'], 100, 100);
+        } else {
+            $data['thumb_legal_front'] = $data['placeholder'];
+        }
 
-		if (isset($this->request->post['config_email'])) {
-			$data['config_email'] = $this->request->post['config_email'];
-		} elseif (isset($store_info['config_email'])) {
-			$data['config_email'] = $store_info['config_email'];
-		} else {
-			$data['config_email'] = '';
-		}
+        if (isset($this->request->post['image_legal_back'])) {
+            $data['image_legal_back'] = $this->request->post['image_legal_back'];
+        } elseif (!empty($company_info)) {
+            $data['image_legal_back'] = $company_info['image_legal_back'];
+        } else {
+            $data['image_legal_back'] = '';
+        }
 
-		if (isset($this->request->post['config_telephone'])) {
-			$data['config_telephone'] = $this->request->post['config_telephone'];
-		} elseif (isset($store_info['config_telephone'])) {
-			$data['config_telephone'] = $store_info['config_telephone'];
-		} else {
-			$data['config_telephone'] = '';
-		}
+        if (is_file(DIR_IMAGE . $data['image_legal_back'])) {
+            $data['thumb_legal_back'] = $this->model_tool_image->resize($data['image_legal_back'], 100, 100);
+        } else {
+            $data['thumb_legal_back'] = $data['placeholder'];
+        }
 
-		if (isset($this->request->post['config_fax'])) {
-			$data['config_fax'] = $this->request->post['config_fax'];
-		} elseif (isset($store_info['config_fax'])) {
-			$data['config_fax'] = $store_info['config_fax'];
-		} else {
-			$data['config_fax'] = '';
-		}
+        if (isset($this->request->post['contact_phone'])) {
+            $data['contact_phone'] = $this->request->post['contact_phone'];
+        } elseif (!empty($company_info)) {
+            $data['contact_phone'] = $company_info['contact_phone'];
+        } else {
+            $data['contact_phone'] = '';
+        }
 
-		if (isset($this->request->post['config_image'])) {
-			$data['config_image'] = $this->request->post['config_image'];
-		} elseif (isset($store_info['config_image'])) {
-			$data['config_image'] = $store_info['config_image'];
-		} else {
-			$data['config_image'] = '';
-		}
+        if (isset($this->request->post['contact_email'])) {
+            $data['contact_email'] = $this->request->post['contact_email'];
+        } elseif (!empty($company_info)) {
+            $data['contact_email'] = $company_info['contact_email'];
+        } else {
+            $data['contact_email'] = '';
+        }
 
-		$this->load->model('tool/image');
+        if (isset($this->request->post['contact_qq'])) {
+            $data['contact_qq'] = $this->request->post['contact_qq'];
+        } elseif (!empty($company_info)) {
+            $data['contact_qq'] = $company_info['contact_qq'];
+        } else {
+            $data['contact_qq'] = '';
+        }
 
-		if (isset($this->request->post['config_image']) && is_file(DIR_IMAGE . $this->request->post['config_image'])) {
-			$data['thumb'] = $this->model_tool_image->resize($this->request->post['config_image'], 100, 100);
-		} elseif (isset($store_info['config_image']) && is_file(DIR_IMAGE . $store_info['config_image'])) {
-			$data['thumb'] = $this->model_tool_image->resize($store_info['config_image'], 100, 100);
-		} else {
-			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-		}
+        if (isset($this->request->post['company_country_id'])) {
+            $data['company_country_id'] = $this->request->post['company_country_id'];
+        } elseif (!empty($company_info)) {
+            $data['company_country_id'] = $company_info['company_country_id'];
+        } else {
+            $data['company_country_id'] = '';
+        }
 
-		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+        if (isset($this->request->post['company_zone_id'])) {
+            $data['company_zone_id'] = $this->request->post['company_zone_id'];
+        } elseif (!empty($company_info)) {
+            $data['company_zone_id'] = $company_info['company_zone_id'];
+        } else {
+            $data['company_zone_id'] = '';
+        }
 
-		if (isset($this->request->post['config_open'])) {
-			$data['config_open'] = $this->request->post['config_open'];
-		} elseif (isset($store_info['config_open'])) {
-			$data['config_open'] = $store_info['config_open'];
-		} else {
-			$data['config_open'] = '';
-		}
+        if (isset($this->request->post['company_city_id'])) {
+            $data['company_city_id'] = $this->request->post['company_city_id'];
+        } elseif (!empty($company_info)) {
+            $data['company_city_id'] = $company_info['company_city_id'];
+        } else {
+            $data['company_city_id'] = '';
+        }
 
-		if (isset($this->request->post['config_comment'])) {
-			$data['config_comment'] = $this->request->post['config_comment'];
-		} elseif (isset($store_info['config_comment'])) {
-			$data['config_comment'] = $store_info['config_comment'];
-		} else {
-			$data['config_comment'] = '';
-		}
+        if (isset($this->request->post['company_area_id'])) {
+            $data['company_area_id'] = $this->request->post['company_area_id'];
+        } elseif (!empty($company_info)) {
+            $data['company_area_id'] = $company_info['company_area_id'];
+        } else {
+            $data['company_area_id'] = '';
+        }
 
-		$this->load->model('localisation/location');
+        $this->load->model('sale/customer_group');
 
-		$data['locations'] = $this->model_localisation_location->getLocations();
+        $data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups(array('sort' => 'cg.sort_order'));
 
-		if (isset($this->request->post['config_location'])) {
-			$data['config_location'] = $this->request->post['config_location'];
-		} elseif ($this->config->get('config_location')) {
-			$data['config_location'] = $this->config->get('config_location');
-		} else {
-			$data['config_location'] = array();
-		}
+        if (isset($this->request->post['cert_type'])) {
+            $data['cert_type'] = $this->request->post['cert_type'];
+        } elseif (!empty($company_info)) {
+            $data['cert_type'] = $company_info['cert_type'];
+        } else {
+            $data['cert_type'] = '';
+        }
 
-		if (isset($this->request->post['config_meta_title'])) {
-			$data['config_meta_title'] = $this->request->post['config_meta_title'];
-		} elseif (isset($store_info['config_meta_title'])) {
-			$data['config_meta_title'] = $store_info['config_meta_title'];
-		} else {
-			$data['config_meta_title'] = '';
-		}
+        if (isset($this->request->post['cert_image'])) {
+            $data['cert_image'] = $this->request->post['cert_image'];
+        } elseif (!empty($company_info)) {
+            $data['cert_image'] = $this->model_seller_company->getCompanyCertImage($this->customer->getCompanyId());
+        } else {
+            $data['cert_image'] = array();
+        }
 
-		if (isset($this->request->post['config_meta_description'])) {
-			$data['config_meta_description'] = $this->request->post['config_meta_description'];
-		} elseif (isset($store_info['config_meta_description'])) {
-			$data['config_meta_description'] = $store_info['config_meta_description'];
-		} else {
-			$data['config_meta_description'] = '';
-		}
-
-		if (isset($this->request->post['config_meta_keyword'])) {
-			$data['config_meta_keyword'] = $this->request->post['config_meta_keyword'];
-		} elseif (isset($store_info['config_meta_keyword'])) {
-			$data['config_meta_keyword'] = $store_info['config_meta_keyword'];
-		} else {
-			$data['config_meta_keyword'] = '';
-		}
-
-		if (isset($this->request->post['config_layout_id'])) {
-			$data['config_layout_id'] = $this->request->post['config_layout_id'];
-		} elseif (isset($store_info['config_layout_id'])) {
-			$data['config_layout_id'] = $store_info['config_layout_id'];
-		} else {
-			$data['config_layout_id'] = '';
-		}
-
-		$this->load->model('design/layout');
-
-		$data['layouts'] = $this->model_design_layout->getLayouts();
-
-		if (isset($this->request->post['config_template'])) {
-			$data['config_template'] = $this->request->post['config_template'];
-		} elseif (isset($store_info['config_template'])) {
-			$data['config_template'] = $store_info['config_template'];
-		} else {
-			$data['config_template'] = '';
-		}
-
-		$data['templates'] = array();
-
-		$directories = glob(DIR_APPLICATION . 'view/theme/*', GLOB_ONLYDIR);
-
-		foreach ($directories as $directory) {
-			$data['templates'][] = basename($directory);
-		}
-
-		if (isset($this->request->post['config_country_id'])) {
-			$data['config_country_id'] = $this->request->post['config_country_id'];
-		} elseif (isset($store_info['config_country_id'])) {
-			$data['config_country_id'] = $store_info['config_country_id'];
-		} else {
-			$data['config_country_id'] = $this->config->get('config_country_id');
-		}
+        foreach ($data['cert_image'] as $key => $value) {
+            if (is_file(DIR_IMAGE . $value['image'])) {
+                $data['cert_image'][$key]['thumb'] = $this->model_tool_image->resize($value['image'], 100, 100);
+            } else {
+                $data['cert_image'][$key]['thumb'] = $data['placeholder'];
+            }
+        }
 
 		$this->load->model('localisation/country');
 
 		$data['countries'] = $this->model_localisation_country->getCountries();
-
-		if (isset($this->request->post['config_zone_id'])) {
-			$data['config_zone_id'] = $this->request->post['config_zone_id'];
-		} elseif (isset($store_info['config_zone_id'])) {
-			$data['config_zone_id'] = $store_info['config_zone_id'];
-		} else {
-			$data['config_zone_id'] = $this->config->get('config_zone_id');
-		}
-
-        if (isset($this->request->post['config_city_id'])) {
-            $data['config_city_id'] = $this->request->post['config_city_id'];
-        } elseif (isset($store_info['config_city_id'])) {
-            $data['config_city_id'] = $store_info['config_city_id'];
-        } else {
-            $data['config_city_id'] = $this->config->get('config_city_id');
-        }
-
-        if (isset($this->request->post['config_area_id'])) {
-            $data['config_area_id'] = $this->request->post['config_area_id'];
-        } elseif (isset($store_info['config_area_id'])) {
-            $data['config_area_id'] = $store_info['config_area_id'];
-        } else {
-            $data['config_area_id'] = $this->config->get('config_area_id');
-        }
-
-		if (isset($this->request->post['config_language'])) {
-			$data['config_language'] = $this->request->post['config_language'];
-		} elseif (isset($store_info['config_language'])) {
-			$data['config_language'] = $store_info['config_language'];
-		} else {
-			$data['config_language'] = $this->config->get('config_language');
-		}
 
 		$this->load->model('localisation/language');
 
@@ -852,522 +496,8 @@ class ControllerSellerShop extends Controller {
         $data['languages'] = array();
         $_languages = $this->model_localisation_language->getLanguages();
         foreach ($_languages as $_language) {
-            if ($_language['code'] <> $this->config->get('config_language')) continue;
+            if (!$_language['status']) continue;
             $data['languages'][] = $_language;
-        }
-
-		if (isset($this->request->post['config_currency'])) {
-			$data['config_currency'] = $this->request->post['config_currency'];
-		} elseif (isset($store_info['config_currency'])) {
-			$data['config_currency'] = $store_info['config_currency'];
-		} else {
-			$data['config_currency'] = $this->config->get('config_currency');
-		}
-
-		$this->load->model('localisation/currency');
-
-		$data['currencies'] = $this->model_localisation_currency->getCurrencies();
-
-		if (isset($this->request->post['config_product_limit'])) {
-			$data['config_product_limit'] = $this->request->post['config_product_limit'];
-		} elseif (isset($store_info['config_product_limit'])) {
-			$data['config_product_limit'] = $store_info['config_product_limit'];
-		} else {
-			$data['config_product_limit'] = '15';
-		}
-
-		if (isset($this->request->post['config_product_description_length'])) {
-			$data['config_product_description_length'] = $this->request->post['config_product_description_length'];
-		} elseif (isset($store_info['config_product_description_length'])) {
-			$data['config_product_description_length'] = $store_info['config_product_description_length'];
-		} else {
-			$data['config_product_description_length'] = '100';
-		}
-
-		if (isset($this->request->post['config_tax'])) {
-			$data['config_tax'] = $this->request->post['config_tax'];
-		} elseif (isset($store_info['config_tax'])) {
-			$data['config_tax'] = $store_info['config_tax'];
-		} else {
-			$data['config_tax'] = '';
-		}
-
-		if (isset($this->request->post['config_tax_default'])) {
-			$data['config_tax_default'] = $this->request->post['config_tax_default'];
-		} elseif (isset($store_info['config_tax_default'])) {
-			$data['config_tax_default'] = $store_info['config_tax_default'];
-		} else {
-			$data['config_tax_default'] = '';
-		}
-
-		if (isset($this->request->post['config_tax_customer'])) {
-			$data['config_tax_customer'] = $this->request->post['config_tax_customer'];
-		} elseif (isset($store_info['config_tax_customer'])) {
-			$data['config_tax_customer'] = $store_info['config_tax_customer'];
-		} else {
-			$data['config_tax_customer'] = '';
-		}
-
-		if (isset($this->request->post['config_customer_group_id'])) {
-			$data['config_customer_group_id'] = $this->request->post['config_customer_group_id'];
-		} elseif (isset($store_info['config_customer_group_id'])) {
-			$data['config_customer_group_id'] = $store_info['config_customer_group_id'];
-		} else {
-			$data['config_customer_group_id'] = '';
-		}
-
-		$this->load->model('sale/customer_group');
-
-		$data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
-
-		if (isset($this->request->post['config_customer_group_display'])) {
-			$data['config_customer_group_display'] = $this->request->post['config_customer_group_display'];
-		} elseif (isset($store_info['config_customer_group_display'])) {
-			$data['config_customer_group_display'] = $store_info['config_customer_group_display'];
-		} else {
-			$data['config_customer_group_display'] = array();
-		}
-
-		if (isset($this->request->post['config_customer_price'])) {
-			$data['config_customer_price'] = $this->request->post['config_customer_price'];
-		} elseif (isset($store_info['config_customer_price'])) {
-			$data['config_customer_price'] = $store_info['config_customer_price'];
-		} else {
-			$data['config_customer_price'] = '';
-		}
-
-		if (isset($this->request->post['config_account_id'])) {
-			$data['config_account_id'] = $this->request->post['config_account_id'];
-		} elseif (isset($store_info['config_account_id'])) {
-			$data['config_account_id'] = $store_info['config_account_id'];
-		} else {
-			$data['config_account_id'] = '';
-		}
-
-		$this->load->model('catalog/information');
-
-		$data['informations'] = $this->model_catalog_information->getInformations();
-
-		if (isset($this->request->post['config_cart_weight'])) {
-			$data['config_cart_weight'] = $this->request->post['config_cart_weight'];
-		} elseif (isset($store_info['config_cart_weight'])) {
-			$data['config_cart_weight'] = $store_info['config_cart_weight'];
-		} else {
-			$data['config_cart_weight'] = '';
-		}
-
-		if (isset($this->request->post['config_checkout_guest'])) {
-			$data['config_checkout_guest'] = $this->request->post['config_checkout_guest'];
-		} elseif (isset($store_info['config_checkout_guest'])) {
-			$data['config_checkout_guest'] = $store_info['config_checkout_guest'];
-		} else {
-			$data['config_checkout_guest'] = '';
-		}
-
-		if (isset($this->request->post['config_checkout_id'])) {
-			$data['config_checkout_id'] = $this->request->post['config_checkout_id'];
-		} elseif (isset($store_info['config_checkout_id'])) {
-			$data['config_checkout_id'] = $store_info['config_checkout_id'];
-		} else {
-			$data['config_checkout_id'] = '';
-		}
-
-		if (isset($this->request->post['config_order_status_id'])) {
-			$data['config_order_status_id'] = $this->request->post['config_order_status_id'];
-		} elseif (isset($store_info['config_order_status_id'])) {
-			$data['config_order_status_id'] = $store_info['config_order_status_id'];
-		} else {
-			$data['config_order_status_id'] = '';
-		}
-
-		$this->load->model('localisation/order_status');
-
-		$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
-
-		if (isset($this->request->post['config_stock_display'])) {
-			$data['config_stock_display'] = $this->request->post['config_stock_display'];
-		} elseif (isset($store_info['config_stock_display'])) {
-			$data['config_stock_display'] = $store_info['config_stock_display'];
-		} else {
-			$data['config_stock_display'] = '';
-		}
-
-		if (isset($this->request->post['config_stock_checkout'])) {
-			$data['config_stock_checkout'] = $this->request->post['config_stock_checkout'];
-		} elseif (isset($store_info['config_stock_checkout'])) {
-			$data['config_stock_checkout'] = $store_info['config_stock_checkout'];
-		} else {
-			$data['config_stock_checkout'] = '';
-		}
-
-		if (isset($this->request->post['config_logo'])) {
-			$data['config_logo'] = $this->request->post['config_logo'];
-		} elseif (isset($store_info['config_logo'])) {
-			$data['config_logo'] = $store_info['config_logo'];
-		} else {
-			$data['config_logo'] = '';
-		}
-
-		if (isset($this->request->post['config_logo']) && is_file(DIR_IMAGE . $this->request->post['config_logo'])) {
-			$data['logo'] = $this->model_tool_image->resize($this->request->post['config_logo'], 100, 100);
-		} elseif (isset($store_info['config_logo']) && is_file(DIR_IMAGE . $store_info['config_logo'])) {
-			$data['logo'] = $this->model_tool_image->resize($store_info['config_logo'], 100, 100);
-		} else {
-			$data['logo'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-		}
-		
-		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-		
-		if (isset($this->request->post['config_icon'])) {
-			$data['config_icon'] = $this->request->post['config_icon'];
-		} elseif (isset($store_info['config_icon'])) {
-			$data['config_icon'] = $store_info['config_icon'];
-		} else {
-			$data['config_icon'] = '';
-		}
-
-		if (isset($this->request->post['config_icon']) && is_file(DIR_IMAGE . $this->request->post['config_icon'])) {
-			$data['icon'] = $this->model_tool_image->resize($this->request->post['config_icon'], 100, 100);
-		} elseif (isset($store_info['config_icon']) && is_file(DIR_IMAGE . $store_info['config_icon'])) {
-			$data['icon'] = $this->model_tool_image->resize($store_info['config_icon'], 100, 100);
-		} else {
-			$data['icon'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-		}
-
-		if (isset($this->request->post['config_image_category_height'])) {
-			$data['config_image_category_height'] = $this->request->post['config_image_category_height'];
-		} elseif (isset($store_info['config_image_category_height'])) {
-			$data['config_image_category_height'] = $store_info['config_image_category_height'];
-		} else {
-			$data['config_image_category_height'] = 80;
-		}
-
-		if (isset($this->request->post['config_image_thumb_width'])) {
-			$data['config_image_thumb_width'] = $this->request->post['config_image_thumb_width'];
-		} elseif (isset($store_info['config_image_thumb_width'])) {
-			$data['config_image_thumb_width'] = $store_info['config_image_thumb_width'];
-		} else {
-			$data['config_image_thumb_width'] = 228;
-		}
-
-		if (isset($this->request->post['config_image_thumb_height'])) {
-			$data['config_image_thumb_height'] = $this->request->post['config_image_thumb_height'];
-		} elseif (isset($store_info['config_image_thumb_height'])) {
-			$data['config_image_thumb_height'] = $store_info['config_image_thumb_height'];
-		} else {
-			$data['config_image_thumb_height'] = 228;
-		}
-
-		if (isset($this->request->post['config_image_popup_width'])) {
-			$data['config_image_popup_width'] = $this->request->post['config_image_popup_width'];
-		} elseif (isset($store_info['config_image_popup_width'])) {
-			$data['config_image_popup_width'] = $store_info['config_image_popup_width'];
-		} else {
-			$data['config_image_popup_width'] = 500;
-		}
-
-		if (isset($this->request->post['config_image_popup_height'])) {
-			$data['config_image_popup_height'] = $this->request->post['config_image_popup_height'];
-		} elseif (isset($store_info['config_image_popup_height'])) {
-			$data['config_image_popup_height'] = $store_info['config_image_popup_height'];
-		} else {
-			$data['config_image_popup_height'] = 500;
-		}
-
-		if (isset($this->request->post['config_image_product_width'])) {
-			$data['config_image_product_width'] = $this->request->post['config_image_product_width'];
-		} elseif (isset($store_info['config_image_product_width'])) {
-			$data['config_image_product_width'] = $store_info['config_image_product_width'];
-		} else {
-			$data['config_image_product_width'] = 80;
-		}
-
-		if (isset($this->request->post['config_image_product_height'])) {
-			$data['config_image_product_height'] = $this->request->post['config_image_product_height'];
-		} elseif (isset($store_info['config_image_product_height'])) {
-			$data['config_image_product_height'] = $store_info['config_image_product_height'];
-		} else {
-			$data['config_image_product_height'] = 80;
-		}
-
-		if (isset($this->request->post['config_image_category_width'])) {
-			$data['config_image_category_width'] = $this->request->post['config_image_category_width'];
-		} elseif (isset($store_info['config_image_category_width'])) {
-			$data['config_image_category_width'] = $store_info['config_image_category_width'];
-		} else {
-			$data['config_image_category_width'] = 80;
-		}
-
-		if (isset($this->request->post['config_image_additional_width'])) {
-			$data['config_image_additional_width'] = $this->request->post['config_image_additional_width'];
-		} elseif (isset($store_info['config_image_additional_width'])) {
-			$data['config_image_additional_width'] = $store_info['config_image_additional_width'];
-		} else {
-			$data['config_image_additional_width'] = 74;
-		}
-
-		if (isset($this->request->post['config_image_additional_height'])) {
-			$data['config_image_additional_height'] = $this->request->post['config_image_additional_height'];
-		} elseif (isset($store_info['config_image_additional_height'])) {
-			$data['config_image_additional_height'] = $store_info['config_image_additional_height'];
-		} else {
-			$data['config_image_additional_height'] = 74;
-		}
-
-		if (isset($this->request->post['config_image_related_width'])) {
-			$data['config_image_related_width'] = $this->request->post['config_image_related_width'];
-		} elseif (isset($store_info['config_image_related_width'])) {
-			$data['config_image_related_width'] = $store_info['config_image_related_width'];
-		} else {
-			$data['config_image_related_width'] = 80;
-		}
-
-		if (isset($this->request->post['config_image_related_height'])) {
-			$data['config_image_related_height'] = $this->request->post['config_image_related_height'];
-		} elseif (isset($store_info['config_image_related_height'])) {
-			$data['config_image_related_height'] = $store_info['config_image_related_height'];
-		} else {
-			$data['config_image_related_height'] = 80;
-		}
-
-		if (isset($this->request->post['config_image_compare_width'])) {
-			$data['config_image_compare_width'] = $this->request->post['config_image_compare_width'];
-		} elseif (isset($store_info['config_image_compare_width'])) {
-			$data['config_image_compare_width'] = $store_info['config_image_compare_width'];
-		} else {
-			$data['config_image_compare_width'] = 90;
-		}
-
-		if (isset($this->request->post['config_image_compare_height'])) {
-			$data['config_image_compare_height'] = $this->request->post['config_image_compare_height'];
-		} elseif (isset($store_info['config_image_compare_height'])) {
-			$data['config_image_compare_height'] = $store_info['config_image_compare_height'];
-		} else {
-			$data['config_image_compare_height'] = 90;
-		}
-
-		if (isset($this->request->post['config_image_wishlist_width'])) {
-			$data['config_image_wishlist_width'] = $this->request->post['config_image_wishlist_width'];
-		} elseif (isset($store_info['config_image_wishlist_width'])) {
-			$data['config_image_wishlist_width'] = $store_info['config_image_wishlist_width'];
-		} else {
-			$data['config_image_wishlist_width'] = 50;
-		}
-
-		if (isset($this->request->post['config_image_wishlist_height'])) {
-			$data['config_image_wishlist_height'] = $this->request->post['config_image_wishlist_height'];
-		} elseif (isset($store_info['config_image_wishlist_height'])) {
-			$data['config_image_wishlist_height'] = $store_info['config_image_wishlist_height'];
-		} else {
-			$data['config_image_wishlist_height'] = 50;
-		}
-
-		if (isset($this->request->post['config_image_cart_width'])) {
-			$data['config_image_cart_width'] = $this->request->post['config_image_cart_width'];
-		} elseif (isset($store_info['config_image_cart_width'])) {
-			$data['config_image_cart_width'] = $store_info['config_image_cart_width'];
-		} else {
-			$data['config_image_cart_width'] = 80;
-		}
-
-		if (isset($this->request->post['config_image_cart_height'])) {
-			$data['config_image_cart_height'] = $this->request->post['config_image_cart_height'];
-		} elseif (isset($store_info['config_image_cart_height'])) {
-			$data['config_image_cart_height'] = $store_info['config_image_cart_height'];
-		} else {
-			$data['config_image_cart_height'] = 80;
-		}
-
-		if (isset($this->request->post['config_image_location_width'])) {
-			$data['config_image_location_width'] = $this->request->post['config_image_location_width'];
-		} elseif (isset($store_info['config_image_location_width'])) {
-			$data['config_image_location_width'] = $store_info['config_image_location_width'];
-		} else {
-			$data['config_image_location_width'] = 240;
-		}
-
-		if (isset($this->request->post['config_image_location_height'])) {
-			$data['config_image_location_height'] = $this->request->post['config_image_location_height'];
-		} elseif (isset($store_info['config_image_location_height'])) {
-			$data['config_image_location_height'] = $store_info['config_image_location_height'];
-		} else {
-			$data['config_image_location_height'] = 180;
-		}
-
-		if (isset($this->request->post['config_secure'])) {
-			$data['config_secure'] = $this->request->post['config_secure'];
-		} elseif (isset($store_info['config_secure'])) {
-			$data['config_secure'] = $store_info['config_secure'];
-		} else {
-			$data['config_secure'] = '';
-		}
-
-        if (isset($this->request->post['config_legal_name'])) {
-            $data['config_legal_name'] = $this->request->post['config_legal_name'];
-        } elseif (isset($store_info['config_legal_name'])) {
-            $data['config_legal_name'] = $store_info['config_legal_name'];
-        } else {
-            $data['config_legal_name'] = '';
-        }
-
-        if (isset($this->request->post['config_legal_phone'])) {
-            $data['config_legal_phone'] = $this->request->post['config_legal_phone'];
-        } elseif (isset($store_info['config_legal_phone'])) {
-            $data['config_legal_phone'] = $store_info['config_legal_phone'];
-        } else {
-            $data['config_legal_phone'] = '';
-        }
-
-        if (isset($this->request->post['config_legal_address'])) {
-            $data['config_legal_address'] = $this->request->post['config_legal_address'];
-        } elseif (isset($store_info['config_legal_address'])) {
-            $data['config_legal_address'] = $store_info['config_legal_address'];
-        } else {
-            $data['config_legal_address'] = '';
-        }
-
-        if (isset($this->request->post['config_legal_email'])) {
-            $data['config_legal_email'] = $this->request->post['config_legal_email'];
-        } elseif (isset($store_info['config_legal_email'])) {
-            $data['config_legal_email'] = $store_info['config_legal_email'];
-        } else {
-            $data['config_legal_email'] = '';
-        }
-
-        if (isset($this->request->post['config_legal_qq'])) {
-            $data['config_legal_qq'] = $this->request->post['config_legal_qq'];
-        } elseif (isset($store_info['config_legal_qq'])) {
-            $data['config_legal_qq'] = $store_info['config_legal_qq'];
-        } else {
-            $data['config_legal_qq'] = '';
-        }
-
-        if (isset($this->request->post['config_legal_business'])) {
-            $data['config_legal_business'] = $this->request->post['config_legal_business'];
-        } elseif (isset($store_info['config_legal_business'])) {
-            $data['config_legal_business'] = $store_info['config_legal_business'];
-        } else {
-            $data['config_legal_business'] = '';
-        }
-
-        if (isset($this->request->post['config_legal_id'])) {
-            $data['config_legal_id'] = $this->request->post['config_legal_id'];
-        } elseif (isset($store_info['config_legal_id'])) {
-            $data['config_legal_id'] = $store_info['config_legal_id'];
-        } else {
-            $data['config_legal_id'] = '';
-        }
-
-        if (isset($this->request->post['config_legal_front'])) {
-            $data['config_legal_front'] = $this->request->post['config_legal_front'];
-        } elseif (isset($store_info['config_legal_front'])) {
-            $data['config_legal_front'] = $store_info['config_legal_front'];
-        } else {
-            $data['config_legal_front'] = '';
-        }
-
-        if (isset($this->request->post['config_legal_front']) && is_file(DIR_IMAGE . $this->request->post['config_legal_front'])) {
-            $data['legal_image_front'] = $this->model_tool_image->resize($this->request->post['config_legal_front'], 100, 100);
-        } elseif (isset($store_info['config_legal_front']) && is_file(DIR_IMAGE . $store_info['config_legal_front'])) {
-            $data['legal_image_front'] = $this->model_tool_image->resize($store_info['config_legal_front'], 100, 100);
-        } else {
-            $data['legal_image_front'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-        }
-
-        if (isset($this->request->post['config_legal_back'])) {
-            $data['config_legal_back'] = $this->request->post['config_legal_back'];
-        } elseif (isset($store_info['config_legal_back'])) {
-            $data['config_legal_back'] = $store_info['config_legal_back'];
-        } else {
-            $data['config_legal_back'] = '';
-        }
-
-        if (isset($this->request->post['config_legal_back']) && is_file(DIR_IMAGE . $this->request->post['config_legal_back'])) {
-            $data['legal_image_back'] = $this->model_tool_image->resize($this->request->post['config_legal_back'], 100, 100);
-        } elseif (isset($store_info['config_legal_back']) && is_file(DIR_IMAGE . $store_info['config_legal_back'])) {
-            $data['legal_image_back'] = $this->model_tool_image->resize($store_info['config_legal_back'], 100, 100);
-        } else {
-            $data['legal_image_back'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-        }
-
-        if (isset($this->request->post['config_cert_type'])) {
-            $data['config_cert_type'] = $this->request->post['config_cert_type'];
-        } elseif (isset($store_info['config_cert_type'])) {
-            $data['config_cert_type'] = $store_info['config_cert_type'];
-        } else {
-            $data['config_cert_type'] = '';
-        }
-
-        if (isset($this->request->post['config_company_name'])) {
-            $data['config_company_name'] = $this->request->post['config_company_name'];
-        } elseif (isset($store_info['config_company_name'])) {
-            $data['config_company_name'] = $store_info['config_company_name'];
-        } else {
-            $data['config_company_name'] = '';
-        }
-
-        if (isset($this->request->post['config_business_license'])) {
-            $data['config_business_license'] = $this->request->post['config_business_license'];
-        } elseif (isset($store_info['config_business_license'])) {
-            $data['config_business_license'] = $store_info['config_business_license'];
-        } else {
-            $data['config_business_license'] = '';
-        }
-
-        if (isset($this->request->post['config_business_license']) && is_file(DIR_IMAGE . $this->request->post['config_business_license'])) {
-            $data['thumb_business_license'] = $this->model_tool_image->resize($this->request->post['config_business_license'], 100, 100);
-        } elseif (isset($store_info['config_business_license']) && is_file(DIR_IMAGE . $store_info['config_business_license'])) {
-            $data['thumb_business_license'] = $this->model_tool_image->resize($store_info['config_business_license'], 100, 100);
-        } else {
-            $data['thumb_business_license'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-        }
-
-        if (isset($this->request->post['config_tax_license'])) {
-            $data['config_tax_license'] = $this->request->post['config_tax_license'];
-        } elseif (isset($store_info['config_tax_license'])) {
-            $data['config_tax_license'] = $store_info['config_tax_license'];
-        } else {
-            $data['config_tax_license'] = '';
-        }
-
-        if (isset($this->request->post['config_tax_license']) && is_file(DIR_IMAGE . $this->request->post['config_tax_license'])) {
-            $data['thumb_tax_license'] = $this->model_tool_image->resize($this->request->post['config_tax_license'], 100, 100);
-        } elseif (isset($store_info['config_tax_license']) && is_file(DIR_IMAGE . $store_info['config_tax_license'])) {
-            $data['thumb_tax_license'] = $this->model_tool_image->resize($store_info['config_tax_license'], 100, 100);
-        } else {
-            $data['thumb_tax_license'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-        }
-
-        if (isset($this->request->post['config_organization_license'])) {
-            $data['config_organization_license'] = $this->request->post['config_organization_license'];
-        } elseif (isset($store_info['config_organization_license'])) {
-            $data['config_organization_license'] = $store_info['config_organization_license'];
-        } else {
-            $data['config_organization_license'] = '';
-        }
-
-        if (isset($this->request->post['config_organization_license']) && is_file(DIR_IMAGE . $this->request->post['config_organization_license'])) {
-            $data['thumb_organization_license'] = $this->model_tool_image->resize($this->request->post['config_organization_license'], 100, 100);
-        } elseif (isset($store_info['config_organization_license']) && is_file(DIR_IMAGE . $store_info['config_organization_license'])) {
-            $data['thumb_organization_license'] = $this->model_tool_image->resize($store_info['config_organization_license'], 100, 100);
-        } else {
-            $data['thumb_organization_license'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-        }
-
-        if (isset($this->request->post['config_bank_license'])) {
-            $data['config_bank_license'] = $this->request->post['config_bank_license'];
-        } elseif (isset($store_info['config_bank_license'])) {
-            $data['config_bank_license'] = $store_info['config_bank_license'];
-        } else {
-            $data['config_bank_license'] = '';
-        }
-
-        if (isset($this->request->post['config_bank_license']) && is_file(DIR_IMAGE . $this->request->post['config_bank_license'])) {
-            $data['thumb_bank_license'] = $this->model_tool_image->resize($this->request->post['config_bank_license'], 100, 100);
-        } elseif (isset($store_info['config_bank_license']) && is_file(DIR_IMAGE . $store_info['config_bank_license'])) {
-            $data['thumb_bank_license'] = $this->model_tool_image->resize($store_info['config_bank_license'], 100, 100);
-        } else {
-            $data['thumb_bank_license'] = $this->model_tool_image->resize('no_image.png', 100, 100);
         }
 
         $data['column_left'] = $this->load->controller('common/column_left');
@@ -1378,7 +508,7 @@ class ControllerSellerShop extends Controller {
 		$data['header'] = $this->load->controller('common/header');
 
         $template = 'shop_form.tpl';
-        if ($this->customer->isSeller()) $template = 'shop_edit.tpl';
+        if ($this->customer->getCompanyId()) $template = 'shop_edit.tpl';
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/seller/' . $template)) {
             $this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/seller/' . $template, $data));
@@ -1388,170 +518,84 @@ class ControllerSellerShop extends Controller {
 	}
 
 	protected function validateForm() {
-		/*if (!$this->user->hasPermission('modify', 'seller/shop')) {
-			$this->error['warning'] = $this->language->get('error_permission');
-		}*/
-
-		/*if (!$this->request->post['config_url']) {
-			$this->error['url'] = $this->language->get('error_url');
-		}*/
-
-		if (!$this->request->post['config_name']) {
-			$this->error['name'] = $this->language->get('error_name');
-		}
-
-        if (!preg_match('/^[a-z]{3,10}$/', $this->request->post['config_key'])) {
-            $this->error['config_key'] = $this->language->get('error_shop_key');
-        } else {
-            $shop_check = $this->model_seller_shop->getStoreByKey($this->request->post['config_key']);
-            if ($shop_check['store_id'] && $this->customer->getShopId() <> $shop_check['store_id']) {
-                $this->error['config_key'] = $this->language->get('error_shop_exist');
+        foreach ($this->request->post['company_description'] as $language_id => $value) {
+            if ((utf8_strlen($value['company_name']) < 4) || (utf8_strlen($value['company_name']) > 64)) {
+                $this->error['company_name'][$language_id] = $this->language->get('error_company_name');
+            }
+            if (!$value['legal_name']) {
+                $this->error['legal_name'][$language_id] = $this->language->get('error_empty');
+            }
+            if (!$value['contact_name']) {
+                $this->error['contact_name'][$language_id] = $this->language->get('error_empty');
+            }
+            if (utf8_strlen($value['contact_address']) < 3 || utf8_strlen($value['contact_address']) > 256) {
+                $this->error['contact_address'][$language_id] = $this->language->get('error_address');
             }
         }
 
-		if ((utf8_strlen($this->request->post['config_owner']) < 2) || (utf8_strlen($this->request->post['config_owner']) > 64)) {
-			$this->error['owner'] = $this->language->get('error_owner');
+        if (!$this->request->post['registered_capital']) {
+			$this->error['registered_capital'] = $this->language->get('error_empty');
 		}
 
-		if ((utf8_strlen($this->request->post['config_address']) < 3) || (utf8_strlen($this->request->post['config_address']) > 256)) {
-			$this->error['address'] = $this->language->get('error_address');
-		}
-
-		if ((utf8_strlen($this->request->post['config_email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['config_email'])) {
-			$this->error['email'] = $this->language->get('error_email');
-		}
-
-		if ((utf8_strlen($this->request->post['config_telephone']) < 3) || (utf8_strlen($this->request->post['config_telephone']) > 32)) {
-			$this->error['telephone'] = $this->language->get('error_telephone');
-		}
-
-		if (!$this->request->post['config_meta_title']) {
-			if (!$this->customer->getShopId()) {
-                $this->request->post['config_meta_title'] = $this->request->post['config_name'];
-            } else {
-                $this->error['meta_title'] = $this->language->get('error_meta_title');
-            }
-		}
-
-		if (!empty($this->request->post['config_customer_group_display']) && !in_array($this->request->post['config_customer_group_id'], $this->request->post['config_customer_group_display'])) {
-			$this->error['customer_group_display'] = $this->language->get('error_customer_group_display');
-		}
-
-		if (!$this->request->post['config_image_category_width'] || !$this->request->post['config_image_category_height']) {
-			$this->error['image_category'] = $this->language->get('error_image_category');
-		}
-
-		if (!$this->request->post['config_image_thumb_width'] || !$this->request->post['config_image_thumb_height']) {
-			$this->error['image_thumb'] = $this->language->get('error_image_thumb');
-		}
-
-		if (!$this->request->post['config_image_popup_width'] || !$this->request->post['config_image_popup_height']) {
-			$this->error['image_popup'] = $this->language->get('error_image_popup');
-		}
-
-		if (!$this->request->post['config_image_product_width'] || !$this->request->post['config_image_product_height']) {
-			$this->error['image_product'] = $this->language->get('error_image_product');
-		}
-
-		if (!$this->request->post['config_image_additional_width'] || !$this->request->post['config_image_additional_height']) {
-			$this->error['image_additional'] = $this->language->get('error_image_additional');
-		}
-
-		if (!$this->request->post['config_image_related_width'] || !$this->request->post['config_image_related_height']) {
-			$this->error['image_related'] = $this->language->get('error_image_related');
-		}
-
-		if (!$this->request->post['config_image_compare_width'] || !$this->request->post['config_image_compare_height']) {
-			$this->error['image_compare'] = $this->language->get('error_image_compare');
-		}
-
-		if (!$this->request->post['config_image_wishlist_width'] || !$this->request->post['config_image_wishlist_height']) {
-			$this->error['image_wishlist'] = $this->language->get('error_image_wishlist');
-		}
-
-		if (!$this->request->post['config_image_cart_width'] || !$this->request->post['config_image_cart_height']) {
-			$this->error['image_cart'] = $this->language->get('error_image_cart');
-		}
-
-		if (!$this->request->post['config_image_location_width'] || !$this->request->post['config_image_location_height']) {
-			$this->error['image_location'] = $this->language->get('error_image_location');
-		}
-
-		if (!$this->request->post['config_product_limit']) {
-			$this->error['product_limit'] = $this->language->get('error_limit');
-		}
-
-		if (!$this->request->post['config_product_description_length']) {
-			$this->error['product_description_length'] = $this->language->get('error_limit');
-		}
-
-        if (!$this->customer->isSeller()) {
-            if (empty($this->request->post['config_legal_name'])) {
-                $this->error['legal_name'] = $this->language->get('error_empty');
-            }
-
-            if (empty($this->request->post['config_legal_phone'])) {
-                $this->error['legal_phone'] = $this->language->get('error_empty');
-            }
-
-            if (empty($this->request->post['config_legal_address'])) {
-                $this->error['legal_address'] = $this->language->get('error_empty');
-            }
-
-            if (empty($this->request->post['config_legal_email']) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['config_legal_email'])) {
-                $this->error['legal_email'] = $this->language->get('error_email');
-            }
-
-            if (empty($this->request->post['config_legal_qq'])) {
-                $this->error['legal_qq'] = $this->language->get('error_empty');
-            }
-
-            if (empty($this->request->post['config_legal_business'])) {
-                $this->error['legal_business'] = $this->language->get('error_empty');
-            }
-
-            if (empty($this->request->post['config_legal_id'])) {
-                $this->error['legal_id'] = $this->language->get('error_empty');
-            }
-
-            $this->load->model('tool/utils');
-            if (!empty($this->request->post['config_legal_id']) && !$this->model_tool_utils->validation_filter_id_card($this->request->post['config_legal_id'])) {
-                $this->error['legal_id'] = $this->language->get('error_id_card');
-            }
-
-            if (empty($this->request->post['config_legal_front'])) {
-                $this->error['legal_front'] = $this->language->get('error_empty');
-            }
-
-            if (empty($this->request->post['config_legal_back'])) {
-                $this->error['legal_back'] = $this->language->get('error_empty');
-            }
-
-            if (isset($this->request->post['config_cert_type']) && $this->request->post['config_cert_type']) {
-                if ((utf8_strlen($this->request->post['config_company_name']) < 4) || (utf8_strlen($this->request->post['config_company_name']) > 64)) {
-                    $this->error['company_name'] = $this->language->get('error_company_name');
-                }
-
-                if (empty($this->request->post['config_business_license'])) {
-                    $this->error['business_license'] = $this->language->get('error_empty');
-                }
-
-                if (empty($this->request->post['config_tax_license'])) {
-                    $this->error['tax_license'] = $this->language->get('error_empty');
-                }
-
-                if (empty($this->request->post['config_organization_license'])) {
-                    $this->error['organization_license'] = $this->language->get('error_empty');
-                }
-
-                if (empty($this->request->post['config_bank_license'])) {
-                    $this->error['bank_license'] = $this->language->get('error_empty');
-                }
-            }
+        if (!$this->request->post['business_category']) {
+            $this->error['business_category'] = $this->language->get('error_empty');
         }
 
-        if (!$this->customer->isSeller() && !isset($this->request->post['config_cert_approve'])) {
-            $this->error['cert_approve'] = '必须同意服务协议！';
+        if (!is_file(DIR_IMAGE . $this->request->post['image_business_license'])) {
+            $this->error['business_license'] = $this->language->get('error_empty');
+        }
+
+        if (!is_file(DIR_IMAGE . $this->request->post['image_tax_license'])) {
+            $this->error['tax_license'] = $this->language->get('error_empty');
+        }
+
+        if (!is_file(DIR_IMAGE . $this->request->post['image_organization_license'])) {
+            $this->error['organization_license'] = $this->language->get('error_empty');
+        }
+
+        if (!is_file(DIR_IMAGE . $this->request->post['image_bank_license'])) {
+            $this->error['bank_license'] = $this->language->get('error_empty');
+        }
+
+        if (empty($this->request->post['legal_card'])) {
+            $this->error['legal_card'] = $this->language->get('error_empty');
+        }
+
+        $this->load->model('tool/utils');
+        if (!empty($this->request->post['legal_card']) && !$this->model_tool_utils->validation_filter_id_card($this->request->post['legal_card'])) {
+            $this->error['legal_card'] = $this->language->get('error_id_card');
+        }
+
+        if (!is_file(DIR_IMAGE . $this->request->post['image_legal_front'])) {
+            $this->error['legal_front'] = $this->language->get('error_empty');
+        }
+
+        if (!is_file(DIR_IMAGE . $this->request->post['image_legal_back'])) {
+            $this->error['legal_back'] = $this->language->get('error_empty');
+        }
+
+		if ((utf8_strlen($this->request->post['contact_email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['contact_email'])) {
+			$this->error['contact_email'] = $this->language->get('error_email');
+		}
+
+		if ((utf8_strlen($this->request->post['contact_phone']) < 3) || (utf8_strlen($this->request->post['contact_phone']) > 32)) {
+			$this->error['contact_phone'] = $this->language->get('error_telephone');
+		}
+
+        if (empty($this->request->post['company_country_id'])) {
+            $this->error['company_country_id'] = $this->language->get('error_empty');
+        }
+
+        if (empty($this->request->post['company_zone_id'])) {
+            $this->error['company_zone_id'] = $this->language->get('error_empty');
+        }
+
+        if (empty($this->request->post['cert_type'])) {
+            $this->error['cert_type'] = $this->language->get('error_empty');
+        }
+
+        if (!$this->customer->isSeller() && !isset($this->request->post['cert_approve'])) {
+            $this->error['cert_approve'] = $this->language->get('error_approve');
         }
 
 		if ($this->error && !isset($this->error['warning'])) {

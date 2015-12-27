@@ -1,17 +1,18 @@
 <?php
 
 // Heading
-$_['heading_title']                    = '卖家中心';
+$_['heading_title']                    = '贸易中心';
 
 // Button
 $_['button_submit']                    = '提交申请';
+$_['button_save']                      = '提交';
 
 // Text
-$_['text_settings']                    = '店铺设置';
-$_['text_success']                     = '成功： 您已成功更改设置！';
+$_['text_settings']                    = '认证信息';
+$_['text_success']                     = '成功： 您已成功提交更改！';
 $_['text_list']                        = '网店列表';
-$_['text_add']                         = '开店申请';
-$_['text_edit']                        = '编辑店铺';
+$_['text_add']                         = '申请认证';
+$_['text_edit']                        = '认证信息';
 $_['text_items']                       = '商品显示';
 $_['text_tax']                         = '税率';
 $_['text_account']                     = '账户';
@@ -120,7 +121,8 @@ $_['error_name']                       = '商店名称必须为3-32个字符！'
 $_['error_shop_key']                   = '站内标识必须为3-10个由a-z字母组成的字符！';
 $_['error_owner']                      = '商店拥有者必须为3-64个字符！';
 $_['error_company_name']               = '公司名称一般为4-64个字符！';
-$_['error_address']                    = '商店地址必须为10-256个字符！';
+$_['error_legal_name']                 = '姓名长度有误！';
+$_['error_address']                    = '联系地址必须为3-256个字符！';
 $_['error_email']                      = 'E-Mail 地址无效！';
 $_['error_telephone']                  = '电话号码必须为3-32个字符！';
 $_['error_meta_title']                 = 'Meta 标题必须为3-32个字符！';
@@ -140,4 +142,6 @@ $_['error_default']                    = '警告: 不能删除默认网店！';
 $_['error_store']                      = '警告: 不能删除该网店，该网店已被关联到 %s 个订单！';
 $_['error_shop_exist']                 = '站内标识已被使用！';
 $_['error_empty']                      = '必填项不能为空！';
+$_['error_approve']                    = '必须同意服务协议！';
+$_['error_cert']                       = '请提交完整认证所需材料，谢谢！';
 $_['error_id_card']                    = '身份证号码有误！';
