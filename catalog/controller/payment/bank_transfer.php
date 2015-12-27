@@ -55,7 +55,7 @@ class ControllerPaymentBankTransfer extends Controller {
         $this->load->model('seller/setting');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
-            $this->model_seller_setting->editSetting('bank_transfer', $this->request->post, $this->customer->getShopId());
+            $this->model_seller_setting->editSetting('bank_transfer', $this->request->post, $this->config->get('config_store_id'));
 
             $this->session->data['success'] = $this->language->get('text_success');
 
@@ -120,7 +120,7 @@ class ControllerPaymentBankTransfer extends Controller {
 
         $data['cancel'] = $this->url->link('seller/payment', '', 'SSL');
 
-        $_settings = $this->model_seller_setting->getSetting('bank_transfer', $this->customer->getShopId());
+        $_settings = $this->model_seller_setting->getSetting('bank_transfer', $this->config->get('config_store_id'));
 
         $this->load->model('localisation/language');
 

@@ -73,6 +73,9 @@ class ControllerModuleSeller extends Controller {
                     $data['active_class']['product']['all'] = 'active';
                 }
                 break;
+            case 'purchase' :
+                $data['text_purchase'] = '> '.$data['text_purchase'];
+                break;
             case 'order' :
                 $data['text_order'] = '> '.$data['text_order'];
                 if (isset($this->request->get['filter_order_status']) && $this->request->get['filter_order_status'] == '1') {
@@ -139,6 +142,7 @@ class ControllerModuleSeller extends Controller {
         $data['recurring'] = $this->url->link('account/recurring', '', 'SSL');
         $data['url_shop'] = $this->url->link('seller/shop/edit', '', 'SSL');
         $data['url_product'] = $this->url->link('seller/product', '', 'SSL');
+        $data['url_purchase'] = $this->url->link('seller/purchase', '', 'SSL');
         $data['url_order'] = $this->url->link('seller/order', '', 'SSL');
 /*
         $data['url_category'] = $this->url->link('seller/category', '', 'SSL');

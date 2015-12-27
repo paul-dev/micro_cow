@@ -34,7 +34,7 @@ class ModelSellerCategory extends Model {
 			}
 		}
 
-        $data['category_store'] = array($this->customer->getShopId());
+        $data['category_store'] = array($this->config->get('config_store_id'));
 		if (isset($data['category_store'])) {
 			foreach ($data['category_store'] as $store_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_store SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "'");
@@ -185,7 +185,7 @@ class ModelSellerCategory extends Model {
 	}
 
 	public function repairCategories($parent_id = 0) {
-		$query = $this->db->query("SELECT c.* FROM " . DB_PREFIX . "category as c  INNER JOIN " . DB_PREFIX . "category_to_store as cts ON c.category_id=cts.category_id AND cts.store_id='".$this->customer->getShopId()."' WHERE c.parent_id = '" . (int)$parent_id . "'");
+		$query = $this->db->query("SELECT c.* FROM " . DB_PREFIX . "category as c  INNER JOIN " . DB_PREFIX . "category_to_store as cts ON c.category_id=cts.category_id AND cts.store_id='".$this->config->get('config_store_id')."' WHERE c.parent_id = '" . (int)$parent_id . "'");
 
 		foreach ($query->rows as $category) {
 			// Delete the path below the current one
@@ -194,7 +194,7 @@ class ModelSellerCategory extends Model {
 			// Fix for records with no paths
 			$level = 0;
 
-			$query = $this->db->query("SELECT c.* FROM `" . DB_PREFIX . "category_path` as c  INNER JOIN " . DB_PREFIX . "category_to_store as cts ON c.category_id=cts.category_id AND cts.store_id='".$this->customer->getShopId()."' WHERE c.category_id = '" . (int)$parent_id . "' ORDER BY c.level ASC");
+			$query = $this->db->query("SELECT c.* FROM `" . DB_PREFIX . "category_path` as c  INNER JOIN " . DB_PREFIX . "category_to_store as cts ON c.category_id=cts.category_id AND cts.store_id='".$this->config->get('config_store_id')."' WHERE c.category_id = '" . (int)$parent_id . "' ORDER BY c.level ASC");
 
 			foreach ($query->rows as $result) {
 				$this->db->query("INSERT INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category['category_id'] . "', `path_id` = '" . (int)$result['path_id'] . "', level = '" . (int)$level . "'");
@@ -209,13 +209,13 @@ class ModelSellerCategory extends Model {
 	}
 
 	public function getCategory($category_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id AND cp.category_id != cp.path_id) WHERE cp.category_id = c.category_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY cp.category_id) AS path, (SELECT DISTINCT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "') AS keyword FROM " . DB_PREFIX . "category c INNER JOIN " . DB_PREFIX . "category_to_store as cts ON c.category_id=cts.category_id AND cts.store_id='".$this->customer->getShopId()."' LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (c.category_id = cd2.category_id) WHERE c.category_id = '" . (int)$category_id . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id AND cp.category_id != cp.path_id) WHERE cp.category_id = c.category_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY cp.category_id) AS path, (SELECT DISTINCT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "') AS keyword FROM " . DB_PREFIX . "category c INNER JOIN " . DB_PREFIX . "category_to_store as cts ON c.category_id=cts.category_id AND cts.store_id='".$this->config->get('config_store_id')."' LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (c.category_id = cd2.category_id) WHERE c.category_id = '" . (int)$category_id . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
 
 	public function getCategories($data = array()) {
-		$sql = "SELECT cp.category_id AS category_id, GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') AS name, c1.parent_id, c1.sort_order FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category c1 ON (cp.category_id = c1.category_id) INNER JOIN " . DB_PREFIX . "category_to_store as cts ON cp.category_id=cts.category_id AND cts.store_id='".$this->customer->getShopId()."' LEFT JOIN " . DB_PREFIX . "category c2 ON (cp.path_id = c2.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (cp.category_id = cd2.category_id) WHERE cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT cp.category_id AS category_id, GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') AS name, c1.parent_id, c1.sort_order FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category c1 ON (cp.category_id = c1.category_id) INNER JOIN " . DB_PREFIX . "category_to_store as cts ON cp.category_id=cts.category_id AND cts.store_id='".$this->config->get('config_store_id')."' LEFT JOIN " . DB_PREFIX . "category c2 ON (cp.path_id = c2.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (cp.category_id = cd2.category_id) WHERE cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND cd2.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
@@ -312,7 +312,7 @@ class ModelSellerCategory extends Model {
 	}
 
 	public function getTotalCategories() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "category as c INNER JOIN " . DB_PREFIX . "category_to_store as s ON c.category_id=s.category_id AND s.store_id='".$this->customer->getShopId()."'");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "category as c INNER JOIN " . DB_PREFIX . "category_to_store as s ON c.category_id=s.category_id AND s.store_id='".$this->config->get('config_store_id')."'");
 
 		return $query->row['total'];
 	}

@@ -528,16 +528,9 @@ class ControllerSellerCategory extends Controller {
 			}
 		}
 
-		$this->load->model('setting/store');
+		$this->load->model('seller/shop');
 
-		$_stores = $this->model_setting_store->getStores();
-        foreach ($_stores as $_store) {
-            if ($_store['store_id'] <> $this->customer->getShopId()) continue;
-            $data['stores'][] = $_store;
-        }
-        if (empty($data['stores'])) $data['stores'][] = array(
-            'store_id' => 0
-        );
+        $data['stores'][] = $this->model_seller_shop->getStore($this->config->get('config_store_id'));
 
 		if (isset($this->request->post['category_store'])) {
 			$data['category_store'] = $this->request->post['category_store'];

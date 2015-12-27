@@ -541,7 +541,7 @@ class ControllerSellerFileManager extends Controller {
     }
 
     protected function validateBasePath() {
-        $directory = DIR_IMAGE . 'catalog/shop_image/' .md5($this->customer->getShopId());
+        $directory = DIR_IMAGE . 'catalog/shop_image/' .md5($this->customer->getId());
         if (!is_dir($directory)) {
             mkdir($directory, 0777);
         }

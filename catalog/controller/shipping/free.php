@@ -25,7 +25,7 @@ class ControllerShippingFree extends Controller {
 		$this->load->model('seller/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') /*&& $this->validate()*/) {
-			$this->model_seller_setting->editSetting('free', $this->request->post, $this->customer->getShopId());
+			$this->model_seller_setting->editSetting('free', $this->request->post, $this->config->get('config_store_id'));
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -77,7 +77,7 @@ class ControllerShippingFree extends Controller {
 
 		$data['cancel'] = $this->url->link('seller/shipping', '', 'SSL');
 
-        $_settings = $this->model_seller_setting->getSetting('free', $this->customer->getShopId());
+        $_settings = $this->model_seller_setting->getSetting('free', $this->config->get('config_store_id'));
 
 		if (isset($this->request->post['free_total'])) {
 			$data['free_total'] = $this->request->post['free_total'];

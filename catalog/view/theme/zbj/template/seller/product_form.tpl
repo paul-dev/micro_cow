@@ -1170,6 +1170,21 @@
                     }
                 });
 
+                $('select[name=\'filter_group\']').on('change', function(){
+                    if ($(this).val() == '0') return false;
+                    var group_id = $(this).val();
+                    $.ajax({
+                        url: 'index.php?route=seller/filter/getFiltersByGroup&group_id=' +  encodeURIComponent(group_id),
+                        dataType: 'json',
+                        success: function(json) {
+                            $.map(json, function(item) {
+                                $('#product-filter' + item['filter_id']).remove();
+                                $('#product-filter').append('<div id="product-filter' + item['filter_id'] + '"><i class="fa fa-minus-circle"></i> ' + item['name'] + '<input type="hidden" name="product_filter[]" value="' + item['filter_id'] + '" /></div>');
+                            });
+                        }
+                    });
+                });
+
                 $('#product-filter').delegate('.fa-minus-circle', 'click', function() {
                     $(this).parent().remove();
                 });

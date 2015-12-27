@@ -25,7 +25,7 @@ class ControllerShippingFlat extends Controller {
 		$this->load->model('seller/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') /*&& $this->validate()*/) {
-			$this->model_seller_setting->editSetting('flat', $this->request->post, $this->customer->getShopId());
+			$this->model_seller_setting->editSetting('flat', $this->request->post, $this->config->get('config_store_id'));
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -76,7 +76,7 @@ class ControllerShippingFlat extends Controller {
 
 		$data['cancel'] = $this->url->link('seller/shipping', '', 'SSL');
 
-        $_settings = $this->model_seller_setting->getSetting('flat', $this->customer->getShopId());
+        $_settings = $this->model_seller_setting->getSetting('flat', $this->config->get('config_store_id'));
 
         if (isset($this->request->post['flat_cost'])) {
 			$data['flat_cost'] = $this->request->post['flat_cost'];

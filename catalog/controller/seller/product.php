@@ -47,9 +47,13 @@ class ControllerSellerProduct extends Controller {
             );
             $this->request->post['status'] = 0;
 
-            $this->model_seller_product->addProduct($this->request->post);
+            $product_id = $this->model_seller_product->addProduct($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
+
+            if (isset($this->request->get['dialog'])) {
+                $this->response->redirect($this->url->link('seller/product/edit', 'product_id='.$product_id.'&dialog='.$this->request->get['dialog'], 'SSL'));
+            }
 
 			$url = '';
 
@@ -124,6 +128,10 @@ class ControllerSellerProduct extends Controller {
                 $this->model_seller_product->editProduct($this->request->get['product_id'], $this->request->post);
 
                 $this->session->data['success'] = $this->language->get('text_success');
+
+                if (isset($this->request->get['dialog'])) {
+                    $this->response->redirect($this->url->link('seller/product/edit', 'product_id='.$this->request->get['product_id'].'&dialog='.$this->request->get['dialog'], 'SSL'));
+                }
             }
 
 			$url = '';
@@ -929,10 +937,15 @@ class ControllerSellerProduct extends Controller {
 			'href' => $this->url->link('seller/product', $url, 'SSL')
 		);
 
+        $param_url = '';
+        if (isset($this->request->get['dialog'])) {
+            $param_url = '&dialog='.$this->request->get['dialog'];
+        }
+
 		if (!isset($this->request->get['product_id'])) {
-			$data['action'] = $this->url->link('seller/product/add', $url, 'SSL');
+			$data['action'] = $this->url->link('seller/product/add', $url . $param_url, 'SSL');
 		} else {
-			$data['action'] = $this->url->link('seller/product/edit', 'product_id=' . $this->request->get['product_id'] . $url, 'SSL');
+			$data['action'] = $this->url->link('seller/product/edit', 'product_id=' . $this->request->get['product_id'] . $url . $param_url, 'SSL');
 		}
 
 		$data['cancel'] = $this->url->link('seller/product', $url, 'SSL');
@@ -943,6 +956,11 @@ class ControllerSellerProduct extends Controller {
                 $this->response->redirect($this->url->link('seller/product', $url, 'SSL'));
             }
 		}
+
+        $data['offer_product_id'] = '';
+        if (!empty($product_info)) {
+            $data['offer_product_id'] = $product_info['product_id'];
+        }
 
 		//$data['token'] = $this->session->data['token'];
 
@@ -1603,10 +1621,16 @@ class ControllerSellerProduct extends Controller {
         $data['footer'] = $this->load->controller('common/footer');
         $data['header'] = $this->load->controller('common/header');
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/seller/product_form.tpl')) {
-            $this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/seller/product_form.tpl', $data));
+        $template = 'product_form.tpl';
+        if (isset($this->request->get['dialog'])) {
+            $data['dialog_id'] = $this->request->get['dialog'];
+            $template = 'product_form_dialog.tpl';
+        }
+
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/seller/' . $template)) {
+            $this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/seller/' . $template, $data));
         } else {
-            $this->response->setOutput($this->load->view('default/template/seller/product_form.tpl', $data));
+            $this->response->setOutput($this->load->view('default/template/seller/' . $template, $data));
         }
 	}
 
@@ -1629,7 +1653,7 @@ class ControllerSellerProduct extends Controller {
 			$this->error['model'] = $this->language->get('error_model');
 		}
 
-		if (utf8_strlen($this->request->post['keyword']) > 0) {
+		/*if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('catalog/url_alias');
 
 			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
@@ -1641,7 +1665,7 @@ class ControllerSellerProduct extends Controller {
 			if ($url_alias_info && !isset($this->request->get['product_id'])) {
 				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
 			}
-		}
+		}*/
 
 		if ($this->error && !isset($this->error['warning'])) {
 			$this->error['warning'] = $this->language->get('error_warning');
