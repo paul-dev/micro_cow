@@ -1,11 +1,13 @@
-.htaccess
+#.htaccess
+.idea/
 /config.php
 admin/config.php
+platform/config.php
 
 !index.html
 
-download/
-image/data/
+system/download/
+system/upload/
 image/cache/
 system/cache/
 system/logs/
