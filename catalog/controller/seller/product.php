@@ -43,7 +43,8 @@ class ControllerSellerProduct extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->request->post['product_store'] = array(
-              0, $this->config->get('config_store_id')
+              0, $this->config->get('config_store_id'),
+              1, $this->customer->getId()
             );
             $this->request->post['status'] = 0;
 
@@ -951,8 +952,7 @@ class ControllerSellerProduct extends Controller {
         $data['languages'] = array();
         $_languages = $this->model_localisation_language->getLanguages();
         foreach ($_languages as $_language) {
-            //if ($_language['code'] <> $this->config->get('config_language')) continue;
-            if (!$_language['status']) continue;
+            if ($_language['code'] <> $this->config->get('config_language')) continue;
             $data['languages'][] = $_language;
         }
 
@@ -1048,11 +1048,16 @@ class ControllerSellerProduct extends Controller {
 			$data['location'] = '';
 		}
 
-		$this->load->model('seller/shop');
+		$this->load->model('setting/store');
 
-        $data['stores'] = array();
-        $store = $this->model_seller_shop->getStore($this->config->get('config_store_id'));
-        if ($store) $data['stores'][] = $store;
+        $_stores = $this->model_setting_store->getStores();
+        foreach ($_stores as $_store) {
+            if ($_store['store_id'] <> $this->customer->getShopId()) continue;
+            $data['stores'][] = $_store;
+        }
+        if (empty($data['stores'])) $data['stores'][] = array(
+            'store_id' => 0
+        );
 
 		if (isset($this->request->post['product_store'])) {
 			$data['product_store'] = $this->request->post['product_store'];
@@ -1292,7 +1297,7 @@ class ControllerSellerProduct extends Controller {
 
         $data['shop_categories'] = array();
         $shop_categories = $this->model_catalog_category->getSystemCategoriesTree(array(
-            'store_id' => $this->config->get('config_store_id'),
+            'store_id' => $this->customer->getShopId(),
             'sort' => 'name'
         ));
         foreach ($shop_categories as $category) {

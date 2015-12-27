@@ -115,7 +115,7 @@ class ControllerCommonHeader extends Controller {
 
         $data['main_menu'][] = array(
             'label' => $this->language->get('text_purchase'),
-            'link' => $this->url->link('product/category')
+            'link' => $this->url->link('purchase/list')
         );
 
         $data['main_menu'][] = array(

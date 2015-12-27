@@ -35,7 +35,6 @@ class ControllerModuleSeller extends Controller {
         $data['text_recurring'] = $this->language->get('text_recurring');
         $data['text_shop'] = $this->customer->isSeller() ? $this->language->get('text_shop_edit') : $this->language->get('text_shop_add');
         $data['text_product'] = $this->language->get('text_product');
-        $data['text_purchase'] = $this->language->get('text_purchase');
 /*
         $data['text_category'] = $this->language->get('text_category');
         $data['text_option'] = $this->language->get('text_option');
@@ -72,9 +71,6 @@ class ControllerModuleSeller extends Controller {
                 } else {
                     $data['active_class']['product']['all'] = 'active';
                 }
-                break;
-            case 'purchase' :
-                $data['text_purchase'] = '> '.$data['text_purchase'];
                 break;
             case 'order' :
                 $data['text_order'] = '> '.$data['text_order'];
@@ -142,7 +138,6 @@ class ControllerModuleSeller extends Controller {
         $data['recurring'] = $this->url->link('account/recurring', '', 'SSL');
         $data['url_shop'] = $this->url->link('seller/shop/edit', '', 'SSL');
         $data['url_product'] = $this->url->link('seller/product', '', 'SSL');
-        $data['url_purchase'] = $this->url->link('seller/purchase', '', 'SSL');
         $data['url_order'] = $this->url->link('seller/order', '', 'SSL');
 /*
         $data['url_category'] = $this->url->link('seller/category', '', 'SSL');
