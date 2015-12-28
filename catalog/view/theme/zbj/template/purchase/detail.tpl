@@ -25,7 +25,7 @@
 
 
                   <div class="q-left-one">
-                    <h5>阿志酷酷窝</h5>
+                    <h5 style="margin-bottom: 4px">阿志酷酷窝</h5>
                     <div class="q-left-one-img">
                       <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
                       <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
@@ -43,8 +43,8 @@
                     </div>
                   </div>
 
-                  <div class="q-left-two">
-                    <h5><?php echo $text_company_info; ?></h5>
+                  <div class="q-left-two" style="padding-bottom: 20px">
+                    <h5 style="margin-bottom: 4px;"><?php echo $text_company_info; ?></h5>
                     <p><?php echo $text_Industry; ?><span>--</span></p>
                     <p><?php echo $text_registered_assets; ?><span>--</span></p>
                     <p><?php echo $text_annual_turnover; ?><span>--</span></p>
@@ -52,14 +52,14 @@
                     <a class="q-xa-caigouxuqiu">
                       <?php echo $text_more_purchase; ?>
                     </a>
-                    <h5><?php echo $text_purchase_record; ?></h5>
+
                     <p><?php echo $text_purchasing; ?></p>
                     <p><?php echo $text_serach_num; ?><span>3</span><?php echo $text_item; ?></p>
                     <p><?php echo $text_illegal_release; ?><span>0</span><?php echo $text_item; ?></p>
                   </div>
 
                   <div>
-                    <h5><?php echo $text_purchaser_other; ?></h5>
+                    <h5 style="margin-bottom: 4px"><?php echo $text_purchaser_other; ?></h5>
                     <a>
                       <span>秋冬季</span>
                       <span>女</span>
@@ -76,14 +76,14 @@
                 </div>
               </div>
 
-              <div class="col-sm-10" style="margin-left: -29px">
+              <div class="col-sm-10" style="margin-left: -40px">
                 <div class="q-xq-right-body">
                   <div class="xa-right-jubao">
                     <h2 class="q-right-ipad">
                       <?php echo $purchaseInfo['name']; ?>
                     </h2>
                     <div class="fd-right">
-                      <a href="#" title=<?php echo $text_report; ?>><?php echo $text_report; ?></a>
+                      <a href="#" style="font-size: 14px;color: #496ab4;" title=<?php echo $text_report; ?>><?php echo $text_report; ?></a>
                     </div>
                   </div>
 
@@ -91,24 +91,24 @@
                     <div>
                       <ul class="q-data-ul">
                         <li><?php echo $text_date_added; ?>
-                          <time><?php echo $data['purchaseInfo']['date_added']; ?></time>
+                          <time style=" font-size: 14px;  color: #333;"><?php echo $data['purchaseInfo']['date_added']; ?></time>
                         </li>
                         <li><?php echo $text_date_expect; ?>
-                          <time><?php echo $data['purchaseInfo']['date_expect']; ?></time>
+                          <time  style=" font-size: 14px;  color: #333;"><?php echo $data['purchaseInfo']['date_expect']; ?></time>
                         </li>
                       </ul>
                       <div class="q-action">
                         <a href="#" class="quoted-price"><?php echo $text_offer_immediately; ?></a>
-                        <span><?php echo $text_offer_immediately_toend; ?><?php echo floor((strtotime($data['purchaseInfo']['date_expect'])-strtotime(date('Y-m-d h:i:s',time())))/86400); ?><?php echo $text_date; ?></span>
+                        <span style="font-size: 14px;"><?php echo $text_offer_immediately_toend; ?><?php echo floor((strtotime($data['purchaseInfo']['date_expect'])-strtotime(date('Y-m-d h:i:s',time())))/86400); ?><?php echo $text_date; ?></span>
                       </div>
                       <div class="mic-data">
-                        <p><?php echo $text_receive_offer; ?><span>（3）</span></p>
+                        <p style=" font-size: 14px;color: #333;"><?php echo $text_receive_offer; ?><span>（3）</span></p>
                       </div>
 
                     </div>
-                    <h4 class="q-right-ipad"><?php echo $text_Inquiry_products; ?>
+                    <h3 class="q-right-ipad"><?php echo $text_Inquiry_products; ?>
                       <small>(<?php echo $text_spot_goods; ?>)</small>
-                    </h4>
+                    </h3>
                     <table class="q-xq-table">
                       <thead>
                       <tr>
@@ -129,8 +129,8 @@
                     </table>
 
 
-                    <h4 class="q-right-ipad"><?php echo $text_supplier_requirements; ?></h4>
-                    <table>
+                    <h3 class="q-right-ipad"><?php echo $text_supplier_requirements; ?></h3>
+                    <table class="q-xq-table-tt">
                       <tr>
                         <td class="q-table-yq"><?php echo $text_receiving_address; ?></td>
                         <td>广东东莞</td>
@@ -145,16 +145,16 @@
                       </tr>
                     </table>
 
-                    <h4 class="q-right-ipad"><?php echo $text_supplementary_instruction; ?></h4>
+                    <h3 class="q-right-ipad"><?php echo $text_supplementary_instruction; ?></h3>
                     <?php foreach($purchaseDescriptions as $description){ ?>
-                      <p><?php echo $description['description']; ?></p>
+                      <p style="font-size: 14px; color: #333;margin-bottom: 14px"><?php echo $description['description']; ?></p>
                     <?php } ?>
                   </div>
 
                 </div>
                 <!--已收到的报价-->
 
-                <h4 style="margin-left: 39px"><?php echo $text_receive_offerd; ?>（3<?php echo $text_item; ?>）</h4>
+                <h3 style="margin-left: 39px"><?php echo $text_receive_offerd; ?>（3<?php echo $text_item; ?>）</h3>
                 <div class="q-xa-shoudao">
                   <table>
                     <thead>

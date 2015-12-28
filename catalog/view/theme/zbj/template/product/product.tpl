@@ -3,7 +3,8 @@
 <! -- 加载样式  start -->
 <link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/supplydetailtwo.css type="text/css" rel="Stylesheet">
 
-<script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/purched.js" type="text/javascript"></script>
+<script src=catalog/view/theme/<?php echo $config_template; ?>/js/purched.js" type="text/javascript"></script>
+<script src="catalog/view/theme/zbj/js/purched.js" type="text/javascript"></script>
 <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/goods_detail.css">
 <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/goods_detail.css">
 <link rel="stylesheet" href="catalog/view/theme/zbj/js/jqzoom-core/jquery.jqzoom.css" type="text/css">
@@ -135,7 +136,12 @@
 
                                         <!-- load style -->
                                         <link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/Product_MagicZoom.css type="text/css" rel="Stylesheet">
-                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/Product_MagicZoom.js type="text/javascript"></script>
+                                        <link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/big-mirror.css type="text/css" rel="Stylesheet">
+                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/js/Product_MagicZoom.js type="text/javascript"></script>
+                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/js/big-mirror/jquery-1.4.2.min.js type="text/javascript"></script>
+                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/js/big-mirror/jquery.imagezoom.js type="text/javascript"></script>
+                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/js/jquery.imagezoom.min.js type="text/javascript"></script>
+
                                         <div id="tsShopContainer">
                                             <div id="tsImgS">
                                                 <a href="<?php echo $thumb; ?>" title="Images" class="MagicZoom" id="MagicZoom">
@@ -147,7 +153,7 @@
                                                 <div id="tsImgSCon">
                                                     <ul>
                                                         <?php foreach ($images as $image) { ?>
-                                                        <li onclick="var abc = document.getElementById('tsSelectImg_img'); abc.className='tsSelectImg';"  rel="MagicZoom" id="tsSelectImg_img">
+                                                        <li    rel="MagicZoom"  style="outline: 0px;">
                                                             <img height="42" width="42" src="<?php echo $image['thumb']; ?>" tsImgS="<?php echo $image['popup']; ?>" />
                                                         </li>
                                                         <?php } ?>
@@ -157,7 +163,23 @@
                                             </div>
                                             <img class="MagicZoomLoading" width="16" height="16" src="catalog/view/theme/<?php echo $config_template; ?>/image/product_product/loading.gif" alt="Loading..." />
                                         </div>
-                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/Product_ShopShow.js type="text/javascript"></script>
+
+                                        <script type="text/javascript">
+                                            $(document).ready(function(){
+
+                                                $(".jqzoom").imagezoom();
+
+                                                $("#thumblist li a").click(function(){
+                                                    $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+                                                    $(".jqzoom").attr('src',$(this).find("img").attr("mid"));
+                                                    $(".jqzoom").attr('rel',$(this).find("img").attr("big"));
+                                                });
+
+                                            });
+                                        </script>
+
+
+                                        <script src=catalog/view/theme/<?php echo $config_template; ?>/js/Product_ShopShow.js type="text/javascript"></script>
                                         <!-- load style -->
 
 
@@ -555,7 +577,9 @@
                                         </div>
                                         <div class="sup-add">
                                             <a class="button-cart"><?php echo $text_addtocart; ?></a>
-                                            <a class="sup-add-xihuan"><?php echo $text_join_myfavorite; ?></a>
+                                            <a href="javascript:void(0)" data-toggle="tooltip" title="" onclick="wishlist.add('<?php echo $product_id; ?>');" data-original-title="收藏(0)">
+                                                <?php echo $text_join_myfavorite; ?>
+                                            </a>
                                         </div>
                                         <?php } ?>
                                     </div>
@@ -580,8 +604,45 @@
 
                         </div>
 
+                 <script>
+                     $(document).ready(function() {
+                         var topmenu = $("#topmenu");
+                         var topmenu_top = topmenu.offset().top-550;
+                         reset_topmenu_top(topmenu, topmenu_top);
+                         $(window).scroll(function() {
+                             reset_topmenu_top(topmenu, topmenu_top);
+                         });
+                     });
+                     function reset_topmenu_top(topmenu, topmenu_top) {
+                         var document_scroll_top = $(document).scrollTop()-565;
+                         if (document_scroll_top > topmenu_top) {
+                             topmenu.css('top', document_scroll_top);
+                         }
+                         if (document_scroll_top <= topmenu_top) {
+                             topmenu.css('top', topmenu_top);
+                         }
+                     }
 
-                        <div class="sup-tabcomtr">
+                     $(document).ready(function() {
+                         var topmenu = $("#topmenu-two");
+                         var topmenu_top = topmenu.offset().top-565;
+                         reset_topmenu_top_two(topmenu, topmenu_top);
+                         $(window).scroll(function() {
+                             reset_topmenu_top_two(topmenu, topmenu_top);
+                         });
+                     });
+                     function reset_topmenu_top_two(topmenu, topmenu_top) {
+                         var document_scroll_top = $(document).scrollTop()-550;
+                         if (document_scroll_top > topmenu_top) {
+                             topmenu.css('top', document_scroll_top);
+                         }
+                         if (document_scroll_top <= topmenu_top) {
+                             topmenu.css('top', topmenu_top);
+                         }
+                     }
+                 </script>
+
+                        <div class="sup-tabcomtr" style="margin-top: 10px">
                             <div id="topmenu" style="background-color: white;width: 100%;">
                                 <ul id="myTab" class="nav nav-tabs">
                                     <li class="active">
@@ -654,7 +715,7 @@
 
                                     <?php echo $description; ?>
 
-                                    <div id="companyinformation" class="sup-prde-div">
+                                    <div id="companyinformation" class="sup-prde-div" style="margin-top: 18px">
                                         <div class="sup-pr-de"><?php echo $text_company_info; ?></div>
                                     </div>
                                     <br>
@@ -880,7 +941,6 @@
                                 <div style="width: 199px;height:100px;">
                                     <div class="sup-rdiv-d"><a href=<?php echo $populares['href']; ?>><?php echo $populares['name']; ?></a></div>
                                     <span><?php echo $populares['price']; ?></span>
-                                    <span><?php echo $populares['description']; ?></span>
                                 </div>
                                 <div style="clear:both;"></div>
                             </div>

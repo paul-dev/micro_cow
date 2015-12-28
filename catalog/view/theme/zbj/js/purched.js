@@ -3,14 +3,14 @@
  */
 $(document).ready(function() {
   var topmenu = $("#topmenu");
-  var topmenu_top = topmenu.offset().top-600;
+  var topmenu_top = topmenu.offset().top+602;
   reset_topmenu_top(topmenu, topmenu_top);
   $(window).scroll(function() {
     reset_topmenu_top(topmenu, topmenu_top);
   });
 });
 function reset_topmenu_top(topmenu, topmenu_top) {
-  var document_scroll_top = $(document).scrollTop()-633;
+  var document_scroll_top = $(document).scrollTop()+600;
   if (document_scroll_top > topmenu_top) {
     topmenu.css('top', document_scroll_top);
   }
@@ -37,7 +37,4 @@ function reset_topmenu_top_two(topmenu, topmenu_top) {
   }
 }
 
-$(document).ready(function(){
-
-}
 

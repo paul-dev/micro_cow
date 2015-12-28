@@ -12,11 +12,8 @@
     <div id="content">
       <?php echo $content_top; ?>
 
-      <div class="purehed">
-
-        <div style="width: 100%;border: 1px solid #027cff;margin-bottom: 20px"></div>
-
-        <div class="purehed-body" style="width: 1200px;">
+      <div class="purehed" style="position: relative; margin-top: -15px;width: 95%">
+        <div class="purehed-body" style="width: 932px;float: left">
           <br/>
           <div class="suoshuhangye">
             <div  class="suoshuhangye-one">
@@ -99,7 +96,7 @@
           </div>
 
           <!--侧栏-->
-          <div class="purched-body-ad" style="top:300px;right:280px">
+          <div class="purched-body-ad" style="top: 20px;">
 
             <div class="purched-ad-one">
               <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/rili.png">
@@ -116,7 +113,8 @@
 
         <!-- 数据分页 start-->
         <?php if($purchaseProduct){ ?>
-        <div style="border:0px solid blue;margin-top:80px;margin-left:20px;">
+        <div style="clear: both"></div>
+        <div style="border:0px solid blue;margin-top:80px;margin-left:20px;width: 932px">
           <div style="float:left;">
             <?php echo $pagination; ?>
           </div>
