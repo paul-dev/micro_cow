@@ -58,7 +58,7 @@
   font-size: 18px;
   width: 35%;
   height: 40px;
-
+  border-radius: 3px;
 }
 .sup-liulan-btn{
   font-size: 16px;
@@ -74,7 +74,8 @@
   color: #999;
 }
 .sup-add{
-  margin-top: 13px;
+  margin-top: 17px;
+  margin-left: 20px;
 }
 .sup-add-xihuan{
   margin-left: 20px;
@@ -88,7 +89,7 @@
   position: relative;
   width: 544px;
   float: right;
-  margin-top: 0px;
+  margin-top: -2px;
 }
 .sup-tradeassurance-baozhang{
   display: inline-block;
@@ -184,6 +185,7 @@
   display: table!important;
   text-align: center;
   margin-right: 20px;
+  border: 1px solid #d3d3d3;border-radius:4px;
 }
 .sup-rdiv-d{
   width: 78px;
@@ -282,3 +284,42 @@ dl>a{color: #aaaaab}
   text-decoration: none;
 }
 
+.left-div{
+  float: left;
+  border-right: 1px solid #ddd;
+  margin-right: 10px;
+}
+
+.product-detail-new{
+  width: 547px;
+  float: left;
+}
+
+.goods_detail_info-pading{
+  padding:0 0 20px 20px;
+}
+.productdescription-li{
+  float: left;
+  width: 206px;
+}
+.productdescription-div{
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.right-like-div{
+  border:0px solid blue;width:200px;margin-top:10px;
+}
+.you-like-img{
+  width: 100px;
+  height: 100px;
+}
+.you-like-word{
+  width: 199px;height:100px;
+}
+
+.add-car{
+  border: 1px solid #dfdfdf;
+  height: 30px;width: 120px;
+  text-align: center;float: left;
+  padding-top: 3px;margin-right: 10px
+}

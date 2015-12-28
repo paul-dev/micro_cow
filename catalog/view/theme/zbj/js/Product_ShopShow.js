@@ -203,3 +203,212 @@ FulSs().style.width=FliS(0).offsetWidth*FulS().length+"px";
 
 //图片等比例
 tsScrollResize();
+
+
+//外部
+$(document).ready(function() {
+	var topmenu = $("#topmenu");
+	var topmenu_top = topmenu.offset().top-550;
+	reset_topmenu_top(topmenu, topmenu_top);
+	$(window).scroll(function() {
+		reset_topmenu_top(topmenu, topmenu_top);
+	});
+});
+function reset_topmenu_top(topmenu, topmenu_top) {
+	var document_scroll_top = $(document).scrollTop()-565;
+	if (document_scroll_top > topmenu_top) {
+		topmenu.css('top', document_scroll_top);
+	}
+	if (document_scroll_top <= topmenu_top) {
+		topmenu.css('top', topmenu_top);
+	}
+}
+
+$(document).ready(function() {
+	var topmenu = $("#topmenu-two");
+	var topmenu_top = topmenu.offset().top-565;
+	reset_topmenu_top_two(topmenu, topmenu_top);
+	$(window).scroll(function() {
+		reset_topmenu_top_two(topmenu, topmenu_top);
+	});
+});
+function reset_topmenu_top_two(topmenu, topmenu_top) {
+	var document_scroll_top = $(document).scrollTop()-550;
+	if (document_scroll_top > topmenu_top) {
+		topmenu.css('top', document_scroll_top);
+	}
+	if (document_scroll_top <= topmenu_top) {
+		topmenu.css('top', topmenu_top);
+	}
+}
+
+$('.button-cart').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('.button-cart').button('loading');
+		},
+		complete: function() {
+			$('.button-cart').button('reset');
+		},
+		success: function(json) {
+			$('.alert, .text-danger').remove();
+			$('.form-group').removeClass('has-error');
+
+			$('#modal-cart').remove();
+
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+
+						if (element.parent().hasClass('input-group')) {
+							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						} else {
+							element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				}
+
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+				}
+
+				// Highlight any found errors
+				$('.text-danger').parent().addClass('has-error');
+
+				var html  = '<div id="modal-cart" class="modal fade">';
+				//html += '<div class="modal-backdrop  in" style="height: 100%;"></div>';
+				html += '  <div class="modal-dialog">';
+				html += '    <div class="modal-content">';
+				html += '      <div class="modal-header">';
+				html += '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+				html += '        <h4 class="modal-title">加入购物车失败！</h4>';
+				html += '      </div>';
+				html += '      <div class="modal-body">请检查各选择项！</div>';
+				html += '    </div>';
+				html += '  </div>';
+				html += '</div>';
+
+				$('body').append(html);
+				$('#modal-cart .modal-dialog').css('margin-top', $(window).height() / 2 - $('#modal-cart .modal-dialog .modal-content').height() / 2 - 50 + 'px');
+
+				$('#modal-cart').modal('show');
+				setTimeout(function(){
+					$('#modal-cart').modal('hide');
+				}, 3000);
+			}
+
+			if (json['success']) {
+				//$('.breadcrumb').after('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+				var html  = '<div id="modal-cart" class="modal fade">';
+				//html += '<div class="modal-backdrop  in" style="height: 100%;"></div>';
+				html += '  <div class="modal-dialog">';
+				html += '    <div class="modal-content">';
+				html += '      <div class="modal-header">';
+				html += '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+				html += '        <h4 class="modal-title">加入购物车成功！</h4>';
+				html += '      </div>';
+				html += '      <div class="modal-body">' + json['success'] + '</div>';
+				html += '    </div>';
+				html += '  </div>';
+				html += '</div>';
+
+				$('body').append(html);
+				$('#modal-cart .modal-dialog').css('margin-top', $(window).height() / 2 - $('#modal-cart .modal-dialog .modal-content').height() / 2 - 50 + 'px');
+
+				$('#modal-cart').modal('show');
+				setTimeout(function(){
+					$('#modal-cart').modal('hide');
+				}, 3000);
+
+				$('#cart > button').html('<i class="fa fa-shopping-cart"></i> ' + json['total']);
+
+				$('#header-cart-label a').attr('title', json['total']);
+				var _pos = json['total'].indexOf(' ');
+				var _num = json['total'].substring(0, _pos);
+				$('#header-cart-label a .shopping_cart_num').html(_num);
+
+				//$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+				$('#cart > ul').load('index.php?route=common/cart/info ul li');
+			}
+		}
+	});
+});
+
+$('.button-buy').on('click',  function(){
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('.button-buy').button('loading');
+		},
+		complete: function() {
+			$('.button-buy').button('reset');
+		},
+		success: function(json) {
+			$('.alert, .text-danger').remove();
+			$('.form-group').removeClass('has-error');
+
+			$('#modal-cart').remove();
+
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+
+						if (element.parent().hasClass('input-group')) {
+							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						} else {
+							element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				}
+
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+				}
+
+				// Highlight any found errors
+				$('.text-danger').parent().addClass('has-error');
+
+				var html  = '<div id="modal-cart" class="modal fade">';
+				//html += '<div class="modal-backdrop  in" style="height: 100%;"></div>';
+				html += '  <div class="modal-dialog">';
+				html += '    <div class="modal-content">';
+				html += '      <div class="modal-header">';
+				html += '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+				html += '        <h4 class="modal-title">加入购物车失败！</h4>';
+				html += '      </div>';
+				html += '      <div class="modal-body">请检查各选择项！</div>';
+				html += '    </div>';
+				html += '  </div>';
+				html += '</div>';
+
+				$('body').append(html);
+				$('#modal-cart .modal-dialog').css('margin-top', $(window).height() / 2 - $('#modal-cart .modal-dialog .modal-content').height() / 2 - 50 + 'px');
+
+				$('#modal-cart').modal('show');
+				setTimeout(function(){
+					$('#modal-cart').modal('hide');
+				}, 3000);
+			}
+
+			if (json['success']) {
+				window.location = 'index.php?route=checkout/checkout';
+			}
+		}
+	});
+});
+
+
+
+
+
