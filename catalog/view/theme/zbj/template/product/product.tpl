@@ -571,8 +571,8 @@
 
                                         <?php if (!$is_preview) { ?>
                                         <div class="zbj-btn-box clearfix">
-                                            <button type="button" id="buy_now"  data-loading-text="<?php echo $text_loading; ?>" class="button-buy sup-lianximaijia-btn"><?php echo $text_contact_seller; ?></button>
-                                            <button type="button" id="" data-loading-text="<?php echo $text_loading; ?>" class="sup-start-btn"><i class="fa fa-shopping-cart" style="font-size:17px;margin-right:7px;"></i><?php echo $text_begin_to_order; ?></button>
+                                            <button type="button" id="buy_now"  data-loading-text="<?php echo $text_loading; ?>" class="button-buy sup-lianximaijia-btn" style="border-radius: 3px"><?php echo $text_contact_seller; ?></button>
+                                            <button type="button" id="" data-loading-text="<?php echo $text_loading; ?>" class="sup-start-btn"><i class="fa fa-shopping-cart" style="font-size:17px;margin-right:7px;border-radius: 3px"></i><?php echo $text_begin_to_order; ?></button>
                                             <a href="<?php echo $url; ?>#suplly-nav-form_id" class="sup-liulan-btn"><?php echo $text_message; ?></a>
                                         </div>
                                         <div class="sup-add">
