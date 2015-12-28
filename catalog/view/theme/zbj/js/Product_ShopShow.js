@@ -208,32 +208,14 @@ tsScrollResize();
 //外部
 $(document).ready(function() {
 	var topmenu = $("#topmenu");
-	var topmenu_top = topmenu.offset().top-550;
+	var topmenu_top = topmenu.offset().top-680;
 	reset_topmenu_top(topmenu, topmenu_top);
 	$(window).scroll(function() {
 		reset_topmenu_top(topmenu, topmenu_top);
 	});
 });
 function reset_topmenu_top(topmenu, topmenu_top) {
-	var document_scroll_top = $(document).scrollTop()-565;
-	if (document_scroll_top > topmenu_top) {
-		topmenu.css('top', document_scroll_top);
-	}
-	if (document_scroll_top <= topmenu_top) {
-		topmenu.css('top', topmenu_top);
-	}
-}
-
-$(document).ready(function() {
-	var topmenu = $("#topmenu-two");
-	var topmenu_top = topmenu.offset().top-565;
-	reset_topmenu_top_two(topmenu, topmenu_top);
-	$(window).scroll(function() {
-		reset_topmenu_top_two(topmenu, topmenu_top);
-	});
-});
-function reset_topmenu_top_two(topmenu, topmenu_top) {
-	var document_scroll_top = $(document).scrollTop()-550;
+	var document_scroll_top = $(document).scrollTop()-650;
 	if (document_scroll_top > topmenu_top) {
 		topmenu.css('top', document_scroll_top);
 	}
@@ -248,9 +230,7 @@ $('.button-cart').on('click', function() {
 		type: 'post',
 		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
 		dataType: 'json',
-		beforeSend: function() {
-			$('.button-cart').button('loading');
-		},
+
 		complete: function() {
 			$('.button-cart').button('reset');
 		},

@@ -87,9 +87,10 @@
   border: 1px solid #e9eef5;
   font-size: 14px;
   position: relative;
-  width: 544px;
+  width: 548px;
   float: right;
-  margin-top: -2px;
+  margin-top: 18px;
+  margin-right: -20px;
 }
 .sup-tradeassurance-baozhang{
   display: inline-block;
@@ -178,17 +179,17 @@
 .sup-rr-div{
   float: left;
   border: 1px solid #ddd;
-  width: 100px;
+  width: 90px;
   height: 100px;
   overflow: hidden;
   table-layout: fixed;
   display: table!important;
   text-align: center;
-  margin-right: 20px;
   border: 1px solid #d3d3d3;border-radius:4px;
+  float: left;
 }
 .sup-rdiv-d{
-  width: 78px;
+  width: 96px;
   float: right;
   height:80px;
   overflow: hidden;
@@ -286,8 +287,7 @@ dl>a{color: #aaaaab}
 
 .left-div{
   float: left;
-  border-right: 1px solid #ddd;
-  margin-right: 10px;
+  margin-right: 30px;
 }
 
 .product-detail-new{
@@ -310,11 +310,12 @@ dl>a{color: #aaaaab}
   border:0px solid blue;width:200px;margin-top:10px;
 }
 .you-like-img{
-  width: 100px;
+  width: 90px;
   height: 100px;
 }
 .you-like-word{
-  width: 199px;height:100px;
+  width: 100px;height:100px;
+  float: left;
 }
 
 .add-car{
@@ -322,4 +323,21 @@ dl>a{color: #aaaaab}
   height: 30px;width: 120px;
   text-align: center;float: left;
   padding-top: 3px;margin-right: 10px
+}
+
+.label-new {
+  font-size: 14px;
+  float: left;
+  width: 100px;
+}
+.content-new{
+  font-size: 14px;
+  float: left;
+}
+.company-deatil{
+  padding: 10px 10px;
+  border: 1px solid #ccc;
+}
+.my-like-span{
+  margin-left: 5px;
 }

@@ -9,7 +9,7 @@
 
 <! -- 加载样式  start -->
 
-<div class="container">
+<div class="container" style="margin: 0 auto">
    <div class="left-div">
       <div class="mirror-div">
           <div style="float: left">
@@ -34,7 +34,10 @@
                   </div>
                   <img class="MagicZoomLoading" width="16" height="16" src="catalog/view/theme/<?php echo $config_template; ?>/image/product_product/loading.gif" alt="Loading..." />
               </div>
-          </div>
+              <div style="width: auto;text-align: center;margin-top: 10px">
+                  <a href="javascript:void(0)" data-toggle="tooltip" title="" onclick="wishlist.add('131');" data-original-title="收藏(0)"><img src="catalog/view/theme/zbj/image/HEART.png" style="margin-right: 5px">加入我的喜欢</a>
+              </div>
+                   </div>
               <div class="product-detail-new">
                   <!-- 商品详情 start -->
                   <div class="goods_detail_info" id="product">
@@ -45,27 +48,27 @@
 
                           <div class="products_style">
                               <dl>
-                                  <dt class="label">价格:</dt>
-                                  <dd class="content">￥980.00</dd>
+                                  <dt class="label" style="font-size: 14px;color: #3c3c3c;">价格:</dt>
+                                  <dd class="content"style="font-size: 14px;color: #3c3c3c;">￥980.00</dd>
                               </dl>
                               <dl>
-                                  <dt class="label">起订数量：</dt>
-                                  <dd class="content">1</dd>
+                                  <dt class="label"style="font-size: 14px;color: #3c3c3c;">起订数量：</dt>
+                                  <dd class="content"style="font-size: 14px;color: #3c3c3c;">1</dd>
                               </dl>
                               <dl>
-                                  <dt class="label">型号:</dt>
-                                  <dd class="content">398EA394929</dd>
+                                  <dt class="label"style="font-size: 14px;color: #3c3c3c;">型号:</dt>
+                                  <dd class="content"style="font-size: 14px;color: #3c3c3c;">398EA394929</dd>
                               </dl>
                               <dl>
-                                  <dt class="label">上架日期：</dt>
-                                  <dd class="content">2015-06-17</dd>
+                                  <dt class="label"style="font-size: 14px;color: #3c3c3c;">上架日期：</dt>
+                                  <dd class="content"style="font-size: 14px;color: #3c3c3c;">2015-06-17</dd>
                               </dl>
                           </div>
 
                           <!-- quantity -->
                           <div class="products_style">
                               <dl>
-                                  <dt class="label" style="margin-top:10px;">数量</dt>
+                                  <dt class="label" style="margin-top:10px;font-size: 14px;color: #3c3c3c;">数量</dt>
                                   <dd class="products_num content">
                                       <span class="products_num_cut products_num_btn" style="color: rgb(204, 204, 204); cursor: not-allowed;"><i class="fa fa-minus"></i></span><input type="text" name="quantity" value="1" id="input-quantity" style="IME-MODE: disabled;" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"><span class="products_num_add products_num_btn"><i class="fa fa-plus"></i></span>件
                                   </dd>
@@ -74,20 +77,15 @@
                           <input type="hidden" name="product_id" value="131">
 
 
-                          <div class="zbj-btn-box clearfix">
+                          <div class="zbj-btn-box clearfix" style="margin-top: 20px">
 
-                              <a><button type="button"  data-loading-text="加载中......" class="sup-start-btn">联系卖家</button></a>
+                              <a class="button-cart"  style="cursor: pointer;"><button type="button"  class="sup-start-btn">加入购物车</button></a>
                               <a><button type="button"  data-loading-text="加载中......" class="sup-start-btn">开始订单</button></a>
 
-                              <a href="http://dev.micro.com/product/product?search=20151227&amp;product_id=131#suplly-nav-form_id" class="sup-liulan-btn">留言</a>
+                              <a href="#guestBook" class="sup-liulan-btn">留言</a>
                           </div>
                           <div class="sup-add">
-                              <div class="add-car">
-                                  <a class="button-cart"  style="cursor: pointer;" > <img src="catalog/view/theme/zbj/image/shoppingcar.png" style="margin-right:5px">加入购物车</a>
-                              </div>
-                              <div class="add-car">
-                              <a href="javascript:void(0)" data-toggle="tooltip" title="" onclick="wishlist.add('131');" data-original-title="收藏(0)"><img src="catalog/view/theme/zbj/image/HEART.png" style="margin-right: 5px">加入我的喜欢</a>
-                              </div>
+                                  <a  href="#" style="font-size: 14px"><img src="catalog/view/theme/zbj/image/wangwang.png">联系卖家</a>
                               <div style="clear: both"></div>
                           </div>
                       </div>
@@ -124,24 +122,12 @@
 
                     <!--产品详细-->
 
-                    <br>
                     <div class="tab-pane fade in active" id="product-two" style="clear: both;position: relative">
-                        <div id="topmenu-two" style="padding-top: 10px; width: 100%; top: 57.9375px; background-color: white;">
-                            <dl style="margin-bottom: -6px;">
-                                <dl class="sup-dl">  <a href="http://dev.micro.com/product/product?search=20151227&amp;product_id=131#productdescription">产品描述<dt class="sup-tab-dt"><div class="sup-tab-gs-div"></div></dt></a></dl>
-                                <dl class="sup-dl">  <a href="http://dev.micro.com/product/product?search=20151227&amp;product_id=131#companyinformation">公司信息<dt class="sup-tab-dt"><div class="sup-tab-gs-div"></div></dt></a> </dl>
-                                <dl class="sup-dl">  <a href="http://dev.micro.com/product/product?search=20151227&amp;product_id=131#ourservice">我们的服务<dt class="sup-tab-dt"><div class="sup-tab-gs-div"></div></dt></a> </dl>
-                                <dl class="sup-dl"> <a href="http://dev.micro.com/product/product?search=20151227&amp;product_id=131#packaging">包装&amp;运输<dt class="sup-tab-dt"><div class="sup-tab-gs-div"></div></dt></a> </dl>
-                                <dl class="sup-dl"> <a href="http://dev.micro.com/product/product?search=20151227&amp;product_id=131#faq">常见问题<dt class="sup-tab-dt"><div class="sup-tab-gs-div"></div></dt></a></dl>
-                                <dl class="sup-dl">  <a href="http://dev.micro.com/product/product?search=20151227&amp;product_id=131#contactus">联系我们<dt class="sup-tab-dt"><div class="sup-tab-gs-div"></div></dt></a></dl>
-                            </dl>
-                            <div class="sup-chanpin-horazion">
-                            </div>
-                        </div>
 
-                        <br> <br> <br>
                         <br>
-                        <h4 style="margin-top: 40px;margin-bottom:8px;">产品详情</h4>
+                        <br>
+                        <br>
+                        <h4 style="margin-bottom:8px;">产品详情</h4>
                         <table>
                             <tbody><tr>
                                 <td class="kuaisudetail-td1">产品名称：</td><td class="kuaisudetail-td2">20151227</td>
@@ -198,51 +184,11 @@
                         </div>
                         <br>
 
-                        <div id="companyinformation" class="sup-prde-div">
-                            <div class="sup-pr-de">公司信息</div>
-                        </div>
-                        <br>
-                        <img src="catalog/view/theme/zbj/image/product_product/produt-aboutus.png">
-                        <img src="catalog/view/theme/zbj/image/product_product/produce-about2.png">
-
-                        <div id="ourservice" class="sup-prde-div" style="margin-top: 10px">
-                            <div class="sup-pr-de">我们的服务</div>
-                        </div>
-                        <br>
-                        <div class="sup-service">
-                            <h4>1.Delivery time</h4>
-                            <p>45-60days received the deposit</p>
-
-                            <h4>2.支付</h4>
-                            <p>一般情况下,我们使用电汇付款:TT30%生产之前,平衡付款将在发货前付清</p>
-
-                            <h4>3.装载港</h4>
-                            <p>深圳或客户要求的地方</p>
-
-                            <h4>4.质量保证</h4>
-                            <p>在保修期内,免费维修会影响以下措施自行车在正常使用的条件,是因为质量问题和损害。</p>
-                        </div>
-                        <br>
-                        <div id="packaging" class="sup-prde-div" style="margin-top: 10px">
-                            <div class="sup-pr-de">包装&amp;运输</div>
-                        </div>
-                        <br>
-                        <img src="catalog/view/theme/zbj/image/product_product/sup-packaing.png">
-
-
-
-
-                        <div id="faq" class="sup-prde-div" style="margin-top: 10px">
-                            <div class="sup-pr-de">常见问题</div>
-                        </div><br>
-                        <div class="sup-service">
-                            <h4>1.什么事付款条案</h4><p>A：转账,钱,银行转账付款方式电汇或者西联。</p><br><h4>2.多久我才能取货，以及这个需要多久</h4><p>A：这是我们的荣幸为您提供样品测试质量,但会增加额外的成本和运输成本的快递。通常需要15 - 20天生产样品。</p><br><h4>3.MOQ是什么</h4><p>A：我们的MOQ是20 GP容器。</p><br><h4>4.你可以打印我们的标志在产品或包装吗?</h4><p>A：是的,你的定制要求颜色标志设计,包装,纸箱马克,等很受欢迎的。</p>                                    </div>
-
                         <div id="contactus" class="sup-prde-div" style="margin-top: 10px">
                             <div class="sup-pr-de">联系我们</div>
                         </div><br>
                         <img src="catalog/view/theme/zbj/image/product_product/contactus.png">
-                        <a name="suplly-nav-form_id" id="suplly-nav-form_id"></a>
+                        <a name="guestBook" id="guestBook"></a>
 
                     </div>
 
@@ -251,7 +197,7 @@
 
 
                     <!--公司简介-->
-                    <div class="tab-pane fade sup-gongsijianjie" id="company" style="margin-top: 20px">
+                    <div class="tab-pane fade sup-gongsijianjie" id="company" >
                         <br>
                         <p>
                             东莞值得五金有限公司(为什么)是值得集团的一个分支被发现2005年的香港。为什么是一个领先的制造在中国specifialize固定齿轮bickcyles,MTB自行车,Coeach巡洋舰,直升机自行车,自行车和城市框架,自行车叉,自行车车轮和其他自行车零件。与此同时我们可以接受定制的制造服务。我们可以供应各种各样的材料,包括碳纤维、铝、钢铁。该公司已经建立了很好的业务...<a href="#">&nbsp;详情</a>
@@ -332,7 +278,7 @@
 
                     <!--交易记录-->
                     <div class="tab-pane fade" id="transaction" style="margin-top: 25px">
-                        <div style="border: 1px solid #dfdfdf;margin-top: 38px;">
+                        <div style="border: 1px solid #dfdfdf;">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
@@ -411,7 +357,20 @@
    </div>
 
    <div style="float: left">
-           <a href="http://dev.micro.com/product/product?search=20151227&amp;product_id=131"><img src="catalog/view/theme/zbj/image/product_product/purchedad.png"></a>
+
+       <div class="company-deatil">
+           <h3 style="margin-bottom: 4px;">公司基本信息</h3>
+           <p>主营行业：<span>--</span></p>
+           <p>注册资本：<span>--</span></p>
+           <p>年营业额：<span>--</span></p>
+           <p>所在地区：<span>--</span></p>
+
+
+           <p>采购等级：</p>
+           <p>查询单数：<span>3</span>条</p>
+           <p>违规发布：<span>0</span>条</p>
+       </div>
+
            <p style="margin-top: 20px;font-size: 14px;font-weight:bold;margin-bottom:5px;">你可能喜欢:</p><!-- 调用 popular_products 商品 -->
 
        <div class="right-like-div">
@@ -420,40 +379,31 @@
                </div>
                <div class="you-like-word" >
                    <div class="sup-rdiv-d"><a href="http://dev.micro.com/product/product?product_id=118">玉中皇 天然A货翡翠平安扣吊坠 男女款带证书</a></div>
-                   <span>￥680.00</span>
+                   <span class="my-like-span">￥680.00</span>
                </div>
                <div style="clear:both;"></div>
-           </div>
-       <div class="right-like-div">
-           <div class="sup-rr-div">
-               <a href="http://dev.micro.com/product/product?product_id=118"><img src="catalog/view/theme/zbj/image/product_product/purchedad.png" class="you-like-img"></a>
-           </div>
-           <div class="you-like-word" >
-               <div class="sup-rdiv-d"><a href="http://dev.micro.com/product/product?product_id=118">玉中皇 天然A货翡翠平安扣吊坠 男女款带证书</a></div>
-               <span>￥680.00</span>
-           </div>
-           <div style="clear:both;"></div>
        </div>
        <div class="right-like-div">
-           <div class="sup-rr-div">
-               <a href="http://dev.micro.com/product/product?product_id=118"><img src="catalog/view/theme/zbj/image/product_product/purchedad.png" class="you-like-img"></a>
-           </div>
-           <div class="you-like-word" >
-               <div class="sup-rdiv-d"><a href="http://dev.micro.com/product/product?product_id=118">玉中皇 天然A货翡翠平安扣吊坠 男女款带证书</a></div>
-               <span>￥680.00</span>
-           </div>
-           <div style="clear:both;"></div>
+               <div class="sup-rr-div">
+                   <a href="http://dev.micro.com/product/product?product_id=118"><img src="catalog/view/theme/zbj/image/product_product/purchedad.png" class="you-like-img"></a>
+               </div>
+               <div class="you-like-word" >
+                   <div class="sup-rdiv-d"><a href="http://dev.micro.com/product/product?product_id=118">玉中皇 天然A货翡翠平安扣吊坠 男女款带证书</a></div>
+                   <span class="my-like-span">￥680.00</span>
+               </div>
+               <div style="clear:both;"></div>
        </div>
        <div class="right-like-div">
-           <div class="sup-rr-div">
-               <a href="http://dev.micro.com/product/product?product_id=118"><img src="catalog/view/theme/zbj/image/product_product/purchedad.png" class="you-like-img"></a>
-           </div>
-           <div class="you-like-word" >
-               <div class="sup-rdiv-d"><a href="http://dev.micro.com/product/product?product_id=118">玉中皇 天然A货翡翠平安扣吊坠 男女款带证书</a></div>
-               <span>￥680.00</span>
-           </div>
-           <div style="clear:both;"></div>
+               <div class="sup-rr-div">
+                   <a href="http://dev.micro.com/product/product?product_id=118"><img src="catalog/view/theme/zbj/image/product_product/purchedad.png" class="you-like-img"></a>
+               </div>
+               <div class="you-like-word" >
+                   <div class="sup-rdiv-d"><a href="http://dev.micro.com/product/product?product_id=118">玉中皇 天然A货翡翠平安扣吊坠 男女款带证书</a></div>
+                   <span class="my-like-span">￥680.00</span>
+               </div>
+               <div style="clear:both;"></div>
        </div>
+
    </div>
  <div style="clear: both"></div>
 </div>
