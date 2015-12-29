@@ -13,10 +13,11 @@
    <div class="left-div">
       <div class="mirror-div">
           <div style="float: left">
+
               <div id="tsShopContainer">
                   <div id="tsImgS">
-                      <a href="<?php echo $thumb; ?>" title="Images" class="MagicZoom" id="MagicZoom">
-                          <img width="340" height="360" src="<?php echo $thumb; ?>" />
+                      <a href="catalog/view/theme/zbj/image/product_product/purchedad.png" title="Images" class="MagicZoom" id="MagicZoom">
+                          <img width="340" height="360" src="catalog/view/theme/zbj/image/product_product/purchedad.png" />
                       </a>
                   </div>
                   <div id="tsPicContainer">
@@ -24,8 +25,8 @@
                       <div id="tsImgSCon">
                           <ul>
                               <?php foreach ($images as $image) { ?>
-                              <li   rel="MagicZoom"  style="outline: 0px;">
-                                  <img height="42" width="42" src="<?php echo $image['thumb']; ?>" tsImgS="<?php echo $image['popup']; ?>" />
+                              <li    rel="MagicZoom"  style="outline: 0px;">
+                                  <img height="42" width="42" src="catalog/view/theme/zbj/image/product_product/purchedad.png" tsImgS="<?php echo $image['popup']; ?>" />
                               </li>
                               <?php } ?>
                           </ul>
@@ -34,6 +35,9 @@
                   </div>
                   <img class="MagicZoomLoading" width="16" height="16" src="catalog/view/theme/<?php echo $config_template; ?>/image/product_product/loading.gif" alt="Loading..." />
               </div>
+              <script src=catalog/view/theme/<?php echo $config_template; ?>/js/Product_ShopShow.js type="text/javascript"></script>
+
+
               <div style="width: auto;text-align: center;margin-top: 10px">
                   <a href="javascript:void(0)" data-toggle="tooltip" title="" onclick="wishlist.add('131');" data-original-title="收藏(0)"><img src="catalog/view/theme/zbj/image/HEART.png" style="margin-right: 5px">加入我的喜欢</a>
               </div>
@@ -107,7 +111,7 @@
 
         <div>
             <div class="sup-tabcomtr" style="margin-top: 10px">
-                <div id="topmenu" style="width: 100%; top: 34.9375px; background-color: white;">
+                <div id="topmenu" style="width: 100%; background-color: white;">
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active">
                             <a href="#product-two" data-toggle="tab">
