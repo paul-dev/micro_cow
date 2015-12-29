@@ -67,12 +67,12 @@
                   <p>
                     <a href="<?php echo $purchase_product['url']; ?>" target="_blank" class="purehed-div-1-a" style="width: 224px"><?php echo $purchase_product['name']; ?></a>
                   </p>
-                  <label class="purehed-div-L"><?php echo $text_amount_purchased; ?><span class="purched-font-red">5000</span>PCS</label>
+                  <label class="purehed-div-L"><?php echo $text_amount_purchased; ?><span class="purched-font-red"><?php echo $purchase_product['product_amount']; ?></span>PCS</label>
                 </div>
 
                 <div class="purehed-div-2">
                   <p > <a class="purehed-div-2-p"><?php echo $text_release_time; ?><time><?php echo $purchase_product['date_added']; ?></time></a></p>
-                  <p> <a class="purehed-div-2-p"><?php echo $text_days_rest; ?><span class="purched-font-red">5</span><?php echo $text_product_days; ?></a></p>
+                  <p> <a class="purehed-div-2-p"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $purchase_product['date_remaining']; ?></span><?php echo $text_product_days; ?></a></p>
                   <p> <a class="purehed-div-2-p"><?php echo $text_information_type; ?>现货/标准品</a></p>
                   <p> <a class="purehed-div-2-p"><?php echo $text_have_been_priced; ?><span class="purched-font-red">4</span><?php echo $text_product_strip; ?></a></p>
                   <div class="purehed-div-2-img">

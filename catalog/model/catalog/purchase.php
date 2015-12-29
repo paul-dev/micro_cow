@@ -323,4 +323,13 @@ class ModelCatalogPurchase extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getTotalPurchaseProduct($purchase_id) {
+
+		$sql = "SELECT SUM(quantity) AS total FROM " . DB_PREFIX . "purchase_product WHERE purchase_id = ".$purchase_id;
+
+		$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
 }

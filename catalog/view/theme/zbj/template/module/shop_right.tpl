@@ -63,13 +63,17 @@
         <li>商品数量：<?php echo $total_product; ?></li>
         <li>销售数量：<?php echo $total_sell; ?></li>
     </ul>
+
+    <div style="border: 0px solid #00b3ee;margin-top:15px;">
     <?php if($shop_info['config_legal_qq']){ ?>
     <a class="intoshop_btn" href="http://wpa.qq.com/msgrd?V=3&uin=<?php echo $shop_info['config_legal_qq'] ?>&Site=<?php echo $shop_info['config_name']; ?>&Menu=yes" target="_blank"><i class="intoshop_btn_ico"></i>联系供应商</a>
     <?php } ?>
     <?php if($shop_url){ ?>
         <a class="intoshop_btn" href="<?php echo $shop_url; ?>" target="_blank"><i class="intoshop_btn_ico"></i>查看供应商</a>
     <?php } ?>
-    <?php if (!empty($related_products)) { ?>
+    </div>
+
+      <?php if (!empty($related_products)) { ?>
       <div class="maybe-like">
     	<h3>你可能还喜欢</h3>
         <ul>

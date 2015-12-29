@@ -30,6 +30,17 @@ class ControllerPurchaseDetail extends Controller
 		 * */
 		$data['purchaseInfo'] = $this->model_catalog_purchase->getPurchase($purchase_id);
 
+		foreach($data['purchaseInfo'] as $key=>$val){
+			$data['purchaseInfo']['date_available'] = date('Y-m-d',strtotime($data['purchaseInfo']['date_available']))." 23:59:59";
+			//剩余日期
+			$data['purchaseInfo']['date_remaining'] = floor((strtotime($data['purchaseInfo']['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000);
+
+			if($data['purchaseInfo']['date_remaining']==0){
+				$data['purchaseInfo']['date_remaining'] = round((strtotime($data['purchaseInfo']['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000,1);
+			}
+
+		}
+
 		$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchaseProducts($purchase_id);
 
 		$data['purchaseDescriptions'] = $this->model_catalog_purchase->getPurchaseDescriptions($purchase_id);
@@ -78,6 +89,18 @@ class ControllerPurchaseDetail extends Controller
 		$data['text_serach_num'] = $this->language->get('text_serach_num');
 		$data['text_illegal_release'] = $this->language->get('text_illegal_release');
 		$data['text_purchaser_other'] = $this->language->get('text_purchaser_other');
+
+		$data['text_invoice_type_0'] = $this->language->get('text_invoice_type_0');
+		$data['text_invoice_type_1'] = $this->language->get('text_invoice_type_1');
+		$data['text_invoice_type_2'] = $this->language->get('text_invoice_type_2');
+		$data['text_invoice_type_3'] = $this->language->get('text_invoice_type_3');
+
+		$data['text_trade_type_0'] = $this->language->get('text_trade_type_0');
+		$data['text_trade_type_1'] = $this->language->get('text_trade_type_1');
+		$data['text_trade_type_2'] = $this->language->get('text_trade_type_2');
+		$data['text_trade_type_3'] = $this->language->get('text_trade_type_3');
+
+		$data['text_date_remaining_of'] = $this->language->get('text_date_remaining_of');
 
 
 		/*

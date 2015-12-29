@@ -43,7 +43,21 @@ class ControllerPurchaseList extends Controller
 		$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchases($paging_parameters);
 
 		foreach($data['purchaseProduct'] as $key=>$val){
+
 			$data['purchaseProduct'][$key]['url'] = $this->url->link('purchase/detail', 'purchase_id='.$val['purchase_id'], 'SSL');
+
+			$data['purchaseProduct'][$key]['date_available'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_available']))." 23:59:59";
+
+			//剩余日期
+			$data['purchaseProduct'][$key]['date_remaining'] = floor((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000);
+
+			if($data['purchaseProduct'][$key]['date_remaining']==0){
+				$data['purchaseProduct'][$key]['date_remaining'] = round((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000,1);
+			}
+
+			//每条求购 产品总条数
+			$data['purchaseProduct'][$key]['product_amount'] = $this->model_catalog_purchase->getTotalPurchaseProduct($data['purchaseProduct'][$key]['purchase_id']);
+
 		}
 
 		/*

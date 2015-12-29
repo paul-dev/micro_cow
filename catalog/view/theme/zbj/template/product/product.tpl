@@ -541,10 +541,6 @@
                             <div class="zbj-btn-box clearfix">
                                 <button type="button" id="buy_now"  data-loading-text="<?php echo $text_loading; ?>" class="button-buy btn btn-primary btn-lg cart-buy">立即购买</button>
                                 <button type="button" id="" data-loading-text="<?php echo $text_loading; ?>" class="button-cart btn btn-primary btn-lg btn-block cart-buy"><i class="fa fa-shopping-cart" style="font-size:17px;margin-right:7px;"></i><?php echo $button_cart; ?></button>
-                                <!--
-                                <div class="zbj-btn-buy"><a href="#" class="linkbuy">立即购买</a></div>
-                                <div class="zbj-btn-add"><a href="#" class="linkadd"><i class="fa fa-shopping-cart"></i>加入购物车</a></div>
-                                -->
                             </div>
                             <?php } ?>
                         </div>
@@ -554,7 +550,7 @@
 
 
             </div>
-
+<!--
             <?php if ($tags) { ?>
             <p style="border:0px solid cornflowerblue;font-size:13px;font-family:微软雅黑;"><?php echo $text_tags; ?>
                 <?php for ($i = 0; $i < count($tags); $i++) { ?>
@@ -566,11 +562,12 @@
                 <?php } ?>
             </p>
             <?php } ?>
+-->
             <?php echo $content_bottom; ?></div>
         <?php echo $column_right; ?></div>
 
     <?php if ($popular_products) { ?>
-    <div class="product_left" style="width:18%;border:0px dashed green;margin-bottom:5px;margin-top:20px;">
+    <div class="product_left" style="width:100%;margin-bottom:5px;margin-top:-30px;">
         <h3><?php echo $text_popular; ?></h3>
     </div>
     <div style="clear:both;"></div>
@@ -676,7 +673,7 @@
             </div>
         </div>
         <div class="product_right">
-            <ul id="nav-comment" class="nav nav-tabs">
+            <ul id="nav-comment" class="nav nav-tabs" style='border-bottom: 0px;'>
                 <li class="active"><a href="#tab-description" data-toggle="tab"><strong><?php echo $tab_description; ?></strong></a></li>
                 <?php if ($attribute_groups) { ?>
                 <li><a href="#tab-specification" data-toggle="tab"><strong><?php echo $tab_attribute; ?></strong></a></li>

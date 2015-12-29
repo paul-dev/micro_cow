@@ -83,7 +83,7 @@
                       <?php echo $purchaseInfo['name']; ?>
                     </h2>
                     <div class="fd-right">
-                      <a href="#" style="font-size: 14px;color: #496ab4;" title=<?php echo $text_report; ?>><?php echo $text_report; ?></a>
+                      <a href="" style="font-size: 14px;color: #496ab4;" title=<?php echo $text_report; ?>><?php echo $text_report; ?></a>
                     </div>
                   </div>
 
@@ -91,23 +91,23 @@
                     <div>
                       <ul class="q-data-ul">
                         <li><?php echo $text_date_added; ?>
-                          <time style=" font-size: 14px;  color: #333;"><?php echo $data['purchaseInfo']['date_added']; ?></time>
+                          <time style=" font-size: 14px;  color: #333;"><?php echo $purchaseInfo['date_added']; ?></time>
                         </li>
                         <li><?php echo $text_date_expect; ?>
-                          <time  style=" font-size: 14px;  color: #333;"><?php echo $data['purchaseInfo']['date_expect']; ?></time>
+                          <time  style=" font-size: 14px;  color: #333;"><?php echo $purchaseInfo['date_available']; ?></time>
                         </li>
                       </ul>
                       <div class="q-action">
                         <a href="#" class="quoted-price"><?php echo $text_offer_immediately; ?></a>
-                        <span style="font-size: 14px;"><?php echo $text_offer_immediately_toend; ?><?php echo floor((strtotime($data['purchaseInfo']['date_expect'])-strtotime(date('Y-m-d h:i:s',time())))/86400); ?><?php echo $text_date; ?></span>
-                      </div>
-                      <div class="mic-data">
-                        <p style=" font-size: 14px;color: #333;"><?php echo $text_receive_offer; ?><span>（3）</span></p>
+                        <?php if($purchaseInfo['date_remaining'] > 0){ ?>
+                          <span style="font-size: 14px;"><?php echo $text_offer_immediately_toend; ?> <?php echo $purchaseInfo['date_remaining']; ?> <?php echo $text_date; ?></span>
+                        <?php }else{ ?>
+                          <span style="font-size: 14px;"><?php echo $text_date_remaining_of; ?></span>
+                        <?php } ?>
                       </div>
 
                     </div>
                     <h3 class="q-right-ipad"><?php echo $text_Inquiry_products; ?>
-                      <small>(<?php echo $text_spot_goods; ?>)</small>
                     </h3>
                     <table class="q-xq-table">
                       <thead>
@@ -131,23 +131,63 @@
 
                     <h3 class="q-right-ipad"><?php echo $text_supplier_requirements; ?></h3>
                     <table class="q-xq-table-tt">
+                      <?php if($purchaseInfo['shipping_address']){ ?>
                       <tr>
                         <td class="q-table-yq"><?php echo $text_receiving_address; ?></td>
-                        <td>广东东莞</td>
+                        <td><?php echo $purchaseInfo['shipping_address']; ?></td>
                       </tr>
+                      <?php } ?>
+
+                      <?php if($purchaseInfo['invoice_type'] = 0){ ?>
                       <tr>
                         <td class="q-table-yq"><?php echo $text_Invoice_requirements; ?></td>
-                        <td>增值税发票</td>
+                        <td><?php echo $text_invoice_type_0; ?></td>
                       </tr>
+                      <?php }elseif($purchaseInfo['invoice_type'] = 1){ ?>
+                      <tr>
+                        <td class="q-table-yq"><?php echo $text_Invoice_requirements; ?></td>
+                        <td><?php echo $text_invoice_type_1; ?></td>
+                      </tr>
+                      <?php }elseif($purchaseInfo['invoice_type'] = 2){ ?>
+                      <tr>
+                        <td class="q-table-yq"><?php echo $text_Invoice_requirements; ?></td>
+                        <td><?php echo $text_invoice_type_2; ?></td>
+                      </tr>
+                      <?php }elseif($purchaseInfo['invoice_type'] = 3){ ?>
+                      <tr>
+                        <td class="q-table-yq"><?php echo $text_Invoice_requirements; ?></td>
+                        <td><?php echo $text_invoice_type_3; ?></td>
+                      </tr>
+                      <?php } ?>
+
+                      <?php if($purchaseInfo['trade_type'] = 0){ ?>
                       <tr>
                         <td class="q-table-yq"><?php echo $text_trading; ?></td>
-                        <td>其他交易方式</td>
+                        <td><?php echo $text_trade_type_0; ?></td>
                       </tr>
-                    </table>
+                      <?php }elseif($purchaseInfo['trade_type'] = 1){ ?>
+                      <tr>
+                        <td class="q-table-yq"><?php echo $text_trading; ?></td>
+                        <td><?php echo $text_trade_type_1; ?></td>
+                      </tr>
+                      <?php }elseif($purchaseInfo['trade_type'] = 2){ ?>
+                      <tr>
+                        <td class="q-table-yq"><?php echo $text_trading; ?></td>
+                        <td><?php echo $text_trade_type_2; ?></td>
+                      </tr>
+                      <?php }elseif($purchaseInfo['trade_type'] = 3){ ?>
+                      <tr>
+                        <td class="q-table-yq"><?php echo $text_trading; ?></td>
+                        <td><?php echo $text_trade_type_3; ?></td>
+                      </tr>
+                      <?php } ?>
 
-                    <h3 class="q-right-ipad"><?php echo $text_supplementary_instruction; ?></h3>
+                    </table>
                     <?php foreach($purchaseDescriptions as $description){ ?>
-                      <p style="font-size: 14px; color: #333;margin-bottom: 14px"><?php echo $description['description']; ?></p>
+                      <h3 style="width: 908px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;border-left: 5px solid #496abc;padding: 5px 10px;margin-top: 15px;margin-bottom: 14px;"><?php echo $text_supplementary_instruction; ?></h3>
+                      <div style="margin:10px 0 14px 15px;">
+                         <?php echo htmlspecialchars_decode($description['description']); ?>
+                      </div>
                     <?php } ?>
                   </div>
 
