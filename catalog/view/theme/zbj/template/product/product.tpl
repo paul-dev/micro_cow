@@ -583,7 +583,11 @@
         <?php } ?>
         <div class="<?php echo $class; ?>">
             <div class="product-thumb transition">
-                <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
+                <div class="image">
+                    <a href="<?php echo $product['href']; ?>">
+                        <img <?php if($product['thumb']){ ?> src=<?php echo $product['thumb'] ;?> alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" <?php }else{ ?> src="catalog/view/theme/zbj/image/zbj_default_pic.png" <?php } ?> class="img-responsive" />
+                    </a>
+                </div>
                 <div class="caption">
                     <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
                     <p style="display: none;"><?php echo $product['description']; ?></p>
