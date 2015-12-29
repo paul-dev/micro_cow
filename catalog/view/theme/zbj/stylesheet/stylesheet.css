@@ -765,8 +765,7 @@ table tr td,table th td{/*width:1%;*/}
 }
 .btn-primary:hover{ border-color:#337AB7;}
 .button-cart,.button-cart:hover{
-	/*background:#337AB7;*/
-	border-color:#337AB7;
+	background:#337AB7;border-color:#337AB7;
 }
 
 .btn-warning {

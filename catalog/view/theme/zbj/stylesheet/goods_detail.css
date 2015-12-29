@@ -5,10 +5,10 @@
  * 27-06-2015
  **/
  .boxall ul{padding:0;}
-.goods_item{width:350px;float:left;}
+.goods_item{width:420px;float:left;}
 .goods_pic {
   margin-bottom: 18px;
-  width: 300px;
+  width: 400px;
 }
 .zbj_pic{
   display:table-cell;
@@ -19,8 +19,8 @@
   margin-bottom:15px;
 }
 .main_pic_box .main_goods_pic a img.goods_detail_main_pic{
-  width:350px;
-  height:330px;
+  width:400px;
+  height:400px;
 }
 .goods_thumb_pic li {
   display: inline;
@@ -69,13 +69,13 @@
 }
 .goods_detail_info{
   float: left;
-  width: 547px;
+  width: 470px;
 }
 .goods_detail_info .goods_title h2{
   min-height: 21px;
   _height: 21px;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
   line-height: 21px;
   color: #3C3C3C;
   margin:0px;
@@ -146,12 +146,10 @@
   color:#f69;
 }
 .products_style{
-  margin-top:5px;
-  text-align:left;
-  /*padding:10px 0 0 20px;*/
+  padding:10px 0 0 20px;
 }
 .products_style dl{
-  margin-bottom:15px;
+  margin-bottom:10px;
 }
 .products_style .mt4{
   margin-top:4px;
@@ -166,7 +164,7 @@
 .products_style .label{
   float:left;
   width: 80px;
-  color:#b8c2bf;
+  color:#666;
   text-align:left;
   font-weight: normal;
     font-size: 85%;
@@ -301,8 +299,8 @@ input[name="quantity"]#input-quantity{
   margin-right:15px;
 }
 .zbj-btn-box{
-/*  padding-left: 20px;
-  padding-top: 20px;*/
+  padding-left: 20px;
+  padding-top: 20px;
 }
 .zbj-btn-buy,.zbj-btn-add{
   float:left;
