@@ -449,7 +449,7 @@ var wishlist = {
                     html += '    <div class="modal-content">';
                     html += '      <div class="modal-header">';
                     html += '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
-                    html += '        <h4 class="modal-title">加入我的喜欢成功！</h4>';
+                    html += '        <h4 class="modal-title">加入收藏成功！</h4>';
                     html += '      </div>';
                     html += '      <div class="modal-body">' + _message + '</div>';
                     html += '    </div>';
@@ -500,7 +500,7 @@ var wishlist = {
                     html += '    <div class="modal-content">';
                     html += '      <div class="modal-header">';
                     html += '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
-                    html += '        <h4 class="modal-title">加入我的喜欢成功！</h4>';
+                    html += '        <h4 class="modal-title">加入收藏成功！</h4>';
                     html += '      </div>';
                     html += '      <div class="modal-body">' + _message + '</div>';
                     html += '    </div>';

@@ -65,7 +65,7 @@
 }
 .goods_social ul li a i{
   margin-right:5px;
-  color:#f69;
+  color:#337ab7	;
 }
 .goods_detail_info{
   float: left;
@@ -88,9 +88,9 @@
 
 .goods_detail_info .promo-meta{
   min-height: 35px;
-  background:#FFF2E8;
+  background:#F5F5F5;
   padding-bottom:15px;
-  margin-top:10px;
+  margin-top:20px;
 }
 .goods_detail_info .promo-meta .goods_price{
   width:65%;float:left;
@@ -117,7 +117,7 @@
   font-size: 26px;
   font-weight: 700;
   font-family: Tahoma,Arial,Helvetica,sans-serif;
-  color: #F69;
+  color: #337ab7	;
 }
 .goods_detail_info .promo-meta .goods_comment{
   width:35%;float:left;text-align:center;
@@ -143,7 +143,7 @@
   padding-top:5px;
 }
 .tb-rate-counter a:hover strong{
-  color:#f69;
+  color:#337ab7	;
 }
 .products_style{
   padding:10px 0 0 20px;
@@ -167,7 +167,7 @@
   color:#666;
   text-align:left;
   font-weight: normal;
-    font-size: 85%;
+  font-size: 100%;
 }
 .products_style .content{
   position:relative;
@@ -181,7 +181,7 @@
   margin-top:6px;
 }
 .campaign span{
-  background:#f69;
+  background:#337ab7	;
   color:#fff;
   padding:4px;
 }
@@ -193,7 +193,7 @@
 .remaining-time span{
   font-size:16px;
   padding-right:7px;
-  color:#f69;
+  color:#337ab7	;
   font-weight: bold;
 }
 
@@ -211,7 +211,7 @@
   display: block;
   width:273px;
   height:30px;
-  background:#f69;
+  background:#337ab7	;
   color:#fff;
   line-height:30px;
   text-align:center;
@@ -242,7 +242,7 @@
 }
 .item-data-wrap {
   margin-left: 10px;
-  color: #f69;
+  color: #337ab7	;
 }
 .item-data-middle {
   border-left: 1px dotted #e9e9e9;
@@ -330,7 +330,7 @@ input[name="quantity"]#input-quantity{
 .zbj-btn-add .linkadd{
   width: 186px;
   color: #FFF;
-  background:#f69;
+  background:#337ab7	;
 }
 .zbj-btn-buy .linkbuy:hover{
   background:#f57aa3;
@@ -369,8 +369,8 @@ input[name="quantity"]#input-quantity{
 
 .products_style .radio li.selected a,.products_style .radio li:hover a,.products_style .checkbox li.selected a{
   padding: 2px 5px;
-  color: #f69;
-  border: 2px solid #f69;
+  color: #337ab7	;
+  border: 2px solid #337ab7	;
   background: #FFF;
 }
 .products_style .images li a{
@@ -412,9 +412,9 @@ input[name="quantity"]#input-quantity{
     padding-top: 5px;
 }
 .products_style .select .selected_option:hover{
-  color:#f69;
+  color:#337ab7	;
   background:#ffefe4;
-  border:1px solid #f69;
+  border:1px solid #337ab7	;
 }
 .products_style .select .select_position{
   position:absolute;
@@ -423,7 +423,7 @@ input[name="quantity"]#input-quantity{
   z-index:300;
 }
 .products_style .select .option_box{
-  border:1px solid #f69;
+  border:1px solid #337ab7	;
   min-width: 140px;
   position:absolute;
   top:33px;

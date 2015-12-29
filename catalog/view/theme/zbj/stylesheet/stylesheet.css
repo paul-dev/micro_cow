@@ -76,7 +76,7 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
   font-size: 16px;
 }
 .product_content .nav-tabs>li.active>a{
-	color:#f69;
+	color:#337ab7;
 }
 .container{width: 1200px !important;}
 
@@ -139,7 +139,7 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 #review-sub-tabs .active {
   padding-bottom: 12px;
   margin-bottom: -2px;
-  color: #f69;
+  color: #337ab7;
   border-bottom: 3px solid;
 }
 .goods-comment-show {
@@ -496,7 +496,7 @@ table tr td,table th td{/*width:1%;*/}
 #menu .see-all:hover, #menu .see-all:focus {
 	text-decoration: none;
 	color: #ffffff;
-	background-color: #f69;
+	background-color: #337ab7;
 	
 	background-repeat: repeat-x;
 }
@@ -827,10 +827,10 @@ table tr td,table th td{/*width:1%;*/}
 .btn-inverse {
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background-color: #f69;
+	background-color: #337ab7;
 	
 	background-repeat: repeat-x;
-	border-color: #f69 #f69 #f69;
+	border-color: #337ab7 #337ab7 #337ab7;
 }
 .btn-inverse:hover, .btn-inverse:active, .btn-inverse.active, .btn-inverse.disabled, .btn-inverse[disabled] {
 	background-color: #ed3577;
@@ -1099,13 +1099,13 @@ h4.product_names a:hover{
 width: 60px;
   height: 25px;
   display: inline-block;
-  border:1px solid #f69;
+  border:1px solid #337ab7;
   background: #fff;
   line-height: 25px;
   text-align: center;
-  color: #f69;
+  color: #337ab7;
 }
-a.product_enshrine:hover{background:#f69;color:#fff;}
+a.product_enshrine:hover{background:#337ab7;color:#fff;}
 .product-thumb .button-group {
 	border-top: 1px solid #ddd;
 	background-color: #eee;
@@ -1246,7 +1246,7 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
 .container_n{width:100%; background:#337ab7; height:45px;margin-bottom:15px;min-width: 1215px;}
 
 .list-inline .no_bor{border:none;}
-.btn_ys{background:#f69; border:1px solid #f69;}
+.btn_ys{background:#337ab7; border:1px solid #337ab7;}
 .xbanner{ height:572px;}
 .xbanner ul{list-style:none;}
 .no-boxshow{ box-shadow:none;}
@@ -1264,8 +1264,8 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
 .owl-lf ul li .nav_icon_five{background-position:-80px 0;}
 .owl-lf ul .last{ border:none;}
 .owl-lf ul li .owl-drop{ position:absolute; left:217px; top:-1px; z-index:100; border:1px solid #e5e5e5; background:#fff; padding:10px; display:none;}
-.owl-lf ul li .owl-drop h3 a{ color:#f69;}
-.owl-lf ul li h3{ margin:9px 0 5px -2px; font-size:16px; height:18px; color:#f69; font-weight:bold; }
+.owl-lf ul li .owl-drop h3 a{ color:#337ab7;}
+.owl-lf ul li h3{ margin:9px 0 5px -2px; font-size:16px; height:18px; color:#337ab7; font-weight:bold; }
 .owl-lf ul li p{ height:72px; line-height:24px; overflow:hidden; white-space:nowrap; width:190px; }
 .owl-lf ul li p a{ float:left; margin-right:14px; color:#666;}
 .owl-lf ul li p a:hover{ color:#337ab7;}
@@ -1379,13 +1379,13 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
 .shop_con dl dd span.graylev{background-color:gray;}
 .shop_title .shop_con .shop_con_r{  border-left: 1px dotted #ccc;margin-left: 0px;padding-left: 20px;}
 
-.shop_title .shop_title_btn{width: 88px;height: 26px;display:block;float:left;border: 1px solid #f69;text-align: center;
+.shop_title .shop_title_btn{width: 88px;height: 26px;display:block;float:left;border: 1px solid #337ab7;text-align: center;
 	line-height: 26px;margin-top: 18px;}
-.shop_title .btnforDetail{margin-left:40px;color:#f69;}
-.shop_title .btnforShop{margin-left:115px;color:#fff;background:#f69;}
+.shop_title .btnforDetail{margin-left:40px;color:#337ab7;}
+.shop_title .btnforShop{margin-left:115px;color:#fff;background:#337ab7;}
 .shop_title .fans_server{float:right;}
-.shop_title .fans_server .servicer{color:#f69;}
-.shop_title .fans_server .fans{color:#fff;background:#f69;margin-right:10px;margin-left:20px;}
+.shop_title .fans_server .servicer{color:#337ab7;}
+.shop_title .fans_server .fans{color:#fff;background:#337ab7;margin-right:10px;margin-left:20px;}
 .shop_title .fans_server .fans_num{line-height:60px;}
 
 
@@ -1397,10 +1397,10 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
 .shop_right .show_set i{ font-style:normal;}
 .shop_avatar{ display:inline-block;width:48px; height:48px; overflow:hidden; float:left; margin-right:10px;}
 .shop_avatar img{ width:48px;border-radius:50%; }
-.shop_right .show_set .shop_message .shop_title{ font-weight:bold; font-size:14px;}
+.shop_right .show_set .shop_message .shop_title{ font-weight:bold; font-size:16px;}
 .shop_right .show_set .shop_message .shop_concern{ display:inline-block; padding:1px 5px;margin-right:6px; color:#666;  border: 1px solid #e2e2e2;
   background-color: #fff;}
-.shop_right .show_set .shop_message .shop_concern .plus{ color:#f69; display:inline-block; font-size:20px; vertical-align:middle; margin-right:3px;}
+.shop_right .show_set .shop_message .shop_concern .plus{ color:#337ab7; display:inline-block; font-size:20px; vertical-align:middle; margin-right:3px;}
 .shop_assess{ margin:20px auto; padding:0; overflow:hidden; list-style:none;}
 .shop_assess li{ float:left; width:47px; text-align:center;margin-right:10px;border-right:1px dotted #ccc;}
 .shop_assess li a{display:block;overflow:hidden;}
@@ -1423,7 +1423,7 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
   height: 36px;
   line-height: 40px;
   color: #fff;
-  background-color: #f69;
+  background-color: #337ab7;
   border-radius: 0;
   font-size: 16px;
   border:none;
@@ -1445,8 +1445,8 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
 .shop_right .show_set .shop_detail li i{ display:inline-block; width:18px; height:18px; vertical-align:middle;}
 .shop_qualified{ background:url(/catalog/view/theme/zbj/image/icon-approve.png) no-repeat;}
 .shop_call{background:url(/catalog/view/theme/zbj/image/doota_im1.gif) no-repeat;padding-top: 2px;padding-left: 16px;padding-bottom: 3px;margin-right:5px;}
-.show_set a.intoshop_btn{ display:block; border:1px solid #f69; color:#f69; height:32px; line-height:28px; text-align:center; background:#fff; margin:20px auto;}
-.intoshop_btn .intoshop_btn_ico{background:url(/catalog/view/theme/zbj/image/20150515151819.png) no-repeat; display:inline-block; height:18px; width:25px; vertical-align:middle;}
+.show_set a.intoshop_btn{ display:block; border:1px solid #337ab7; color:#337ab7; height:32px; line-height:28px; text-align:center; background:#fff; margin:20px auto;}
+.intoshop_btn .intoshop_btn_ico{ display:inline-block; height:18px; width:25px; vertical-align:middle;}
 .shop_right .show_set .maybe-like h3{ font-size:16px; font-weight:normal; color:#666; margin-bottom:15px;}
 .shop_right .show_set .maybe-like ul{ padding:0;}
 .shop_right .show_set .maybe-like ul li{ width:80px; float:left; margin:0 30px 20px 0}
@@ -1490,8 +1490,8 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
 .number_20{ width:24%;}
 .shop_ad{ margin:10px auto; display:block;}
 .shop_ad img{ width:100%;}
-.input_br{ border:2px  solid #f69;}
-.btn_sk:hover{ background:#f69; border:1px solid #f69;}
+.input_br{ border:2px  solid #337ab7;}
+.btn_sk:hover{ background:#337ab7; border:1px solid #337ab7;}
 .seller{ overflow:hidden; margin:20px 0; clear:both;}
 .seller span{ float:left;}
 .seller .shop_assess{ margin:0; margin-left:40px;}
@@ -1505,7 +1505,7 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
 .sale_message ul li span h2{ color:#fff; font-size:48px; margin:0;}
 .sale_top,.sale_bottom{ background:#f22469; color:#fff; padding:5px 8px;}
 .sale_message a{ color:#fff;}
-.sale_content{ background:#f69; line-height:48px; padding:15px;}
+.sale_content{ background:#337ab7; line-height:48px; padding:15px;}
 .sale_content i{ font-size:50px; opacity:0.3;transition: all 1s ease 0s; color:#fff;}
 .sale_content:hover i{ opacity:1;}
 .new_orders{ width:99%;}
@@ -1529,7 +1529,7 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
 .fui-paging-list{display:inline-block;}
 .fui-paging-list a{display:inline-block;width:38px;height:38px;line-height:38px;text-align:center;border:1px solid #e5e5e5;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;-mz-border-radius:3px;font-size:14px;box-shadow: 0px 2px 2px #eee;-webkit-box-shadow: 0px 2px 2px #eee;-moz-box-shadow: 0px 2px 2px #eee;-mz-box-shadow: 0px 2px 2px #eee;background:#fff;color:#666;}
 .fui-paging-list a:hover{background:#f8f8f8;}
-.fui-paging-list a.active-page{background:#f69;color:#fff;  border: 1px solid #f69;}
+.fui-paging-list a.active-page{background:#337ab7;color:#fff;  border: 1px solid #337ab7;}
 .fui-paging-list a.prevnext-page{width:90px;font-weight:100;}
 .fui-paging-list .fui-omit{line-height: 38px;width:38px; height: 38px;font-size:16px;text-align:center;display:inline-block;}
 .fui-paging-form{display:inline-block;padding-left:10px;font-size:14px;}
@@ -1540,8 +1540,8 @@ a.product_enshrine:hover{background:#f69;color:#fff;}
 .main_login{margin-top:30px;}
 .login-bg{margin-left:150px;margin-top:30px;}
 .login-bg a{width:320px;height:300px;display:block;overflow:hidden;}
-.register-content{border: 2px solid #dedede;border-top: 2px solid #f69;padding: 20px 20px 30px;width: 370px;margin-right:150px;}
-.register-content .title{margin:0 0 10px;padding:0 0 10px;font-size:20px;border-bottom:2px solid #e5e5e5;color:#f69;}
+.register-content{border: 2px solid #dedede;border-top: 2px solid #337ab7;padding: 20px 20px 30px;width: 370px;margin-right:150px;}
+.register-content .title{margin:0 0 10px;padding:0 0 10px;font-size:20px;border-bottom:2px solid #e5e5e5;color:#337ab7;}
 .register-content label{padding-right:0px;}
 #submit-register-btn{width:240px;}
 #submit-login-btn{width:100%;}

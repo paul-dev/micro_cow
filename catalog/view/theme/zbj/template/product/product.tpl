@@ -125,7 +125,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="goods_thumb_pic">
+                                <div class="goods_thumb_pic" style="width:100%;height:50px;overflow: hidden;">
                                     <ul class="clearfix">
                                         <li>
                                             <a class="tb_pic zbj_pic zoomThumbActive" rel="{gallery: 'gal1', smallimage: '<?php echo $thumb; ?>',largeimage: '<?php echo $popup; ?>'}">
@@ -144,7 +144,7 @@
                             </div>
                             <div class="goods_social">
                                 <ul class="clearfix">
-                                    <li><a href="javascript:void(0)" data-toggle="tooltip" title="<?php echo $button_wishlist; ?>(<?php echo $total_wish; ?>)" onclick="wishlist.add('<?php echo $product_id; ?>');"><i class="fa fa-heart"></i>收藏商品</a></li>
+                                    <li><a href="javascript:void(0)" data-toggle="tooltip" title="<?php echo $button_wishlist; ?>(<?php echo $total_wish; ?>)" onclick="wishlist.add('<?php echo $product_id; ?>');"><i class="fa fa-heart"></i>收藏产品</a></li>
                                     <li><a href="javascript:void(0)" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');"><i class="fa fa-exchange"></i>加入对比</a></li>
                                 </ul>
                             </div>
@@ -155,12 +155,9 @@
                         </div>
                     </div>
                     <div class="goods_detail_info" id="product">
-                        <div style="padding:0 0 20px 20px">
+                        <div style="padding:20px 0 20px 20px">
                             <div class="goods_title">
                                 <h2><?php echo $heading_title; ?></h2>
-                                <p class="goods_dec">
-                                    <?php echo $short_desc; ?>
-                                </p>
                             </div>
                             <div class="promo-meta clearfix">
                                 <div class="goods_price">
@@ -225,7 +222,7 @@
                             </div>
                             <?php } ?>
 
-                            <div class="products_style">
+                            <div class="products_style" style='margin-top:13px;margin-bottom:20px;'>
                                 <?php if ($tax) { ?>
                                 <dl>
                                     <dt class="label"><?php echo $text_tax; ?></dt>
@@ -267,6 +264,14 @@
                                     <dt class="label"><?php echo $text_stock; ?></dt>
                                     <dd class="content"><?php echo $stock; ?></dd>
                                 </dl>
+
+                                <?php if ($data['product_info']['location']) { ?>
+                                <dl>
+                                    <dt class="label"><?php echo $text_location; ?></dt>
+                                    <dd class="content"><?php echo $data['product_info']['location']; ?></dd>
+                                </dl>
+                                <?php } ?>
+
                             </div>
 
                             <ul class="item-data">
@@ -551,7 +556,7 @@
             </div>
 
             <?php if ($tags) { ?>
-            <p><?php echo $text_tags; ?>
+            <p style="border:0px solid cornflowerblue;font-size:13px;font-family:微软雅黑;"><?php echo $text_tags; ?>
                 <?php for ($i = 0; $i < count($tags); $i++) { ?>
                 <?php if ($i < (count($tags) - 1)) { ?>
                 <a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>,
@@ -565,7 +570,10 @@
         <?php echo $column_right; ?></div>
 
     <?php if ($popular_products) { ?>
-    <h3><?php echo $text_popular; ?></h3>
+    <div class="product_left" style="width:18%;border:0px dashed green;margin-bottom:5px;margin-top:20px;">
+        <h3><?php echo $text_popular; ?></h3>
+    </div>
+    <div style="clear:both;"></div>
     <div class="row">
         <?php $i = 0; ?>
         <?php foreach ($popular_products as $product) { ?>
@@ -629,14 +637,14 @@
 
     <div class="product_content" style="margin-top:30px;">
         <div class="product_left">
-            <h3>商品分类</h3>
+            <h3>产品分类</h3>
             <div class="cat_wrap">
-                <h4>查看所有商品</h4>
+                <h4>查看所有产品</h4>
                 <ul class="cat_list">
                     <li><a href="<?php echo $shop_url . '&sort=latest'; ?>">最新上架</a></li>
                     <li><a href="<?php echo $shop_url . '&sort=hot'; ?>">热卖单品</a></li>
                 </ul>
-                <h4>全部商品</h4>
+                <h4>全部产品</h4>
                 <ul class="cat_all">
                     <?php foreach ($category_tree as $category) { ?>
                     <li><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo $category['name']; ?></a></li>
@@ -683,7 +691,7 @@
                 <?php } ?>
 
                 <li style="float:right"> <button type="button" id="" data-loading-text="<?php echo $text_loading; ?>" class="button-cart btn btn-primary btn-lg btn-block" style="padding:15px 30px;z-index:999"><?php echo $button_cart; ?></button></li>
-                <li style="float:right"><span class="price" style="color:#f69;font-size: 20px;line-height: 50px;padding-right: 20px;"><?php echo $special ? $special : $price; ?></span></li>
+                <li style="float:right"><span class="price" style="color: #87878e;;font-size: 20px;line-height: 50px;padding-right: 20px;"><?php echo $special ? $special : $price; ?></span></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab-description"><?php echo $description; ?></div>
@@ -712,7 +720,7 @@
                 <div class="tab-pane" id="tab-review">
                     <!--<form class="form-horizontal">-->
                     <div class="goods-star" id="goods-star">
-                        <h2 class="goods-star-title">店铺评分(最近90天共<?php echo $shop_total_reviews; ?>人次评分)</h2>
+                        <h2 class="goods-star-title">供应商评分(最近90天共<?php echo $shop_total_reviews; ?>人次评分)</h2>
                         <ul>
                             <li>
                                 <label>描述一致:</label>
@@ -741,7 +749,7 @@
                         </ul>
                     </div>
                     <div class="goods-comment-per">
-                        <label>商品好评率：</label><em><?php echo $good_percent; ?></em>
+                        <label>产品好评率：</label><em><?php echo $good_percent; ?></em>
                     </div>
                     <div class="clearfix">
                         <ul class="" id="review-sub-tabs">
