@@ -40,7 +40,7 @@ class ControllerPurchaseList extends Controller
 				'start' => ($page - 1)*$limit,
 				'limit' => $limit
 		);
-		$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchases($paging_parameters);
+		$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchases_Total($paging_parameters);
 
 		foreach($data['purchaseProduct'] as $key=>$val){
 
@@ -98,7 +98,15 @@ class ControllerPurchaseList extends Controller
 		$data['text_product_days'] = $this->language->get('text_product_days');
 		$data['text_nearly30_purchase_num'] = $this->language->get('text_nearly30_purchase_num');
 		$data['text_nearly30_active_suppliers'] = $this->language->get('text_nearly30_active_suppliers');
+		$data['text_date_remaining_of'] = $this->language->get('text_date_remaining_of');
 
+		$data['text_date_available'] = $this->language->get('text_date_available');
+		$data['text_date_modified'] = $this->language->get('text_date_modified');
+		$data['text_trading'] = $this->language->get('text_trading');
+		$data['text_trade_type_0'] = $this->language->get('text_trade_type_0');
+		$data['text_trade_type_1'] = $this->language->get('text_trade_type_1');
+		$data['text_trade_type_2'] = $this->language->get('text_trade_type_2');
+		$data['text_trade_type_3'] = $this->language->get('text_trade_type_3');
 		$this->document->setTitle($title);
 
 		$data['content_top'] = $this->load->controller('common/content_top');

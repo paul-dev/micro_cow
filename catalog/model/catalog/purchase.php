@@ -332,4 +332,60 @@ class ModelCatalogPurchase extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getPurchases_Total($data = array()) {
+		$sql = "SELECT p.*, pd.*, cd.company_name, (SELECT COUNT(*) as total FROM " . DB_PREFIX . "purchase_offer po WHERE po.purchase_id = p.purchase_id ) as total_offer, " .
+				"(SELECT IF(COUNT(*) > 1, CONCAT(COUNT(*), '种'), (SELECT CONCAT(pp1.quantity,pd1.unit) as p_amount  FROM " . DB_PREFIX . "purchase_product pp1 LEFT JOIN " . DB_PREFIX . "purchase_product_description pd1 ON pp1.purchase_product_id = pd1.purchase_product_id WHERE pp1.purchase_id = p.purchase_id AND pd1.language_id = '".(int)$this->config->get('config_language_id')."')) as total FROM " . DB_PREFIX . "purchase_product pp WHERE pp.purchase_id = p.purchase_id) as total_product " .
+				"FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) " .
+				"LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id " .
+				"LEFT JOIN " . DB_PREFIX . "customer c on c.customer_id = p.customer_id " .
+				"LEFT JOIN " . DB_PREFIX . "company cp on cp.customer_id = c.customer_id " .
+				"LEFT JOIN " . DB_PREFIX . "company_description cd on cd.company_id = cp.company_id AND cd.language_id = '" . (int)$this->config->get('config_language_id') ."' " .
+				"WHERE ps.store_id = '".(int)$this->config->get('config_store_id')."' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+			$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
+		}
+
+		//$sql .= " GROUP BY p.purchase_id";
+
+		$sort_data = array(
+				'pd.name',
+				'p.date_added',
+				'p.status',
+				'p.sort_order'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY " . $data['sort'];
+		} else {
+			$sql .= " ORDER BY p.date_added";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
 }

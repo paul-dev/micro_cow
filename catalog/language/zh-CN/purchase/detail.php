@@ -53,6 +53,7 @@ $_['text_invoice_type_1']                      = '不需要发票';
 $_['text_invoice_type_2']                      = '普通发票';
 $_['text_invoice_type_3']                      = '增值税发票';
 
+$_['text_trading']                            = '交易方式：';
 $_['text_trade_type_0']                      = '无要求';
 $_['text_trade_type_1']                      = '支付宝担保交易';
 $_['text_trade_type_2']                      = '货到付款';

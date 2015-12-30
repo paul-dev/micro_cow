@@ -2,9 +2,6 @@
 
 <! -- 加载样式  start -->
 <link href=catalog/view/theme/<?php echo $config_template; ?>/stylesheet/purchedlist.css type="text/css" rel="Stylesheet">
-<script src=catalog/view/theme/<?php echo $config_template; ?>/js/jquery-2.1.4.min.js type="text/javascript"></script>
-<script src=catalog/view/theme/<?php echo $config_template; ?>/js/bootstrap.min.js" type="text/javascript"></script>
-<script src=catalog/view/theme/<?php echo $config_template; ?>/js/purchase_list_href.js" type="text/javascript"></script>
 <! -- 加载样式  start -->
 
 <div class="container">
@@ -67,21 +64,50 @@
                   <p>
                     <a href="<?php echo $purchase_product['url']; ?>" target="_blank" class="purehed-div-1-a" style="width: 224px"><?php echo $purchase_product['name']; ?></a>
                   </p>
-                  <label class="purehed-div-L"><?php echo $text_amount_purchased; ?><span class="purched-font-red"><?php echo $purchase_product['product_amount']; ?></span>PCS</label>
+
+                  <label class="purehed-div-L">
+                    <?php echo $text_amount_purchased; ?>
+                    <?php if($purchase_product['total_product']){ ?>
+                    <span class="purched-font-red">
+                      <?php echo $purchase_product['total_product']; ?>
+                    </span>
+                    <?php } ?>
+                  </label>
+
                 </div>
 
                 <div class="purehed-div-2">
-                  <p > <a class="purehed-div-2-p"><?php echo $text_release_time; ?><time><?php echo $purchase_product['date_added']; ?></time></a></p>
-                  <p> <a class="purehed-div-2-p"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $purchase_product['date_remaining']; ?></span><?php echo $text_product_days; ?></a></p>
-                  <p> <a class="purehed-div-2-p"><?php echo $text_information_type; ?>现货/标准品</a></p>
-                  <p> <a class="purehed-div-2-p"><?php echo $text_have_been_priced; ?><span class="purched-font-red">4</span><?php echo $text_product_strip; ?></a></p>
+                  <p > <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_release_time; ?><time><?php echo $purchase_product['date_added']; ?></time></a></p>
+
+                  <?php if($purchase_product['date_remaining'] > 0){ ?>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $purchase_product['date_remaining']; ?></span><?php echo $text_product_days; ?></a></p>
+                  <?php }else{ ?>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $text_date_remaining_of; ?></span></a></p>
+                  <?php } ?>
+
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_information_type; ?>现货/标准品</a></p>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_have_been_priced; ?><span class="purched-font-red">4</span><?php echo $text_product_strip; ?></a></p>
+                  <?php if($purchase_product['date_available']){ ?>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_date_available; ?><?php echo $purchase_product['date_available']; ?></a></p>
+                  <?php } ?>
+
+
+                  <?php if($purchaseInfo['trade_type'] = 0){ ?>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_trading; ?><?php echo $text_trade_type_0; ?></a></p>
+                  <?php }elseif($purchaseInfo['trade_type'] = 1){ ?>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_trading; ?><?php echo $text_trade_type_1; ?></a></p>
+                  <?php }elseif($purchaseInfo['trade_type'] = 2){ ?>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_trading; ?><?php echo $text_trade_type_2; ?></a></p>
+                  <?php }elseif($purchaseInfo['trade_type'] = 3){ ?>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_trading; ?><?php echo $text_trade_type_3; ?></a></p>
+                  <?php } ?>
+
                   <div class="purehed-div-2-img">
                     <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/jianpan.png">
                   </div>
                 </div>
 
                 <div class="purehed-div-3">
-                  <p><a class="purehed-div-3-a"><?php echo $purchase_product['shipping_company']; ?></a></p>
                   <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png" class="purehed-div-3-it">
                   <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png" class="purehed-div-3-it">
                   <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png" class="purehed-div-3-it">
