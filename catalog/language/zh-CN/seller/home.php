@@ -1,10 +1,10 @@
 <?php
 
 // Heading
-$_['heading_title']      = '卖家中心';
+$_['heading_title']      = '贸易中心';
 
 // Text
-$_['text_seller']       = '卖家中心';
+$_['text_seller']        = '贸易中心';
 $_['text_account']       = '账户';
 $_['text_my_account']    = '会员账户';
 $_['text_my_orders']     = '历史订单';

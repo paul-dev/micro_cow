@@ -42,7 +42,7 @@ class ControllerSellerOption extends Controller {
 		$this->load->model('seller/option');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$this->model_seller_option->addOption($this->request->post, $this->customer->getShopId());
+			$this->model_seller_option->addOption($this->request->post, $this->config->get('config_store_id'));
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -85,7 +85,7 @@ class ControllerSellerOption extends Controller {
 		$this->load->model('seller/option');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$check = $this->model_seller_option->getOption($this->request->get['option_id'], $this->customer->getShopId());
+			$check = $this->model_seller_option->getOption($this->request->get['option_id'], $this->config->get('config_store_id'));
 
             if (!empty($check)) {
                 $this->model_seller_option->editOption($this->request->get['option_id'], $this->request->post);
@@ -133,7 +133,7 @@ class ControllerSellerOption extends Controller {
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $option_id) {
-                $check = $this->model_seller_option->getOption($option_id, $this->customer->getShopId());
+                $check = $this->model_seller_option->getOption($option_id, $this->config->get('config_store_id'));
                 if (!empty($check)) {
                     $this->model_seller_option->deleteOption($option_id);
                 }
@@ -223,9 +223,9 @@ class ControllerSellerOption extends Controller {
 			'limit' => $this->config->get('config_limit_admin')
 		);
 
-		$option_total = $this->model_seller_option->getTotalOptions($this->customer->getShopId());
+		$option_total = $this->model_seller_option->getTotalOptions($this->config->get('config_store_id'));
 
-		$results = $this->model_seller_option->getOptions($filter_data, $this->customer->getShopId());
+		$results = $this->model_seller_option->getOptions($filter_data, $this->config->get('config_store_id'));
 
 		foreach ($results as $result) {
 			$data['options'][] = array(
@@ -408,7 +408,7 @@ class ControllerSellerOption extends Controller {
 		$data['cancel'] = $this->url->link('seller/option', $url, 'SSL');
 
 		if (isset($this->request->get['option_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-			$option_info = $this->model_seller_option->getOption($this->request->get['option_id'], $this->customer->getShopId());
+			$option_info = $this->model_seller_option->getOption($this->request->get['option_id'], $this->config->get('config_store_id'));
             if (empty($option_info)) {
                 $this->response->redirect($this->url->link('seller/option', '', 'SSL'));
                 return;
@@ -559,7 +559,7 @@ class ControllerSellerOption extends Controller {
 				'limit'       => 10
 			);
 
-			$options = $this->model_seller_option->getOptions($filter_data, $this->customer->getShopId());
+			$options = $this->model_seller_option->getOptions($filter_data, $this->config->get('config_store_id'));
 
 			foreach ($options as $option) {
 				$option_value_data = array();

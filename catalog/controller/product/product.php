@@ -163,7 +163,7 @@ class ControllerProductProduct extends Controller {
 			$_productStoreId = $_productStore['store_id'];
 		}
 
-		$preview = isset($this->request->get['preview']) && $_productStoreId == $this->customer->getShopId();
+		$preview = isset($this->request->get['preview']) && $_productStoreId == $this->config->get('config_store_id');
 
 		$data['is_preview'] = $preview;
 

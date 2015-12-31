@@ -42,7 +42,7 @@ class ControllerSellerDownload extends Controller {
 		$this->load->model('seller/download');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-            $this->request->post['store_id'] = $this->customer->getShopId();
+            $this->request->post['store_id'] = $this->config->get('config_store_id');
 
             $this->model_seller_download->addDownload($this->request->post);
 
@@ -87,7 +87,7 @@ class ControllerSellerDownload extends Controller {
 		$this->load->model('seller/download');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$_check = $this->model_seller_download->getDownload($this->request->get['download_id'], $this->customer->getShopId());
+			$_check = $this->model_seller_download->getDownload($this->request->get['download_id'], $this->config->get('config_store_id'));
             if (!empty($_check)) {
                 $this->model_seller_download->editDownload($this->request->get['download_id'], $this->request->post);
 
@@ -134,7 +134,7 @@ class ControllerSellerDownload extends Controller {
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $download_id) {
-                $_check = $this->model_seller_download->getDownload($download_id, $this->customer->getShopId());
+                $_check = $this->model_seller_download->getDownload($download_id, $this->config->get('config_store_id'));
                 if (!empty($_check)) $this->model_seller_download->deleteDownload($download_id);
 			}
 
@@ -216,7 +216,7 @@ class ControllerSellerDownload extends Controller {
 		$data['downloads'] = array();
 
 		$filter_data = array(
-			'store_id' => $this->customer->getShopId(),
+			'store_id' => $this->config->get('config_store_id'),
             'sort'  => $sort,
 			'order' => $order,
 			'start' => ($page - 1) * $this->config->get('config_limit_admin'),
@@ -413,7 +413,7 @@ class ControllerSellerDownload extends Controller {
         }
 
 		if (isset($this->request->get['download_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-			$download_info = $this->model_seller_download->getDownload($this->request->get['download_id'], $this->customer->getShopId());
+			$download_info = $this->model_seller_download->getDownload($this->request->get['download_id'], $this->config->get('config_store_id'));
             if (empty($download_info)) {
                 $this->response->redirect($this->url->link('seller/download/add', '', 'SSL'));
             }
@@ -604,7 +604,7 @@ class ControllerSellerDownload extends Controller {
 			$this->load->model('seller/download');
 
 			$filter_data = array(
-				'store_id'    => $this->customer->getShopId(),
+				'store_id'    => $this->config->get('config_store_id'),
                 'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
 				'limit'       => 5

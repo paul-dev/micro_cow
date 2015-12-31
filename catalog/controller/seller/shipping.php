@@ -141,7 +141,7 @@ class ControllerSellerShipping extends Controller {
 
 				$this->load->language('shipping/' . $extension);
 
-                $_settings = $this->model_seller_setting->getSetting($extension, $this->customer->getShopId());
+                $_settings = $this->model_seller_setting->getSetting($extension, $this->config->get('config_store_id'));
                 $_status = 0;
                 if (array_key_exists($extension . '_status', $_settings)) {
                     $_status = is_array($_settings[$extension . '_status']) ? array_shift($_settings[$extension . '_status']) : $_settings[$extension . '_status'];

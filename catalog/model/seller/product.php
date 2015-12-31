@@ -15,6 +15,11 @@ class ModelSellerProduct extends Model{
             $this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
         }
 
+        $data['product_store'] = array(
+            '0'
+        );
+        if ($this->config->get('config_store_id')) $data['product_store'][] = $this->config->get('config_store_id');
+
         if (isset($data['product_store'])) {
             foreach ($data['product_store'] as $store_id) {
                 $this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "'");
@@ -109,11 +114,11 @@ class ModelSellerProduct extends Model{
             }
         }
 
-        if (isset($data['product_layout'])) {
+        /*if (isset($data['product_layout'])) {
             foreach ($data['product_layout'] as $store_id => $layout_id) {
                 $this->db->query("INSERT INTO " . DB_PREFIX . "product_to_layout SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
             }
-        }
+        }*/
 
         /*if (isset($data['keyword'])) {
             $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
@@ -272,13 +277,13 @@ class ModelSellerProduct extends Model{
             }
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "product_to_layout WHERE product_id = '" . (int)$product_id . "'");
+        /*$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_layout WHERE product_id = '" . (int)$product_id . "'");
 
         if (isset($data['product_layout'])) {
             foreach ($data['product_layout'] as $store_id => $layout_id) {
                 $this->db->query("INSERT INTO " . DB_PREFIX . "product_to_layout SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
             }
-        }
+        }*/
 
         /*$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
 
@@ -369,7 +374,7 @@ class ModelSellerProduct extends Model{
 
     public function getProduct($product_id)
     {
-        $query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "') AS keyword FROM " . DB_PREFIX . "product p INNER JOIN " . DB_PREFIX . "product_to_store as p2s ON p.product_id=p2s.product_id AND p2s.store_id='" . $this->config->get('config_store_id') . "' LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+        $query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "') AS keyword FROM " . DB_PREFIX . "product p INNER JOIN " . DB_PREFIX . "product_to_store as p2s ON p.product_id=p2s.product_id AND p2s.store_id='" . $this->config->get('config_store_id') . "' LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.customer_id = '".$this->customer->getId()."' AND p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
         return $query->row;
     }

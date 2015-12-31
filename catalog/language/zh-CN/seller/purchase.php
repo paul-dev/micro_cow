@@ -1,14 +1,22 @@
 <?php
 
 // Heading
-$_['heading_title']          = '产品';
-$_['seller_home']            = '卖家中心';
+$_['heading_title']          = '求购';
+$_['seller_home']            = '贸易中心';
+
+// Button
+$_['button_add']             = '新增';
+$_['button_rebuild']         = '重建';
+
+// Tab
+$_['tab_general']            = '常规';
+$_['tab_data']               = '数据';
 
 // Text
-$_['text_success']           = '成功: 已经修改产品！';
-$_['text_list']              = '产品列表';
-$_['text_add']               = '添加产品';
-$_['text_edit']              = '编辑产品';
+$_['text_success']           = '成功: 已经修改求购信息！';
+$_['text_list']              = '求购列表';
+$_['text_add']               = '发布求购';
+$_['text_edit']              = '编辑求购';
 $_['text_plus']              = '+';
 $_['text_minus']             = '-';
 $_['text_default']           = '默认';
@@ -16,61 +24,19 @@ $_['text_option']            = '选项';
 $_['text_option_value']      = '选项值';
 $_['text_percent']           = '百分比';
 $_['text_amount']            = '固定值';
-$_['text_enabled']                  = '启用';
-$_['text_disabled']                 = '停用';
-$_['text_no_results']               = '没有符合条件的结果！';
-$_['text_confirm']                  = '确定吗？?';
+$_['text_no_results']        = '没有符合条件的结果！';
+$_['text_enabled']           = '启用';
+$_['text_disabled']          = '停用';
+$_['text_confirm']           = '确定吗?';
 
 // Button
-$_['button_add']                    = '新增';
-$_['button_copy']                   = '复制';
-$_['button_discount_add']           = '添加折扣';
-$_['button_special_add']            = '添加特价';
-$_['button_auction_add']            = '添加竞拍';
-$_['button_image_add']              = '添加图片';
-$_['button_recurring_add']          = '添加分期';
+$_['button_auction_add']     = '添加竞拍';
 
 // Tab
-$_['tab_address']                   = '地址';
-$_['tab_admin']                     = '管理';
-$_['tab_attribute']                 = '属性';
-$_['tab_customer']                  = '会员详情';
-$_['tab_data']                      = '数据';
-$_['tab_design']                    = '设计';
-$_['tab_discount']                  = '折扣';
-$_['tab_general']                   = '常规';
-$_['tab_history']                   = '订单状态历史记录';
-$_['tab_fraud']                     = '欺诈';
-$_['tab_ftp']                       = 'FTP';
-$_['tab_ip']                        = 'IP 地址';
-$_['tab_links']                     = '关联';
-$_['tab_log']                       = '日志';
-$_['tab_image']                     = '图像';
-$_['tab_option']                    = '选项';
-$_['tab_server']                    = '服务器';
-$_['tab_store']                     = '商店';
-$_['tab_special']                   = '特价';
-$_['tab_auction']                   = '竞拍';
-$_['tab_local']                     = '本地参数';
-$_['tab_mail']                      = '邮件';
-$_['tab_module']                    = '模组';
-$_['tab_order']                     = '订单详情';
-$_['tab_payment']                   = '支付详情';
-$_['tab_product']                   = '商品';
-$_['tab_reward']                    = '奖励积分';
-$_['tab_shipping']                  = '配送详情';
-$_['tab_total']                     = '总计';
-$_['tab_transaction']               = '账户余额';
-$_['tab_voucher']                   = '礼品券';
-$_['tab_sale']                      = '销售';
-$_['tab_marketing']                 = '营销';
-$_['tab_online']                    = '在线会员';
-$_['tab_activity']                  = '最新活动';
-$_['tab_recurring']                 = '分期付款';
-$_['tab_action']                    = '操作';
+$_['tab_auction']            = '竞拍';
 
 // Column
-$_['column_name']            = '产品名称';
+$_['column_name']            = '标题';
 $_['column_model']           = '货号';
 $_['column_image']           = '图像';
 $_['column_price']           = '价格';
@@ -79,7 +45,7 @@ $_['column_status']          = '状态';
 $_['column_action']          = '操作';
 
 // Entry
-$_['entry_name']             = '产品名称';
+$_['entry_name']             = '标题';
 $_['entry_description']      = '描述';
 $_['entry_meta_title'] 	     = 'Meta Tag 标题';
 $_['entry_meta_keyword'] 	 = 'Meta Tag 关键词';
@@ -126,12 +92,11 @@ $_['entry_option_value']     = '选项值';
 $_['entry_required']         = '必填项';
 $_['entry_status']           = '状态';
 $_['entry_sort_order']       = '排序';
-$_['entry_category']         = '店铺分类';
-$_['entry_system_category']  = '系统分类';
+$_['entry_category']         = '分类';
 $_['entry_filter']           = '筛选';
 $_['entry_download']         = '下载文件';
-$_['entry_related']          = '相关产品';
-$_['entry_tag']          	 = '产品标签';
+$_['entry_related']          = '相关商品';
+$_['entry_tag']          	 = '求购标签';
 $_['entry_reward']           = '奖励积分';
 $_['entry_layout']           = '布局覆盖';
 $_['entry_recurring']        = '分期付款';
@@ -146,17 +111,17 @@ $_['help_isbn']              = 'International Standard Book Number';
 $_['help_mpn']               = 'Manufacturer Part Number';
 $_['help_manufacturer']      = '(输入时自动筛选结果)';
 $_['help_minimum']           = '加入订单时所需最小数量';
-$_['help_stock_status']      = '缺少该商品时所显示的数量';
-$_['help_points']            = '购买此商品所需奖励积分。如果您不想让客户使用奖励积分来购买此产品，请将值设为0。';
-$_['help_category']          = '按住Ctrl或Shift键可以同时选择多个店铺分类';
-$_['help_filter']            = '(选择系统分类自动筛选结果)';
+$_['help_stock_status']      = '缺少该产品时所显示的数量';
+$_['help_points']            = '购买此产品所需奖励积分。如果您不想让客户使用奖励积分来购买此产品，请将值设为0。';
+$_['help_category']          = '(输入时自动筛选结果)';
+$_['help_filter']            = '(输入时自动筛选结果)';
 $_['help_download']          = '(输入时自动筛选结果)';
 $_['help_related']           = '(输入时自动筛选结果)';
 $_['help_tag']          	 = '英文逗号分割';
 
 // Error
 $_['error_warning']          = '警告: 存在错误，请检查！';
-$_['error_permission']       = '警告: 无权限修改产品！';
+$_['error_permission']       = '警告: 无权限修改商品！';
 $_['error_name']             = '产品名称必须介于3-255字符之间！';
 $_['error_meta_title']       = 'Meta 标题必须介于3-255字符之间！';
 $_['error_model']            = '商品型号必须介于1-64字符之间！';

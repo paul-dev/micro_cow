@@ -21,7 +21,7 @@ class ControllerModuleAccount extends Controller {
 		$data['text_transaction'] = $this->language->get('text_transaction');
 		$data['text_newsletter'] = $this->language->get('text_newsletter');
 		$data['text_recurring'] = $this->language->get('text_recurring');
-        $data['text_seller'] = $this->customer->isSeller() ? $this->language->get('text_seller') : $this->language->get('text_shop');
+        $data['text_seller'] = $this->customer->isSeller() ? $this->language->get('text_seller') : $this->language->get('text_certify');
 
         $data['logged'] = $this->customer->isLogged();
 		$data['register'] = $this->url->link('account/register', '', 'SSL');

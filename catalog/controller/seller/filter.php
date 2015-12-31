@@ -434,4 +434,36 @@ class ControllerSellerFilter extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+    public function getFiltersByGroup() {
+        $json = array();
+
+        if (isset($this->request->get['group_id'])) {
+            $this->load->model('catalog/filter');
+
+            $filter_data = array(
+                'filter_group_id' => $this->request->get['group_id']
+            );
+
+            $filters = $this->model_catalog_filter->getFilters($filter_data);
+
+            foreach ($filters as $filter) {
+                $json[] = array(
+                    'filter_id' => $filter['filter_id'],
+                    'name'      => strip_tags(html_entity_decode($filter['group'] . ' &gt; ' . $filter['name'], ENT_QUOTES, 'UTF-8'))
+                );
+            }
+        }
+
+        $sort_order = array();
+
+        foreach ($json as $key => $value) {
+            $sort_order[$key] = $value['name'];
+        }
+
+        array_multisort($sort_order, SORT_ASC, $json);
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
 }

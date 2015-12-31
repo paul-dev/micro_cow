@@ -41,7 +41,7 @@ class ControllerPaymentCod extends Controller {
         $this->load->model('seller/setting');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
-            $this->model_seller_setting->editSetting('cod', $this->request->post, $this->customer->getShopId());
+            $this->model_seller_setting->editSetting('cod', $this->request->post, $this->config->get('config_store_id'));
 
             $this->session->data['success'] = $this->language->get('text_success');
 
@@ -93,7 +93,7 @@ class ControllerPaymentCod extends Controller {
 
         $data['cancel'] = $this->url->link('seller/payment', '', 'SSL');
 
-        $_settings = $this->model_seller_setting->getSetting('cod', $this->customer->getShopId());
+        $_settings = $this->model_seller_setting->getSetting('cod', $this->config->get('config_store_id'));
 
         if (isset($this->request->post['cod_total'])) {
             $data['cod_total'] = $this->request->post['cod_total'];

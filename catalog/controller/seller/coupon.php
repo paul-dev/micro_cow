@@ -471,7 +471,7 @@ class ControllerSellerCoupon extends Controller {
 		} elseif (!empty($coupon_info)) {
 			$data['code'] = $coupon_info['code'];
 		} else {
-			$data['code'] = substr(md5(uniqid($this->customer->getShopId().mt_rand())), 0, 12);
+			$data['code'] = substr(md5(uniqid($this->config->get('config_store_id').mt_rand())), 0, 12);
 		}
 
 		if (isset($this->request->post['type'])) {

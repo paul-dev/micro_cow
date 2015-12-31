@@ -27,13 +27,13 @@ class ModelSellerReturn extends Model {
 			$limit = 20;
 		}
 
-		$query = $this->db->query("SELECT r.*, rs.name as status FROM `" . DB_PREFIX . "return` r LEFT JOIN " . DB_PREFIX . "order o ON r.order_id=o.order_id LEFT JOIN " . DB_PREFIX . "return_status rs ON (r.return_status_id = rs.return_status_id) WHERE o.store_id = '" . $this->customer->getShopId() . "' AND o.order_status_id > 0 AND rs.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY r.return_id DESC LIMIT " . (int)$start . "," . (int)$limit);
+		$query = $this->db->query("SELECT r.*, rs.name as status FROM `" . DB_PREFIX . "return` r LEFT JOIN " . DB_PREFIX . "order o ON r.order_id=o.order_id LEFT JOIN " . DB_PREFIX . "return_status rs ON (r.return_status_id = rs.return_status_id) WHERE o.store_id = '" . $this->config->get('config_store_id') . "' AND o.order_status_id > 0 AND rs.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY r.return_id DESC LIMIT " . (int)$start . "," . (int)$limit);
 
 		return $query->rows;
 	}
 
 	public function getTotalReturns() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "return` r LEFT JOIN " . DB_PREFIX . "order o ON r.order_id=o.order_id WHERE o.order_status_id > 0 AND o.store_id = '" . $this->customer->getShopId() . "'");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "return` r LEFT JOIN " . DB_PREFIX . "order o ON r.order_id=o.order_id WHERE o.order_status_id > 0 AND o.store_id = '" . $this->config->get('config_store_id') . "'");
 
 		return $query->row['total'];
 	}
