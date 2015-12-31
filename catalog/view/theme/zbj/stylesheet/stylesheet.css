@@ -947,8 +947,8 @@ table tr td,table th td{/*width:1%;*/}
 	position:relative;
 	border: 1px solid #e5e5e5;
 	overflow: auto;
-	margin-right:-1px;
-	margin-top:-1px;
+	margin-right:0px;
+	margin-top:2px;
 }
 /*.product-thumb:hover{box-shadow: inset 3px 3px 3px #efefef,inset -3px -3px 3px #efefef}*/
 

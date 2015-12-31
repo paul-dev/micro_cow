@@ -370,6 +370,14 @@ class ControllerProductProduct extends Controller {
 			$data['text_location'] = $this->language->get('text_location');
 			$data['text_date_available'] = $this->language->get('text_date_available');
 
+			$data['text_company_name'] = $this->language->get('text_company_name');
+			$data['text_contact_address'] = $this->language->get('text_contact_address');
+			$data['text_date_added'] = $this->language->get('text_date_added');
+			$data['text_legal_name'] = $this->language->get('text_legal_name');
+			$data['text_contact_email'] = $this->language->get('text_contact_email');
+			$data['text_registered_capital'] = $this->language->get('text_registered_capital');
+			$data['text_in_area'] = $this->language->get('text_in_area');
+
 			$data['product_id'] = (int)$this->request->get['product_id'];
 			$data['manufacturer'] = $product_info['manufacturer'];
 			$data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
@@ -829,10 +837,14 @@ class ControllerProductProduct extends Controller {
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
 
 			$data['column_left'] = $this->load->controller('common/column_left');
-			$data['column_right'] = $this->load->controller('common/column_right', array(
-					'productStoreId' => $_productStoreId,
-					'relatedProducts' => $data['products']
-			));
+
+			$data['column_right'] = '';
+
+					/*$data['column_right'] = $this->load->controller('common/column_right', array(
+                            'productStoreId' => $_productStoreId,
+                            'relatedProducts' => $data['products']
+                    ));*/
+
 			$data['content_top'] = $this->load->controller('common/content_top');
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
@@ -842,6 +854,31 @@ class ControllerProductProduct extends Controller {
 			$data['url'] = $this->url->link('product/product', $url . '&product_id=' . $product_id);
 
 			$data['product_info'] = $product_info;
+
+			//获取 供应商相关信息
+			$language_id = $this->config->get('config_language_id');
+			$data['company_info'] = $this->model_catalog_product->getCompanyInfo($data['product_id'],$language_id);
+
+			$this->load->model('localisation/zone');
+			$this->load->model('localisation/country');
+
+			//获取--国家
+			$country_info = $this->model_localisation_country->getCountry($data['company_info']['company_country_id']);
+			//获取--省份
+			$zone_info = $this->model_localisation_zone->getZone($data['company_info']['company_zone_id']);
+			//获取--城市
+			$city_info = $this->model_localisation_zone->getCity($data['company_info']['company_city_id']);
+			//获取--地区
+			$area_info = $this->model_localisation_zone->getArea($data['company_info']['company_area_id']);
+
+			//地址信息
+			$addinfo = array();
+			$addinfo['country_name'] = $country_info['name'];
+			$addinfo['zone_name'] = $zone_info['name'];
+			$addinfo['city_name'] = $city_info['name'];
+			$addinfo['area_name'] = $area_info['name'];
+
+			$data['company_info']['in_area'] = implode(" ",$addinfo);
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product.tpl')) {
 				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/product.tpl', $data));

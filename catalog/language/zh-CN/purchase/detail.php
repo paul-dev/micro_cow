@@ -7,8 +7,8 @@ $_['heading_tag']		                           = '求购 - ';
 // Text
 $_['text_industry_involved']                      = '所属行业：';
 
-$_['text_date_added']                           = '报价日期：';
-$_['text_date_expect']                           = '截至日期：';
+$_['text_date_added']                           = '发起日期：';
+$_['text_date_expect']                           = '截止日期：';
 $_['text_report']                                 = '举报';
 $_['text_offer_immediately']                      = '立即报价';
 $_['text_offer_immediately_toend']                = '距离报价结束还剩';
@@ -38,7 +38,7 @@ $_['text_contact_tel']                            = '联系电话：';
 $_['text_company_info']                   = '公司基本信息';
 $_['text_Industry']                        = '主营行业：';
 $_['text_registered_assets']                      = '注册资本：';
-$_['text_annual_turnover']                      = '年营业额：';
+$_['text_contact_name']                      = '联系人：';
 
 $_['text_in_region']                      = '所在地区：';
 $_['text_more_purchase']                = '更多Ta的采购需求';
@@ -60,6 +60,7 @@ $_['text_trade_type_2']                      = '货到付款';
 $_['text_trade_type_3']                      = '预付款';
 
 $_['text_date_remaining_of']                      = '已截止';
+$_['text_date_join']                      = '入驻时间：';
 
 
 

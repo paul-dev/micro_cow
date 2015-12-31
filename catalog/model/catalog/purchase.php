@@ -189,10 +189,10 @@ class ModelCatalogPurchase extends Model {
 		return $query->rows;
 	}
 
-	public function getPurchaseDescriptions($purchase_id) {
+	public function getPurchaseDescriptions($purchase_id,$language_id) {
 		$purchase_description_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_description WHERE purchase_id = '" . (int)$purchase_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_description WHERE language_id = ".$language_id." AND purchase_id = '" . (int)$purchase_id . "'");
 
 		foreach ($query->rows as $result) {
             $purchase_description_data[$result['language_id']] = array(
@@ -388,4 +388,13 @@ class ModelCatalogPurchase extends Model {
 
 		return $query->rows;
 	}
+
+
+	public function getCompanyInfo($purchase_id,$language_id) {
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "purchase WHERE purchase_id = ".$purchase_id.") AND cd.language_id = ".$language_id."");
+
+		return $query->row;
+	}
+
 }

@@ -7,8 +7,6 @@
 <div class="container">
   <div class="row">
     <div id="content">
-      <?php echo $content_top; ?>
-
       <div class="purehed" style="position: relative; margin-top: -15px;width: 95%">
         <div class="purehed-body" style="width: 932px;float: left">
           <br/>

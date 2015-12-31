@@ -8,7 +8,6 @@
 <div class="container">
   <div class="row">
     <div id="content">
-      <?php echo $content_top; ?>
 
       <! -- 供应详情页面具体内容 start -->
 
@@ -22,7 +21,7 @@
 
 
                   <div class="q-left-one">
-                    <h5 style="margin-bottom: 4px">阿志酷酷窝</h5>
+                    <h5 style="margin-bottom: 4px"><?php echo $company_info['company_name']; ?></h5>
                     <div class="q-left-one-img">
                       <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
                       <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
@@ -34,18 +33,18 @@
                       <p class="q-left-onel"><?php echo $text_contact_tel; ?></p>
                     </div>
                     <div class="shouquankejian">
-                      <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/shouquan.png" style="margin-top: 4px">
-                      <p style="display: none">联系人名称</p>
-                      <p style="margin-top: -14px;display: none">联系电话</p>
+                      <p ><?php echo $company_info['contact_name']; ?></p>
+                      <p style="margin-top: -3px;"><?php echo $company_info['contact_phone']; ?></p>
                     </div>
                   </div>
 
                   <div class="q-left-two" style="padding-bottom: 20px">
                     <h5 style="margin-bottom: 4px;"><?php echo $text_company_info; ?></h5>
-                    <p><?php echo $text_Industry; ?><span>--</span></p>
-                    <p><?php echo $text_registered_assets; ?><span>--</span></p>
-                    <p><?php echo $text_annual_turnover; ?><span>--</span></p>
-                    <p><?php echo $text_in_region; ?><span>--</span></p>
+                    <p><?php echo $text_date_join; ?><span><?php echo $company_info['date_added']; ?></span></p>
+                    <p><?php echo $text_registered_assets; ?><span><?php echo $company_info['registered_capital']; ?></span></p>
+                    <p><?php echo $text_contact_name; ?><span><?php echo $company_info['contact_name']; ?></span></p>
+                    <p><?php echo $text_in_region; ?></p>
+                    <p><?php echo $company_info['in_area']; ?></p>
                     <a class="q-xa-caigouxuqiu">
                       <?php echo $text_more_purchase; ?>
                     </a>

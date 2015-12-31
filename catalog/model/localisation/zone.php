@@ -53,4 +53,10 @@ class ModelLocalisationZone extends Model {
 
         return $area_data;
     }
+
+    public function getArea($area_id) {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_area WHERE id = '" . (int)$area_id . "' AND status = '1'");
+
+        return $query->row;
+    }
 }

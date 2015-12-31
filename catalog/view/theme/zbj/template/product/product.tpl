@@ -94,11 +94,13 @@
     //--></script>
 <?php } ?>
 <div class="container">
+    <!--
     <ul class="breadcrumb" style="display: none;">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
         <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
         <?php } ?>
     </ul>
+    -->
     <div class="row"><?php echo $column_left; ?>
         <?php if ($column_left && $column_right) { ?>
         <?php $class = 'col-sm-6'; ?>
@@ -539,16 +541,37 @@
 
                             <?php if (!$is_preview) { ?>
                             <div class="zbj-btn-box clearfix">
-                                <button type="button" id="buy_now"  data-loading-text="<?php echo $text_loading; ?>" class="button-buy btn btn-primary btn-lg cart-buy">立即购买</button>
+                                <button type="button" id="buy_now"  data-loading-text="<?php echo $text_loading; ?>" class="button-buy btn btn-primary btn-lg cart-buy btn-buy-red">立即购买</button>
                                 <button type="button" id="" data-loading-text="<?php echo $text_loading; ?>" class="button-cart btn btn-primary btn-lg btn-block cart-buy"><i class="fa fa-shopping-cart" style="font-size:17px;margin-right:7px;"></i><?php echo $button_cart; ?></button>
                             </div>
                             <?php } ?>
                         </div>
                     </div>
+
+                    <!-- 供应商基本信息 start -->
+                            <div class="shop_right" style="padding-top: 0px;border:0px solid red;width:300px;min-height:410px;float:right;">
+                            <div class="show_set">
+                                <div class="shop_message" style="border: 0px dashed blue;text-align:center;">
+                                    <a class="shop_title">供应商基本信息</a>
+                                </div>
+                                <ul class="shop_detail">
+                                    <li><?php echo $text_company_name; ?><?php echo $company_info['company_name']; ?></li>
+                                    <li><?php echo $text_contact_address; ?><?php echo $company_info['contact_address']; ?></li>
+                                    <li><?php echo $text_date_added; ?><?php echo $company_info['date_added']; ?></li>
+                                    <li><?php echo $text_legal_name; ?><?php echo $company_info['legal_name']; ?></li>
+                                    <li><?php echo $text_contact_email; ?><?php echo $company_info['contact_email']; ?></li>
+                                    <li><?php echo $text_registered_capital; ?><?php echo $company_info['registered_capital']; ?></li>
+                                    <li><?php echo $text_in_area; ?><?php echo $company_info['in_area']; ?></li>
+                                </ul>
+                                <div style="border: 0px solid #00b3ee;margin-top:15px;">
+                                    <a style="border-radius: 3px " class="intoshop_btn" href="http://wpa.qq.com/msgrd?V=3&uin=<?php echo $company_info['contact_qq']; ?>&Site=<?php echo $company_info['company_name']; ?>&Menu=yes" target="_blank"><i class="intoshop_btn_ico"></i>联系供应商</a>
+                                    <!--<a style="border-radius: 3px " class="intoshop_btn" target="_blank"><i class="intoshop_btn_ico"></i>查看供应商</a>-->
+                                </div>
+                            </div>
+                        </div>
+                    <!-- 供应商基本信息 end -->
+
                 </div>
-
-
-
             </div>
 <!--
             <?php if ($tags) { ?>
@@ -564,80 +587,12 @@
             <?php } ?>
 -->
             <?php echo $content_bottom; ?></div>
-        <?php echo $column_right; ?></div>
-
-    <?php if ($popular_products) { ?>
-    <div class="product_left" style="width:100%;margin-bottom:5px;margin-top:-30px;">
-        <h3><?php echo $text_popular; ?></h3>
+        <?php echo $column_right; ?>
     </div>
-    <div style="clear:both;"></div>
-    <div class="row">
-        <?php $i = 0; ?>
-        <?php foreach ($popular_products as $product) { ?>
-        <?php if ($column_left && $column_right) { ?>
-        <?php $class = 'col-lg-6 col-md-6 col-sm-12 col-xs-12'; ?>
-        <?php } elseif ($column_left || $column_right) { ?>
-        <?php $class = 'col-lg-4 col-md-4 col-sm-6 col-xs-12 col_20'; ?>
-        <?php } else { ?>
-        <?php $class = 'col-lg-3 col-md-3 col-sm-6 col-xs-12'; ?>
-        <?php } ?>
-        <div class="<?php echo $class; ?>">
-            <div class="product-thumb transition">
-                <div class="image">
-                    <a href="<?php echo $product['href']; ?>">
-                        <img <?php if($product['thumb']){ ?> src=<?php echo $product['thumb'] ;?> alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" <?php }else{ ?> src="catalog/view/theme/zbj/image/zbj_default_pic.png" <?php } ?> class="img-responsive" />
-                    </a>
-                </div>
-                <div class="caption">
-                    <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
-                    <p style="display: none;"><?php echo $product['description']; ?></p>
-                    <?php if ($product['rating']) { ?>
-                    <div class="rating">
-                        <?php for ($i = 1; $i <= 5; $i++) { ?>
-                        <?php if ($product['rating'] < $i) { ?>
-                        <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                        <?php } else { ?>
-                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                        <?php } ?>
-                        <?php } ?>
-                    </div>
-                    <?php } ?>
-                    <?php if ($product['price']) { ?>
-                    <p class="price">
-                        <?php if (!$product['special']) { ?>
-                        <?php echo $product['price']; ?>
-                        <?php } else { ?>
-                        <span class="price-new"><?php echo $product['special']; ?></span> <span class="price-old"><?php echo $product['price']; ?></span>
-                        <?php } ?>
-                        <?php if ($product['tax']) { ?>
-                        <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
-                        <?php } ?>
-                    </p>
-                    <?php } ?>
-                </div>
-                <!--  <div class="button-group">
-                     <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span> <i class="fa fa-shopping-cart"></i></button>
-                     <button type="button" data-toggle="tooltip" title="<?php echo $button_wishlist; ?>(<?php echo $product['total_wish']; ?>)" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></button>
-                     <button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
-                 </div> -->
-
-            </div>
-
-        </div>
-        <?php if (($column_left && $column_right) && ($i % 2 == 0)) { ?>
-        <div class="clearfix visible-md visible-sm"></div>
-        <?php } elseif (($column_left || $column_right) && ($i % 3 == 0)) { ?>
-        <div class="clearfix visible-md"></div>
-        <?php } elseif ($i % 4 == 0) { ?>
-        <div class="clearfix visible-md"></div>
-        <?php } ?>
-        <?php $i++; ?>
-        <?php } ?>
-    </div>
-    <?php } ?>
 
     <div class="product_content" style="margin-top:30px;">
         <div class="product_left">
+            <!--
             <h3>产品分类</h3>
             <div class="cat_wrap">
                 <h4>查看所有产品</h4>
@@ -655,10 +610,54 @@
                     <?php } ?>
                 </ul>
             </div>
+            -->
             <h3>其他人还买了</h3>
-            <div class="cat_more">
+
+
+            <div class="cat_more" style='height:1615px;overflow: hidden;margin-top:10px;'>
+
+                <?php foreach ($popular_products as $product) { ?>
+                    <div class="product-thumb transition">
+                        <div class="image">
+                            <a href="<?php echo $product['href']; ?>">
+                                <img <?php if($product['thumb']){ ?> src=<?php echo $product['thumb'] ;?> alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" <?php }else{ ?> src="catalog/view/theme/zbj/image/zbj_default_pic.png" <?php } ?> class="img-responsive" />
+                            </a>
+                        </div>
+                        <div class="caption">
+                            <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+                            <p style="display: none;"><?php echo $product['description']; ?></p>
+                            <?php if ($product['rating']) { ?>
+                            <div class="rating">
+                                <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                <?php if ($product['rating'] < $i) { ?>
+                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                <?php } else { ?>
+                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                <?php } ?>
+                                <?php } ?>
+                            </div>
+                            <?php } ?>
+                            <?php if ($product['price']) { ?>
+                            <p class="price">
+                                <?php if (!$product['special']) { ?>
+                                <?php echo $product['price']; ?>
+                                <?php } else { ?>
+                                <span class="price-new"><?php echo $product['special']; ?></span> <span class="price-old"><?php echo $product['price']; ?></span>
+                                <?php } ?>
+                                <?php if ($product['tax']) { ?>
+                                <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
+                                <?php } ?>
+                            </p>
+                            <?php } ?>
+                        </div>
+
+                    </div>
+                <?php } ?>
+
+
+                <!--
                 <ul>
-                    <?php foreach($bestseller_products as $product) { ?>
+                    <?php foreach ($popular_products as $product) { ?>
                     <li>
                         <div class="cat_more_wrap">
                             <a href="<?php echo $product['href']; ?>" title="<?php echo $product['name']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
@@ -670,29 +669,33 @@
                                     <?php } ?>
                                 </span>
                         </div>
-                        <div class="cat_grey"><span><i class="cat_ico"></i><?php echo $product['total_wish']; ?>人喜欢</span><span class="cat_sales">销量(<?php echo $product['total_sell']; ?>)</span></div>
                     </li>
                     <?php } ?>
                 </ul>
+                -->
+
+
             </div>
+
+
         </div>
         <div class="product_right">
             <ul id="nav-comment" class="nav nav-tabs" style='border-bottom: 0px;'>
-                <li class="active"><a href="#tab-description" data-toggle="tab"><strong><?php echo $tab_description; ?></strong></a></li>
+                <li class="active" style="margin-bottom: -2px;"><a href="#tab-description" data-toggle="tab"><strong><?php echo $tab_description; ?></strong></a></li>
                 <?php if ($attribute_groups) { ?>
-                <li><a href="#tab-specification" data-toggle="tab"><strong><?php echo $tab_attribute; ?></strong></a></li>
+                <li style="margin-bottom: -2px;"><a href="#tab-specification" data-toggle="tab"><strong><?php echo $tab_attribute; ?></strong></a></li>
                 <?php } ?>
                 <?php //if ($review_status) { ?>
-                <li><a href="#tab-review" data-toggle="tab"><strong><?php echo $tab_review; ?></strong></a></li>
+                <li style="margin-bottom: -2px;"><a href="#tab-review" data-toggle="tab"><strong><?php echo $tab_review; ?></strong></a></li>
                 <?php //} ?>
-                <li><a href="#tab-transactionRecords" data-toggle="tab"><strong>成交记录(<?php echo $total_sell; ?>)</strong></a></li>
+                <li style="margin-bottom: -2px;"><a href="#tab-transactionRecords" data-toggle="tab"><strong>成交记录(<?php echo $total_sell; ?>)</strong></a></li>
 
                 <?php if ($finished_auctions) { ?>
-                <li><a href="#tab-auctions" data-toggle="tab"><strong>竞拍</strong></a></li>
+                <li style="margin-bottom: -2px;"><a href="#tab-auctions" data-toggle="tab"><strong>竞拍</strong></a></li>
                 <?php } ?>
 
-                <li style="float:right"> <button type="button" id="" data-loading-text="<?php echo $text_loading; ?>" class="button-cart btn btn-primary btn-lg btn-block" style="padding:15px 30px;z-index:999"><?php echo $button_cart; ?></button></li>
-                <li style="float:right"><span class="price" style="color: #87878e;;font-size: 20px;line-height: 50px;padding-right: 20px;"><?php echo $special ? $special : $price; ?></span></li>
+                <li style="float:right;margin-bottom: -2px;"> <button type="button" id="" data-loading-text="<?php echo $text_loading; ?>" class="button-cart btn btn-primary btn-lg btn-block" style="padding:15px 30px;z-index:999"><?php echo $button_cart; ?></button></li>
+                <li style="float:right;margin-bottom: -2px;"><span class="price" style="color: #87878e;;font-size: 20px;line-height: 50px;padding-right: 20px;"><?php echo $special ? $special : $price; ?></span></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab-description"><?php echo $description; ?></div>

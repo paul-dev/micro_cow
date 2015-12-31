@@ -114,37 +114,13 @@ $_['text_detail_date_modified']        = '修改时间:';
 $_['text_location']                    = '生产地：';
 $_['text_date_available']                    = '上架日期：';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$_['text_company_name']                   = '公司名称：';
+$_['text_contact_address']                   = '公司地址：';
+$_['text_date_added']                       = '入驻时间：';
+$_['text_legal_name']                       = '公司法人：';
+$_['text_contact_email']                     = '联系邮箱：';
+$_['text_registered_capital']                  = '注册资本：';
+$_['text_in_area']                           = '所在地区：';
 
 // Entry
 $_['entry_qty']                = '数量';

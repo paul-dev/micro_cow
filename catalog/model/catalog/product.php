@@ -957,4 +957,13 @@ class ModelCatalogProduct extends Model {
 
         return $query->row['total'];
     }
+
+	public function getCompanyInfo($product_id,$language_id) {
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "product WHERE product_id = ".$product_id.") AND cd.language_id = ".$language_id."");
+
+		return $query->row;
+	}
+
+
 }

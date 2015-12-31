@@ -43,7 +43,36 @@ class ControllerPurchaseDetail extends Controller
 
 		$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchaseProducts($purchase_id);
 
-		$data['purchaseDescriptions'] = $this->model_catalog_purchase->getPurchaseDescriptions($purchase_id);
+		$language_id = $this->config->get('config_language_id');
+		$data['purchaseDescriptions'] = $this->model_catalog_purchase->getPurchaseDescriptions($purchase_id,$language_id);
+
+		/*
+		 * @todo 获取求购商相关信息;
+		 * */
+		$language_id = $this->config->get('config_language_id');
+
+		$data['company_info'] = $this->model_catalog_purchase->getCompanyInfo($data['purchaseInfo']['purchase_id'],$language_id);
+
+		$this->load->model('localisation/zone');
+		$this->load->model('localisation/country');
+
+		//获取--国家
+		$country_info = $this->model_localisation_country->getCountry($data['company_info']['company_country_id']);
+		//获取--省份
+		$zone_info = $this->model_localisation_zone->getZone($data['company_info']['company_zone_id']);
+		//获取--城市
+		$city_info = $this->model_localisation_zone->getCity($data['company_info']['company_city_id']);
+		//获取--地区
+		$area_info = $this->model_localisation_zone->getArea($data['company_info']['company_area_id']);
+
+		//地址信息
+		$addinfo = array();
+		$addinfo['country_name'] = $country_info['name'];
+		$addinfo['zone_name'] = $zone_info['name'];
+		$addinfo['city_name'] = $city_info['name'];
+		$addinfo['area_name'] = $area_info['name'];
+
+		$data['company_info']['in_area'] = implode(" ",$addinfo);
 
 		/*
 		 * @todo 获取语言配置 language;
@@ -61,6 +90,7 @@ class ControllerPurchaseDetail extends Controller
 		$data['text_receive_offer'] = $this->language->get('text_receive_offer');
 		$data['text_receive_offerd'] = $this->language->get('text_receive_offerd');
 		$data['text_spot_goods'] = $this->language->get('text_spot_goods');
+		$data['text_date_join'] = $this->language->get('text_date_join');
 
 		$data['text_product_name'] = $this->language->get('text_product_name');
 		$data['text_amount_purchased'] = $this->language->get('text_amount_purchased');
@@ -80,7 +110,7 @@ class ControllerPurchaseDetail extends Controller
 		$data['text_company_info'] = $this->language->get('text_company_info');
 		$data['text_Industry'] = $this->language->get('text_Industry');
 		$data['text_registered_assets'] = $this->language->get('text_registered_assets');
-		$data['text_annual_turnover'] = $this->language->get('text_annual_turnover');
+		$data['text_contact_name'] = $this->language->get('text_contact_name');
 		$data['text_in_region'] = $this->language->get('text_in_region');
 		$data['text_more_purchase'] = $this->language->get('text_more_purchase');
 		$data['text_purchase_record'] = $this->language->get('text_purchase_record');
