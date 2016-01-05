@@ -21,7 +21,11 @@
 
 
                   <div class="q-left-one">
+                    <?php if($company_info['company_name']){ ?>
                     <h5 style="margin-bottom: 4px"><?php echo $company_info['company_name']; ?></h5>
+                    <?php }else{ ?>
+                    <h5 style="margin-bottom: 4px"></h5>
+                    <?php } ?>
                     <div class="q-left-one-img">
                       <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
                       <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
@@ -33,18 +37,53 @@
                       <p class="q-left-onel"><?php echo $text_contact_tel; ?></p>
                     </div>
                     <div class="shouquankejian">
+
+                      <?php if($company_info['contact_name']){ ?>
                       <p ><?php echo $company_info['contact_name']; ?></p>
+                      <?php }else{ ?>
+                      <p ></p>
+                      <?php } ?>
+
+                      <?php if($company_info['contact_phone']){ ?>
                       <p style="margin-top: -3px;"><?php echo $company_info['contact_phone']; ?></p>
+                      <?php }else{ ?>
+                      <p style="margin-top: -3px;"></p>
+                      <?php } ?>
+
+
                     </div>
                   </div>
 
                   <div class="q-left-two" style="padding-bottom: 20px">
                     <h5 style="margin-bottom: 4px;"><?php echo $text_company_info; ?></h5>
+
+
+                    <?php if($company_info['date_added']){ ?>
                     <p><?php echo $text_date_join; ?><span><?php echo $company_info['date_added']; ?></span></p>
+                    <?php }else{ ?>
+                    <p><?php echo $text_date_join; ?><span></span></p>
+                    <?php } ?>
+
+                    <?php if($company_info['registered_capital']){ ?>
                     <p><?php echo $text_registered_assets; ?><span><?php echo $company_info['registered_capital']; ?></span></p>
+                    <?php }else{ ?>
+                    <p><?php echo $text_registered_assets; ?><span></span></p>
+                    <?php } ?>
+
+                    <?php if($company_info['contact_name']){ ?>
                     <p><?php echo $text_contact_name; ?><span><?php echo $company_info['contact_name']; ?></span></p>
+                    <?php }else{ ?>
+                    <p><?php echo $text_contact_name; ?><span></span></p>
+                    <?php } ?>
+
+                    <?php if($company_info['country_name']){ ?>
                     <p><?php echo $text_in_region; ?></p>
-                    <p><?php echo $company_info['in_area']; ?></p>
+                    <p><?php echo $company_info['country_name']; ?> <?php echo $company_info['zone_name']; ?> <?php echo $company_info['city_name']; ?> <?php echo $company_info['area_name']; ?></p>
+                    <?php }else{ ?>
+                    <p><?php echo $text_in_region; ?></p>
+                    <p></p>
+                    <?php } ?>
+
                     <a class="q-xa-caigouxuqiu">
                       <?php echo $text_more_purchase; ?>
                     </a>
@@ -179,10 +218,10 @@
                       <?php } ?>
 
                     </table>
-                    <?php foreach($purchaseDescriptions as $description){ ?>
+                    <?php if($purchaseInfo['description']){ ?>
                       <h3 style="width: 908px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;border-left: 5px solid #496abc;padding: 5px 10px;margin-top: 15px;margin-bottom: 14px;"><?php echo $text_supplementary_instruction; ?></h3>
                       <div style="margin:10px 0 14px 15px;">
-                         <?php echo htmlspecialchars_decode($description['description']); ?>
+                         <?php echo htmlspecialchars_decode($purchaseInfo['description']); ?>
                       </div>
                     <?php } ?>
                   </div>

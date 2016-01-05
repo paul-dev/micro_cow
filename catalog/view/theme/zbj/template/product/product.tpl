@@ -561,7 +561,14 @@
                                     <li><?php echo $text_legal_name; ?><?php echo $company_info['legal_name']; ?></li>
                                     <li><?php echo $text_contact_email; ?><?php echo $company_info['contact_email']; ?></li>
                                     <li><?php echo $text_registered_capital; ?><?php echo $company_info['registered_capital']; ?></li>
-                                    <li><?php echo $text_in_area; ?><?php echo $company_info['in_area']; ?></li>
+                                    <li><?php echo $text_in_area; ?>
+                                    <?php if($company_info['country_name']){ ?>
+                                        <?php echo $company_info['country_name']; ?>
+                                        <?php echo $company_info['zone_name']; ?>
+                                        <?php echo $company_info['city_name']; ?>
+                                        <?php echo $company_info['area_name']; ?>
+                                    <?php }else{ ?><?php } ?>
+                                    </li>
                                 </ul>
                                 <div style="border: 0px solid #00b3ee;margin-top:15px;">
                                     <a style="border-radius: 3px " class="intoshop_btn" href="http://wpa.qq.com/msgrd?V=3&uin=<?php echo $company_info['contact_qq']; ?>&Site=<?php echo $company_info['company_name']; ?>&Menu=yes" target="_blank"><i class="intoshop_btn_ico"></i>联系供应商</a>

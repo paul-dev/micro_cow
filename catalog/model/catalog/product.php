@@ -958,11 +958,34 @@ class ModelCatalogProduct extends Model {
         return $query->row['total'];
     }
 
-	public function getCompanyInfo($product_id,$language_id) {
+	public function getCompanyInfo($product_id,$language_id=false) {
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "product WHERE product_id = ".$product_id.") AND cd.language_id = ".$language_id."");
+		if($language_id==false){
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company AS c LEFT JOIN " . DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "product WHERE product_id = " . $product_id . ")");
+		}else {
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "product WHERE product_id = ".$product_id.") AND cd.language_id = ".$language_id."");
+		}
 
-		return $query->row;
+		$result = $query->row;
+
+		if($result['company_country_id']){
+			$country_info = $this->db->query("SELECT name FROM " . DB_PREFIX . "country WHERE country_id = '" . (int)$result['company_country_id'] . "' AND status = '1'");
+			$result['country_name'] = $country_info->row['name'];
+		}
+		if($result['company_zone_id']){
+			$zone_info = $this->db->query("SELECT name FROM " . DB_PREFIX . "zone WHERE zone_id = '" . (int)$result['company_zone_id'] . "' AND status = '1'");
+			$result['zone_name'] = $zone_info->row['name'];
+		}
+		if($result['company_city_id']){
+			$city_info = $this->db->query("SELECT name FROM " . DB_PREFIX . "zone_city WHERE id = '" . (int)$result['company_city_id'] . "' AND status = '1'");
+			$result['city_name'] = $city_info->row['name'];
+		}
+		if($result['company_area_id']){
+			$area_info = $this->db->query("SELECT name FROM " . DB_PREFIX . "zone_area WHERE id = '" . (int)$result['company_area_id'] . "' AND status = '1'");
+			$result['area_name'] = $area_info->row['name'];
+		}
+
+		return $result;
 	}
 
 

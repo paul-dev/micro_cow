@@ -859,27 +859,6 @@ class ControllerProductProduct extends Controller {
 			$language_id = $this->config->get('config_language_id');
 			$data['company_info'] = $this->model_catalog_product->getCompanyInfo($data['product_id'],$language_id);
 
-			$this->load->model('localisation/zone');
-			$this->load->model('localisation/country');
-
-			//获取--国家
-			$country_info = $this->model_localisation_country->getCountry($data['company_info']['company_country_id']);
-			//获取--省份
-			$zone_info = $this->model_localisation_zone->getZone($data['company_info']['company_zone_id']);
-			//获取--城市
-			$city_info = $this->model_localisation_zone->getCity($data['company_info']['company_city_id']);
-			//获取--地区
-			$area_info = $this->model_localisation_zone->getArea($data['company_info']['company_area_id']);
-
-			//地址信息
-			$addinfo = array();
-			$addinfo['country_name'] = $country_info['name'];
-			$addinfo['zone_name'] = $zone_info['name'];
-			$addinfo['city_name'] = $city_info['name'];
-			$addinfo['area_name'] = $area_info['name'];
-
-			$data['company_info']['in_area'] = implode(" ",$addinfo);
-
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product.tpl')) {
 				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/product.tpl', $data));
 			} else {
