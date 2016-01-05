@@ -958,11 +958,18 @@ class ModelCatalogProduct extends Model {
         return $query->row['total'];
     }
 
-	public function getCompanyInfo($product_id,$language_id) {
+	public function getCompanyInfo($product_id,$language_id=false) {
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "product WHERE product_id = ".$product_id.") AND cd.language_id = ".$language_id."");
+		if($language_id==false){
+			$query = $this->db->query("SELECT cty.`name` as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name,c.*,cd.* FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) LEFT JOIN ". DB_PREFIX . "country AS cty ON cty.country_id = c.company_country_id LEFT JOIN ". DB_PREFIX . "zone AS z ON z.zone_id = c.company_zone_id LEFT JOIN ". DB_PREFIX . "zone_city AS zc ON zc.id = c.company_city_id LEFT JOIN ". DB_PREFIX . "zone_area AS za ON za.id = c.company_area_id WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "product WHERE product_id = ".$product_id.")");
+		}else {
+			//执行sql
+			$query = $this->db->query("SELECT cty.`name` as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name,c.*,cd.* FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) LEFT JOIN ". DB_PREFIX . "country AS cty ON cty.country_id = c.company_country_id LEFT JOIN ". DB_PREFIX . "zone AS z ON z.zone_id = c.company_zone_id LEFT JOIN ". DB_PREFIX . "zone_city AS zc ON zc.id = c.company_city_id LEFT JOIN ". DB_PREFIX . "zone_area AS za ON za.id = c.company_area_id WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "product WHERE product_id = ".$product_id.") AND cd.language_id = ".$language_id."");
+		}
 
-		return $query->row;
+		$result = $query->row;
+
+		return $result;
 	}
 
 

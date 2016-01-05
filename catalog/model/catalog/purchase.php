@@ -189,10 +189,15 @@ class ModelCatalogPurchase extends Model {
 		return $query->rows;
 	}
 
-	public function getPurchaseDescriptions($purchase_id,$language_id) {
+	public function getPurchaseDescriptions($purchase_id,$language_id=false) {
+
 		$purchase_description_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_description WHERE language_id = ".$language_id." AND purchase_id = '" . (int)$purchase_id . "'");
+		if($language_id==false){
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_description WHERE purchase_id = '" . (int)$purchase_id . "'");
+		}else{
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_description WHERE language_id = ".$language_id." AND purchase_id = '" . (int)$purchase_id . "'");
+		}
 
 		foreach ($query->rows as $result) {
             $purchase_description_data[$result['language_id']] = array(
@@ -390,11 +395,17 @@ class ModelCatalogPurchase extends Model {
 	}
 
 
-	public function getCompanyInfo($purchase_id,$language_id) {
+	public function getCompanyInfo($purchase_id,$language_id=false) {
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "purchase WHERE purchase_id = ".$purchase_id.") AND cd.language_id = ".$language_id."");
+		if($language_id==false){
+			$query = $this->db->query("SELECT cty.`name` as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name,c.*,cd.* FROM " . DB_PREFIX . "company AS c LEFT JOIN " . DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id)LEFT JOIN ". DB_PREFIX . "country AS cty ON cty.country_id = c.company_country_id LEFT JOIN ". DB_PREFIX ."zone AS z ON z.zone_id = c.company_zone_id LEFT JOIN ". DB_PREFIX . "zone_city AS zc ON zc.id = c.company_city_id LEFT JOIN ". DB_PREFIX . "zone_area AS za ON za.id = c.company_area_id  WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "purchase WHERE purchase_id = " . $purchase_id . ")");
+		}else {
+			$query = $this->db->query("SELECT cty.`name` as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name,c.*,cd.* FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) LEFT JOIN ". DB_PREFIX . "country AS cty ON cty.country_id = c.company_country_id LEFT JOIN ". DB_PREFIX . "zone AS z ON z.zone_id = c.company_zone_id LEFT JOIN ". DB_PREFIX . "zone_city AS zc ON zc.id = c.company_city_id LEFT JOIN ". DB_PREFIX . "zone_area AS za ON za.id = c.company_area_id WHERE c.customer_id = (SELECT customer_id FROM " . DB_PREFIX . "purchase WHERE purchase_id = ".$purchase_id.") AND cd.language_id = ".$language_id."");
+		}
 
-		return $query->row;
+		$result = $query->row;
+
+		return $result;
 	}
 
 }
