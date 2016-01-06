@@ -43,10 +43,9 @@
               <option>所有地区3</option>
             </select>
 
-            <span class="span-aa">信息发布时间&nbsp;<a class="aaa" href="#"></a> <span class="shuxian"></span><a class="bbb" href="#">&nbsp;&nbsp;&nbsp;</a></span>
-            <span class="span-aa">信息截止时间&nbsp;<a class="aaa" href="#"></a> <span class="shuxian"></span><a class="bbb" href="#">&nbsp;&nbsp;&nbsp;</a></span>
+            <span class="span-aa">信息发布时间&nbsp;<a class="aaa" href="#"></a> <span class="shuxian"></span><a class="bbb" href="#">&nbsp;</a></span>
+            <span class="span-aa">信息截止时间&nbsp;<a class="aaa" href="#"></a> <span class="shuxian"></span><a class="bbb" href="#">&nbsp;</a></span>
 
-            <label><input type="checkbox"><span class="mnigqifengcai">名企采购</span></label>
 
           </div>
           <div>
@@ -75,7 +74,11 @@
                 </div>
 
                 <div class="purehed-div-2">
-                  <p > <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_release_time; ?><time><?php echo $purchase_product['date_added']; ?></time></a></p>
+                  <p >
+                    <a class="purehed-div-2-p" style="line-height: 25px;">
+                      <?php echo $text_release_time; ?><time><?php echo $purchase_product['date_added']; ?></time>
+                    </a>
+                  </p>
 
                   <?php if($purchase_product['date_remaining'] > 0){ ?>
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $purchase_product['date_remaining']; ?></span><?php echo $text_product_days; ?></a></p>
@@ -83,33 +86,18 @@
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $text_date_remaining_of; ?></span></a></p>
                   <?php } ?>
 
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_information_type; ?>现货/标准品</a></p>
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_have_been_priced; ?><span class="purched-font-red">4</span><?php echo $text_product_strip; ?></a></p>
-                  <?php if($purchase_product['date_available']){ ?>
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_date_available; ?><?php echo $purchase_product['date_available']; ?></a></p>
-                  <?php } ?>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;">报价条数：0 </a></p>
+
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;">所在地：<?php echo $purchase_product['country_name']; ?> <?php echo $purchase_product['zone_name']; ?></a></p>
 
 
-                  <?php if($purchaseInfo['trade_type'] = 0){ ?>
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_trading; ?><?php echo $text_trade_type_0; ?></a></p>
-                  <?php }elseif($purchaseInfo['trade_type'] = 1){ ?>
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_trading; ?><?php echo $text_trade_type_1; ?></a></p>
-                  <?php }elseif($purchaseInfo['trade_type'] = 2){ ?>
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_trading; ?><?php echo $text_trade_type_2; ?></a></p>
-                  <?php }elseif($purchaseInfo['trade_type'] = 3){ ?>
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_trading; ?><?php echo $text_trade_type_3; ?></a></p>
-                  <?php } ?>
-
-                  <div class="purehed-div-2-img">
-                    <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/jianpan.png">
-                  </div>
                 </div>
 
                 <div class="purehed-div-3">
-                  <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png" class="purehed-div-3-it">
-                  <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png" class="purehed-div-3-it">
-                  <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png" class="purehed-div-3-it">
-                  <a href="<?php echo $purchase_product['url']; ?>"><input type="button" value=<?php echo $text_offer_immediately; ?> class="purehed-div-3-btn"></a>
+                    <div>
+                      <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $purchase_product['company_name']; ?></a></p>
+                      <p style="text-align: right">  <a href="<?php echo $purchase_product['url']; ?>"><input type="button" value=<?php echo $text_offer_immediately; ?> class="purehed-div-3-btn"></a></p>
+                    </div>
                 </div>
               </div>
             </div>

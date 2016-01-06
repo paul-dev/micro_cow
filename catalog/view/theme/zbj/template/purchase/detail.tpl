@@ -21,8 +21,9 @@
 
 
                   <div class="q-left-one">
-                    <?php if($company_info['company_name']){ ?>
-                    <h5 style="margin-bottom: 4px"><?php echo $company_info['company_name']; ?></h5>
+
+                    <?php if($purchaseInfo['company_name']){ ?>
+                    <h5 style="margin-bottom: 4px"><?php echo $purchaseInfo['company_name']; ?></h5>
                     <?php }else{ ?>
                     <h5 style="margin-bottom: 4px"></h5>
                     <?php } ?>
@@ -38,14 +39,14 @@
                     </div>
                     <div class="shouquankejian">
 
-                      <?php if($company_info['contact_name']){ ?>
-                      <p ><?php echo $company_info['contact_name']; ?></p>
+                      <?php if($purchaseInfo['contact_name']){ ?>
+                      <p ><?php echo $purchaseInfo['contact_name']; ?></p>
                       <?php }else{ ?>
                       <p ></p>
                       <?php } ?>
 
-                      <?php if($company_info['contact_phone']){ ?>
-                      <p style="margin-top: -3px;"><?php echo $company_info['contact_phone']; ?></p>
+                      <?php if($purchaseInfo['contact_phone']){ ?>
+                      <p style="margin-top: -3px;"><?php echo $purchaseInfo['contact_phone']; ?></p>
                       <?php }else{ ?>
                       <p style="margin-top: -3px;"></p>
                       <?php } ?>
@@ -58,27 +59,27 @@
                     <h5 style="margin-bottom: 4px;"><?php echo $text_company_info; ?></h5>
 
 
-                    <?php if($company_info['date_added']){ ?>
-                    <p><?php echo $text_date_join; ?><span><?php echo $company_info['date_added']; ?></span></p>
+                    <?php if($purchaseInfo['date_added']){ ?>
+                    <p><?php echo $text_date_join; ?><span><?php echo $purchaseInfo['date_added']; ?></span></p>
                     <?php }else{ ?>
                     <p><?php echo $text_date_join; ?><span></span></p>
                     <?php } ?>
 
-                    <?php if($company_info['registered_capital']){ ?>
-                    <p><?php echo $text_registered_assets; ?><span><?php echo $company_info['registered_capital']; ?></span></p>
+                    <?php if($purchaseInfo['registered_capital']){ ?>
+                    <p><?php echo $text_registered_assets; ?><span><?php echo $purchaseInfo['registered_capital']; ?></span></p>
                     <?php }else{ ?>
                     <p><?php echo $text_registered_assets; ?><span></span></p>
                     <?php } ?>
 
-                    <?php if($company_info['contact_name']){ ?>
-                    <p><?php echo $text_contact_name; ?><span><?php echo $company_info['contact_name']; ?></span></p>
+                    <?php if($purchaseInfo['contact_name']){ ?>
+                    <p><?php echo $text_contact_name; ?><span><?php echo $purchaseInfo['contact_name']; ?></span></p>
                     <?php }else{ ?>
                     <p><?php echo $text_contact_name; ?><span></span></p>
                     <?php } ?>
 
-                    <?php if($company_info['country_name']){ ?>
+                    <?php if($purchaseInfo['country_name']){ ?>
                     <p><?php echo $text_in_region; ?></p>
-                    <p><?php echo $company_info['country_name']; ?> <?php echo $company_info['zone_name']; ?> <?php echo $company_info['city_name']; ?> <?php echo $company_info['area_name']; ?></p>
+                    <p><?php echo $purchaseInfo['country_name']; ?> <?php echo $purchaseInfo['zone_name']; ?> <?php echo $purchaseInfo['city_name']; ?> <?php echo $purchaseInfo['area_name']; ?></p>
                     <?php }else{ ?>
                     <p><?php echo $text_in_region; ?></p>
                     <p></p>
@@ -115,7 +116,7 @@
                 <div class="q-xq-right-body">
                   <div class="xa-right-jubao">
                     <h2 class="q-right-ipad">
-                      <?php echo $purchaseInfo['name']; ?>
+                        <?php echo $purchaseInfo['name']; ?>
                     </h2>
                     <div class="fd-right">
                       <a href="" style="font-size: 14px;color: #496ab4;" title=<?php echo $text_report; ?>><?php echo $text_report; ?></a>

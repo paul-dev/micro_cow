@@ -64,11 +64,11 @@ ul li {
 }
 .purehed-body-div-2{
   width: 226px;
-  height: 293px;
   border:1px solid #e4e4e4;
   margin-top: 15px;
   margin-left: -13px;
   margin-right: 2px;
+
 }
 
 .purehed-body-div-1:hover{
@@ -98,6 +98,9 @@ ul li {
   padding: 10px;
   position: relative;
   padding-bottom: 0px;
+  border-bottom: 1px solid #eee;
+  border-bottom-style: dotted;
+  padding-bottom: 10px;
 }
 .purehed-div-2-img{
   position: absolute;
@@ -124,7 +127,7 @@ a:hover{
   font-weight:normal;
 }
 .purehed-div-3-btn{
-  float: right;
+
   height: 20px;
   margin-top: 2px;
   padding: 0 8px;
@@ -149,11 +152,11 @@ a:hover{
   right: 2px;
 }
 .span-aa{
-
+  display: inline-block;
   background-color: white;
-  padding: 4px 5px;
-  height: 24px;
-  border: 1px solid #7f7f7f;
+  height: 23px;
+  border: 1px solid #aaa;
+  padding-left: 6px;
 }
 .shuxian{
   /*float: left;*/
@@ -164,17 +167,18 @@ a:hover{
   border-left: 1px solid #ddd;
   /*margin: 5px 0;*/
   margin-bottom: -4px;
+  margin-left: 4px;
 }
 .bbb{
   width: 11px;
   background-image: url(//cbu01.alicdn.com/cms/upload/search/buyoffer/default.buyoffer.20131231.png);
   background-repeat: no-repeat;
-  background-position: -1px -323px;
+  background-position: 0px -323px;
   margin-right: 2px;
   margin-left: 6px;
 }
 a.bbb:hover{
-  background-position: -1px -383px;;
+  background-position: 0px -383px;;
 }
 
 .aaa{
@@ -182,11 +186,11 @@ a.bbb:hover{
   padding: 0 6px;
   background-image: url(//cbu01.alicdn.com/cms/upload/search/buyoffer/default.buyoffer.20131231.png);
   background-repeat: no-repeat;
-  background-position: -1px -353px;
+  background-position: 2px -353px;
   margin-right: -5px;
 }
 a.aaa:hover{
-  background-position: -1px -413px;
+  background-position: 2px -413px;
 }
 .purched-ad-one{
   background-color: #fafafa;

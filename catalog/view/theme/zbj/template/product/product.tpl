@@ -555,23 +555,23 @@
                                     <a class="shop_title">供应商基本信息</a>
                                 </div>
                                 <ul class="shop_detail">
-                                    <li><?php echo $text_company_name; ?><?php echo $company_info['company_name']; ?></li>
-                                    <li><?php echo $text_contact_address; ?><?php echo $company_info['contact_address']; ?></li>
-                                    <li><?php echo $text_date_added; ?><?php echo $company_info['date_added']; ?></li>
-                                    <li><?php echo $text_legal_name; ?><?php echo $company_info['legal_name']; ?></li>
-                                    <li><?php echo $text_contact_email; ?><?php echo $company_info['contact_email']; ?></li>
-                                    <li><?php echo $text_registered_capital; ?><?php echo $company_info['registered_capital']; ?></li>
+                                    <li><?php echo $text_company_name; ?><?php echo $product_info['company_name']; ?></li>
+                                    <li><?php echo $text_contact_address; ?><?php echo $product_info['contact_address']; ?></li>
+                                    <li><?php echo $text_date_added; ?><?php echo $product_info['date_added']; ?></li>
+                                    <li><?php echo $text_legal_name; ?><?php echo $product_info['legal_name']; ?></li>
+                                    <li><?php echo $text_contact_email; ?><?php echo $product_info['contact_email']; ?></li>
+                                    <li><?php echo $text_registered_capital; ?><?php echo $product_info['registered_capital']; ?></li>
                                     <li><?php echo $text_in_area; ?>
-                                    <?php if($company_info['country_name']){ ?>
-                                        <?php echo $company_info['country_name']; ?>
-                                        <?php echo $company_info['zone_name']; ?>
-                                        <?php echo $company_info['city_name']; ?>
-                                        <?php echo $company_info['area_name']; ?>
+                                    <?php if($product_info['country_name']){ ?>
+                                        <?php echo $product_info['country_name']; ?>
+                                        <?php echo $product_info['zone_name']; ?>
+                                        <?php echo $product_info['city_name']; ?>
+                                        <?php echo $product_info['area_name']; ?>
                                     <?php }else{ ?><?php } ?>
                                     </li>
                                 </ul>
                                 <div style="border: 0px solid #00b3ee;margin-top:15px;">
-                                    <a style="border-radius: 3px " class="intoshop_btn" href="http://wpa.qq.com/msgrd?V=3&uin=<?php echo $company_info['contact_qq']; ?>&Site=<?php echo $company_info['company_name']; ?>&Menu=yes" target="_blank"><i class="intoshop_btn_ico"></i>联系供应商</a>
+                                    <a style="border-radius: 3px " class="intoshop_btn" href="http://wpa.qq.com/msgrd?V=3&uin=<?php echo $product_info['contact_qq']; ?>&Site=<?php echo $product_info['company_name']; ?>&Menu=yes" target="_blank"><i class="intoshop_btn_ico"></i>联系供应商</a>
                                     <!--<a style="border-radius: 3px " class="intoshop_btn" target="_blank"><i class="intoshop_btn_ico"></i>查看供应商</a>-->
                                 </div>
                             </div>

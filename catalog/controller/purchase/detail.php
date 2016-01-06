@@ -44,13 +44,6 @@ class ControllerPurchaseDetail extends Controller
 		$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchaseProducts($purchase_id);
 
 		/*
-		 * @todo 获取求购商相关信息;
-		 * */
-		$language_id = $this->config->get('config_language_id');
-
-		$data['company_info'] = $this->model_catalog_purchase->getCompanyInfo($data['purchaseInfo']['purchase_id'],$language_id);
-
-		/*
 		 * @todo 获取语言配置 language;
 		 * */
 		$title = $this->language->get('heading_title');

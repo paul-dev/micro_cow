@@ -855,10 +855,6 @@ class ControllerProductProduct extends Controller {
 
 			$data['product_info'] = $product_info;
 
-			//获取 供应商相关信息
-			$language_id = $this->config->get('config_language_id');
-			$data['company_info'] = $this->model_catalog_product->getCompanyInfo($data['product_id'],$language_id);
-
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product.tpl')) {
 				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/product.tpl', $data));
 			} else {
