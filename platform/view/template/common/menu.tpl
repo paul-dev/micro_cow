@@ -2,11 +2,10 @@
   <li id="dashboard"><a href="<?php echo $home; ?>"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_dashboard; ?></span></a></li>
   <li id="catalog"><a class="parent"><i class="fa fa-tags fa-fw"></i> <span><?php echo $text_catalog; ?></span></a>
     <ul>
-        <li><a href="<?php echo $category; ?>"><?php echo $text_category; ?></a></li>
-        <li><a href="<?php echo $company; ?>"><?php echo $text_company; ?></a></li>
+      <li><a href="<?php echo $category; ?>"><?php echo $text_category; ?></a></li>
         <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
         <li><a href="<?php echo $purchase; ?>"><?php echo $text_purchase; ?></a></li>
-      <li style="display: none;"><a href="<?php echo $recurring; ?>"><?php echo $text_recurring; ?></a></li>
+      <li><a href="<?php echo $recurring; ?>"><?php echo $text_recurring; ?></a></li>
       <li><a href="<?php echo $filter; ?>"><?php echo $text_filter; ?></a></li>
       <li><a class="parent"><?php echo $text_attribute; ?></a>
         <ul>

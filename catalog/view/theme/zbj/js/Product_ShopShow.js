@@ -206,23 +206,6 @@ tsScrollResize();
 
 
 //外部
-$(document).ready(function() {
-	var topmenu = $("#topmenu");
-	var topmenu_top = topmenu.offset().top-680;
-	reset_topmenu_top(topmenu, topmenu_top);
-	$(window).scroll(function() {
-		reset_topmenu_top(topmenu, topmenu_top);
-	});
-});
-function reset_topmenu_top(topmenu, topmenu_top) {
-	var document_scroll_top = $(document).scrollTop()-650;
-	if (document_scroll_top > topmenu_top) {
-		topmenu.css('top', document_scroll_top);
-	}
-	if (document_scroll_top <= topmenu_top) {
-		topmenu.css('top', topmenu_top);
-	}
-}
 
 $('.button-cart').on('click', function() {
 	$.ajax({

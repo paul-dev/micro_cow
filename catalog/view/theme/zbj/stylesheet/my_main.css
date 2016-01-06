@@ -1,0 +1,225 @@
+.header-div-y{
+  width: 1200px;
+  margin: 0 auto;
+}
+.main-left-nav{
+  width: 195px;
+  padding: 20px 20px;
+  background-color: white;
+  border: 1px solid #f1f1f1;
+  float: left;
+  padding-top: 0;
+}
+.main-left-nav-div{
+  padding: 10px 0px;
+}
+.main-left-nav-div-two{
+  padding: 10px 0px;
+border-top: 1px  solid #f2f2f2;
+}
+.main-right-nav{
+  float: left;
+  width: 1005px;
+  height: 441px;
+
+}
+.content_yyl{width:1005px;height:485px;background:blue;margin:0 auto;}
+/* margin:0 auto 是可以让元素居中显示;
+     overflow:hidden;是隐藏滚动蓝
+*/
+
+/*position:relative 可以让图片循环滚动*/
+.hidden_yyl{width:1005px;height:100%;background:grey;margin:0 auto;position:relative;overflow:hidden;}
+
+/* position:relative  可以让图片代替显示另一个图片*/
+.gallery_yyl{position:relative;left:0;}
+.btn-yyl{width:90%;height:55px;margin:0 auto;position:relative;top:-230px;}
+
+/*coursor:pointer  是把光标显示成手型*/
+.btn-yyl-left-yyl{float:left;width:55px;height:100%;background:url(http://sandbox.runjs.cn/uploads/rs/253/e6wsbxul/left.png) no-repeat;cursor:pointer;}
+
+.btn-yyl-right-yyl{float:right;width:55px;height:100%;background:url(http://sandbox.runjs.cn/uploads/rs/253/e6wsbxul/right.png) no-repeat;cursor:pointer;}
+
+/*最下面的滑动按钮*/
+.slider-yyl{height:8px;position:relative;margin:0 auto;top:-30px;}
+
+/* 设置按钮被鼠标移动前后的样式 */
+.i-before{float:left;width:70px;height:100%;background:#C1C1C1;margin:0 10px;}
+.i-after{background:red}
+
+.common-product-list{
+  width: 100%;
+  background-color: #fcfcfc;
+}
+.common-product-list-body{
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.list-purchsed-head{
+  text-align: center;
+}
+.main-product-list{
+  width: 1240px;
+}
+.main-product-list-div{
+  width: 580px;
+  float: left;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+  background-color: white;
+  height: 130px;
+  margin-right: 40px;
+  margin-top: 20px;
+}
+.product-div-left{
+  padding: 10px 20px;
+  border-right: 1px solid #f5f5f5;
+  float: left;
+  height: 130px;
+}
+.product-div-right{
+  float: left;
+  padding: 20px 40px;
+  height: 130px;
+  width: 440px;
+}
+
+
+.main-left-nav a{float: left;
+  margin-right: 14px;
+  color: #666;
+  display: inline-block;
+  line-height: 24px;
+
+}
+.main-left-nav h3{
+  line-height: 24px;
+}
+h2{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+h3{
+  font-size: 17px;
+}
+.product-list-h3{
+  width: 580px;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+.product-left-a{
+  height: 50px;
+}
+.detail-ul-right{
+  float: left;
+  padding-top: 15px;
+}
+.detail-ul-left li{
+  line-height: 24px;
+}
+.detail-ul-left{
+  float: left;
+  width: 160px;
+}
+.main-price-btn a{
+  color: white;
+  float: left;
+  overflow: hidden;
+  width: 85px;
+  height: 25px;
+  background-color: #1498e5;
+  border: 1px solid #1498e5;
+  font-family: 'Microsoft Yahei';
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+}
+.li-span-color{
+  color: #1498e5;
+  margin-right: 5px;
+}
+.product-left-a a:link{
+  color: #1498e5;
+}
+.product-left-a a:hover{
+  color: #666;
+}
+.detail-ul-left ul{
+  color: #a5a5a5;
+}
+.amount-purchased{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+.dynamic-purchase{
+  width: 100%;
+  border: 1px solid #f4f4f4;
+  border-radius: 5px;
+  margin-top: 20px;
+  background-color: white;
+  padding: 10px 20px;
+}
+.new-state{
+  margin-top: 20px;
+}
+.new-state thead tr{
+  background-color: #fcfcfc;
+  width: 1160px;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+}
+.new-state tbody tr{
+  line-height: 40px;
+  border-bottom: 1px solid #f1f1f1;
+  border-bottom-style: dotted;
+}
+.new-state thead th{
+  line-height: 40px;
+
+}
+.th-common-new{
+  width: 160px;
+  text-align: center;
+}
+.th-name{
+width: 250px;
+  padding-left: 10px;
+}
+.th-operation{
+  width: 107px;
+  text-align: center;
+}
+.td-center-new{
+  text-align: center;
+}
+.td-evaluate a{
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  overflow: hidden;
+  width: 85px;
+  background-color: #1498e5;
+  border: 1px solid #1498e5;
+  font-family: 'Microsoft Yahei';
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  height: 25px;
+  line-height: 25px;
+}
+.td-over a{
+  display: inline-block;
+  vertical-align: middle;
+  color: #7d7d7d;
+  overflow: hidden;
+  width: 85px;
+  background-color: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  font-family: 'Microsoft Yahei';
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  height: 25px;
+  line-height: 25px;
+}

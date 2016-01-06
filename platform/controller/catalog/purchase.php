@@ -969,9 +969,9 @@ class ControllerCatalogPurchase extends Controller {
 	}
 
 	protected function validateForm() {
-		if (!$this->user->hasPermission('modify', 'catalog/purchase')) {
+		/*if (!$this->user->hasPermission('modify', 'catalog/purchase')) {
 			$this->error['warning'] = $this->language->get('error_permission');
-		}
+		}*/
 
 		/*foreach ($this->request->post['product_description'] as $language_id => $value) {
 			if ((utf8_strlen($value['name']) < 1) || (utf8_strlen($value['name']) > 255)) {
@@ -1016,7 +1016,7 @@ class ControllerCatalogPurchase extends Controller {
 		return !$this->error;
 	}
 
-	protected function validateCopy() {
+	protected function validateCopy() {return true;
 		if (!$this->user->hasPermission('modify', 'catalog/purchase')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

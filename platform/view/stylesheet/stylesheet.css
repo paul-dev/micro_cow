@@ -145,7 +145,7 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 #column-left {
 	width: 50px;
 	height: 100%;
-	background-color: #115376;
+	background-color: #515151;
 	position: absolute;
 	top: 0px;
 	padding-top: 50px;
@@ -203,12 +203,12 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 }
 #menu > li > a {
 	color: #C4C4C4;
-	font-size: 14px;
+	font-size: 14px;	
 	padding-left: 13px;
 	border-bottom: 1px solid #585858;
 }
 #menu > li > a:hover {
-	background-color: #12415A;
+	background-color: #444444;
 }
 #menu > li > a > span {
 	display: none;
@@ -219,7 +219,7 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 }
 #menu li li a:hover {
 	color: #FFFFFF;
-	background-color: #12415A;
+	background-color: #373737;
 }
 #menu li li a:before {
 	content: "\f101";
@@ -227,14 +227,14 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 	font-family: FontAwesome;
 	margin-left: 10px;
 	margin-right: 10px;
-	transition: margin ease 0.5s;
+	transition: margin ease 0.5s;	
 }
 #menu li li a:hover:before {
 	margin-right: 20px;
 }
 #menu > li.active > a {
 	color: #DDDDDD;
-	background: #12415A;
+	background: #373737;
 }
 #menu li.active li a {
 	color: #C4C4C4;
@@ -252,7 +252,7 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 	left: 50px;
 	top: 0px;
 	width: 210px;
-	background-color: #0C4665;
+	background-color: #444444;
 	visibility: hidden;
 }
 #menu li ul {
@@ -448,12 +448,12 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 	vertical-align: middle;
 }
 .table a.asc:after {
-	content: " \f106";
+	content: " \f107";
 	font-family: FontAwesome;
 	font-size: 14px;
 }
 .table a.desc:after {
-	content: " \f107";
+	content: " \f106";
 	font-family: FontAwesome;
 	font-size: 14px;
 }

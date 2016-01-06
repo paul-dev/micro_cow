@@ -20,13 +20,9 @@ class ControllerCatalogProduct extends Controller {
 		$this->load->model('catalog/product');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$product_id = $this->model_catalog_product->addProduct($this->request->post);
+			$this->model_catalog_product->addProduct($this->request->post);
 
-            $this->session->data['success'] = $this->language->get('text_success');
-
-            if (isset($this->request->get['dialog'])) {
-                $this->response->redirect($this->url->link('catalog/product/edit', 'product_id='.$product_id.'&token=' . $this->session->data['token'] . '&dialog='.$this->request->get['dialog'], 'SSL'));
-            }
+			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
 
@@ -79,10 +75,6 @@ class ControllerCatalogProduct extends Controller {
 			$this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
-
-            if (isset($this->request->get['dialog'])) {
-                $this->response->redirect($this->url->link('catalog/product/edit', 'product_id='.$this->request->get['product_id'].'&token=' . $this->session->data['token'] . '&dialog='.$this->request->get['dialog'], 'SSL'));
-            }
 
 			$url = '';
 
@@ -785,16 +777,10 @@ class ControllerCatalogProduct extends Controller {
 			'href' => $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL')
 		);
 
-        $param_url = '';
-        if (isset($this->request->get['dialog'])) {
-            $param_url = 'dialog='.$this->request->get['dialog'].'&';
-        }
-
 		if (!isset($this->request->get['product_id'])) {
-
-            $data['action'] = $this->url->link('catalog/product/add', $param_url.'token=' . $this->session->data['token'] . $url, 'SSL');
+			$data['action'] = $this->url->link('catalog/product/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		} else {
-			$data['action'] = $this->url->link('catalog/product/edit', $param_url.'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL');
+			$data['action'] = $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL');
 		}
 
 		$data['cancel'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL');
@@ -802,11 +788,6 @@ class ControllerCatalogProduct extends Controller {
 		if (isset($this->request->get['product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
 		}
-
-        $data['offer_product_id'] = '';
-        if (!empty($product_info)) {
-            $data['offer_product_id'] = $product_info['product_id'];
-        }
 
 		$data['token'] = $this->session->data['token'];
 
@@ -1444,13 +1425,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-        $template = 'catalog/product_form.tpl';
-        if (isset($this->request->get['dialog'])) {
-            $data['dialog_id'] = $this->request->get['dialog'];
-            $template = 'catalog/product_form_dialog.tpl';
-        }
-
-		$this->response->setOutput($this->load->view($template, $data));
+		$this->response->setOutput($this->load->view('catalog/product_form.tpl', $data));
 	}
 
 	protected function validateForm() {
