@@ -688,12 +688,17 @@
                   <?php }else{ ?>
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $text_date_remaining_of; ?></span></a></p>
                   <?php } ?>
+
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;">报价条数：0 </a></p>
+
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;">所在地：<?php echo $purchase_product['country_name']; ?> <?php echo $purchase_product['zone_name']; ?></a></p>
+
+
                 </div>
 
                 <div class="purehed-div-3">
-                      <p> <a href="#"><?php echo $purchase_product['company_name']; ?></a></p>
+                      <p> <a href="#"><?php echo $purchase_product['company_name']; ?>青岛波亚兹国际贸易有限公司</a></p>
+                      <p> <a href="#"><?php echo $purchase_product['company_name']; ?>山东省青岛市市北区青岛市市北区</a></p>
                       <p style="text-align: right">  <a href="<?php echo $purchase_product['url']; ?>" class="purehed-div-3-btn" style="color: #eea26f">立即报价 </a></p>
                 </div>
               </div>

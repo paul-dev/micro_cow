@@ -131,6 +131,13 @@ img {
     content: "\0020"
 }
 
+
+
+a:hover, a:active {
+    color: #ff7300;
+    text-decoration: none
+}
+
 .pd {
     margin-top: 7px
 }
