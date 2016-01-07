@@ -74,9 +74,6 @@ ul li {
 .purehed-body-div-1:hover{
   outline:2px solid #2e549e;
 }
-.purehed-body-div-2:hover{
-  outline:2px solid #2e549e;
-}
 .purehed-div-1{
   background-color: #eef3f9;
   padding: 10px;
@@ -127,13 +124,12 @@ a:hover{
   font-weight:normal;
 }
 .purehed-div-3-btn{
-
-  height: 20px;
+  height: 25px;
+  display: inline-block;
   margin-top: 2px;
   padding: 0 8px;
   line-height: 18px;
-  line-height: 20px;
-  color: #eea26f;
+  line-height: 22px;
   background-color: #fffaf6;
   border: 1px solid #feddc7;
   text-align: center;
@@ -200,4 +196,26 @@ a.aaa:hover{
 .purehed-ad-img{
   width: 221px;
   margin-top: 10px;
+}
+.suoyouxinxi select:focus{
+  box-shadow: 0 0 2px #a8a8a8;
+}
+.suoyouxinxi select option:hover {
+  color: #0b0b0b;
+}
+.purched-div-2-img{
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  right: 10px;
+  top: 18px;
+}
+.purehed-div-3 p a {
+  color: #444;
+}
+.purehed-div-3 p a:hover {
+  color: #1e50a2;
+}
+.purehed-div-3 p{
+  margin-bottom: 4px;
 }
