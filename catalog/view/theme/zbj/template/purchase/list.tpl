@@ -697,9 +697,8 @@
                 </div>
 
                 <div class="purehed-div-3">
-                      <p> <a href="#"><?php echo $purchase_product['company_name']; ?>青岛波亚兹国际贸易有限公司</a></p>
-                      <p> <a href="#"><?php echo $purchase_product['company_name']; ?>山东省青岛市市北区青岛市市北区</a></p>
-                      <p style="text-align: right">  <a href="<?php echo $purchase_product['url']; ?>" class="purehed-div-3-btn" style="color: #eea26f">立即报价 </a></p>
+                  <p> <a href="<?php echo $purchase_product['url']; ?>"><?php echo $purchase_product['company_name']; ?></a></p>
+                  <p style="text-align: right">  <a href="<?php echo $purchase_product['url']; ?>" class="purehed-div-3-btn" style="color: #eea26f">立即报价 </a></p>
                 </div>
               </div>
             </div>
@@ -707,23 +706,23 @@
             <div style="clear:both;"></div>
           </div>
 
-          </div>
+        </div>
 
-          <!--侧栏-->
-          <div class="purched-body-ad" style="top: 20px;">
+        <!--侧栏-->
+        <div class="purched-body-ad" style="top: 20px;">
 
-            <div class="purched-ad-one">
-              <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/rili.png">
-              <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/caigou.png">
-            </div>
-            <div  class="purched-ad-one">
-              <p><?php echo $text_nearly30_purchase_num; ?><span class="purched-font-red">111</span></p>
-              <p><?php echo $text_nearly30_active_suppliers; ?><span class="purched-font-red">222</span></p>
-            </div>
-            <div>
-              <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/purchedad.png" class="purehed-ad-img">
-            </div>
+          <div class="purched-ad-one">
+            <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/rili.png">
+            <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/caigou.png">
           </div>
+          <div  class="purched-ad-one">
+            <p><?php echo $text_nearly30_purchase_num; ?><span class="purched-font-red">111</span></p>
+            <p><?php echo $text_nearly30_active_suppliers; ?><span class="purched-font-red">222</span></p>
+          </div>
+          <div>
+            <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/purchedad.png" class="purehed-ad-img">
+          </div>
+        </div>
 
         <!-- 数据分页 start-->
         <?php if($purchaseProduct){ ?>
@@ -745,12 +744,12 @@
         <!-- 数据分页 start-->
 
 
-        </div>
       </div>
-
     </div>
-    <?php echo $content_bottom; ?>
+
   </div>
+  <?php echo $content_bottom; ?>
+</div>
 </div>
 </div>
 
