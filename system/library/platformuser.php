@@ -26,13 +26,16 @@ class PlatformUser {
 
 				$user_group_query = $this->db->query("SELECT permission FROM " . DB_PREFIX . "platform_user_group WHERE user_group_id = '" . (int)$user_query->row['user_group_id'] . "'");
 
-				$permissions = unserialize($user_group_query->row['permission']);
+                if ($user_group_query->row) {
+                    $permissions = unserialize($user_group_query->row['permission']);
 
-				if (is_array($permissions)) {
-					foreach ($permissions as $key => $value) {
-						$this->permission[$key] = $value;
-					}
-				}
+                    if (is_array($permissions)) {
+                        foreach ($permissions as $key => $value) {
+                            $this->permission[$key] = $value;
+                        }
+                    }
+                }
+
 			} else {
 				$this->logout();
 			}

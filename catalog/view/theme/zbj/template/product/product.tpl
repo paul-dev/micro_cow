@@ -557,17 +557,14 @@
                                 <ul class="shop_detail">
                                     <li><?php echo $text_company_name; ?><?php echo $product_info['company_name']; ?></li>
                                     <li><?php echo $text_contact_address; ?><?php echo $product_info['contact_address']; ?></li>
-                                    <li><?php echo $text_date_added; ?><?php echo $product_info['date_added']; ?></li>
+                                    <li><?php echo $text_date_added; ?><?php echo date('Y-m-d', strtotime($product_info['company_date_added'])); ?></li>
                                     <li><?php echo $text_legal_name; ?><?php echo $product_info['legal_name']; ?></li>
                                     <li><?php echo $text_contact_email; ?><?php echo $product_info['contact_email']; ?></li>
                                     <li><?php echo $text_registered_capital; ?><?php echo $product_info['registered_capital']; ?></li>
                                     <li><?php echo $text_in_area; ?>
-                                    <?php if($product_info['country_name']){ ?>
                                         <?php echo $product_info['country_name']; ?>
                                         <?php echo $product_info['zone_name']; ?>
                                         <?php echo $product_info['city_name']; ?>
-                                        <?php echo $product_info['area_name']; ?>
-                                    <?php }else{ ?><?php } ?>
                                     </li>
                                 </ul>
                                 <div style="border: 0px solid #00b3ee;margin-top:15px;">
