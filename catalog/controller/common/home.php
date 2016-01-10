@@ -17,26 +17,43 @@ class ControllerCommonHome extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		//特卖商品start
+		//今日推荐 ---------------------------------------------------------------------------------------------------------------------------------------------------- start
 		$this->load->model('catalog/product');
-		//只取出前 15条记录
 		$limit = 15;
-		//取出 15条 特卖商品
-		$recommanded_product = array_slice($this->model_catalog_product->getProductSpecials(), 0, (int)$limit);
-
-		echo "<pre>";
-		print_r($recommanded_product);
-		echo "</pre>";
-		exit;
+		$RecommendProducts = $this->model_catalog_product->getPopularProducts($limit);
+		/*echo "<pre>";print_r($RecommendProducts);echo "</pre>";exit;*/
+		//视图 if(count($RecommendProducts)>0){//代码 }
+		//今日推荐 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
 
 
-		//特卖商品 end
+		//求购	 ----------------------------------------------------------------------------------------------------------------------------------------------------  start
+		$this->load->model('catalog/purchase');
+		$paging_parameters = array(
+				'start' => 0,
+				'limit' => 15
+		);
+		$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchases_Total($paging_parameters);
+		foreach($data['purchaseProduct'] as $key=>$val){
+			$data['purchaseProduct'][$key]['url'] = $this->url->link('purchase/detail', 'purchase_id='.$val['purchase_id'], 'SSL');
+			$data['purchaseProduct'][$key]['date_available'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_available']))." 23:59:59";
+			$data['purchaseProduct'][$key]['date_added'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_added']));
+			//剩余日期
+			$data['purchaseProduct'][$key]['date_remaining'] = floor((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000);
+			if($data['purchaseProduct'][$key]['date_remaining']==0){
+				$data['purchaseProduct'][$key]['date_remaining'] = round((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000,1);
+			}
+			//每条求购 产品总条数
+			$data['purchaseProduct'][$key]['product_amount'] = $this->model_catalog_purchase->getTotalPurchaseProduct($data['purchaseProduct'][$key]['purchase_id']);
+		}
+
+		/*echo "<pre>";print_r($data['purchaseProduct']);echo "</pre>";exit;*/
+
+		//求购	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
 
 
+		//最新采购动态	-----------------------------------------------------------------------------------------------------------------------------------------  start
 
-
-
-
+		//最新采购动态	---------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
 
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/home.tpl')) {
