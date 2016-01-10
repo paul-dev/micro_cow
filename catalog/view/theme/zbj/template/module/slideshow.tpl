@@ -93,7 +93,7 @@
     });
 </script>
 <div class="container" style="position:relative;height:115px;">
-    <div class="zbj-buttons">
+    <div class="zbj-buttons" style="display: none">
         <div class="prevbtn zbj-btn"><i class="fa fa-chevron-left fa-5x"></i></div>
         <div class="nextbtn zbj-btn"><i class="fa fa-chevron-right fa-5x"></i></div>
     </div>
@@ -147,181 +147,61 @@
         </li>
         <?php } ?>
         -->
-        <li class="last">
+
+        <?php  	$_li = 0; 	foreach ($category_tree as $category) {    	$_li++;    	?>
+        <li <?php if ($_li == 1) echo ' class="last"'; ?>>
             <div class="nav_big_class">
-                <h3><span class="nav_class_icon nav_icon_one"></span>最热</h3>
-                <p>
-                    <a class="red_a" href="index.php?route=product/search&search=转运珠" target="_blank">转运珠</a>
-                    <a href="index.php?route=product/category&path=20_26" target="_blank">钻戒</a>
-                    <a href="index.php?route=product/category&path=34_48" target="_blank">珍珠</a>
-                    <a href="index.php?route=product/category&path=57_53" target="_blank">黄金项链</a>
-                    <a href="index.php?route=product/category&path=20_66" target="_blank">裸钻</a>
-                    <a href="index.php?route=product/search&search=佛珠" target="_blank">佛珠</a>
-                    <a href="index.php?route=product/category&path=17_115" target="_blank">黄花梨</a>
-                    <a href="index.php?route=product/category&path=17_94&search=手串" target="_blank">崖柏手串</a>
-                    <a href="index.php?route=product/category&path=17_93" target="_blank">小叶紫檀</a>
-                    <a href="index.php?route=product/category&path=17_95" target="_blank">菩提</a>
-                    <a href="index.php?route=product/category&path=57_72" target="_blank">投资金条</a>
-                </p>
+                <h3><span class="nav_class_icon nav_icon_one"></span><?php echo $category['name']; ?></h3>
+                <?php if (!empty($category['children'])) { ?>
+                    <p>
+                        <?php  $_ai = 0; foreach ($category['children'] as $child) { $_ai++; ?>
+                            <a <?php if ($_ai == 1) echo ' class="red_a"'; ?> href="<?php echo $child['href']; ?>" title="<?php echo $child['name']; ?>" target="_blank"><?php echo $child['name']; ?></span>
+                        <?php } ?>
+                    </p>
+                <?php } ?>
                 <span class="owl-lb">></span>
             </div>
+
             <div class="owl-drop">
-                <h3><a href="index.php?route=product/search&type=hot" target="_blank">最热</a></h3>
-                <p style="height: auto;">
-                    <a class="red_a" href="index.php?route=product/search&search=转运珠" target="_blank">转运珠</a>
-                    <a href="index.php?route=product/category&path=20_26" target="_blank">钻戒</a>
-                    <a href="index.php?route=product/category&path=34_48" target="_blank">珍珠</a>
-                    <a href="index.php?route=product/category&path=57_53" target="_blank">黄金项链</a>
-                    <a href="index.php?route=product/category&path=20_66" target="_blank">裸钻</a>
-                    <a href="index.php?route=product/search&search=佛珠" target="_blank">佛珠</a>
-                    <a href="index.php?route=product/category&path=17_115" target="_blank">黄花梨</a>
-                    <a href="index.php?route=product/category&path=17_94&search=手串" target="_blank">崖柏手串</a>
-                    <a href="index.php?route=product/category&path=17_93" target="_blank">小叶紫檀</a>
-                    <a href="index.php?route=product/category&path=17_95" target="_blank">菩提</a>
-                    <a href="index.php?route=product/category&path=57_72&search=金条" target="_blank">投资金条</a>
-                    <a href="index.php?route=product/category&path=25" target="_blank">彩宝</a>
-                </p>
-            </div>
-        </li>
-        <li>
-            <div class="nav_big_class" style="background:#fff">
-                <h3><span class="nav_class_icon nav_icon_two"></span>黄金珠宝</h3>
+                <h3><span class="nav_class_icon nav_icon_one"></span><?php echo $category['name']; ?></h3>
+                <?php if (!empty($category['children'])) { ?>
                 <p>
-                    <a class="red_a" href="index.php?route=product/category&path=57&search=黄金" target="_blank">黄金</a>
-                    <a href="index.php?route=product/category&path=20" target="_blank">钻石</a>
-                    <a href="index.php?route=product/category&path=25" target="_blank">彩色宝石</a>
-                    <a href="index.php?route=product/category&path=34_48" target="_blank">珍珠</a>
-                    <a href="index.php?route=product/category&path=34&search=翡翠" target="_blank">翡翠</a>
-                    <a href="index.php?route=product/category&path=34&search=玉石" target="_blank">玉石</a>
-                    <a href="index.php?route=product/category&path=57&search=铂金" target="_blank">铂金</a>
-                    <a href="index.php?route=product/category&path=34_117" target="_blank">琥珀</a>
-                    <a href="index.php?route=product/category&path=57_118" target="_blank">黄金吊坠</a>
-                    <a href="index.php?route=product/category&path=57_54" target="_blank">黄金戒指</a>
-                    <a href="index.php?route=product/category&path=57_56" target="_blank">黄金手链</a>
+                    <?php  $_ai = 0; foreach ($category['children'] as $child) { $_ai++; ?>
+                    <a <?php if ($_ai == 1) echo ' class="red_a"'; ?> href="<?php echo $child['href']; ?>" title="<?php echo $child['name']; ?>" target="_blank"><?php echo $child['name']; ?></span>
+                    <?php } ?>
                 </p>
-                <span class="owl-lb">></span>
+                <?php } ?>
             </div>
-            <div class="owl-drop">
-                <h3><a href="index.php?route=product/category&path=57" target="_blank">黄金珠宝</a></h3>
-                <p style="height: auto;">
-                    <a class="red_a" href="index.php?route=product/category&path=57&search=黄金" target="_blank">黄金</a>
-                    <a href="index.php?route=product/category&path=20" target="_blank">钻石</a>
-                    <a href="index.php?route=product/category&path=25" target="_blank">彩色宝石</a>
-                    <a href="index.php?route=product/category&path=34_48" target="_blank">珍珠</a>
-                    <a href="index.php?route=product/category&path=34&search=翡翠" target="_blank">翡翠</a>
-                    <a href="index.php?route=product/category&path=34&search=玉石" target="_blank">玉石</a>
-                    <a href="index.php?route=product/category&path=57&search=铂金" target="_blank">铂金</a>
-                    <a href="index.php?route=product/category&path=34_117" target="_blank">琥珀</a>
-                    <a href="index.php?route=product/category&path=57_118" target="_blank">黄金吊坠</a>
-                    <a href="index.php?route=product/category&path=57_54" target="_blank">黄金戒指</a>
-                    <a href="index.php?route=product/category&path=57_56" target="_blank">黄金手链</a>
-                    <a href="index.php?route=product/category&path=57_72&search=金" target="_blank">投资金</a>
-                    <a href="index.php?route=product/category&path=20_66" target="_blank">裸钻</a>
-                    <a href="index.php?route=product/category&path=20_41" target="_blank">钻石吊坠</a>
-                    <a href="index.php?route=product/category&path=34_48&search=项链" target="_blank">珍珠项链</a>
-                    <a href="index.php?route=product/category&path=57_72&search=银" target="_blank">投资银</a>
-                    <a href="index.php?route=product/category&path=34&search=碧玺" target="_blank">碧玺</a>
-                    <a href="index.php?route=product/category&path=34&search=蜜蜡" target="_blank">蜜蜡</a>
-                    <a href="index.php?route=product/category&path=34&search=手镯" target="_blank">玉镯</a>
-                </p>
-            </div>
+
         </li>
-        <li>
-            <div class="nav_big_class" style="background:#fff">
-                <h3><span class="nav_class_icon nav_icon_three"></span>精选饰品</h3>
-                <p>
-                    <a class="red_a" href="index.php?route=product/search&search=饰品" target="_blank">饰品</a>
-                    <a href="index.php?route=product/search&search=手链" target="_blank">手链</a>
-                    <a href="index.php?route=product/search&search=项链" target="_blank">项链</a>
-                    <a href="index.php?route=product/search&search=手镯" target="_blank">手镯</a>
-                    <a href="index.php?route=product/search&search=发饰" target="_blank">发饰</a>
-                    <a href="index.php?route=product/search&search=项坠" target="_blank">项坠</a>
-                    <a href="index.php?route=product/search&search=戒指" target="_blank">戒指</a>
-                    <a href="index.php?route=product/search&search=耳饰" target="_blank">耳饰</a>
-                    <a href="index.php?route=product/search&search=银手镯" target="_blank">银手镯</a>
-                    <a href="index.php?route=product/search&search=佛珠" target="_blank">佛珠</a>
-                    <a href="index.php?route=product/category&path=17_94&search=手串" target="_blank">崖柏手串</a>
-                    <a href="index.php?route=product/category&path=25_88&search=石榴石" target="_blank">石榴石</a>
-                </p>
-                <span class="owl-lb">></span>
-            </div>
-            <div class="owl-drop">
-                <h3><a href="index.php?route=product/search&search=饰品" target="_blank">精选饰品</a></h3>
-                <p style="height: auto;">
-                    <a class="red_a" href="index.php?route=product/search&search=饰品" target="_blank">饰品</a>
-                    <a href="index.php?route=product/search&search=手链" target="_blank">手链</a>
-                    <a href="index.php?route=product/search&search=项链" target="_blank">项链</a>
-                    <a href="index.php?route=product/search&search=手镯" target="_blank">手镯</a>
-                    <a href="index.php?route=product/search&search=发饰" target="_blank">发饰</a>
-                    <a href="index.php?route=product/search&search=项坠" target="_blank">项坠</a>
-                    <a href="index.php?route=product/search&search=戒指" target="_blank">戒指</a>
-                    <a href="index.php?route=product/search&search=耳饰" target="_blank">耳饰</a>
-                    <a href="index.php?route=product/search&search=银手镯" target="_blank">银手镯</a>
-                    <a href="index.php?route=product/search&search=佛珠" target="_blank">佛珠</a>
-                    <a href="index.php?route=product/category&path=17_94&search=手串" target="_blank">崖柏手串</a>
-                    <a href="index.php?route=product/category&path=25_88&search=石榴石" target="_blank">石榴石</a>
-                    <a href="index.php?route=product/category&path=25_119" target="_blank">水晶饰品</a>
-                    <a href="index.php?route=product/search&search=红绳手链" target="_blank">红绳手链</a>
-                    <a href="index.php?route=product/search&search=锁骨链" target="_blank">锁骨链</a>
-                </p>
-            </div>
-        </li>
-        <li>
-            <div class="nav_big_class" style="background:#fff">
-                <h3><span class="nav_class_icon nav_icon_four"></span>奇趣收藏</h3>
-                <p>
-                    <a class="red_a" href="index.php?route=product/category&path=17&search=木" target="_blank">木器制品</a>
-                    <a href="index.php?route=product/category&path=17_37" target="_blank">瓷器</a>
-                    <a href="index.php?route=product/category&path=17_96" target="_blank">奇石</a>
-                    <a href="index.php?route=product/category&path=17_38" target="_blank">古玩字画</a>
-                    <a href="index.php?route=product/category&path=17_40" target="_blank">紫砂</a>
-                    <a href="index.php?route=product/category&path=18&search=礼品" target="_blank">礼品</a>
-                    <a href="index.php?route=product/category&path=18&search=工艺品" target="_blank">工艺品</a>
-                </p>
-                <span class="owl-lb">></span>
-            </div>
-            <div class="owl-drop">
-                <h3><a href="#">奇趣收藏</a></h3>
-                <p style="height: auto;">
-                    <a class="red_a" href="index.php?route=product/category&path=17&search=木" target="_blank">木器制品</a>
-                    <a href="index.php?route=product/category&path=17_37" target="_blank">瓷器</a>
-                    <a href="index.php?route=product/category&path=17_96" target="_blank">奇石</a>
-                    <a href="index.php?route=product/category&path=17_38" target="_blank">古玩字画</a>
-                    <a href="index.php?route=product/category&path=17_40" target="_blank">紫砂</a>
-                    <a href="index.php?route=product/category&path=18&search=礼品" target="_blank">礼品</a>
-                    <a href="index.php?route=product/category&path=18&search=工艺品" target="_blank">工艺品</a>
-                </p>
-            </div>
-        </li>
-        <li>
-            <div class="nav_big_class" style="background:#fff">
-                <h3><span class="nav_class_icon nav_icon nav_icon_five"></span>腕表名表</h3>
-                <p>
-                    <a class="red_a" href="index.php?route=product/category&path=33_98" target="_blank">机械表</a>
-                    <a href="index.php?route=product/category&path=33_101" target="_blank">光动能表</a>
-                    <a href="index.php?route=product/category&path=33_102" target="_blank">时装表</a>
-                    <a href="index.php?route=product/category&path=33_103" target="_blank">军用表</a>
-                    <a href="index.php?route=product/category&path=33_104" target="_blank">运动表</a>
-                    <a href="index.php?route=product/category&path=33&search=情侣" target="_blank">情侣表</a>
-                    <a href="index.php?route=product/category&path=33&search=瑞士" target="_blank">瑞士表</a>
-                    <a href="index.php?route=product/category&path=33&search=防水" target="_blank">防水表</a>
-                </p>
-                <span class="owl-lb">></span>
-            </div>
-            <div class="owl-drop">
-                <h3><a href="#">奇趣收藏</a></h3>
-                <p style="height: auto;">
-                    <a class="red_a" href="index.php?route=product/category&path=33_98" target="_blank">机械表</a>
-                    <a href="index.php?route=product/category&path=33_101" target="_blank">光动能表</a>
-                    <a href="index.php?route=product/category&path=33_102" target="_blank">时装表</a>
-                    <a href="index.php?route=product/category&path=33_103" target="_blank">军用表</a>
-                    <a href="index.php?route=product/category&path=33_104" target="_blank">运动表</a>
-                    <a href="index.php?route=product/category&path=33&search=情侣" target="_blank">情侣表</a>
-                    <a href="index.php?route=product/category&path=33&search=瑞士" target="_blank">瑞士表</a>
-                    <a href="index.php?route=product/category&path=33&search=防水" target="_blank">防水表</a>
-                </p>
-            </div>
-        </li>
+        <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </ul>
 </div>
@@ -338,26 +218,15 @@
 		</script>
 
 
-<div class="owl-ri right">
-    <?php if (isset($inner_slide[1])) echo $inner_slide[1]; ?>
-    <div class="notice">
-    	<div class="notice_top"><a href="#" class="br_ri on">最新公告</a><a href="#">公告资讯</a></div>
-        <div class="notice_conten">
+    <div class="owl-ri right" style="border: 0px dashed #b3daff;height:450px;">
         <ul>
-        	<?php foreach ($latest_notice as $notice) { ?>
-            <li><a href="<?php echo $notice['href']; ?>" title="<?php echo $notice['full_title']; ?>"><?php echo $notice['title']; ?></a></li>
-            <?php } ?>
+            <li><img src="http://dev.micro.com/image/cache/catalog/demo/manufacturer/burgerking-200x140.png" alt="a11" style="height: 150px;"></li>
+            <li><img src="http://dev.micro.com/image/cache/catalog/demo/manufacturer/harley-200x140.png" alt="b22" style="height: 150px;"></li>
+            <li><img src="http://dev.micro.com/image/cache/catalog/demo/manufacturer/starbucks-200x140.png" alt="c33" style="height: 150px;"></li>
         </ul>
-        <ul>
-            <?php foreach ($latest_news as $news) { ?>
-            <li><a href="<?php echo $news['href']; ?>" title="<?php echo $news['full_title']; ?>"><?php echo $news['title']; ?></a></li>
-            <?php } ?>
-        </ul>
-        </div>
     </div>
-</div>
 <!-- banner down -->
-<?php if (isset($inner_slide[0])) echo $inner_slide[0]; ?> 
+<!-- <?php if (isset($inner_slide[0])) echo $inner_slide[0]; ?> -->
 </div>
     
 </div>
