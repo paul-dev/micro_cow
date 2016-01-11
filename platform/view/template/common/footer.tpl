@@ -1,11 +1,11 @@
 <footer id="footer"><?php echo $text_footer; ?><br /><?php echo $text_version; ?></footer></div>
 
-<script>
+<script type="text/javascript"><!--
     $(document).ready(function(){
         setTimeout(function(){
             $('.container-fluid>.alert').slideUp();
         }, 5000);
     });
-</script>
+//--></script>
 
 </body></html>

@@ -68,7 +68,7 @@
                     <input type="checkbox" name="selected[]" value="<?php echo $user['user_id']; ?>" />
                     <?php } ?></td>
                     <td class="text-left"><?php echo $user['username']; ?></td>
-                    <td class="text-left"><?php echo $user['user_group']; ?></td>
+                    <td class="text-left"><?php echo $user['user_group'] ? $user['user_group'] : '默认'; ?></td>
                   <td class="text-left"><?php echo $user['status']; ?></td>
                   <td class="text-left"><?php echo $user['date_added']; ?></td>
                   <td class="text-right"><a href="<?php echo $user['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>

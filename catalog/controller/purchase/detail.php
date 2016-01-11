@@ -49,7 +49,8 @@ class ControllerPurchaseDetail extends Controller
 		$title = $this->language->get('heading_title');
 
 		$data['text_date_added'] = $this->language->get('text_date_added');
-		$data['text_date_expect'] = $this->language->get('text_date_expect');
+        $data['text_date_available'] = $this->language->get('text_date_available');
+        $data['text_date_expect'] = $this->language->get('text_date_expect');
 		$data['text_industry_involved'] = $this->language->get('text_industry_involved');
 		$data['text_report'] = $this->language->get('text_report');
 		$data['text_offer_immediately'] = $this->language->get('text_offer_immediately');
@@ -79,7 +80,8 @@ class ControllerPurchaseDetail extends Controller
 		$data['text_company_info'] = $this->language->get('text_company_info');
 		$data['text_Industry'] = $this->language->get('text_Industry');
 		$data['text_registered_assets'] = $this->language->get('text_registered_assets');
-		$data['text_contact_name'] = $this->language->get('text_contact_name');
+        $data['text_contact_name'] = $this->language->get('text_contact_name');
+        $data['text_legal_name'] = $this->language->get('text_legal_name');
 		$data['text_in_region'] = $this->language->get('text_in_region');
 		$data['text_more_purchase'] = $this->language->get('text_more_purchase');
 		$data['text_purchase_record'] = $this->language->get('text_purchase_record');

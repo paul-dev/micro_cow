@@ -45,6 +45,9 @@
                 <option value="<?php echo $user_group['user_group_id']; ?>"><?php echo $user_group['name']; ?></option>
                 <?php } ?>
                 <?php } ?>
+                  <?php if (!$user_groups) { ?>
+                  <option value="0"> --- 默认 --- </option>
+                  <?php } ?>
               </select>
             </div>
           </div>

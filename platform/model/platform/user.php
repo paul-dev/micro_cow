@@ -43,7 +43,7 @@ class ModelPlatformUser extends Model {
 	}
 
 	public function getUsers($data = array()) {
-		$sql = "SELECT *, (SELECT ug.name FROM `" . DB_PREFIX . "platform_user_group` ug WHERE ug.user_group_id = u.user_group_id) AS user_group, (SELECT us.name FROM `" . DB_PREFIX . "store` us WHERE us.store_id = u.user_store_id) AS user_store FROM `" . DB_PREFIX . "platform_user` AS u";
+		$sql = "SELECT *, (SELECT ug.name FROM `" . DB_PREFIX . "platform_user_group` ug WHERE ug.user_group_id = u.user_group_id AND ug.store_id = u.user_store_id) AS user_group, (SELECT us.name FROM `" . DB_PREFIX . "store` us WHERE us.store_id = u.user_store_id) AS user_store FROM `" . DB_PREFIX . "platform_user` AS u";
 
         $sql .= " WHERE u.user_store_id = '".(int)$this->config->get('config_store_id')."'";
 

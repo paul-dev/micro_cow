@@ -96,6 +96,7 @@ class ControllerCommonMenu extends Controller {
 		$data['text_others'] = $this->language->get('text_others');
         $data['text_shop'] = $this->language->get('text_shop');
         $data['text_seller'] = $this->language->get('text_seller');
+        $data['text_company'] = $this->language->get('text_company');
 
 		$data['home'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL');
 		$data['affiliate'] = $this->url->link('marketing/affiliate', 'token=' . $this->session->data['token'], 'SSL');
@@ -170,7 +171,8 @@ class ControllerCommonMenu extends Controller {
 		$data['length_class'] = $this->url->link('localisation/length_class', 'token=' . $this->session->data['token'], 'SSL');
 		$data['zone'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'], 'SSL');
 		$data['recurring'] = $this->url->link('catalog/recurring', 'token=' . $this->session->data['token'], 'SSL');
-		$data['order_recurring'] = $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], 'SSL');
+        $data['order_recurring'] = $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], 'SSL');
+        $data['company'] = $this->url->link('catalog/company', 'token=' . $this->session->data['token'], 'SSL');
 
         $data['link_platform_user'] = $this->url->link('platform/user', 'token=' . $this->session->data['token'], 'SSL');
         $data['link_platform_user_group'] = $this->url->link('platform/user_group', 'token=' . $this->session->data['token'], 'SSL');

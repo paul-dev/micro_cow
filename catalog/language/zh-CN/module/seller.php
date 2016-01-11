@@ -24,6 +24,7 @@ $_['text_shop_edit']   = '认证信息';
 $_['text_shop_add']    = '申请认证';
 $_['text_product']     = '供应管理';
 $_['text_purchase']    = '求购管理';
+$_['text_offer']       = '报价管理';
 $_['text_category']    = '分类管理';
 $_['text_option']      = '选项管理';
 $_['text_shipping']    = '配送方式';

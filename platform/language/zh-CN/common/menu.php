@@ -90,5 +90,5 @@ $_['text_others']               	   = '其它';
 $_['text_seller']               	   = '平台目录';
 $_['text_shop']               	       = '平台管理';
 $_['text_account']               	   = '用户管理';
-
+$_['text_company']               	   = '企业管理';
 

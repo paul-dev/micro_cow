@@ -1,5 +1,5 @@
 <?php
-class ModelSellerPurchase extends Model {
+class ModelSellerOffer extends Model {
 	public function addPurchase($data) {
 		$this->event->trigger('pre.admin.purchase.add', $data);
 

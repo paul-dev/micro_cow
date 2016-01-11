@@ -22,14 +22,8 @@
 
                   <div class="q-left-one">
 
-                    <?php if($purchaseInfo['company_name']){ ?>
                     <h5 style="margin-bottom: 4px"><?php echo $purchaseInfo['company_name']; ?></h5>
-                    <?php }else{ ?>
-                    <h5 style="margin-bottom: 4px"></h5>
-                    <?php } ?>
                     <div class="q-left-one-img">
-                      <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
-                      <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
                       <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
                     </div>
 
@@ -37,19 +31,11 @@
                       <p><?php echo $text_contact_person; ?></p>
                       <p class="q-left-onel"><?php echo $text_contact_tel; ?></p>
                     </div>
-                    <div class="shouquankejian">
+                    <div class="">
 
-                      <?php if($purchaseInfo['contact_name']){ ?>
-                      <p ><?php echo $purchaseInfo['contact_name']; ?></p>
-                      <?php }else{ ?>
-                      <p ></p>
-                      <?php } ?>
+                      <p><?php echo $purchaseInfo['contact_name']; ?></p>
 
-                      <?php if($purchaseInfo['contact_phone']){ ?>
-                      <p style="margin-top: -3px;"><?php echo $purchaseInfo['contact_phone']; ?></p>
-                      <?php }else{ ?>
-                      <p style="margin-top: -3px;"></p>
-                      <?php } ?>
+                      <p><?php echo $purchaseInfo['contact_phone']; ?></p>
 
 
                     </div>
@@ -59,39 +45,21 @@
                     <h5 style="margin-bottom: 4px;"><?php echo $text_company_info; ?></h5>
 
 
-                    <?php if($purchaseInfo['date_added']){ ?>
-                    <p><?php echo $text_date_join; ?><span><?php echo $purchaseInfo['date_added']; ?></span></p>
-                    <?php }else{ ?>
-                    <p><?php echo $text_date_join; ?><span></span></p>
-                    <?php } ?>
+                    <p><?php echo $text_date_join; ?><span><?php echo date('Y-m-d', strtotime($purchaseInfo['company_date_added'])); ?></span></p>
 
-                    <?php if($purchaseInfo['registered_capital']){ ?>
-                    <p><?php echo $text_registered_assets; ?><span><?php echo $purchaseInfo['registered_capital']; ?></span></p>
-                    <?php }else{ ?>
-                    <p><?php echo $text_registered_assets; ?><span></span></p>
-                    <?php } ?>
+                      <p><?php echo $text_registered_assets; ?><span><?php echo $purchaseInfo['registered_capital']; ?></span></p>
 
-                    <?php if($purchaseInfo['contact_name']){ ?>
-                    <p><?php echo $text_contact_name; ?><span><?php echo $purchaseInfo['contact_name']; ?></span></p>
-                    <?php }else{ ?>
-                    <p><?php echo $text_contact_name; ?><span></span></p>
-                    <?php } ?>
+                      <p><?php echo $text_legal_name; ?><span><?php echo $purchaseInfo['legal_name']; ?></span></p>
 
-                    <?php if($purchaseInfo['country_name']){ ?>
-                    <p><?php echo $text_in_region; ?></p>
-                    <p><?php echo $purchaseInfo['country_name']; ?> <?php echo $purchaseInfo['zone_name']; ?> <?php echo $purchaseInfo['city_name']; ?> <?php echo $purchaseInfo['area_name']; ?></p>
-                    <?php }else{ ?>
-                    <p><?php echo $text_in_region; ?></p>
-                    <p></p>
-                    <?php } ?>
+                    <p><?php echo $text_in_region; ?><span>
+                    <?php echo $purchaseInfo['country_name']; ?> <?php echo $purchaseInfo['zone_name']; ?> <?php echo $purchaseInfo['city_name']; ?>
+                    </span>
+                    </p>
 
                     <a class="q-xa-caigouxuqiu">
                       <?php echo $text_more_purchase; ?>
                     </a>
 
-                    <p><?php echo $text_purchasing; ?></p>
-                    <p><?php echo $text_serach_num; ?><span>3</span><?php echo $text_item; ?></p>
-                    <p><?php echo $text_illegal_release; ?><span>0</span><?php echo $text_item; ?></p>
                   </div>
 
                   <div>
@@ -118,9 +86,6 @@
                     <h2 class="q-right-ipad">
                         <?php echo $purchaseInfo['name']; ?>
                     </h2>
-                    <div class="fd-right">
-                      <a href="" style="font-size: 14px;color: #496ab4;" title=<?php echo $text_report; ?>><?php echo $text_report; ?></a>
-                    </div>
                   </div>
 
                   <div class="xq-r-baojia">
@@ -129,9 +94,14 @@
                         <li><?php echo $text_date_added; ?>
                           <time style=" font-size: 14px;  color: #333;"><?php echo $purchaseInfo['date_added']; ?></time>
                         </li>
-                        <li><?php echo $text_date_expect; ?>
+                        <li><?php echo $text_date_available; ?>
                           <time  style=" font-size: 14px;  color: #333;"><?php echo $purchaseInfo['date_available']; ?></time>
                         </li>
+                          <?php if ($purchaseInfo['date_expect']) { ?>
+                          <li><?php echo $text_date_expect; ?>
+                              <time  style=" font-size: 14px;  color: #333;"><?php echo date('Y-m-d', strtotime($purchaseInfo['date_expect'])); ?></time>
+                          </li>
+                          <?php } ?>
                       </ul>
                       <div class="q-action">
                         <a href="#" class="quoted-price"><?php echo $text_offer_immediately; ?></a>
