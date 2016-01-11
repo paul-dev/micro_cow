@@ -116,10 +116,7 @@ class ControllerPurchaseList extends Controller
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 		$data['config_template'] = $this->config->get('config_template');
-/*		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
-		exit;*/
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/purchase/list.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/purchase/list.tpl', $data));
 		} else {
