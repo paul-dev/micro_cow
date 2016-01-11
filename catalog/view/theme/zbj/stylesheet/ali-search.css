@@ -2,7 +2,7 @@
 .sw-layout-mod {
     zoom: 1;
     clear: both;
-    margin-bottom: 8px
+    margin-bottom: 10px
 }
 
 .sw-layout-mod:after {
@@ -2931,7 +2931,7 @@ a.select-window:hover {
     width: 100%;
     position: relative;
     z-index: 125;
-    background-color: #fffcf9
+    /*background-color: #fffcf9*/
 }
 
 .sw-mod-filter .filter-top {
@@ -2969,14 +2969,14 @@ a.select-window:hover {
 
 .sw-mod-filter .filter-bottom-wrap {
     height: 40px;
-    background-color: #f6f6f6
+    /*background-color: #f6f6f6*/
 }
 
 .sw-mod-filter .filter-bottom {
     height: 37px;
     border: 1px solid #e2e2e2;
     border-top: 0;
-    background-color: #f6f6f6;
+    /*background-color: #f6f6f6;*/
     position: relative
 }
 

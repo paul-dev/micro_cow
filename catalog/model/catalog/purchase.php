@@ -342,6 +342,7 @@ class ModelCatalogPurchase extends Model {
 
 	public function getPurchases_Total($data = array()) {
 		$sql = "SELECT p.*, pd.*, cd.company_name, cp.*, cty.name as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name, (SELECT COUNT(*) as total FROM " . DB_PREFIX . "purchase_offer po WHERE po.purchase_id = p.purchase_id ) as total_offer, " .
+                "p.date_added as date_added, " .
 				"(SELECT IF(COUNT(*) > 1, CONCAT(COUNT(*), '种'), (SELECT CONCAT(pp1.quantity,pd1.unit) as p_amount  FROM " . DB_PREFIX . "purchase_product pp1 LEFT JOIN " . DB_PREFIX . "purchase_product_description pd1 ON pp1.purchase_product_id = pd1.purchase_product_id WHERE pp1.purchase_id = p.purchase_id AND pd1.language_id = '".(int)$this->config->get('config_language_id')."')) as total FROM " . DB_PREFIX . "purchase_product pp WHERE pp.purchase_id = p.purchase_id) as total_product " .
 				"FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) " .
 				"LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id " .

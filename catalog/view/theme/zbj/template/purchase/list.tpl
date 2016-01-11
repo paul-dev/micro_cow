@@ -9,8 +9,8 @@
 <div class="container">
   <div class="row">
     <div id="content">
-      <div class="purehed" style="position: relative; margin-top: -15px;width: 95%">
-        <div class="purehed-body" style="width: 932px;float: left">
+      <div class="purehed" style="position: relative; margin-top: -15px;">
+        <div class="purehed-body" style="width: 80%; float: left">
           <br/>
           <div class="suoshuhangye">
             <div  class="suoshuhangye-one">
@@ -24,7 +24,7 @@
             </ul>
           </div>
 
-          <div class="sw-mod-filter sw-layout-mod" id="sw_mod_filter" trace="filtbar" style="width: 932px">
+          <div class="sw-mod-filter sw-layout-mod" id="sw_mod_filter" trace="filtbar">
 
             <form id="buyer-quick-filter" class="fd-clr" method="get" action="http://s.1688.com/newbuyoffer/buyoffer_search.html">
               <div class="filter-bottom-wrap">
@@ -654,11 +654,11 @@
           </div>
 
           <!--container-->
-          <div class="purehed-body" style="width: 950px;margin-left: 13px;position: relative;border:0px solid red;">
+          <div class="purehed-body" style="width: 100%;position: relative;border:0px solid red;">
 
             <?php foreach ($purchaseProduct as $purchase_product) { ?>
-            <div style="width: 235px;float: left">
-              <div class="purehed-body-div-2 ">
+            <div style="width: 25%;float: left; padding-right: 8px; padding-left: 2px;">
+              <div class="purehed-body-div-2" style="min-height: 265px;">
                 <div class="purehed-div-1">
                   <p>
                     <a href="<?php echo $purchase_product['url']; ?>" target="_blank" class="purehed-div-1-a" style="width: 224px"><?php echo $purchase_product['name']; ?></a>
@@ -703,7 +703,22 @@
               </div>
             </div>
             <?php } ?>
-            <div style="clear:both;"></div>
+
+              <!-- 数据分页 start-->
+              <?php if($purchaseProduct){ ?>
+              <div style="clear: both"></div>
+              <div>
+                  <div style="float:left;">
+                      <?php echo $pagination; ?>
+                  </div>
+                  <div style="float:right;">
+                      <?php echo $results; ?>
+                  </div>
+                  <div style="clear:both;"></div>
+              </div>
+              <?php } ?>
+              <!-- 数据分页 start-->
+              <div style="clear:both;"></div>
           </div>
 
         </div>
@@ -723,26 +738,6 @@
             <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/purchedad.png" class="purehed-ad-img">
           </div>
         </div>
-
-        <!-- 数据分页 start-->
-        <?php if($purchaseProduct){ ?>
-        <div style="clear: both"></div>
-        <div style="border:0px solid blue;margin-top:80px;margin-left:20px;width: 932px">
-          <div style="float:left;">
-            <?php echo $pagination; ?>
-          </div>
-          <div style="float:right;margin-right:20px;">
-            <?php echo $results; ?>
-          </div>
-          <div style="clear:both;"></div>
-        </div>
-        <?php }else{ ?>
-        没有数据
-        <?php } ?>
-
-
-        <!-- 数据分页 start-->
-
 
       </div>
     </div>
