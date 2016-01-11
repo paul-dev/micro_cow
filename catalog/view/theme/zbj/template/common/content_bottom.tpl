@@ -1,6 +1,6 @@
 <?php if ($block_forum) { ?>
-<h3 class="conth"><i class="cont-listi cont-lista"></i>热门社区</h3>
-<div class="row">
+<h3 class="conth" style="display: none"><i class="cont-listi cont-lista"></i>热门社区</h3>
+<div class="row" style="display: none">
     <div class="col-md-3 col-sm-6 col-xs-12" style="width: 20%; padding-left: 0px;">
         <div class="product-thumb transition" style="border: none;">
             <a href="http://www.zhubaojie.com/" target="_blank">

@@ -13,11 +13,15 @@
     <?php } ?>
 
     <div id="content" class="<?php echo $class; ?>">
+      <?php echo $content_top; ?>
 
       <!-- content start -->
 
+          <H1>THIS IS CONTENT TEXT !!</H1>
+
       <!-- content  end -->
 
+      <?php echo $content_bottom; ?>
     </div>
 
     <?php echo $column_right; ?>
