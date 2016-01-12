@@ -29,7 +29,32 @@
 <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/base.css">
 <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
-<!--[if (lt IE 9)]><link href="catalog/view/theme/zbj/stylesheet/stylesheet-ltie9.css" rel="stylesheet"><![endif]-->
+
+  <!-- load style start -->
+
+  <script src="catalog/view/theme/zbj/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  <link href="catalog/view/theme/zbj/stylesheet/bootstrap.min.css" rel="stylesheet" media="screen">
+  <script src="catalog/view/theme/zbj/js/bootstrap.min.js" type="text/javascript"></script>
+  <link href="catalog/view/theme/zbj/stylesheet/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/base.css">
+  <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
+  <!--[if (lt IE 9)]>
+  <link href="catalog/view/theme/zbj/stylesheet/stylesheet-ltie9.css" rel="stylesheet"><![endif]-->
+  <link href="catalog/view/theme/zbj/stylesheet/owl.carousel.css" type="text/css" rel="stylesheet" media="screen">
+  <link href="catalog/view/theme/zbj/stylesheet/owl.transitions.css" type="text/css" rel="stylesheet" media="screen">
+  <script src="catalog/view/theme/zbj/js/jquery.scrollLoading-min.js" type="text/javascript"></script>
+  <script src="catalog/view/theme/zbj/js/common.js" type="text/javascript"></script>
+  <script src="catalog/view/theme/zbj/js/owl.carousel.min.js" type="text/javascript"></script>
+
+
+  <!--my-main-page -->
+  <script src="catalog/view/theme/zbj/js/index_my.js" type="text/javascript"></script>
+  <!--<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>-->
+  <link href="catalog/view/theme/zbj/stylesheet/normalize-3.0.3.css" type="text/css" rel="stylesheet">
+  <link href="catalog/view/theme/zbj/stylesheet/my_main.css" type="text/css" rel="stylesheet">
+  <!-- load style end -->
+
+  <!--[if (lt IE 9)]><link href="catalog/view/theme/zbj/stylesheet/stylesheet-ltie9.css" rel="stylesheet"><![endif]-->
 <?php foreach ($styles as $style) { ?>
 <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
@@ -42,7 +67,7 @@
 </head>
 <body class="<?php echo $class; ?>">
 <!-- 原来的 start -->
-<nav id="top" style="margin: auto;">
+<nav id="top" style="margin: auto;display:none;">
   <div class="container" style="padding: 0;">
     <?php echo $currency; ?>
     <?php echo $language; ?>
@@ -108,50 +133,13 @@
     </div>
   </div>
 </nav>
-<header>
-  <div class="container">
-    <!--  <div class="row">
-       <div class="col-sm-4">
-         <div id="logo">
-           <?php if ($logo) { ?>
-           <a href="<?php echo $home; ?>" style="float: left;"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
-           <?php } else { ?>
-           <h1 style="float: left;"><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
-           <?php } ?>
-             <a href=""><img style="padding-top: 15px;" src="/image/catalog/event_image/event-100X50.gif"></a>
-         </div>
-       </div>
-       <div class="col-sm-5" style="padding-top: 15px;"><?php //echo $search; ?>
-       </div>
-       <div class="col-sm-3" style="padding-top: 15px;"><?php //echo $cart; ?></div>
-     </div> -->
-    <div class="header clearfix">
-      <div class="header_left">
-        <div id="logo">
-          <?php if ($logo) { ?>
-          <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>"/></a>
-          <?php } else { ?>
-          <h1 style="float: left;"><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
-          <?php } ?>
-        </div>
-      </div>
-      <div class="header_right">
-        <div class="search_box">
-          <?php echo $search; ?>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<!-- 原来的 end -->
-
 
 <nav id="top" style="margin: auto;">
   <div class="container" style="padding: 0;">
     <div id="top-links" class="nav">
       <ul class="top-link-left-ul">
-        <li><a href="http://dev.micro.com/index.php?route=account/register">免费注册</a></li>
-        <li><a href="http://dev.micro.com/index.php?route=account/login">请登录</a></li>
+        <li><a href="http://dev.micro.com/index.php?route=account/register" target="_blank">免费注册</a></li>
+        <li><a href="http://dev.micro.com/index.php?route=account/login" target="_blank">请登录</a></li>
         <div style="clear: both"></div>
       </ul>
       <ul class="top-link-right-ul">
@@ -202,9 +190,43 @@
   </div>
 </nav>
 
-
-
-
+<header>
+  <div class="container">
+    <!--  <div class="row">
+       <div class="col-sm-4">
+         <div id="logo">
+           <?php if ($logo) { ?>
+           <a href="<?php echo $home; ?>" style="float: left;"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
+           <?php } else { ?>
+           <h1 style="float: left;"><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+           <?php } ?>
+             <a href=""><img style="padding-top: 15px;" src="/image/catalog/event_image/event-100X50.gif"></a>
+         </div>
+       </div>
+       <div class="col-sm-5" style="padding-top: 15px;"><?php //echo $search; ?>
+       </div>
+       <div class="col-sm-3" style="padding-top: 15px;"><?php //echo $cart; ?></div>
+     </div> -->
+    <div class="header clearfix">
+      <div class="header_left">
+        <div id="logo">
+          <?php if ($logo) { ?>
+          <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>"/></a>
+          <?php } else { ?>
+          <h1 style="float: left;"><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+          <?php } ?>
+        </div>
+      </div>
+      <div class="header_right">
+        <div class="search_box">
+          <?php echo $search; ?>
+        </div>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+  </div>
+</header>
+<!-- 原来的 end -->
 <div class="container_n">
 <div class="container">
   <div id="nav_home">

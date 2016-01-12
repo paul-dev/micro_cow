@@ -325,7 +325,7 @@ div.required .control-label:before {
 	height:75px;
 }
 .header_left{
-	width:240px;
+	/*width:240px;*/
 	float:left;
 	height:75px;
 	overflow:hidden;
