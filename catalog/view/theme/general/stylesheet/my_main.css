@@ -86,7 +86,7 @@ border-top: 1px  solid #f2f2f2;
   text-align: center;
 }
 .main-product-list{
-  width: 1230px;
+  width: 1200px;
 }
 .main-product-list-div{
   width: 580px;
@@ -415,6 +415,7 @@ width: 250px;
 
 .nav ul li {
   float: left;
+  position: relative;
 }
 .top-link-left-ul li {
   margin-right: 20px;
@@ -425,11 +426,14 @@ width: 250px;
 .top-link-right-ul{
   float: right;
 }
+.top-link-right-ul li ul li p{
+  padding-left: 10px;
+}
 .top-link-right-ul li ul{
   position: absolute;
-  z-index: 1000;
+  top: 32px;
   display: none;
-  min-width: 160px;
+  min-width: 180px;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
@@ -466,32 +470,30 @@ width: 250px;
   color: white;
 }
 .top-link-right-ul li ul li:hover {
-  background-color: #f5f5f5;
+
 }
-.top-link-right-ul li ul{
-  width: 56px;
-}
-.top-link-right-ul li ul li {
-  width: 55px;
-}
+
 
 /*footer end*/
 
 .new-recmd-div{
-  width: 220px;
+  width: 232px;
   border: 1px solid #f4f4f4;
   border-radius: 5px;
   padding: 5px;
   padding-bottom: 10px;
   float: left;
-  margin-right: 25px;
+  margin-right: 10px;
   background-color: white;
   margin-top: 20px;
 }
+.new-recmd-div-margin{
+  margin-right: 0 !important;
+}
 
 .new-recmd-img img {
-  width: 208px;
-  height: 230px;
+  width: 220px;
+  height: 220px;
 }
 .recmd-price{
   margin: 10px 0;
@@ -532,7 +534,7 @@ width: 250px;
   background-color: white;
 }
 .main-purchased{
-  width: 1220px;
+  width: 1200px;
 }
 .purchased-left{
   float: left;
@@ -545,32 +547,45 @@ width: 250px;
   width: auto;
 }
 .purchased-right{
-  padding: 20px 0 20px 10px ;
+  padding: 10px 0 10px 10px ;
 }
 .purchased-right-l{
   float: left;
+  width: 127px;
 }
 .purchased-right-l p {
   margin-bottom: 6px;
+  overflow: hidden;
+  width: 127px;
+  height: 20px;
 }
 .purchased-right-r{
   float: left;
   margin-left: 20px;
-  padding-top: 16px;
+  padding-top: 5px;
+}
+.purchased-left-top a {
+  font-size: 14px;
 }
 .purchased-right-r p{
   margin-top: 6px;
 }
 .purchased-left-top{
   height: 70px;
- padding-top: 10px;
+ padding-top: 11px;
 }
-.purchased-left-botm{
-  height: 50px;
-  margin-top: 8px;
+.purchased-right-r-div{
   margin-bottom: 14px;
 }
-.purchased-right p a{
+.purchased-left-top a {
+  overflow: hidden;
+}
+.purchased-left-botm{
+  height: 44px;
+ padding-top: 18px;
+  margin-bottom: 10px;
+}
+.purchased-right div a{
   display: inline-block;
   vertical-align: middle;
   color: white;
