@@ -1,0 +1,673 @@
+*{
+  font-family: 微软雅黑;
+  font-size: 12px;
+}
+
+.clearfix:after {
+  content:"\200B";
+  display:block;
+  height:0;
+  clear:both;
+}
+.clearfix {*zoom:1;}/*IE/7/6*/
+
+h3{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+.specific-h2-center{
+  width: 100px;
+  margin: 0 auto;
+}
+.header-div-y{
+  width: 1200px;
+  margin: 0 auto;
+}
+.main-left-nav{
+  width: 195px;
+  padding: 20px 20px;
+  background-color: white;
+  border: 1px solid #f1f1f1;
+  float: left;
+  padding-top: 0;
+}
+.main-left-nav-div{
+  padding: 10px 0px;
+}
+.main-left-nav-div-two{
+  padding: 10px 0px;
+  border-top: 1px  solid #f2f2f2;
+}
+.main-right-nav{
+  float: left;
+  width: 980px;
+  height: 441px;
+
+}
+.content_yyl{
+  width:980px;height:428px;background:blue;margin:0 auto;
+  position: relative;
+}
+/* margin:0 auto 是可以让元素居中显示;
+     overflow:hidden;是隐藏滚动蓝
+*/
+
+/*position:relative 可以让图片循环滚动*/
+.hidden_yyl{width:980px;height:100%;background:grey;margin:0 auto;position:relative;overflow:hidden;}
+
+/* position:relative  可以让图片代替显示另一个图片*/
+.gallery_yyl{position:relative;left:0;}
+.btn-yyl{
+  width:90%;height:55px;margin:0 auto;
+  position:absolute;top:187px;
+  left:55px;
+}
+
+/*coursor:pointer  是把光标显示成手型*/
+.btn-yyl-left-yyl{float:left;width:55px;height:100%;background:url(http://sandbox.runjs.cn/uploads/rs/253/e6wsbxul/left.png) no-repeat;cursor:pointer;}
+
+.btn-yyl-right-yyl{float:right;width:55px;height:100%;background:url(http://sandbox.runjs.cn/uploads/rs/253/e6wsbxul/right.png) no-repeat;cursor:pointer;}
+
+/*最下面的滑动按钮*/
+.slider-yyl{height:8px;position:relative;margin:0 auto;top:-30px;}
+
+/* 设置按钮被鼠标移动前后的样式 */
+.i-before{float:left;width:70px;height:100%;background:#C1C1C1;margin:0 10px;}
+.i-after{background:red}
+
+.common-product-list{
+  width: 100%;
+  background-color: #fcfcfc;
+  padding-bottom: 20px;
+}
+.common-product-list-body{
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.list-purchsed-head{
+  text-align: left;
+}
+.main-product-list{
+  width: 1240px;
+}
+.list-purchased{
+  margin-top: 20px;
+}
+.main-product-list-div{
+  width: 580px;
+  float: left;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+  background-color: white;
+  height: 130px;
+  margin-right: 40px;
+  margin-top: 20px;
+}
+.product-div-left{
+  padding: 10px 20px;
+  border-right: 1px solid #f5f5f5;
+  float: left;
+  height: 130px;
+}
+.product-div-right{
+  float: left;
+  padding: 20px 40px;
+  height: 130px;
+  width: 430px;
+}
+
+
+.main-left-nav a{float: left;
+  margin-right: 14px;
+  color: #666;
+  display: inline-block;
+  line-height: 24px;
+
+}
+.main-left-nav h3{
+  line-height: 24px;
+}
+/*h2{*/
+  /*font-family: 'Open Sans', sans-serif;*/
+  /*font-weight: bold;*/
+/*}*/
+h3{
+  font-size: 17px;
+}
+.product-list-h3{
+  width: 580px;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+.product-left-a{
+  height: 50px;
+}
+.detail-ul-right{
+  float: left;
+  padding-top: 15px;
+}
+.detail-ul-left li{
+  line-height: 24px;
+}
+.detail-ul-left{
+  float: left;
+  width: 160px;
+}
+.main-price-btn{
+  margin-top: 5px;
+}
+.main-price-btn a{
+  color: white;
+  float: left;
+  overflow: hidden;
+  width: 85px;
+  height: 25px;
+  background-color: #1498e5;
+  border: 1px solid #1498e5;
+  font-family: 'Microsoft Yahei';
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+}
+.li-span-color{
+  color: #1498e5;
+  margin-right: 5px;
+}
+.product-left-a a:link{
+  color: #1498e5;
+}
+.product-left-a a:hover{
+  color: #666;
+}
+.detail-ul-left ul{
+  color: #a5a5a5;
+}
+.amount-purchased{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+.dynamic-purchase{
+  width: 100%;
+  border: 1px solid #f4f4f4;
+  border-radius: 5px;
+  margin-top: 20px;
+  background-color: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+.new-state{
+  margin-top: 20px;
+}
+.new-state thead tr{
+  background-color: #fcfcfc;
+  width: 1160px;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+}
+.new-state tbody tr{
+  line-height: 40px;
+  border-bottom: 1px solid #f1f1f1;
+  border-bottom-style: dotted;
+}
+.new-state thead th{
+  line-height: 40px;
+
+}
+.th-common-new{
+  width: 160px;
+  text-align: center;
+}
+.th-name{
+  width: 250px;
+  padding-left: 10px;
+}
+.th-operation{
+  width: 107px;
+  text-align: center;
+}
+.td-center-new{
+  text-align: center;
+}
+.td-evaluate a{
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  overflow: hidden;
+  width: 85px;
+  background-color: #3d4d99;
+  border: 1px solid #3d4d99;
+  font-family: 'Microsoft Yahei';
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  height: 25px;
+  line-height: 25px;
+}
+.td-over a{
+  display: inline-block;
+  vertical-align: middle;
+  color: #7d7d7d;
+  overflow: hidden;
+  width: 85px;
+  background-color: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  font-family: 'Microsoft Yahei';
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  height: 25px;
+  line-height: 25px;
+}
+
+.main-ul ul li {
+  list-style: none;
+}
+.main-ul ul ul {
+  display: none;
+}
+.main-ul ul li {
+  display: block;
+}
+.main-ul ul li:hover > ul {
+  display: block;
+}
+.main-ul ul li {
+  position: relative;
+}
+.main-ul ul li ul {
+  position: absolute;
+  left: 110%;
+  width: 300px;
+  top: 0;
+  z-index: 100;
+}
+.owl-lf{
+  position: absolute;
+  top: 0px;
+  left: 18.6%;
+}
+.suppplier-list{
+  width: 1200px;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  height: 270px;
+  background-color: white;
+  margin-top: 20px;
+}
+.suppplier-list-img{
+  width: 270px;
+  height: 269px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 1px solid #f2f2f2;
+}
+.suppplier-list-left{
+  float: left;
+}
+.suppplier-list-midd{
+  float: left;
+  border-right: 1px solid #f2f2f2;
+  margin:40px 0 40px 40px;
+  width: 40%;
+  height: 188px;
+}
+.mid-h4-text{
+  margin-top: 20px;
+  width: 480px;
+  height:40px;
+}
+.mid-h4-text a{
+  float: left;
+  margin-right: 15px;
+  margin-left: 2px;
+}
+.mid-h4-text-last {
+  margin-top: 20px;
+  width: 480px;
+  height: 40px;
+}
+.sup-list-right{
+  height: 188px;
+  width: 327px;
+  float: left;
+  margin: 40px;
+  padding-top: 15px;
+  padding-bottom: 22px;
+}
+.list-right-a-div{
+  width: 150px;height: 75px;float:left;padding-top: 15px;
+}
+.list-right-a-two{
+  width: 150px;height: 75px;float:right;padding-top: 15px;
+}
+.right-div-img{
+  width: 140px;
+  height: 55px;
+}
+.slide-sub-img{
+  width: 315px;height: 108px;
+  border: 1px solid #f2f2f2 ;
+  float: left;
+  width: 326px;
+  border-right-style: none;
+}
+.header_top{
+  height: 536px;
+}
+
+
+/*footer*/
+#footer {
+  margin-top: 30px;
+  padding-top: 30px;
+  background-color: #282828;
+  border-top: 1px solid #ddd;
+  color: #444;
+  padding-bottom: 20px;
+  width: 100%;
+  min-width: 1200px;
+}
+.footer{
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.footer-list-group{
+  width: 1000px;
+  margin: 0 auto;
+}
+.footlist{
+  width: 227px;
+  float: left;
+
+}
+.footlist ul h4{
+  font-size: 14px;
+  color: #6d6d6d;
+  margin-bottom: 10px;
+}
+.footlist ul li a {
+  font-size: 12px;
+  color: #777;
+}
+.footer-copyright{
+  font-size: 14px;
+  color: #6d6d6d;
+}
+.footer-copyright p {
+  text-align: center
+}
+.footlist ul li{
+  margin-bottom: 10px;
+}
+.footer-copyright{
+  width: 800px;
+  margin: 0 auto;
+}
+.footer-img-group{
+  width: 690px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.footer-img-group img {
+  margin-right: 10px;
+}
+.footlist-last{
+  width: 90px;
+}
+.footer-copyright p {
+  color: #6d6d6d;
+}
+.p-first{
+  margin-bottom: 7px;
+}
+
+/*footer end*/
+
+
+.digital-purchased{
+  border: 1px solid #f2f2f2;
+  width: 228px;
+  height: 590px;
+  float: left;
+  margin-right: 15px;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: white;
+}
+.digital-purchased{
+  margin-top: 20px;
+}
+.digital-purchased h4 a{
+  color: #3d4d99;
+  font-size: 14px;
+}
+.digital-purchased-h4{
+  height: 4em;
+}
+.digital-purchased-middle p {
+  margin-bottom: 10px;
+  color: #A7A7B2;
+}
+.digital-purchased-middle p span {
+  color: #3d4d99;
+}
+
+.strong-font{
+   color: #333333 !important;
+ }
+.digital-purchased-bottom a {
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  overflow: hidden;
+  width: 85px;
+  background-color: #3d4d99;
+  border: 1px solid #3d4d99;
+  text-align: center;
+  border-radius: 3px;
+  height: 25px;
+  line-height: 25px;
+  margin-left: 16px;
+}
+.digital-purchased-first{
+  border-bottom: 1px solid #f2f2f2;
+  border-bottom-style: dashed;
+  padding-bottom: 20px;
+}
+.digital-purchased-second{
+  padding-top: 20px;
+}
+.digital-seemore{
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+.digital-seemore a{
+ color: #3d4d99;
+ }
+.digital-supply{
+  width: 1220px;
+}
+.digital-supply-div{
+  width: 593px;
+  margin-right: 15px;
+  float: left;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  padding: 20px;
+  padding-right: 0;
+  margin-top: 20px;
+  background-color: white;
+}
+.digital-supply-top{
+  /*text-align: center;*/
+}
+.digital-supply-bottom a{
+  float: left;
+  margin-right: 20px;
+  font-size: 14px;
+}
+.supply-bottom-one{
+  margin-bottom: 20px;
+}
+.digital-supply-top img {
+  display: inline-block;
+  margin-left: 10px;
+}
+.digital-supply-top h3 {
+  margin-left: 30px;
+}
+.digital-silder-main{
+  width: 100%;
+  position: relative;
+}
+.container_n {
+  width: 100%;
+  background: #3D4D99;
+  height: 45px;
+  margin-bottom: 15px;
+  min-width: 1215px;
+}
+#nav_home .nav_list li:hover {
+  background-color: #002A80;
+}
+.album-div{
+  width: 228px;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  margin-right: 15px;
+  float: left;
+  padding: 10px;
+  background-color: white;
+  margin-top: 20px;
+}
+.digital-album{
+  width: 1220px;
+}
+.album-top img {
+  width: 206px;
+  height: 206px;
+}
+.album-bottom{
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.album-bottom ul li {
+  list-style-type: none;
+}
+.album-bottom li{
+  float: left;
+}
+.album-bottom ul li img{
+  display: inline-block;
+  border: 1px solid #f2f2f2;
+  padding: 2px;
+   width: 30px;
+   height: 30px;
+   margin-right: 5px;
+ }
+.album-bottom ul li img:hover{
+  outline: 2px solid #3d4d99;
+}
+.album-word-body h4,span{
+  color: #e4393c;
+}
+.album-word-body h5 span{
+  color: #4c99d3;
+}
+
+.album-word-body h4{
+  margin-bottom: 10px;
+}
+.album-word-body h5{
+  margin-top: 10px;
+}
+.owl-lf ul{
+  width: 260px;
+}
+.owl-lf ul li p {
+  height: 60px;
+  width: 220px;
+}
+.owl-lf ul li h3{
+  color: #333;
+}
+.owl-lf ul li p .red_a{
+  color: #333;
+}
+.owl-lf ul li p a:hover {
+  color: #3d4d99;
+}
+.owl-lf ul li p a{
+  margin-right: 20px;
+}
+.owl-lf ul li .nav_big_class{
+  padding-right: 0;
+}
+.slider-body img {
+  width: 100%;
+  height: 478px;
+}
+
+
+
+.nav ul li {
+  float: left;
+}
+.top-link-left-ul li {
+  margin-right: 20px;
+}
+.top-link-left-ul{
+  float: left;
+}
+.top-link-right-ul{
+  float: right;
+}
+.top-link-right-ul li ul{
+  display: none;
+  position: absolute;
+}
+.top-link-right-ul li{
+  position: relative;
+}
+
+.top-link-right-ul li:hover>ul{
+  display: block;
+}
+.top-link-right-ul li {
+  margin-right: 20px;
+}
+.sanjian-img-small{
+  margin-top: -2px;
+}
+.top-link-right-ul li ul {
+  z-index: 2;
+  border: 1px solid #f5f5f5;
+}
+
+
+
+.content-y{width:800px;height:100%;background:blue;margin:0 auto;}
+/* margin:0 auto 是可以让元素居中显示;
+   overflow:hidden;是隐藏滚动蓝
+*/
+
+/*position:relative 可以让图片循环滚动*/
+.hidden-y{width:800px;height:100%;background:grey;margin:0 auto;position:relative;overflow:hidden;}
+
+/* position:relative  可以让图片代替显示另一个图片*/
+.gallery-y{position:relative;left:0;}
+/*.btn{width:90%;height:55px;margin:0 auto;position:relative;top:-230px;}*/
+
+/*coursor:pointer  是把光标显示成手型*/
+/*.btn-left{float:left;width:55px;height:100%;background:url(http://sandbox.runjs.cn/uploads/rs/253/e6wsbxul/left.png) no-repeat;cursor:pointer;}*/
+
+/*.btn-right{float:right;width:55px;height:100%;background:url(http://sandbox.runjs.cn/uploads/rs/253/e6wsbxul/right.png) no-repeat;cursor:pointer;}*/
+
+/*最下面的滑动按钮*/
+.slider-y{height:8px;position:relative;margin:0 auto;top:-30px;}
+
+/* 设置按钮被鼠标移动前后的样式 */
+.i-before{float:left;width:8px;height:100%;background:#C1C1C1;margin:0 10px;border-radius: 5px}
+.i-after{background:red}
