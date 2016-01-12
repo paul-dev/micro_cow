@@ -59,7 +59,7 @@ class ControllerCommonHeaderTop extends Controller {
 			
 			if (isset($part[1])) {
 				$setting_info = $this->model_extension_module->getModule($part[1]);
-				
+
 				if ($setting_info && $setting_info['status']) {
 					$setting_info = array_merge($setting_info, $_settings);
 
