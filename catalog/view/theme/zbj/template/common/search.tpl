@@ -8,12 +8,13 @@
 <form action="" id="searchForm" name="searchForm">
 	<div id="search" class="form-control">
 		<div class="search-tab">
-			<span class="cur" data-type="1">宝贝</span>
+			<span class="cur" data-type="1">产品</span>
 			<input type="hidden" value="" name="search-type">
 			<div class="search-list">
 				<ul>
-					<li data-type="">宝贝</li>
-					<li data-type="shop">商家</li>
+					<li data-type="">产品</li>
+					<li data-type="shop">供应商</li>
+					<li data-type="purchase">求购</li>
 				</ul>
 			</div>
 			<span class="caret-icon"><i class="fa fa-caret-up"></i></span>
@@ -22,7 +23,7 @@
 			<input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_search; ?>">
 		</div>
 		<div class="search-submit">
-			<a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+			<a href="javascript:void(0)"><i class="fa fa-search">搜索</i></a>
 		</div>
 	</div>
 </form>

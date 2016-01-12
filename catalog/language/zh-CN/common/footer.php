@@ -17,4 +17,10 @@ $_['text_wishlist']     = '收藏列表';
 $_['text_newsletter']   = '订阅咨询';
 $_['text_powered']      = '%s &copy; %s';
 
+$_['text_newcomer_infomation']    = '新手指南';
+$_['text_purchase_infomation']      = '采购商服务';
+$_['text_supply_infomation']        = '供应商服务';
+$_['text_about_infomation']         = '关于我们';
+$_['text_safe_infomation']          = '交易安全';
+
 

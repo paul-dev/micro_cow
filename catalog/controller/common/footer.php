@@ -30,6 +30,12 @@ class ControllerCommonFooter extends Controller {
 		$data['text_wishlist'] = $this->language->get('text_wishlist');
 		$data['text_newsletter'] = $this->language->get('text_newsletter');
 
+		$data['text_newcomer_infomation'] = $this->language->get('text_newcomer_infomation');
+		$data['text_purchase_infomation'] = $this->language->get('text_purchase_infomation');
+		$data['text_supply_infomation'] = $this->language->get('text_supply_infomation');
+		$data['text_about_infomation'] = $this->language->get('text_about_infomation');
+		$data['text_safe_infomation'] = $this->language->get('text_safe_infomation');
+
 		$this->load->model('catalog/information');
 
 		$data['informations'] = array();
@@ -38,8 +44,49 @@ class ControllerCommonFooter extends Controller {
 			if ($result['bottom']) {
 				$data['informations'][] = array(
 					'title' => $result['title'],
+					'meta_title' => $result['meta_title'],
 					'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
 				);
+			}
+		}
+
+		// 新手指南 文章列表
+		$data['newcomer_infomation'] = $this->model_catalog_information->getInformationBymetatitle($data['text_newcomer_infomation']);
+		if(count($data['newcomer_infomation'])>0){
+			foreach ($data['newcomer_infomation'] as $key=>$result) {
+					$data['newcomer_infomation'][$key]['href'] = $this->url->link('information/information', 'information_id=' . $result['information_id']);
+			}
+		}
+
+		// 采购商服务 文章列表
+		$data['purchase_infomation'] = $this->model_catalog_information->getInformationBymetatitle($data['text_purchase_infomation']);
+		if(count($data['purchase_infomation'])>0){
+			foreach ($data['purchase_infomation'] as $key=>$result) {
+				$data['purchase_infomation'][$key]['href'] = $this->url->link('information/information', 'information_id=' . $result['information_id']);
+			}
+		}
+
+		// 供应商服务 文章列表
+		$data['supply_infomation'] = $this->model_catalog_information->getInformationBymetatitle($data['text_supply_infomation']);
+		if(count($data['supply_infomation'])>0){
+			foreach ($data['supply_infomation'] as $key=>$result) {
+				$data['supply_infomation'][$key]['href'] = $this->url->link('information/information', 'information_id=' . $result['information_id']);
+			}
+		}
+
+		// 关于我们 文章列表
+		$data['about_infomation'] = $this->model_catalog_information->getInformationBymetatitle($data['text_about_infomation']);
+		if(count($data['about_infomation'])>0){
+			foreach ($data['about_infomation'] as $key=>$result) {
+				$data['about_infomation'][$key]['href'] = $this->url->link('information/information', 'information_id=' . $result['information_id']);
+			}
+		}
+
+		// 交易安全 文章列表
+		$data['safe_infomation'] = $this->model_catalog_information->getInformationBymetatitle($data['text_safe_infomation']);
+		if(count($data['safe_infomation'])>0){
+			foreach ($data['safe_infomation'] as $key=>$result) {
+				$data['safe_infomation'][$key]['href'] = $this->url->link('information/information', 'information_id=' . $result['information_id']);
 			}
 		}
 

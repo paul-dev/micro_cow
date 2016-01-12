@@ -513,87 +513,86 @@ function activeLiveChat(obj) {
     });
 </script>
 <?php } ?>
+<!-- footer start -->
 <footer>
-<div id="footer">
-  <div class="container">
-    <div class="footer">
-      <div class="footer_left">
-          <span class="tel_ico"></span>
-        <ul class="list-unstyled" style="float:left">
-            <li class="tel_all"><p>400-630-1999</p></li>
-            <li>客服邮箱：kf@zhubaojie.com</li>
-            <li>ICP备案号：京ICP备14053557号</li>
-            <li><?php echo $powered; ?></li>
-        </ul>
-      </div>
-        <div class="footer_right">
+    <div id="footer" style="margin-top: 0;border:0px solid red;">
+        <div class="container">
+            <div class="footer-list-group">
                 <div class="footlist">
-                    <h5>买家帮助</h5>
                     <ul class="list-unstyled">
-                        <li><a href="<?php echo $link_buyer_newer; ?>">新手指南</a></li>
-                        <!--<li><a href="index.php?route=information/sitemap">网站地图</a></li>-->
-                        <!--<li><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=fE1MSk9KRE1NREQ8DQ1SHxMR">意见反馈</a></li>-->
-                        <li><a href="<?php echo $contact; ?>">意见反馈</a></li>
-                        <li><a href="<?php echo $link_buyer_help; ?>">帮助中心</a></li>
+                        <h4><?php echo $text_about_infomation; ?></h4>
+                        <?php foreach($about_infomation as $about_infomation){ ?>
+                            <li><a href="<?php echo $about_infomation['href']; ?>"><?php echo $about_infomation['title']; ?></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <div class="footlist">
-                    <h5>卖家帮助</h5>
                     <ul class="list-unstyled">
-                        <li><a href="<?php echo $link_seller_newer; ?>">商家入驻</a></li>
-                        <li><a href="<?php echo $link_seller_service; ?>">商家推广</a></li>
-                        <li><a href="<?php echo $link_seller_help; ?>">帮助中心</a></li>
+                        <h4><?php echo $text_purchase_infomation; ?></h4>
+                        <?php foreach($purchase_infomation as $purchase_infomation){ ?>
+                        <li><a href="<?php echo $purchase_infomation['href']; ?>"><?php echo $purchase_infomation['title']; ?></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <div class="footlist">
-                    <h5>关于我们</h5>
                     <ul class="list-unstyled">
-                        <li><a href="<?php echo $link_about_us; ?>">关于我们</a></li>
-                        <li><a href="<?php echo $link_contact_us; ?>">联系我们</a></li>
-                        <li><a href="<?php echo $link_join_us; ?>">加入我们</a></li>
+                        <h4><?php echo $text_supply_infomation; ?></h4>
+                        <?php foreach($supply_infomation as $supply_infomation){ ?>
+                        <li><a href="<?php echo $supply_infomation['href']; ?>"><?php echo $supply_infomation['title']; ?></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <div class="footlist">
-                    <h5>关注我们</h5>
                     <ul class="list-unstyled payatten-us">
-                        <li><a href="http://t.sina.com.cn/zbjvip"><span class="i_sina"> </span>新浪微博</a></li>
-                        <li><a href="http://t.qq.com/zbjvip"><span class="i_tx"> </span>腾讯微博</a></li>
-                        <li><a href="http://user.qzone.qq.com/1063681188/"><span class="i_qzone"> </span>QQ空间</a></li>
+                        <h4><?php echo $text_safe_infomation; ?></h4>
+                        <?php foreach($safe_infomation as $safe_infomation){ ?>
+                        <li><a href="<?php echo $safe_infomation['href']; ?>"><?php echo $safe_infomation['title']; ?></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
-        
-                <div class="footlist">
-                    <h5>在线沟通</h5>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1063681188&amp;site=qq&amp;menu=yes"><img border="0" src="/catalog/view/theme/zbj/image/button_111.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1063681188&amp;site=qq&amp;menu=yes"><img border="0" src="/catalog/view/theme/zbj/image/button_111.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1063681188&amp;site=qq&amp;menu=yes"><img border="0" src="/catalog/view/theme/zbj/image/button_111.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
-                        </li>
+                <div class="footlist footlist-last">
+                    <ul class="list-unstyled payatten-us">
+                        <h4><?php echo $text_newcomer_infomation; ?></h4>
+                        <?php foreach($newcomer_infomation as $newcomer_infomation){ ?>
+                        <li><a href="<?php echo $newcomer_infomation['href']; ?>"><?php echo $newcomer_infomation['title']; ?></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
-                <div class="footlist">
-                    <h5>珠宝街微信服务号</h5>
-                    <div class="twodim-code">
-                        <img width="115" height="115" alt="珠宝街服务号二维码" title="珠宝街微信服务号" src="/catalog/view/theme/zbj/image/wx.jpg">
-                    </div>
+                <div style="clear: both"></div>
+                <div class="footer-copyright">
+                    <p class="p-first">增值电信业务经营许可证：浙B2-20000120 &nbsp;&nbsp;&nbsp;互联网药品信息服务资格证书：(浙)-经营性-2012-0009 &nbsp;&nbsp;&nbsp; 信息网络传播视听节目许可证：1109366</p>
+                    <p>@2010-2015 &nbsp;1688.com版权所有&nbsp;&nbsp;互联网违法和不良信息举报中心:0571-81683755 &nbsp;blxx@list.alibaba-inc.com</p>
                 </div>
+                <div class="footer-img-group">
+                    <img src="catalog/view/theme/zbj/image/meizhaung.png">
+                    <img src="catalog/view/theme/zbj/image/xiehuirenzheng.png">
+                    <img src="catalog/view/theme/zbj/image/cctv.png">
+                    <img src="catalog/view/theme/zbj/image/zhifubao.png">
+                    <img src="catalog/view/theme/zbj/image/shenfenrenzheng.png">
+                </div>
+            </div>
         </div>
-      </div>
-  </div>
-</div>
-<div id="gotop">
-    <a title="返回顶部" onclick="goTop();return false;" href="javascript:;">返回顶部</a>
-</div>
-<script>
-    function goTop(){
-        $('html, body').animate({ scrollTop: 0 }, 'slow');
-    }
-</script>
+
+    </div>
+    <!--<div id="gotop">-->
+    <!--<a title="返回顶部" onclick="goTop();return false;" href="javascript:;">返回顶部</a>-->
+    <!--</div>-->
+    <!--<script>-->
+    <!--function goTop() {-->
+    <!--$('html, body').animate({scrollTop: 0}, 'slow');-->
+    <!--}-->
+    <!--</script>-->
 </footer>
+<!-- footer end -->
+
+
+
+
+
+
+
+
+
+
 
 </body></html>

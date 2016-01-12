@@ -35,4 +35,10 @@ class ModelCatalogInformation extends Model {
 			return 0;
 		}
 	}
+
+	public function getInformationBymetatitle($meta_title) {
+		$query = $this->db->query("SELECT id.information_id, id.title FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) LEFT JOIN " . DB_PREFIX . "information_to_store i2s ON (i.information_id = i2s.information_id) WHERE id.meta_title = '" . $meta_title . "' AND id.language_id = '" . (int)$this->config->get('config_language_id') . "' AND i2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND i.status = '1'");
+
+		return $query->rows;
+	}
 }

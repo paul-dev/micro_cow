@@ -1,4 +1,4 @@
 <?php
 
 // Text
-$_['text_search'] = '搜索';
+$_['text_search'] = '请输入名称';
