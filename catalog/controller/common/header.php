@@ -330,7 +330,15 @@ class ControllerCommonHeader extends Controller {
 			$data['class'] = 'common-home';
 		}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/' . $template)) {
+        if(isset($this->session->data['customer_id'])){
+            $this->load->model('sale/customer');
+            $data['customer_info'] = $this->model_sale_customer->getCustomer($this->session->data['customer_id']);
+            if(isset($data['customer_info']['custom_field'])){
+                $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
+            }
+        }
+
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/' . $template)) {
 			return $this->load->view($this->config->get('config_template') . '/template/' . $template, $data);
 		} else {
 			return $this->load->view('default/template/common/header.tpl', $data);

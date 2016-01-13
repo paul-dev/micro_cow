@@ -139,7 +139,13 @@
     <div id="top-links" class="nav">
       <ul class="top-link-left-ul">
         <li><a href="http://dev.micro.com/index.php?route=account/register" target="_blank">免费注册</a></li>
+
+        <?php if(isset($customer_info)){ ?>
+        <li><a href="http://dev.micro.com/index.php?route=account/logout">安全退出</a></li>
+        <?php }else{ ?>
         <li><a href="http://dev.micro.com/index.php?route=account/login" target="_blank">请登录</a></li>
+        <?php } ?>
+
         <div style="clear: both"></div>
       </ul>
       <ul class="top-link-right-ul">

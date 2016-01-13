@@ -225,11 +225,16 @@
         <!--</div>-->
         <div class="owl-head clearfix">
             <div class="owl-head-img">
-                <img src="../image/owl-header.png" style="border-radius: 15px">
+                <img src="<?php echo $customer_info['image']; ?>" style="border-radius: 27px">
             </div>
             <div class="owl-head-word">
-                <p>Hi,早上好！</p>
-                <p>Christopher Tucker</p>
+                <p>Hi,你好！</p>
+                <?php if(isset($customer_info)){ ?>
+                    <p><?php echo $customer_info['fullname']; ?></p>
+                <?php }else{ ?>
+                    <p>尊敬的游客</p>
+                <?php } ?>
+
             </div>
         </div>
         <div style="width: 200px;margin:0 auto; text-align:center;border-bottom: 1px solid #f2f2f2;border-bottom-style: dashed">
@@ -262,14 +267,14 @@
         </div>
         <div style="width: 190px;margin: 0 auto;padding: 5px 0;text-align: left;margin-bottom: 5px;" class="clearfix">
             <div class="owl-hot-recmmend">
-                <img src="../image/hot-recommend1.png">
+                <img src="catalog/view/theme/zbj/image/hot-recommend1.png">
                 <div>
                     <a href="#">夏配饰<span>新品</span></a>
                     <p>火热强势发布</p>
                 </div>
             </div>
             <div class="owl-hot-recmmend">
-                <img src="../image/hot-recommend2.png">
+                <img src="catalog/view/theme/zbj/image/hot-recommend2.png">
                 <div>
                     <a href="#">夏配饰<span>新品</span></a>
                     <p>火热强势发布</p>

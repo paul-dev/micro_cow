@@ -103,6 +103,14 @@ class ControllerModuleSlideshow extends Controller {
 
 		$data['module'] = $module++;
 
+        if(isset($this->session->data['customer_id'])){
+            $this->load->model('sale/customer');
+            $data['customer_info'] = $this->model_sale_customer->getCustomer($this->session->data['customer_id']);
+            if(isset($data['customer_info']['custom_field'])){
+                $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
+            }
+        }
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/'.$template)) {
 			return $this->load->view($this->config->get('config_template') . '/template/module/'.$template, $data);
 		} else {
