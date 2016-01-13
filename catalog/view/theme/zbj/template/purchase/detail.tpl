@@ -118,6 +118,7 @@
                     <table class="q-xq-table">
                       <thead>
                       <tr>
+                      <tr>
                         <th><?php echo $text_product_name; ?></th>
                         <th><?php echo $text_amount_purchased; ?></th>
                         <th><?php echo $text_product_description; ?></th>

@@ -159,7 +159,7 @@
                         <?php } ?>
                     </p>
                 <?php } ?>
-                <span class="owl-lb">></span>
+                <span class="owl-lb"></span>
             </div>
 
             <div class="owl-drop">

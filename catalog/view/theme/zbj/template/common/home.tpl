@@ -64,8 +64,7 @@
               <a  target="_blank" href="<?php echo $purchase['url']; ?>"><?php echo $purchase['name']; ?></a>
             </div>
             <div class="purchased-left-botm">
-              <p>采购量：</p>
-              <p><?php echo $purchase['total_product']; ?></p>
+              <p>采购量： <spanp><?php echo $purchase['total_product']; ?></spanp></p>
             </div>
           </div>
           <div class="purchased-right clearfix new-recmd-div-margin">
@@ -82,9 +81,9 @@
               <p>已有报价：<span>8</span>家</p>
             </div>
             <div class="purchased-right-r">
-              <p><h5><?php echo $purchase['contact_name']; ?></h5></p>
-              <p><img src="catalog/view/theme/zbj/image/taobao-group.png"></p>
-              <p><a  target="_blank" href="">立即报价</a></p>
+              <div class="purchased-right-r-div"><h5><?php echo $purchase['contact_name']; ?></h5></div>
+              <div class="purchased-right-r-div"><img src="catalog/view/theme/zbj/image/taobao-group.png"></div>
+              <div><a  target="_blank" href="">立即报价</a></div>
             </div>
           </div>
         </div>
