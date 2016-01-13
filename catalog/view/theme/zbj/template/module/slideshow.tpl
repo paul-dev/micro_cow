@@ -93,7 +93,7 @@
     });
 </script>
 <div class="container" style="position:relative;height:115px;">
-    <div class="zbj-buttons" style="display: none">
+    <div class="zbj-buttons">
         <div class="prevbtn zbj-btn"><i class="fa fa-chevron-left fa-5x"></i></div>
         <div class="nextbtn zbj-btn"><i class="fa fa-chevron-right fa-5x"></i></div>
     </div>
@@ -176,33 +176,6 @@
         </li>
         <?php } ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </ul>
 </div>
 <script  type="text/javascript">
@@ -216,8 +189,6 @@
 				returnDefault:true //鼠标移走后返回默认状态，例如默认频道是“预告片”，鼠标移走后会返回“预告片”（默认false）
 			});
 		</script>
-
-
 
     <div class="owl-ri right" style="width: 220px;background-color: white">
 
@@ -243,22 +214,16 @@
         </div>
         <div class="notice" style="border-top-style: none">
             <div class="notice_top"><a href="http://dev.micro.com/#" class="br_ri on" style="background-color: white!important;border-right-style: none;border-bottom: 1px solid #f2f2f2">公告</a><a href="http://dev.micro.com/#" style="border-bottom: 1px solid #f2f2f2;background-color:white ">规则</a></div>
-            <div class="notice_conten">
+            <div class="notice_conten" style="height:120px;">
                 <ul>
-                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
-                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
-                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
-                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
-                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
-                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
+                    <?php foreach ($latest_notice as $notice) { ?>
+                        <li><a href="<?php echo $notice['href']; ?>" title="<?php echo $notice['full_title']; ?>"><?php echo $notice['title']; ?></a></li>
+                    <?php } ?>
                 </ul>
                 <ul style="display: none;">
-                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
-                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
-                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
-                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
-                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
-                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
+                    <?php foreach ($latest_news as $news) { ?>
+                        <li><a href="<?php echo $news['href']; ?>" title="<?php echo $news['full_title']; ?>"><?php echo $news['title']; ?></a></li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
@@ -292,7 +257,7 @@
     
 </div>
 <script type="text/javascript"><!--
-/*$('#slideshow<?php echo $module; ?>').owlCarousel({
+$('#slideshow<?php echo $module; ?>').owlCarousel({
 	items: 1,
 	autoPlay: 3000,
 	singleItem: true,
@@ -301,7 +266,7 @@
 	pagination: true,
     stopOnHover: true,
     scrollPerPage: true
-});*/
+});
 
 jQuery(".baner-gg").slide({mainCell:".bd .ulWrap",autoPage:true,effect:"leftLoop",autoPlay:false,prevCell:".owl_prev",nextCell:".owl_next"});
 jQuery(".notice").slide({titCell:".notice_top a",mainCell:".notice_conten"});

@@ -35,7 +35,7 @@ class ControllerModuleSlideshow extends Controller {
             $data['latest_notice'] = array();
             $results = $this->model_catalog_information->getInformations(array(
                 'filter_is_notice' => 1,
-                'filter_limit' => 4
+                'filter_limit' => 6
             ));
             foreach ($results as $result) {
                 $data['latest_notice'][] = array(
@@ -48,7 +48,7 @@ class ControllerModuleSlideshow extends Controller {
             $data['latest_news'] = array();
             $results = $this->model_catalog_information->getInformations(array(
                 'filter_is_news' => 1,
-                'filter_limit' => 4
+                'filter_limit' => 6
             ));
             foreach ($results as $result) {
                 $data['latest_news'][] = array(
