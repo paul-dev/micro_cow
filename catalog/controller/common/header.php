@@ -71,6 +71,21 @@ class ControllerCommonHeader extends Controller {
         $data['text_community'] = $this->language->get('text_community');
         $data['text_benefits'] = $this->language->get('text_benefits');
 
+        $data['text_my_account'] = $this->language->get('text_my_account');
+        $data['text_qqlogin'] = $this->language->get('text_qqlogin');
+        $data['text_myorder'] = $this->language->get('text_myorder');
+        $data['text_helpcenter'] = $this->language->get('text_helpcenter');
+        $data['text_myinfo'] = $this->language->get('text_myinfo');
+        $data['text_safelogout'] = $this->language->get('text_safelogout');
+        $data['text_free_registration'] = $this->language->get('text_free_registration');
+        $data['text_free_pleaselogin'] = $this->language->get('text_free_pleaselogin');
+        $data['text_aboutus'] = $this->language->get('text_aboutus');
+        $data['text_call_center'] = $this->language->get('text_call_center');
+        $data['text_favorite'] = $this->language->get('text_favorite');
+        $data['text_purchased_list'] = $this->language->get('text_purchased_list');
+        $data['text_power_merchants'] = $this->language->get('text_power_merchants');
+        $data['text_all_category'] = $this->language->get('text_all_category');
+
         $data['link_limit_buy'] = $this->url->link('product/special', 'type=limit');
         $data['link_on_sale'] = $this->url->link('product/special', 'type=infinite');
         $data['link_on_going'] = $this->url->link('product/search', 'type=latest&sort=p.date_added&order=DESC');

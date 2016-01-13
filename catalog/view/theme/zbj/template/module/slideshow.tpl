@@ -196,24 +196,37 @@
         <!--</div>-->
         <div class="owl-head clearfix">
             <div class="owl-head-img">
+
+                <?php if(isset($customer_info)){ ?>
                 <img src="<?php echo $customer_info['image']; ?>" style="border-radius: 27px">
+                <?php }else{ ?>
+                <img src="catalog/view/theme/zbj/image/zbj_default_pic.png" style="border-radius: 27px">
+                <?php } ?>
+
             </div>
             <div class="owl-head-word">
-                <p>Hi,你好！</p>
+                <p><?php echo $text_welcome; ?></p>
                 <?php if(isset($customer_info)){ ?>
                     <p><?php echo $customer_info['fullname']; ?></p>
                 <?php }else{ ?>
-                    <p>尊敬的游客</p>
+                    <p><?php echo $text_tourist; ?></p>
                 <?php } ?>
 
             </div>
         </div>
         <div style="width: 200px;margin:0 auto; text-align:center;border-bottom: 1px solid #f2f2f2;border-bottom-style: dashed">
-            <a href="http://dev.micro.com/index.php?route=account/login" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;">登录</a>
-            <a href="http://dev.micro.com/index.php?route=account/register" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;">注册</a>
+
+            <?php if(isset($customer_info)){ ?>
+                <li><a href="/index.php?route=account/edit" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;"><?php echo $text_myinfo; ?></a></li>
+                <li><a href="/index.php?route=account/logout" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;"><?php echo $text_safelogout; ?></a></li>
+            <?php }else{ ?>
+            <li><a href="/index.php?route=account/register" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;"><?php echo $text_free_registration; ?></a></li>
+            <li><a href="/index.php?route=account/login" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;"><?php echo $text_loginplease; ?></a></li>
+            <?php } ?>
+
         </div>
         <div class="notice" style="border-top-style: none">
-            <div class="notice_top"><a href="http://dev.micro.com/#" class="br_ri on" style="background-color: white!important;border-right-style: none;border-bottom: 1px solid #f2f2f2">公告</a><a href="http://dev.micro.com/#" style="border-bottom: 1px solid #f2f2f2;background-color:white ">规则</a></div>
+            <div class="notice_top"><a href="/#" class="br_ri on" style="background-color: white!important;border-right-style: none;border-bottom: 1px solid #f2f2f2">公告</a><a href="/#" style="border-bottom: 1px solid #f2f2f2;background-color:white "><?php echo $text_rules; ?></a></div>
             <div class="notice_conten" style="height:120px;">
                 <ul>
                     <?php foreach ($latest_notice as $notice) { ?>
@@ -231,21 +244,17 @@
             <h4>热门推荐</h4>
         </div>
         <div style="width: 190px;margin: 0 auto;padding: 5px 0;text-align: left;margin-bottom: 5px;" class="clearfix">
-            <div class="owl-hot-recmmend">
-                <img src="catalog/view/theme/zbj/image/hot-recommend1.png">
-                <div>
-                    <a href="#">夏配饰<span>新品</span></a>
-                    <p>火热强势发布</p>
-                </div>
-            </div>
-            <div class="owl-hot-recmmend">
-                <img src="catalog/view/theme/zbj/image/hot-recommend2.png">
-                <div>
-                    <a href="#">夏配饰<span>新品</span></a>
-                    <p>火热强势发布</p>
-                </div>
-            </div>
 
+            <?php if(isset($special_products)){ ?>
+                <?php foreach($special_products as $special_products){ ?>
+                    <div class="owl-hot-recmmend">
+                        <a href="<?php echo $special_products['url']; ?>"><img src="<?php echo $special_products['image']; ?>"></a>
+                        <div>
+                            <a style="width:83px;height:32px;display: inline-block;overflow:hidden;" href="<?php echo $special_products['url']; ?>" title="<?php echo $special_products['name']; ?>"><?php echo $special_products['name']; ?></a>
+                        </div>
+                    </div>
+                <?php } ?>
+            <?php } ?>
         </div>
 
     </div>

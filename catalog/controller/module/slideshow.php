@@ -5,7 +5,17 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');
-		
+
+        $this->load->language('common/header');
+
+        $data['text_welcome'] = $this->language->get('text_welcome');
+        $data['text_tourist'] = $this->language->get('text_tourist');
+        $data['text_myinfo'] = $this->language->get('text_myinfo');
+        $data['text_safelogout'] = $this->language->get('text_safelogout');
+        $data['text_free_registration'] = $this->language->get('text_free_registration');
+        $data['text_loginplease'] = $this->language->get('text_loginplease');
+        $data['text_rules'] = $this->language->get('text_rules');
+
 		$this->document->addStyle('catalog/view/javascript/jquery/owl-carousel/owl.carousel.css');
 		$this->document->addScript('catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js');
 
@@ -110,6 +120,21 @@ class ControllerModuleSlideshow extends Controller {
                 $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
             }
         }
+
+        //热门推荐 两个产品 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ start
+        $this->load->model('catalog/product');
+        $special_where = array(
+            'start' => '0',
+            'limit' => '2'
+        );
+        $data['special_products'] = $this->model_catalog_product->getProductSpecials($special_where);
+        if(isset($data['special_products'])){
+            foreach($data['special_products'] as $key=>$special_products){
+                $data['special_products'][$key]['image'] = 'image/'.$special_products['image'];
+                $data['special_products'][$key]['url'] = $this->url->link('product/product', 'product_id=' . $special_products['product_id']);;
+            }
+        }
+        //热门推荐 两个产品 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ end
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/'.$template)) {
 			return $this->load->view($this->config->get('config_template') . '/template/module/'.$template, $data);
