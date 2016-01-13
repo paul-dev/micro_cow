@@ -241,7 +241,7 @@
             </div>
         </div>
         <div style="width: 190px;margin: 0 auto;padding: 5px 0;border-bottom: 1px solid #f2f2f2;margin-bottom: 5px;border-bottom-style: dashed">
-            <h4>热门推荐</h4>
+            <h4><?php echo $text_hot_recommend; ?></h4>
         </div>
         <div style="width: 190px;margin: 0 auto;padding: 5px 0;text-align: left;margin-bottom: 5px;" class="clearfix">
 

@@ -15,6 +15,7 @@ class ControllerModuleSlideshow extends Controller {
         $data['text_free_registration'] = $this->language->get('text_free_registration');
         $data['text_loginplease'] = $this->language->get('text_loginplease');
         $data['text_rules'] = $this->language->get('text_rules');
+        $data['text_hot_recommend'] = $this->language->get('text_hot_recommend');
 
 		$this->document->addStyle('catalog/view/javascript/jquery/owl-carousel/owl.carousel.css');
 		$this->document->addScript('catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js');
