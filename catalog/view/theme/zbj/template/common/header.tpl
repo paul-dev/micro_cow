@@ -89,13 +89,13 @@
             <?php if ($isSeller) { ?>
             <li><a href="<?php echo $url_seller; ?>"><?php echo $text_seller; ?></a></li>
             <?php } ?>
-            <li><a href="<?php echo $account; ?>">我的账户</a></li>
+            <li><a href="<?php echo $account; ?>"><?php echo $text_my_account; ?></a></li>
             <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
           </ul>
         </li>
         <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
         <?php } else { ?>
-        <li><a href="/connect/qzone/oauth/qq_login.php"><!-- <img src="/image/qq_login.png"> --><i class="i_qq"></i>QQ登录</a></li>
+        <li><a href="/connect/qzone/oauth/qq_login.php"><!-- <img src="/image/qq_login.png"> --><i class="i_qq"></i><?php echo $text_qqlogin; ?></a></li>
         <li><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></li>
         <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
         <?php } ?>
@@ -126,8 +126,8 @@
           </div>
         </li>
 
-        <li><a href="<?php echo $order; ?>"><i class="i_order"></i>我的订单</a></li>
-        <li class="no_bor"><a href=""><i class="fa fa-question-circle fa-lg" style="margin-right:4px;font-size:18px;"></i>帮助中心</a></li>
+        <li><a href="<?php echo $order; ?>"><i class="i_order"></i><?php echo $text_myorder; ?></a></li>
+        <li class="no_bor"><a href=""><i class="fa fa-question-circle fa-lg" style="margin-right:4px;font-size:18px;"></i><?php echo $text_helpcenter; ?></a></li>
         <li class="no_bor" style="display: none;"><a href="<?php echo $checkout; ?>" title="<?php echo $text_checkout; ?>"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_checkout; ?></span></a></li>
       </ul>
     </div>
@@ -138,16 +138,23 @@
   <div class="container" style="padding: 0;">
     <div id="top-links" class="nav">
       <ul class="top-link-left-ul">
-        <li><a href="http://dev.micro.com/index.php?route=account/register" target="_blank">免费注册</a></li>
-        <li><a href="http://dev.micro.com/index.php?route=account/login" target="_blank">请登录</a></li>
+
+        <?php if(isset($customer_info)){ ?>
+        <li><a href="/index.php?route=account/edit"><?php echo $text_myinfo; ?></a></li>
+        <li><a href="/index.php?route=account/logout"><?php echo $text_safelogout; ?></a></li>
+        <?php }else{ ?>
+        <li><a href="/index.php?route=account/register" target="_blank"><?php echo $text_free_registration; ?></a></li>
+        <li><a href="/index.php?route=account/login" target="_blank"><?php echo $text_free_pleaselogin; ?></a></li>
+        <?php } ?>
+
         <div style="clear: both"></div>
       </ul>
       <ul class="top-link-right-ul">
-        <li style="margin-right: 8px"><a href="#">关于我们</a></li>
+        <li style="margin-right: 8px"><a href="#"><?php echo $text_aboutus; ?></a></li>
         <li style="margin-right: 8px"><a href="#"><img src="catalog/view/theme/zbj/image/weibo.png" style="margin-top: -2px"></a></li>
         <li style="margin-right: 8px"><a href="#"><img src="catalog/view/theme/zbj/image/weixin.png"></a></li>
         <li>
-          <a href="http://dev.micro.com/index.php?route=account/order">我的订单<i></i></a>
+          <a href="/index.php?route=account/order"><?php echo $text_myorder; ?><i></i></a>
           <!--<ul>-->
           <!--<li>-->
           <!--<p class="text-center">您的购物车没有添加商品！</p>-->
@@ -155,28 +162,28 @@
           <!--</ul>-->
         </li>
         <li>
-          <a href="#">客服中心<i></i></a>
+          <a href="#"><?php echo $text_call_center; ?><i></i></a>
           <!--<ul>-->
           <!--<li><a href="#">内容</a></li>-->
           <!--<li><a href="#">内容</a></li>-->
           <!--</ul>-->
         </li>
         <li>
-          <a href="#">收藏夹<i></i></a>
+          <a href="#"><?php echo $text_favorite; ?><i></i></a>
           <!--<ul>-->
           <!--<li><a href="#">内容</a></li>-->
           <!--<li><a href="#">内容</a></li>-->
           <!--</ul>-->
         </li>
         <li>
-          <a href="#">进货单<i></i></a>
+          <a href="#"><?php echo $text_purchased_list; ?><i></i></a>
           <!--<ul>-->
           <!--<li><a href="#">内容</a></li>-->
           <!--<li><a href="#">内容</a></li>-->
           <!--</ul>-->
         </li>
         <li>
-          <a href="#">实力商家<i></i></a>
+          <a href="#"><?php echo $text_power_merchants; ?><i></i></a>
           <!--<ul>-->
           <!--<li><a href="#">内容</a></li>-->
           <!--<li><a href="#">内容</a></li>-->
@@ -231,7 +238,9 @@
 <div class="container">
   <div id="nav_home">
     <ul class="nav_list">
-      <li style="width: 260px;margin-left:-55px;background-color: #1686cc;"><a style="cursor: pointer">全部商品分类</a></li>
+      <?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index.php?route=common/home'){ ?>
+      <li style="width: 260px;margin-left:-55px;background-color: #1686cc;"><a style="cursor: pointer"><?php echo $text_all_category; ?></a></li>
+      <?php } ?>
       <?php foreach ($main_menu as $menu) { ?>
         <li><a href="<?php echo $menu['link']; ?>"><?php echo $menu['label']; ?></a></li>
       <?php } ?>

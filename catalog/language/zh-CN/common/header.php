@@ -30,3 +30,27 @@ $_['text_supplies']      = '产品供应';
 $_['text_purchase']      = '求购询价';
 $_['text_company']       = '企业名库';
 $_['text_offsale']       = '特卖抢购';
+
+$_['text_my_account']       = '我的账户';
+$_['text_qqlogin']       = 'QQ登录';
+$_['text_myorder']       = '我的订单';
+$_['text_helpcenter']       = '帮助中心';
+$_['text_myinfo']       = '我的信息';
+$_['text_safelogout']       = '安全退出';
+$_['text_free_registration']       = '免费注册';
+$_['text_free_pleaselogin']       = '请登录';
+$_['text_aboutus']       = '关于我们';
+$_['text_call_center']       = '客服中心';
+$_['text_favorite']       = '收藏夹';
+$_['text_purchased_list']       = '进货单';
+$_['text_power_merchants']       = '实力商家';
+$_['text_all_category']       = '全部商品分类';
+
+$_['text_welcome']       = 'Hi,你好！';
+$_['text_tourist']       = '尊敬的游客';
+$_['text_myinfo']       = '查看信息';
+$_['text_safelogout']       = '安全退出';
+$_['text_free_registration']       = '免费注册';
+$_['text_loginplease']       = '请登录';
+$_['text_rules']       = '规则';
+$_['text_hot_recommend']       = '热门推荐';
