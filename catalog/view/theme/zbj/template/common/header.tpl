@@ -148,39 +148,73 @@
         <li style="margin-right: 8px"><a href="#"><img src="catalog/view/theme/zbj/image/weixin.png"></a></li>
         <li>
           <a href="http://dev.micro.com/index.php?route=account/order">我的订单<i></i></a>
-          <!--<ul>-->
-          <!--<li>-->
-          <!--<p class="text-center">您的购物车没有添加商品！</p>-->
-          <!--</li>-->
-          <!--</ul>-->
+          <ul>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+          </ul>
         </li>
         <li>
           <a href="#">客服中心<i></i></a>
-          <!--<ul>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--</ul>-->
+          <ul>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+          </ul>
         </li>
         <li>
           <a href="#">收藏夹<i></i></a>
-          <!--<ul>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--</ul>-->
+          <ul>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+          </ul>
         </li>
         <li>
           <a href="#">进货单<i></i></a>
-          <!--<ul>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--</ul>-->
+          <ul>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+          </ul>
         </li>
         <li>
           <a href="#">实力商家<i></i></a>
-          <!--<ul>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--</ul>-->
+          <ul>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+            <li>
+              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
+            </li>
+          </ul>
         </li>
         <div style="clear: both"></div>
       </ul>

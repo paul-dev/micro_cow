@@ -800,3 +800,15 @@ width: 250px;
   width: 30px;
   padding: 15px 5px;
 }
+.caret-icon {
+  position: absolute;
+  top: 9px;
+  right: 5px;
+  z-index: 999;
+}
+.notice_top_a{
+  background-color: white!important;border-right-style: none;border-bottom: 1px solid #f2f2f2;
+}
+.notice .notice_top .on {
+  border-bottom-color: #1686cc;
+}
