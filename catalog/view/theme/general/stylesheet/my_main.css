@@ -780,3 +780,23 @@ width: 250px;
 .nav-btn span{
   background-color: rgba(112, 102, 102, 0.5);
 }
+.zbj-buttons .prevbtn {
+  left: 260px;
+}
+.zbj-buttons .nextbtn {
+  right: 220px;
+}
+.prevbtn i {
+
+  background-image: url("../image/roll-left.png");
+}
+.nextbtn i{
+  background-image: url("../image/roll-right.png");
+}
+.zbj-btn img {
+  display: inline-block;
+  background-color: #8794ad;
+  height: 60px;
+  width: 30px;
+  padding: 15px 5px;
+}

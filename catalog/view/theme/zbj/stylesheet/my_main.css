@@ -86,7 +86,7 @@
   text-align: center;
 }
 .main-product-list{
-  width: 1200px;
+  width: 1210px;
 }
 .main-product-list-div{
   width: 580px;
@@ -501,6 +501,8 @@ h3{
 }
 .recmd-name {
   padding: 0 5px;
+  height: 34px;
+  overflow: hidden;
 }
 .purchased-left-top a{
   color: #1498e5;
@@ -534,7 +536,7 @@ h3{
   background-color: white;
 }
 .main-purchased{
-  width: 1200px;
+  width: 1210px;
 }
 .purchased-left{
   float: left;
@@ -779,4 +781,8 @@ h3{
 }
 .nav-btn span{
   background-color: rgba(112, 102, 102, 0.5);
+}
+#content {
+  padding-left: 0;
+  padding-right: 0;
 }
