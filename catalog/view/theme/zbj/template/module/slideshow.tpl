@@ -218,14 +218,70 @@
 		</script>
 
 
-    <div class="owl-ri right" style="border: 0px dashed #b3daff;height:450px;">
-        <ul>
-            <li><img src="http://dev.micro.com/image/cache/catalog/demo/manufacturer/burgerking-200x140.png" alt="a11" style="height: 150px;"></li>
-            <li><img src="http://dev.micro.com/image/cache/catalog/demo/manufacturer/harley-200x140.png" alt="b22" style="height: 150px;"></li>
-            <li><img src="http://dev.micro.com/image/cache/catalog/demo/manufacturer/starbucks-200x140.png" alt="c33" style="height: 150px;"></li>
-        </ul>
+
+    <div class="owl-ri right" style="width: 220px;background-color: white">
+
+        <!--<div style="width: 70px;height: 70px;border-radius: 50%;background-color: #f2f2f2;margin: 10px auto">-->
+        <!--</div>-->
+        <div class="owl-head clearfix">
+            <div class="owl-head-img">
+                <img src="../image/owl-header.png" style="border-radius: 15px">
+            </div>
+            <div class="owl-head-word">
+                <p>Hi,早上好！</p>
+                <p>Christopher Tucker</p>
+            </div>
+        </div>
+        <div style="width: 200px;margin:0 auto; text-align:center;border-bottom: 1px solid #f2f2f2;border-bottom-style: dashed">
+            <a href="http://dev.micro.com/index.php?route=account/login" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;">登录</a>
+            <a href="http://dev.micro.com/index.php?route=account/register" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;">注册</a>
+        </div>
+        <div class="notice" style="border-top-style: none">
+            <div class="notice_top"><a href="http://dev.micro.com/#" class="br_ri on" style="background-color: white!important;border-right-style: none;border-bottom: 1px solid #f2f2f2">公告</a><a href="http://dev.micro.com/#" style="border-bottom: 1px solid #f2f2f2;background-color:white ">规则</a></div>
+            <div class="notice_conten">
+                <ul>
+                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
+                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
+                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
+                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
+                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
+                    <li><a href="#">【逛呗】公告公告公告公告公告！</a></li>
+                </ul>
+                <ul style="display: none;">
+                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
+                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
+                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
+                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
+                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
+                    <li><a href="#">【逛呗】规则规则规则规则规则！</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="width: 190px;margin: 0 auto;padding: 5px 0;border-bottom: 1px solid #f2f2f2;margin-bottom: 5px;border-bottom-style: dashed">
+            <h4>热门推荐</h4>
+        </div>
+        <div style="width: 190px;margin: 0 auto;padding: 5px 0;text-align: left;margin-bottom: 5px;" class="clearfix">
+            <div class="owl-hot-recmmend">
+                <img src="../image/hot-recommend1.png">
+                <div>
+                    <a href="#">夏配饰<span>新品</span></a>
+                    <p>火热强势发布</p>
+                </div>
+            </div>
+            <div class="owl-hot-recmmend">
+                <img src="../image/hot-recommend2.png">
+                <div>
+                    <a href="#">夏配饰<span>新品</span></a>
+                    <p>火热强势发布</p>
+                </div>
+            </div>
+
+        </div>
+
     </div>
-<!-- banner down -->
+    <!-- banner down -->
+
+
 <!-- <?php if (isset($inner_slide[0])) echo $inner_slide[0]; ?> -->
 </div>
     

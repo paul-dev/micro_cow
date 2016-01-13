@@ -120,8 +120,20 @@ class ControllerCommonHome extends Controller {
 
 //图文 商品分类 end
 
-/*		echo "<pre>";print_r($data['purchaseProduct']);
-		echo "</pre>";exit;*/
+
+
+		/*
+		 * 判断用户是否登录入
+		 * if($this->session->data['customer_id']){
+			echo '已登录';exit;
+		}else{
+			echo '未登录';exit;
+		}
+		echo "<pre>";print_r($this->session);
+		echo "</pre>";exit;
+		*/
+
+
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/home.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/home.tpl', $data));

@@ -265,7 +265,6 @@ div.required .control-label:before {
 }
 #top .btn-link, #top-links li, #top-links a {
 	color: #888;
-	text-shadow: 0 1px 0 #FFF;
 	text-decoration: none;
 }
 #header-cart-label .shopping_cart_list{
@@ -1519,7 +1518,7 @@ a.product_enshrine:hover{background:#337ab7;color:#fff;}
 .trading{ margin-top:40px;}
 .new_orders ul h3 i{ font-size:16px; margin-right:5px;}
 .br_ri{ border-right:1px solid #e1e1e1;}
-.notice{ border:1px solid #e1e1e1; overflow:hidden; margin-top:5px;}
+.notice{overflow:hidden; margin-top:5px;}
 .notice .notice_top{ background:#f1f1f1;}
 .notice .notice_top a{ width:50%; height:30px; display:inline-block; border-bottom:1px solid #e1e1e1; text-align:center; line-height:30px; font-weight:bold; font-size:14px; border-bottom:none;}
 .notice .notice_top .on{ background:#fff;}

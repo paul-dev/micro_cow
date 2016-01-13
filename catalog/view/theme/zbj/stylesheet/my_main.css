@@ -86,7 +86,7 @@
   text-align: center;
 }
 .main-product-list{
-  width: 1230px;
+  width: 1200px;
 }
 .main-product-list-div{
   width: 580px;
@@ -135,12 +135,6 @@ h3{
 }
 .product-left-a{
   height: 50px;
-}
-.purchased-right-l p {
-  margin-bottom: 6px;
-  overflow: hidden;
-  width: 127px;
-  height: 20px;
 }
 .detail-ul-right{
   float: left;
@@ -288,7 +282,7 @@ h3{
   border-radius: 5px;
   height: 252px;
   background-color: white;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .suppplier-list-img{
   width: 300px;
@@ -421,6 +415,7 @@ h3{
 
 .nav ul li {
   float: left;
+  position: relative;
 }
 .top-link-left-ul li {
   margin-right: 20px;
@@ -431,11 +426,14 @@ h3{
 .top-link-right-ul{
   float: right;
 }
+.top-link-right-ul li ul li p{
+  padding-left: 10px;
+}
 .top-link-right-ul li ul{
   position: absolute;
-  z-index: 1000;
+  top: 32px;
   display: none;
-  min-width: 160px;
+  min-width: 192px;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
@@ -472,32 +470,30 @@ h3{
   color: white;
 }
 .top-link-right-ul li ul li:hover {
-  background-color: #f5f5f5;
+
 }
-.top-link-right-ul li ul{
-  width: 56px;
-}
-.top-link-right-ul li ul li {
-  width: 55px;
-}
+
 
 /*footer end*/
 
 .new-recmd-div{
-  width: 220px;
+  width: 232px;
   border: 1px solid #f4f4f4;
   border-radius: 5px;
   padding: 5px;
   padding-bottom: 10px;
   float: left;
-  margin-right: 25px;
+  margin-right: 10px;
   background-color: white;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+.new-recmd-div-margin{
+  margin-right: 0 !important;
 }
 
 .new-recmd-img img {
-  width: 208px;
-  height: 230px;
+  width: 220px;
+  height: 220px;
 }
 .recmd-price{
   margin: 10px 0;
@@ -529,16 +525,16 @@ h3{
   float: right;
 }
 .purched-div{
-  width: 390px;
+  width: 393px;
   border: 1px solid #f2f2f2;
   border-radius: 5px;
-  margin-right: 15px;
+  margin-right: 10px;
   float: left;
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: white;
 }
 .main-purchased{
-  width: 1220px;
+  width: 1200px;
 }
 .purchased-left{
   float: left;
@@ -551,32 +547,45 @@ h3{
   width: auto;
 }
 .purchased-right{
-  padding: 20px 0 20px 10px ;
+  padding: 10px 0 10px 10px ;
 }
 .purchased-right-l{
   float: left;
+  width: 127px;
 }
 .purchased-right-l p {
   margin-bottom: 6px;
+  overflow: hidden;
+  width: 127px;
+  height: 20px;
 }
 .purchased-right-r{
   float: left;
   margin-left: 20px;
-  padding-top: 16px;
+  padding-top: 5px;
+}
+.purchased-left-top a {
+  font-size: 14px;
 }
 .purchased-right-r p{
   margin-top: 6px;
 }
 .purchased-left-top{
   height: 70px;
-  padding-top: 10px;
+  padding-top: 11px;
 }
-.purchased-left-botm{
-  height: 50px;
-  margin-top: 8px;
+.purchased-right-r-div{
   margin-bottom: 14px;
 }
-.purchased-right p a{
+.purchased-left-top a {
+  overflow: hidden;
+}
+.purchased-left-botm{
+  height: 44px;
+  padding-top: 18px;
+  margin-bottom: 10px;
+}
+.purchased-right div a{
   display: inline-block;
   vertical-align: middle;
   color: white;
@@ -638,14 +647,14 @@ h3{
 }
 .search-submit a {
   width: 80px;
+
   display: block;
   background: #1686cc;
-  line-height: 39px;
+  line-height: 38px;
   text-align: center;
   color: #fff;
 }
 .notice {
-  border: 1px solid #e1e1e1;
   overflow: hidden;
   margin-top: 0;
 }
@@ -667,22 +676,13 @@ h3{
   display: inline-block;
   background: url(../image/sanjiaohao.png) 3px center no-repeat;
   margin-bottom: 2px;
-  -webkit-transition: -webkit-transform .1s ease-in 0s;
-  transition: transform .1s ease-in 0s;
 }
-.top-link-right-ul li a:hover > i {
-  width: 10px;
-  height: 5px;
-  display: inline-block;
-  background: url(../image/sanjiaohao.png) 0 center no-repeat;
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
-}
+
 #search div.search-tab span i{
   width: 14px;
   height: 18px;
   display: inline-block;
-  /*background: url(../image/down-kuohao.png) 3px center no-repeat;*/
+  background: url(../image/down-kuohao.png) 3px center no-repeat;
   -webkit-transition: -webkit-transform .1s ease-in 0s;
   transition: transform .1s ease-in 0s;
 }
@@ -690,7 +690,7 @@ h3{
   width: 14px;
   height: 18px;
   display: inline-block;
-  /*background: url(../image/down-kuohao.png) 0 center no-repeat;*/
+  background: url(../image/down-kuohao.png) 0 center no-repeat;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
@@ -708,4 +708,75 @@ h3{
 }
 .owl-lf ul li .owl-drop{
   left: 258px;
+}
+.top-link-right-ul li ul li:hover{
+  background-color: #1686cc;
+}
+.top-link-right-ul li ul li p{
+  color: black;
+}
+.top-link-right-ul li ul li {
+  margin-left: 16px;
+}
+.owl-head-img{
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.owl-head-img img{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+.owl-head-word{
+  float: left;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.notice_top {
+  width: 200px;
+  margin: 0 auto;
+}
+.notice_top a:hover{
+  border-bottom-color: #1686cc!important;
+}
+
+.notice_conten{
+  width: 200px;
+  border-bottom: 1px solid #f2f2f2;
+  border-bottom-style: dashed;
+  margin: 0 auto;
+}
+.notice .notice_conten {
+  padding: 0px 0 0 0px;
+}
+.owl-hot-recmmend {
+  float: left;
+  text-align: center;
+  width: 50%;
+}
+.owl-hot-recmmend img{
+  width: 66px;
+  height: 66px;
+
+}
+.notice .notice_conten li {
+  border: 0;
+  line-height: 24px;
+  height: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.owl-hot-recmmend div a span{
+  font-size: 16px;
+}
+.owl-hot-recmmend div a{
+  color: #1686cc;
+}
+.nav-btn span.active {
+  background: #333;
+}
+.nav-btn span{
+  background-color: rgba(112, 102, 102, 0.5);
 }

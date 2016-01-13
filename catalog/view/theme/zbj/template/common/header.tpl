@@ -65,7 +65,7 @@
 <?php } ?>
 <?php echo $google_analytics; ?>
 </head>
-<body class="<?php echo $class; ?>">
+<body>
 <!-- 原来的 start -->
 <nav id="top" style="margin: auto;display:none;">
   <div class="container" style="padding: 0;">
