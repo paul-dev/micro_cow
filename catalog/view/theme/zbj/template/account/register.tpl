@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<div class="container">
+<div class="container" style="height: 494px">
   <?php if ($error_warning) { ?>
   <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?></div>
   <?php } ?>
