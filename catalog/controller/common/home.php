@@ -20,7 +20,12 @@ class ControllerCommonHome extends Controller {
 		//今日推荐 ---------------------------------------------------------------------------------------------------------------------------------------------------- start
 		$this->load->model('catalog/product');
 		$limit = 15;
-		$RecommendProducts = $this->model_catalog_product->getPopularProducts($limit);
+
+		if($this->config->get('config_store_id') == 0){
+			$RecommendProducts = $this->model_catalog_product->getPopularProducts($limit);
+		}else{
+			$RecommendProducts = $this->model_catalog_product->getRecommendProducts($limit);
+		}
 
 		foreach($RecommendProducts as $key=>$val){
 			$RecommendProducts[$key]['url'] = $this->url->link("product/product", 'product_id=' . $RecommendProducts[$key]['product_id']);
@@ -29,14 +34,19 @@ class ControllerCommonHome extends Controller {
 
 		//今日推荐 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
 
-
 		//求购	 ----------------------------------------------------------------------------------------------------------------------------------------------------  start
 		$this->load->model('catalog/purchase');
 		$paging_parameters = array(
 				'start' => 0,
 				'limit' => 15
 		);
-		$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchases_Total($paging_parameters);
+
+		if($this->config->get('config_store_id') == 0){
+			$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchases_Total($paging_parameters);
+		}else{
+			$data['purchaseProduct'] = $this->model_catalog_purchase->getRecommendPurchases_Total($paging_parameters);
+		}
+
 		foreach($data['purchaseProduct'] as $key=>$val){
 			$data['purchaseProduct'][$key]['url'] = $this->url->link('purchase/detail', 'purchase_id='.$val['purchase_id'], 'SSL');
 			$data['purchaseProduct'][$key]['date_available'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_available']))." 23:59:59";
@@ -45,21 +55,28 @@ class ControllerCommonHome extends Controller {
 			$data['purchaseProduct'][$key]['date_remaining'] = floor((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000);
 			if($data['purchaseProduct'][$key]['date_remaining']==0){
 				$data['purchaseProduct'][$key]['date_remaining'] = round((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000,1);
+			}elseif($data['purchaseProduct'][$key]['date_remaining']<0){
+				$data['purchaseProduct'][$key]['date_remaining'] = '已截止';
 			}
 			//每条求购 产品总条数
 			$data['purchaseProduct'][$key]['product_amount'] = $this->model_catalog_purchase->getTotalPurchaseProduct($data['purchaseProduct'][$key]['purchase_id']);
 		}
-/*		echo "<pre>";print_r($data['purchaseProduct']);echo "</pre>";exit;*/
 
 		//求购	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
 
-		//最新采购动态	 ----------------------------------------------------------------------------------------------------------------------------------------------------  start
+		//名企采购动态	 ----------------------------------------------------------------------------------------------------------------------------------------------------  start
 		$this->load->model('catalog/purchase');
 		$paging_parameters = array(
 				'start' => 0,
 				'limit' => 10
 		);
-		$data['purchaseState'] = $this->model_catalog_purchase->getPurchases_Total($paging_parameters);
+
+		if($this->config->get('config_store_id') == 0){
+			$data['purchaseState'] = $this->model_catalog_purchase->getPurchases_Total($paging_parameters);
+		}else{
+			$data['purchaseState'] = $this->model_catalog_purchase->getLatestPurchases_Total($paging_parameters);
+		}
+
 		foreach($data['purchaseState'] as $key=>$val){
 			$data['purchaseState'][$key]['url'] = $this->url->link('purchase/detail', 'purchase_id='.$val['purchase_id'], 'SSL');
 			$data['purchaseState'][$key]['date_available'] = date('Y-m-d',strtotime($data['purchaseState'][$key]['date_available']))." 23:59:59";
@@ -73,9 +90,8 @@ class ControllerCommonHome extends Controller {
 			$data['purchaseState'][$key]['product_amount'] = $this->model_catalog_purchase->getTotalPurchaseProduct($data['purchaseState'][$key]['purchase_id']);
 		}
 		$data['purchaseLink'] = $this->url->link('purchase/list');
-		/*echo "<pre>";print_r($data['purchaseState']);echo "</pre>";exit;*/
 
-		//最新采购动态	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
+		//名企采购动态	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
 
 
 //图文 商品分类 start

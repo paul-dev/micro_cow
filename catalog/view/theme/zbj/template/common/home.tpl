@@ -53,7 +53,7 @@
       </div>
       <div class="main-purchased clearfix">
         <div class="product-list-h3">
-          <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/purchased-head.png"> 求购</span>
+          <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/purchased-head.png"> 最新求购</span>
         </div>
 
         <?php if(count($purchaseProduct)>0){ ?>
@@ -94,7 +94,7 @@
       </div>
       <div class="dynamic-purchase">
         <div>
-          <h3 style="font-size: 22px">最新采购动态</h3>
+          <h3 style="font-size: 22px">名企采购动态</h3>
         </div>
         <div class="new-state">
           <table>

@@ -47,6 +47,7 @@ $_['entry_isbn']             = 'ISBN';
 $_['entry_mpn']              = 'MPN';
 $_['entry_location']         = '生产地';
 $_['entry_shipping']         = '需要配送';
+$_['entry_recommend']         = '首页推荐';
 $_['entry_manufacturer']     = '制造商/品牌';
 $_['entry_store']            = '商店';
 $_['entry_date_available']   = '上架日期';

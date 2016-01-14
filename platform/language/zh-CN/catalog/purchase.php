@@ -87,6 +87,9 @@ $_['entry_tag']          	 = '求购标签';
 $_['entry_reward']           = '奖励积分';
 $_['entry_layout']           = '布局覆盖';
 $_['entry_recurring']        = '分期付款';
+$_['text_no']               = '否';
+$_['text_yes']              = '是';
+$_['entry_indexlatest']       = '首页推荐';
 
 // Help
 $_['help_keyword']           = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';

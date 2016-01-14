@@ -181,7 +181,55 @@
                     </div>
                 </div>
 
-              <div class="form-group">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">首页推荐</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <?php if ($status) { ?>
+                            <input type="radio" name="recommend" value="1" checked="checked" />
+                            <?php echo $text_yes; ?>
+                            <?php } else { ?>
+                            <input type="radio" name="recommend" value="1" />
+                            <?php echo $text_yes; ?>
+                            <?php } ?>
+                        </label>
+                        <label class="radio-inline">
+                            <?php if (!$status) { ?>
+                            <input type="radio" name="recommend" value="0" checked="checked" />
+                            <?php echo $text_no; ?>
+                            <?php } else { ?>
+                            <input type="radio" name="recommend" value="0" />
+                            <?php echo $text_no; ?>
+                            <?php } ?>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">名企采购</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <?php if ($status) { ?>
+                            <input type="radio" name="latest" value="1" checked="checked" />
+                            <?php echo $text_yes; ?>
+                            <?php } else { ?>
+                            <input type="radio" name="latest" value="1" />
+                            <?php echo $text_yes; ?>
+                            <?php } ?>
+                        </label>
+                        <label class="radio-inline">
+                            <?php if (!$status) { ?>
+                            <input type="radio" name="latest" value="0" checked="checked" />
+                            <?php echo $text_no; ?>
+                            <?php } else { ?>
+                            <input type="radio" name="latest" value="0" />
+                            <?php echo $text_no; ?>
+                            <?php } ?>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>
                 <div class="col-sm-10">
                   <select name="status" id="input-status" class="form-control">
@@ -195,6 +243,7 @@
                   </select>
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-sort-order"><?php echo $entry_sort_order; ?></label>
                 <div class="col-sm-10">

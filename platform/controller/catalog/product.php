@@ -621,6 +621,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['entry_location'] = $this->language->get('entry_location');
 		$data['entry_minimum'] = $this->language->get('entry_minimum');
 		$data['entry_shipping'] = $this->language->get('entry_shipping');
+		$data['entry_recommend'] = $this->language->get('entry_recommend');
 		$data['entry_date_available'] = $this->language->get('entry_date_available');
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_stock_status'] = $this->language->get('entry_stock_status');

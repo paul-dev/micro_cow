@@ -14,6 +14,25 @@ class ModelCatalogPurchase extends Model {
         $data['purchase_store'] = array(
             '0'
         );
+
+		if (isset($data['recommend'])) {
+			$query = $this->db->query("SELECT purchase_id FROM " . DB_PREFIX . "purchase_to_recommend WHERE purchase_id = ". (int)$purchase_id);
+			if($query->row){
+				$this->db->query("UPDATE " . DB_PREFIX . "purchase_to_recommend SET purchase_id = ". (int)$purchase_id . ", store_id = ".(int)$this->config->get('config_store_id').", status = ".$data['recommend'] . " WHERE purchase_id = ". (int)$purchase_id);
+			}else{
+				$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_to_recommend SET purchase_id = ". (int)$purchase_id . ", store_id = ".(int)$this->config->get('config_store_id').", status = ".$data['recommend']);
+			}
+		}
+
+		if (isset($data['latest'])) {
+			$query = $this->db->query("SELECT purchase_id FROM " . DB_PREFIX . "purchase_to_latest WHERE purchase_id = ". (int)$purchase_id);
+			if($query->row){
+				$this->db->query("UPDATE " . DB_PREFIX . "purchase_to_latest SET purchase_id = ". (int)$purchase_id . ", store_id = ".(int)$this->config->get('config_store_id').", status = ".$data['recommend'] . " WHERE purchase_id = ". (int)$purchase_id);
+			}else{
+				$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_to_latest SET purchase_id = ". (int)$purchase_id . ", store_id = ".(int)$this->config->get('config_store_id').", status = ".$data['recommend']);
+			}
+		}
+
         if ($this->config->get('config_store_id')) $data['purchase_store'][] = $this->config->get('config_store_id');
         if (isset($data['purchase_store'])) {
 			foreach ($data['purchase_store'] as $store_id) {
@@ -86,7 +105,25 @@ class ModelCatalogPurchase extends Model {
 
         $product_live = array();
 
-        if (isset($data['purchase_product'])) {
+		if (isset($data['recommend'])) {
+			$query = $this->db->query("SELECT purchase_id FROM " . DB_PREFIX . "purchase_to_recommend WHERE purchase_id = ". (int)$purchase_id);
+			if($query->row){
+				$this->db->query("UPDATE " . DB_PREFIX . "purchase_to_recommend SET purchase_id = ". (int)$purchase_id . ", store_id = ".(int)$this->config->get('config_store_id').", status = ".$data['recommend'] . " WHERE purchase_id = ". (int)$purchase_id);
+			}else{
+				$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_to_recommend SET purchase_id = ". (int)$purchase_id . ", store_id = ".(int)$this->config->get('config_store_id').", status = ".$data['recommend']);
+			}
+		}
+
+		if (isset($data['latest'])) {
+			$query = $this->db->query("SELECT purchase_id FROM " . DB_PREFIX . "purchase_to_latest WHERE purchase_id = ". (int)$purchase_id);
+			if($query->row){
+				$this->db->query("UPDATE " . DB_PREFIX . "purchase_to_latest SET purchase_id = ". (int)$purchase_id . ", store_id = ".(int)$this->config->get('config_store_id').", status = ".$data['recommend'] . " WHERE purchase_id = ". (int)$purchase_id);
+			}else{
+				$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_to_latest SET purchase_id = ". (int)$purchase_id . ", store_id = ".(int)$this->config->get('config_store_id').", status = ".$data['recommend']);
+			}
+		}
+
+		if (isset($data['purchase_product'])) {
             foreach ($data['purchase_product'] as $product) {
                 if ($product['product_amount']) {
                     if (isset($product['purchase_product_id']) && (int)$product['purchase_product_id'] > 0) {

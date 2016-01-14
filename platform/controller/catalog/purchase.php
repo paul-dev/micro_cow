@@ -427,6 +427,9 @@ class ControllerCatalogPurchase extends Controller {
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
 
+		$data['text_no'] = $this->language->get('text_no');
+		$data['text_yes'] = $this->language->get('text_yes');
+
 		$data['column_image'] = $this->language->get('column_image');
 		$data['column_name'] = $this->language->get('column_name');
 		$data['column_model'] = $this->language->get('column_model');
@@ -440,6 +443,7 @@ class ControllerCatalogPurchase extends Controller {
 		$data['entry_price'] = $this->language->get('entry_price');
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_status'] = $this->language->get('entry_status');
+		$data['entry_indexlatest'] = $this->language->get('entry_indexlatest');
 
 		$data['button_copy'] = $this->language->get('button_copy');
 		$data['button_add'] = $this->language->get('button_add');
@@ -969,9 +973,9 @@ class ControllerCatalogPurchase extends Controller {
 	}
 
 	protected function validateForm() {
-		if (!$this->user->hasPermission('modify', 'catalog/purchase')) {
+		/*if (!$this->user->hasPermission('modify', 'catalog/purchase')) {
 			$this->error['warning'] = $this->language->get('error_permission');
-		}
+		}*/
 
 		/*foreach ($this->request->post['product_description'] as $language_id => $value) {
 			if ((utf8_strlen($value['name']) < 1) || (utf8_strlen($value['name']) > 255)) {
