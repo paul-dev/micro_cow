@@ -80,13 +80,13 @@
 .common-product-list-body{
   width: 1200px;
   margin: 0 auto;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 .list-purchsed-head{
   text-align: center;
 }
 .main-product-list{
-  width: 1200px;
+  width: 1210px;
 }
 .main-product-list-div{
   width: 580px;
@@ -429,12 +429,17 @@ h3{
 .top-link-right-ul li ul li p{
   padding-left: 10px;
 }
+.top-link-right-ul>li>ul>li{
+  line-height: 25px;
+margin: 0 10px;
+}
 .top-link-right-ul li ul{
   position: absolute;
-  top: 32px;
-  display: none;
-  min-width: 192px;
-  padding: 5px 0;
+  left: -10px;
+  top: 25px;
+   display: none;
+  /* min-width: 192px; */
+  /* padding: 5px 0; */
   margin: 2px 0 0;
   font-size: 14px;
   text-align: left;
@@ -442,13 +447,9 @@ h3{
   background-color: #fff;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0,0,0,.15);
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
 
 }
+
 .top-link-right-ul li{
   position: relative;
 }
@@ -469,9 +470,7 @@ h3{
   background-color: white;
   color: white;
 }
-.top-link-right-ul li ul li:hover {
 
-}
 
 
 /*footer end*/
@@ -534,7 +533,7 @@ h3{
   background-color: white;
 }
 .main-purchased{
-  width: 1200px;
+  width: 1210px;
 }
 .purchased-left{
   float: left;
@@ -695,7 +694,7 @@ h3{
   transform: rotate(180deg);
 }
 .nav_list li a {
-  font-size: 16px;
+  font-size: 14px;
 }
 .owl-lf ul li p .red_a{
   font-size: 14px;
@@ -709,15 +708,11 @@ h3{
 .owl-lf ul li .owl-drop{
   left: 258px;
 }
-.top-link-right-ul li ul li:hover{
-  background-color: #1686cc;
-}
+
 .top-link-right-ul li ul li p{
   color: black;
 }
-.top-link-right-ul li ul li {
-  margin-left: 16px;
-}
+
 .owl-head-img{
   float: left;
   margin-left: 20px;
@@ -779,4 +774,35 @@ h3{
 }
 .nav-btn span{
   background-color: rgba(112, 102, 102, 0.5);
+}
+#content{
+  padding-left: 0;
+  padding-right: 0;
+}
+.recmd-name{
+  height: 32px;
+  overflow: hidden;
+  width: 220px;
+}
+#search .cur{
+  padding-bottom: 2px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.search-tab .search-list{
+  border-top-left-radius: 5px;
+}
+.caret-icon {
+  top: 10px;
+  right: 6px;
+}
+.notice .notice_top .on {
+  border-bottom-color: #1686cc;
+}
+.notice_top_a {
+  background-color: white!important;
+  border-right-style: none;
+}
+.top-link-right-ul li ul{
+ background-color: #f5f5f5;
 }

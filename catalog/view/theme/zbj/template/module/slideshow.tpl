@@ -225,8 +225,8 @@
             <?php } ?>
 
         </div>
-        <div class="notice" style="border-top-style: none">
-            <div class="notice_top"><a href="/#" class="br_ri on" style="background-color: white!important;border-right-style: none;border-bottom: 1px solid #f2f2f2">公告</a><a href="/#" style="border-bottom: 1px solid #f2f2f2;background-color:white "><?php echo $text_rules; ?></a></div>
+        <div class="notice" style="border-style: none">
+            <div class="notice_top"><a href="/#" class="br_ri notice_top_a on">公告</a><a href="/#" class="notice_top_a"><?php echo $text_rules; ?></a></div>
             <div class="notice_conten" style="height:120px;">
                 <ul>
                     <?php foreach ($latest_notice as $notice) { ?>

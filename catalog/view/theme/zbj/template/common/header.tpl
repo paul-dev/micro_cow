@@ -155,25 +155,25 @@
         <li style="margin-right: 8px"><a href="#"><img src="catalog/view/theme/zbj/image/weixin.png"></a></li>
         <li>
           <a href="/index.php?route=account/order"><?php echo $text_myorder; ?><i></i></a>
-          <!--<ul>-->
-          <!--<li>-->
-          <!--<p class="text-center">您的购物车没有添加商品！</p>-->
-          <!--</li>-->
-          <!--</ul>-->
+
         </li>
         <li>
           <a href="#"><?php echo $text_call_center; ?><i></i></a>
-          <!--<ul>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--</ul>-->
+          <ul style="width: 70px">
+            <li style="margin-right: 5px"><a href="#">新手入门</a></li>
+            <li style="margin-right: 5px"><a href="#">买家帮助</a></li>
+            <li style="margin-right: 5px"><a href="#">在线咨询</a></li>
+            <li style="margin-right: 5px"><a href="#">联系客服</a></li>
+          </ul>
         </li>
         <li>
           <a href="#"><?php echo $text_favorite; ?><i></i></a>
-          <!--<ul>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--</ul>-->
+          <ul style="width: 102px">
+            <li style="margin-right: 5px"><a href="#">收藏的货品</a></li>
+            <li style="margin-right: 5px"><a href="#">收藏的供应商品</a></li>
+            <li style="margin-right: 5px"><a href="#">收藏的服务</a></li>
+            <li style="margin-right: 5px"><a href="#">交易过的供应商</a></li>
+          </ul>
         </li>
         <li>
           <a href="#"><?php echo $text_purchased_list; ?><i></i></a>
@@ -184,10 +184,12 @@
         </li>
         <li>
           <a href="#"><?php echo $text_power_merchants; ?><i></i></a>
-          <!--<ul>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--</ul>-->
+          <ul style="width: 72px">
+            <li style="margin-right: 5px"><a href="#">商家信息</a></li>
+            <li style="margin-right: 5px"><a href="#">招商标准</a></li>
+            <li style="margin-right: 5px"><a href="#">自费标准</a></li>
+            <li style="margin-right: 5px"><a href="#">推荐有礼</a></li>
+          </ul>
         </li>
         <div style="clear: both"></div>
       </ul>

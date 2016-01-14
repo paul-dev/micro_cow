@@ -17,13 +17,13 @@
 					<li data-type="purchase">求购</li>
 				</ul>
 			</div>
-			<span class="caret-icon"><i class="fa fa-caret-up"></i></span>
+			<span class="caret-icon"><i class=""></i></span>
 		</div>
 		<div class="search-input">
 			<input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_search; ?>">
 		</div>
 		<div class="search-submit">
-			<a href="javascript:void(0)"><i class="fa fa-search">搜索</i></a>
+			<a href="javascript:void(0)"><i class="">搜索</i></a>
 		</div>
 	</div>
 </form>
