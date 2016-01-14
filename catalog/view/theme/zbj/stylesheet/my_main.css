@@ -648,10 +648,13 @@ margin: 0 10px;
   width: 80px;
 
   display: block;
-  background: #1686cc;
+  background: #1997e5;
   line-height: 38px;
   text-align: center;
   color: #fff;
+}
+#search{
+  border: 1px solid #1997e5;
 }
 .notice {
   overflow: hidden;
@@ -797,7 +800,8 @@ margin: 0 10px;
   right: 6px;
 }
 .notice .notice_top .on {
-  border-bottom-color: #1686cc;
+  border-bottom-color: #1997e5;
+  color: #1997e5;
 }
 .notice_top_a {
   background-color: white!important;

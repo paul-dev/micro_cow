@@ -205,11 +205,11 @@
 
             </div>
             <div class="owl-head-word">
-                <p><?php echo $text_welcome; ?></p>
+                <p style="font-size: 14px"><?php echo $text_welcome; ?></p>
                 <?php if(isset($customer_info)){ ?>
-                    <p><?php echo $customer_info['fullname']; ?></p>
+                    <p style="font-size: 14px"><?php echo $customer_info['fullname']; ?></p>
                 <?php }else{ ?>
-                    <p><?php echo $text_tourist; ?></p>
+                    <p style="font-size: 14px"><?php echo $text_tourist; ?></p>
                 <?php } ?>
 
             </div>
@@ -220,8 +220,8 @@
                 <li><a href="/index.php?route=account/edit" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;"><?php echo $text_myinfo; ?></a></li>
                 <li><a href="/index.php?route=account/logout" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;"><?php echo $text_safelogout; ?></a></li>
             <?php }else{ ?>
-            <li><a href="/index.php?route=account/register" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;"><?php echo $text_free_registration; ?></a></li>
-            <li><a href="/index.php?route=account/login" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;"><?php echo $text_loginplease; ?></a></li>
+            <li><a href="/index.php?route=account/register" style="margin: 10px auto;line-height: 30px;display: block;width: 166px; height: 30px;text-align: center;font-size: 14px; background-color: #1997e5; border-radius: 5px; color: white;"><?php echo $text_free_registration; ?></a></li>
+            <li><a href="/index.php?route=account/login" style="margin: 10px auto;line-height: 30px;display: block;width: 166px; height: 30px;text-align: center;font-size: 14px; background-color: #1997e5; border-radius: 5px; color: white;"><?php echo $text_loginplease; ?></a></li>
             <?php } ?>
 
         </div>
