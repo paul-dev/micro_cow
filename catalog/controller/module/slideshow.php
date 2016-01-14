@@ -21,6 +21,7 @@ class ControllerModuleSlideshow extends Controller {
 		$this->document->addScript('catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js');
 
 		$data['banners'] = array();
+        //传递的 banner_id 目前一样 需要不一样
 
         $results = $this->model_design_banner->getBanner($setting['banner_id']);
 
