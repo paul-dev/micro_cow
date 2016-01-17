@@ -215,6 +215,7 @@ class ControllerSettingStore extends Controller {
 		$data['entry_ssl'] = $this->language->get('entry_ssl');
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_owner'] = $this->language->get('entry_owner');
+		$data['entry_license'] = $this->language->get('entry_license');
 		$data['entry_address'] = $this->language->get('entry_address');
 		$data['entry_geocode'] = $this->language->get('entry_geocode');
 		$data['entry_email'] = $this->language->get('entry_email');
@@ -604,6 +605,14 @@ class ControllerSettingStore extends Controller {
 			$data['config_name'] = $store_info['config_name'];
 		} else {
 			$data['config_name'] = '';
+		}
+
+		if (isset($this->request->post['config_license_name'])) {
+			$data['config_license_name'] = $this->request->post['config_license_name'];
+		} elseif (isset($store_info['config_license_name'])) {
+			$data['config_license_name'] = $store_info['config_license_name'];
+		} else {
+			$data['config_license_name'] = '';
 		}
 
 		if (isset($this->request->post['config_owner'])) {
@@ -1366,6 +1375,10 @@ class ControllerSettingStore extends Controller {
         }*/
 
 		if (!$this->request->post['config_name']) {
+			$this->error['name'] = $this->language->get('error_name');
+		}
+
+		if (!$this->request->post['config_license_name']) {
 			$this->error['name'] = $this->language->get('error_name');
 		}
 

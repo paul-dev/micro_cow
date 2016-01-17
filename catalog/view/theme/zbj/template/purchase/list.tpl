@@ -26,13 +26,12 @@
 
           <div class="sw-mod-filter sw-layout-mod" id="sw_mod_filter" trace="filtbar">
 
-            <form id="buyer-quick-filter" class="fd-clr" method="get" action="http://s.1688.com/newbuyoffer/buyoffer_search.html">
+            <form id="buyer-quick-filter" class="fd-clr" method="get" action="<?php echo $purchase_list_url;?>">
               <div class="filter-bottom-wrap">
                 <div id="filter_bottom" class="filter-bottom">
                   <ul id="filter-bar" class="Bar">
                     <li id="purchase-type-widget" class="sw-ui-select sm-filter-showHideItems buyoffer" ctype="buyType" style="display: none">
                       <span class="Selected" title="所有信息类型">所有信息类型</span>
-
 
                       <ul class="Select-item" id="sm-filter-purchaseType" style="display: none;">
                         <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="现货/标准品询价" title="现货/标准品">现货/标准品询价</a></li>
@@ -42,8 +41,6 @@
                         </li>
                         <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="所有信息类型" title="所有信息类型">所有信息类型</a></li>
                       </ul>
-
-
 
                     </li>
                     <li id="purchase-type-bid" class="sw-ui-select sm-filter-showHideItems priceinfo" ctype="purchasePrice" style="display: none">
@@ -70,8 +67,6 @@
 
                     </li>
                     <li class="sw-ui-select Area " id="sw_mod_filter_area" currentprovince="" default="" industrydistricts=""><span class="Selected">所有地区</span>
-
-
 
                       <div class="sw-ui-area-box" style="display: none;">
                         <div class="sw-ui-area-bg"></div>
@@ -625,15 +620,19 @@
                     </li>
                     <li class="price-order noleftspliteline" ctype="postSort">
                       <label>信息发布时间</label>
-                      <a cvalue="desc" class="price-desc sm-filter-type sm-filter-order" title="点击按信息发布时间从近到远排序" href="#" id="filter_postsortdesc"></a>
+                      <?php if(isset($date_added)){ ?>
+                      <a cvalue="desc" class="price-desc sm-filter-type sm-filter-order" title="点击按信息发布时间从近到远排序" href="<?php echo $date_added['desc']; ?>" id="filter_postsortdesc"></a>
                       <span class="filt-splitLine"></span>
-                      <a cvalue="asc" class="price-asc sm-filter-type sm-filter-order" descendorder="false" val="postTime" title="点击按信息发布时间从远到近排序" href="#" id="filter_postsortasc"></a>
+                      <a cvalue="asc" class="price-asc sm-filter-type sm-filter-order" descendorder="false" val="postTime" title="点击按信息发布时间从远到近排序" href="<?php echo $date_added['asc']; ?>" id="filter_postsortasc"></a>
+                      <?php } ?>
                     </li>
                     <li class="price-order" ctype="expireSort">
                       <label>信息截止时间</label>
-                      <a cvalue="desc" class="price-desc sm-filter-order sm-filter-type" href="#" title="点击按报价截止时间从近到远排序" id="filter_expiresortdesc"></a>
+                      <?php if(isset($date_available)){ ?>
+                      <a cvalue="desc" class="price-desc sm-filter-order sm-filter-type" href="<?php echo $date_available['desc']; ?>" title="点击按报价截止时间从近到远排序" id="filter_expiresortdesc"></a>
                       <span class="filt-splitLine"></span>
-                      <a cvalue="asc" class="price-asc sm-filter-order sm-filter-type" href="#" title="点击按报价截止时间从远到近排序" id="filter_expiresortasc"></a>
+                      <a cvalue="asc" class="price-asc sm-filter-order sm-filter-type" href="<?php echo $date_available['asc']; ?>" title="点击按报价截止时间从远到近排序" id="filter_expiresortasc"></a>
+                      <?php } ?>
                     </li>
                   </ul>
                 </div>
@@ -693,7 +692,6 @@
 
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;">所在地：<?php echo $purchase_product['country_name']; ?> <?php echo $purchase_product['zone_name']; ?></a></p>
 
-
                 </div>
 
                 <div class="purehed-div-3">
@@ -726,12 +724,18 @@
         <!--侧栏-->
         <div class="purched-body-ad" style="top: 20px;">
 
-          <div class="purched-ad-one">
-            <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/rili.png">
-            <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/caigou.png">
+          <div class="purched-ad-one" style='text-align:center;border: 0px solid green;padding-right:30px;'>
+            <div style="border: 0px solid red;margin:5px auto;background-image: url('catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/rili.png');background-repeat:repeat-y;width:57px;height:54px;float: left;">
+            <p style="height:26px;color:white;font-family:'Microsoft Yahei';font-weight:bold;font-size:15px;"><?php echo date('Y',time()); ?></p>
+            <p style="height:26px;font-family:'Microsoft Yahei';font-weight:bold;font-size:15px;"><?php echo date('m',time()); ?>/<?php echo date('d',time()); ?></p>
+            </div>
+            <div style="border:0px solid red;float:right;margin-left:5px;margin:8px auto;">
+              <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/caigou.png">
+            </div>
+            <div style="clear:both;"></div>
           </div>
           <div  class="purched-ad-one">
-            <p><?php echo $text_nearly30_purchase_num; ?><span class="purched-font-red">111</span></p>
+            <p><?php echo $text_nearly30_purchase_num; ?><span class="purched-font-red">11</span></p>
             <p><?php echo $text_nearly30_active_suppliers; ?><span class="purched-font-red">222</span></p>
           </div>
           <div>

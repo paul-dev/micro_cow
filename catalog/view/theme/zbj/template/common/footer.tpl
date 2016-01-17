@@ -560,8 +560,9 @@ function activeLiveChat(obj) {
                 </div>
                 <div style="clear: both"></div>
                 <div class="footer-copyright">
-                    <p class="p-first">增值电信业务经营许可证：浙B2-20000120 &nbsp;&nbsp;&nbsp;互联网药品信息服务资格证书：(浙)-经营性-2012-0009 &nbsp;&nbsp;&nbsp; 信息网络传播视听节目许可证：1109366</p>
-                    <p>@2010-2015 &nbsp;1688.com版权所有&nbsp;&nbsp;互联网违法和不良信息举报中心:0571-81683755 &nbsp;blxx@list.alibaba-inc.com</p>
+                    <p class="p-first">
+                        <?php echo htmlspecialchars_decode($config_license_name); ?>
+                    </p>
                 </div>
                 <div class="footer-img-group">
                     <img src="catalog/view/theme/zbj/image/meizhaung.png">
