@@ -243,7 +243,7 @@
                 <label class="col-sm-2 control-label"><?php echo $entry_recommend; ?></label>
                 <div class="col-sm-10">
                   <label class="radio-inline">
-                    <?php if ($shipping) { ?>
+                    <?php if ($recommend) { ?>
                     <input type="radio" name="recommend" value="1" checked="checked" />
                     <?php echo $text_yes; ?>
                     <?php } else { ?>
@@ -252,7 +252,7 @@
                     <?php } ?>
                   </label>
                   <label class="radio-inline">
-                    <?php if (!$shipping) { ?>
+                    <?php if (!$recommend) { ?>
                     <input type="radio" name="recommend" value="0" checked="checked" />
                     <?php echo $text_no; ?>
                     <?php } else { ?>

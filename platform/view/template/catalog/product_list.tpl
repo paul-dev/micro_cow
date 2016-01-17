@@ -69,6 +69,27 @@
                   <?php } ?>
                 </select>
               </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="control-label" for="input-recommend"><?php echo $entry_index_status; ?></label>
+                <select name="recommend" id="input-recommend" class="form-control">
+                  <option value="*"></option>
+
+                  <?php if ($recommend) { ?>
+                  <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                  <?php } else { ?>
+                  <option value="1"><?php echo $text_yes; ?></option>
+                  <?php } ?>
+
+                  <?php if (!$recommend && !is_null($recommend)) { ?>
+                  <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                  <?php } else { ?>
+                  <option value="0"><?php echo $text_no; ?></option>
+                  <?php } ?>
+
+                </select>
+              </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
             </div>
           </div>
@@ -190,6 +211,12 @@ $('#button-filter').on('click', function() {
 	if (filter_status != '*') {
 		url += '&filter_status=' + encodeURIComponent(filter_status);
 	}
+
+    var recommend = $('select[name=\'recommend\']').val();
+
+    if (recommend != '*') {
+      url += '&recommend=' + encodeURIComponent(recommend);
+    }
 
 	location = url;
 });

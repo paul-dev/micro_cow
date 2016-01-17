@@ -27,9 +27,13 @@ class ControllerCommonHome extends Controller {
 			$RecommendProducts = $this->model_catalog_product->getRecommendProducts($limit);
 		}
 
+		$this->load->model('tool/image');
+
 		foreach($RecommendProducts as $key=>$val){
 			$RecommendProducts[$key]['url'] = $this->url->link("product/product", 'product_id=' . $RecommendProducts[$key]['product_id']);
+			$RecommendProducts[$key]['image'] = $this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):'catalog/view/theme/zbj/image/zbj_default_pic.png';
 		}
+
 		$data['RecommendProducts'] = $RecommendProducts;
 
 		//今日推荐 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
@@ -126,7 +130,7 @@ class ControllerCommonHome extends Controller {
 			$data['category_tree'][] = array(
 					'name'     => $category['name'],
 					'category_id'     => $category['category_id'],
-					'category_image'     => '/image/'.$category['image'],
+					'category_image'     => $this->model_tool_image->resize($category['image'], 300, 250)?$this->model_tool_image->resize($category['image'], 300, 250):'catalog/view/theme/zbj/image/zbj_default_pic.png',
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
 					'href'     => $href,

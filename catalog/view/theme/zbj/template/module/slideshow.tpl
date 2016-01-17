@@ -248,9 +248,9 @@
             <?php if(isset($special_products)){ ?>
                 <?php foreach($special_products as $special_products){ ?>
                     <div class="owl-hot-recmmend">
-                        <a href="<?php echo $special_products['url']; ?>"><img src="<?php echo $special_products['image']; ?>"></a>
+                        <a href="<?php echo $special_products['url']; ?>" title="<?php echo $special_products['name']; ?>"><img src="<?php echo $special_products['image']; ?>"></a>
                         <div>
-                            <a style="width:83px;height:32px;display: inline-block;overflow:hidden;" href="<?php echo $special_products['url']; ?>" title="<?php echo $special_products['name']; ?>"><?php echo $special_products['name']; ?></a>
+                            <a style="width:83px;height:20px;display: inline-block;overflow:hidden;" href="<?php echo $special_products['url']; ?>" title="<?php echo $special_products['name']; ?>"><?php echo $special_products['name']; ?></a>
                         </div>
                     </div>
                 <?php } ?>

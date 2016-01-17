@@ -185,7 +185,7 @@
                     <label class="col-sm-2 control-label">首页推荐</label>
                     <div class="col-sm-10">
                         <label class="radio-inline">
-                            <?php if ($status) { ?>
+                            <?php if ($recommend) { ?>
                             <input type="radio" name="recommend" value="1" checked="checked" />
                             <?php echo $text_yes; ?>
                             <?php } else { ?>
@@ -194,7 +194,7 @@
                             <?php } ?>
                         </label>
                         <label class="radio-inline">
-                            <?php if (!$status) { ?>
+                            <?php if (!$recommend) { ?>
                             <input type="radio" name="recommend" value="0" checked="checked" />
                             <?php echo $text_no; ?>
                             <?php } else { ?>
@@ -209,7 +209,7 @@
                     <label class="col-sm-2 control-label">名企采购</label>
                     <div class="col-sm-10">
                         <label class="radio-inline">
-                            <?php if ($status) { ?>
+                            <?php if ($latest) { ?>
                             <input type="radio" name="latest" value="1" checked="checked" />
                             <?php echo $text_yes; ?>
                             <?php } else { ?>
@@ -218,7 +218,7 @@
                             <?php } ?>
                         </label>
                         <label class="radio-inline">
-                            <?php if (!$status) { ?>
+                            <?php if (!$latest) { ?>
                             <input type="radio" name="latest" value="0" checked="checked" />
                             <?php echo $text_no; ?>
                             <?php } else { ?>

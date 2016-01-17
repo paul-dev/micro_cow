@@ -19,6 +19,7 @@
       <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
       <li><a href="<?php echo $review; ?>"><?php echo $text_review; ?></a></li>
       <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
+      <li><a href="<?php echo $banner_link_management_links; ?>"><?php echo $text_banner; ?></a></li>
     </ul>
   </li>
 

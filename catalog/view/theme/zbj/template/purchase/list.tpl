@@ -16,7 +16,7 @@
             <div  class="suoshuhangye-one">
               <?php echo $text_industry_involved;?>
             </div>
-            <ul>
+            <ul style='display:none'>
               <li class="suoshuhangye-li"><a href="#">手机显示屏</a></li>
               <li class="suoshuhangye-li"><a href="#">iPad保护套</a></li>
               <li class="suoshuhangye-li"><a href="#">平板电脑</a></li>
@@ -30,7 +30,7 @@
               <div class="filter-bottom-wrap">
                 <div id="filter_bottom" class="filter-bottom">
                   <ul id="filter-bar" class="Bar">
-                    <li id="purchase-type-widget" class="sw-ui-select sm-filter-showHideItems buyoffer" ctype="buyType">
+                    <li id="purchase-type-widget" class="sw-ui-select sm-filter-showHideItems buyoffer" ctype="buyType" style="display: none">
                       <span class="Selected" title="所有信息类型">所有信息类型</span>
 
 
@@ -46,7 +46,7 @@
 
 
                     </li>
-                    <li id="purchase-type-bid" class="sw-ui-select sm-filter-showHideItems priceinfo" ctype="purchasePrice">
+                    <li id="purchase-type-bid" class="sw-ui-select sm-filter-showHideItems priceinfo" ctype="purchasePrice" style="display: none">
                       <span class="Selected" title="所有报价/报名">所有报价/报名</span>
                       <ul class="Select-item" id="sm-filter-purchasePrice" style="display: none;">
                         <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="有报价/报名" title="有报价/报名" >有报价/报名</a></li>
@@ -54,7 +54,7 @@
                         <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="所有报价/报名" title="所有报价/报名">所有报价/报名</a></li>
                       </ul>
                     </li>
-                    <li id="member-type-widget" class="sw-ui-select sm-filter-showHideItems membership" ctype="membership">
+                    <li id="member-type-widget" class="sw-ui-select sm-filter-showHideItems membership" ctype="membership" style="display: none">
                       <span class="Selected" title="所有会员">所有会员</span>
 
                       <ul class="Select-item" id="sm-filter-memberType" style="display: none;">
@@ -707,7 +707,7 @@
               <!-- 数据分页 start-->
               <?php if($purchaseProduct){ ?>
               <div style="clear: both"></div>
-              <div>
+              <div style='margin-bottom:30px;'>
                   <div style="float:left;">
                       <?php echo $pagination; ?>
                   </div>

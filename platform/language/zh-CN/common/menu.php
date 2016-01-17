@@ -25,6 +25,7 @@ $_['text_feed']                        = '输出共享';
 $_['text_filter']                      = '筛选';
 $_['text_geo_zone']                    = '区域群组';
 $_['text_information']                 = '文章管理';
+$_['text_banner']                 = 'Banner管理';
 $_['text_installer']                   = '安装扩展功能';
 $_['text_language']                    = '语言设置';
 $_['text_layout']                      = '布局';

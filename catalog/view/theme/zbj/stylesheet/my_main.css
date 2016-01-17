@@ -388,13 +388,15 @@ h3{
   margin-bottom: 10px;
 }
 .footer-copyright{
-  width: 800px;
+  /*width: 800px;*/
   margin: 0 auto;
+  text-align: center;
 }
 .footer-img-group{
-  width: 690px;
+  /*width: 690px;*/
   margin: 0 auto;
   margin-top: 10px;
+  text-align: center;
 }
 .footer-img-group img {
   margin-right: 10px;
@@ -485,6 +487,8 @@ margin: 0 10px;
   margin-right: 10px;
   background-color: white;
   margin-top: 10px;
+  height: 374px;
+  overflow: hidden;
 }
 .new-recmd-div-margin{
   margin-right: 0 !important;

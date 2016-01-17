@@ -73,7 +73,7 @@ class ControllerCatalogPurchase extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$_check = $this->model_catalog_purchase->getPurchase($this->request->get['purchase_id']);
-            if ($_check) $this->model_catalog_purchase->editPurchase($this->request->get['purchase_id'], $this->request->post);
+			if ($_check) $this->model_catalog_purchase->editPurchase($this->request->get['purchase_id'], $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -126,8 +126,8 @@ class ControllerCatalogPurchase extends Controller {
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $product_id) {
-                $_check = $this->model_catalog_purchase->getProduct($product_id);
-                if ($_check) $this->model_catalog_purchase->deleteProduct($product_id);
+				$_check = $this->model_catalog_purchase->getProduct($product_id);
+				if ($_check) $this->model_catalog_purchase->deleteProduct($product_id);
 			}
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -172,60 +172,60 @@ class ControllerCatalogPurchase extends Controller {
 		$this->getList();
 	}
 
-    public function disable() {
-        $this->load->language('catalog/purchase');
+	public function disable() {
+		$this->load->language('catalog/purchase');
 
-        $this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('catalog/purchase');
+		$this->load->model('catalog/purchase');
 
-        if (isset($this->request->post['selected']) && $this->validateDelete()) {
-            foreach ($this->request->post['selected'] as $product_id) {
-                $_check = $this->model_catalog_purchase->getProduct($product_id);
-                if ($_check) $this->model_catalog_purchase->disableProduct($product_id);
-            }
+		if (isset($this->request->post['selected']) && $this->validateDelete()) {
+			foreach ($this->request->post['selected'] as $product_id) {
+				$_check = $this->model_catalog_purchase->getProduct($product_id);
+				if ($_check) $this->model_catalog_purchase->disableProduct($product_id);
+			}
 
-            $this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
 
-            $url = '';
+			$url = '';
 
-            if (isset($this->request->get['filter_name'])) {
-                $url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-            }
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
 
-            if (isset($this->request->get['filter_model'])) {
-                $url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
-            }
+			if (isset($this->request->get['filter_model'])) {
+				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
+			}
 
-            if (isset($this->request->get['filter_price'])) {
-                $url .= '&filter_price=' . $this->request->get['filter_price'];
-            }
+			if (isset($this->request->get['filter_price'])) {
+				$url .= '&filter_price=' . $this->request->get['filter_price'];
+			}
 
-            if (isset($this->request->get['filter_quantity'])) {
-                $url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
-            }
+			if (isset($this->request->get['filter_quantity'])) {
+				$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+			}
 
-            if (isset($this->request->get['filter_status'])) {
-                $url .= '&filter_status=' . $this->request->get['filter_status'];
-            }
+			if (isset($this->request->get['filter_status'])) {
+				$url .= '&filter_status=' . $this->request->get['filter_status'];
+			}
 
-            if (isset($this->request->get['sort'])) {
-                $url .= '&sort=' . $this->request->get['sort'];
-            }
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
 
-            if (isset($this->request->get['order'])) {
-                $url .= '&order=' . $this->request->get['order'];
-            }
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
 
-            if (isset($this->request->get['page'])) {
-                $url .= '&page=' . $this->request->get['page'];
-            }
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
 
-            $this->response->redirect($this->url->link('catalog/purchase', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-        }
+			$this->response->redirect($this->url->link('catalog/purchase', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
 
-        $this->getList();
-    }
+		$this->getList();
+	}
 
 	public function copy() {
 		$this->load->language('catalog/purchase');
@@ -236,8 +236,8 @@ class ControllerCatalogPurchase extends Controller {
 
 		if (isset($this->request->post['selected']) && $this->validateCopy()) {
 			foreach ($this->request->post['selected'] as $product_id) {
-                $_check = $this->model_catalog_purchase->getProduct($product_id);
-                if ($_check) $this->model_catalog_purchase->copyProduct($product_id);
+				$_check = $this->model_catalog_purchase->getProduct($product_id);
+				if ($_check) $this->model_catalog_purchase->copyProduct($product_id);
 			}
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -313,6 +313,18 @@ class ControllerCatalogPurchase extends Controller {
 			$filter_status = null;
 		}
 
+		if (isset($this->request->get['recommend'])) {
+			$recommend = $this->request->get['recommend'];
+		} else {
+			$recommend = '0';
+		}
+
+		if (isset($this->request->get['latest'])) {
+			$latest = $this->request->get['latest'];
+		} else {
+			$latest = '0';
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -353,6 +365,14 @@ class ControllerCatalogPurchase extends Controller {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
 
+		if (isset($this->request->get['recommend'])) {
+			$url .= '&recommend=' . $this->request->get['recommend'];
+		}
+
+		if (isset($this->request->get['latest'])) {
+			$url .= '&latest=' . $this->request->get['latest'];
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -368,32 +388,34 @@ class ControllerCatalogPurchase extends Controller {
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+				'text' => $this->language->get('text_home'),
+				'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
 		);
 
 		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/purchase', 'token=' . $this->session->data['token'] . $url, 'SSL')
+				'text' => $this->language->get('heading_title'),
+				'href' => $this->url->link('catalog/purchase', 'token=' . $this->session->data['token'] . $url, 'SSL')
 		);
 
 		$data['add'] = $this->url->link('catalog/purchase/add', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$data['copy'] = $this->url->link('catalog/purchase/copy', 'token=' . $this->session->data['token'] . $url, 'SSL');
-        $data['delete'] = $this->url->link('catalog/purchase/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
-        $data['disable'] = $this->url->link('catalog/purchase/disable', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['delete'] = $this->url->link('catalog/purchase/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$data['disable'] = $this->url->link('catalog/purchase/disable', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 		$data['purchases'] = array();
 
 		$filter_data = array(
-			'filter_name'	  => $filter_name,
-			'filter_model'	  => $filter_model,
-			'filter_price'	  => $filter_price,
-			'filter_quantity' => $filter_quantity,
-			'filter_status'   => $filter_status,
-			'sort'            => $sort,
-			'order'           => $order,
-			'start'           => ($page - 1) * $this->config->get('config_limit_admin'),
-			'limit'           => $this->config->get('config_limit_admin')
+				'filter_name'	  => $filter_name,
+				'filter_model'	  => $filter_model,
+				'filter_price'	  => $filter_price,
+				'filter_quantity' => $filter_quantity,
+				'filter_status'   => $filter_status,
+				'recommend'   => $recommend,
+				'latest'   	  	=> $latest,
+				'sort'            => $sort,
+				'order'           => $order,
+				'start'           => ($page - 1) * $this->config->get('config_limit_admin'),
+				'limit'           => $this->config->get('config_limit_admin')
 		);
 
 		$this->load->model('tool/image');
@@ -403,24 +425,24 @@ class ControllerCatalogPurchase extends Controller {
 		$results = $this->model_catalog_purchase->getPurchases($filter_data);
 
 		foreach ($results as $result) {
-            $image = $this->model_tool_image->resize('no_image.png', 40, 40);
+			$image = $this->model_tool_image->resize('no_image.png', 40, 40);
 
 			$data['purchases'][] = array(
-				'purchase_id' => $result['purchase_id'],
-				'image'      => $image,
-                'name'       => $result['name'],
-                'shipping_address' => $result['shipping_address'],
-                'total_product' => $result['total_product'],
-                'total_offer' => $result['total_offer'],
-                'company' => $result['company_name'],
-				'date_available' => date('Y-m-d', strtotime($result['date_available'])),
-				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'edit'       => $this->url->link('catalog/purchase/edit', 'token=' . $this->session->data['token'] . '&purchase_id=' . $result['purchase_id'] . $url, 'SSL')
+					'purchase_id' => $result['purchase_id'],
+					'image'      => $image,
+					'name'       => $result['name'],
+					'shipping_address' => $result['shipping_address'],
+					'total_product' => $result['total_product'],
+					'total_offer' => $result['total_offer'],
+					'company' => $result['company_name'],
+					'date_available' => date('Y-m-d', strtotime($result['date_available'])),
+					'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+					'edit'       => $this->url->link('catalog/purchase/edit', 'token=' . $this->session->data['token'] . '&purchase_id=' . $result['purchase_id'] . $url, 'SSL')
 			);
 		}
 
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
@@ -448,8 +470,8 @@ class ControllerCatalogPurchase extends Controller {
 		$data['button_copy'] = $this->language->get('button_copy');
 		$data['button_add'] = $this->language->get('button_add');
 		$data['button_edit'] = $this->language->get('button_edit');
-        $data['button_delete'] = $this->language->get('button_delete');
-        $data['button_disable'] = $this->language->get('button_disable');
+		$data['button_delete'] = $this->language->get('button_delete');
+		$data['button_disable'] = $this->language->get('button_disable');
 		$data['button_filter'] = $this->language->get('button_filter');
 
 		$data['token'] = $this->session->data['token'];
@@ -496,6 +518,14 @@ class ControllerCatalogPurchase extends Controller {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
 
+		if (isset($this->request->get['recommend'])) {
+			$url .= '&recommend=' . $this->request->get['recommend'];
+		}
+
+		if (isset($this->request->get['latest'])) {
+			$url .= '&latest=' . $this->request->get['latest'];
+		}
+
 		if ($order == 'ASC') {
 			$url .= '&order=DESC';
 		} else {
@@ -535,6 +565,14 @@ class ControllerCatalogPurchase extends Controller {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
 
+		if (isset($this->request->get['recommend'])) {
+			$url .= '&recommend=' . $this->request->get['recommend'];
+		}
+
+		if (isset($this->request->get['latest'])) {
+			$url .= '&latest=' . $this->request->get['latest'];
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -558,6 +596,8 @@ class ControllerCatalogPurchase extends Controller {
 		$data['filter_price'] = $filter_price;
 		$data['filter_quantity'] = $filter_quantity;
 		$data['filter_status'] = $filter_status;
+		$data['recommend'] = $recommend;
+		$data['latest'] = $latest;
 
 		$data['sort'] = $sort;
 		$data['order'] = $order;
@@ -571,7 +611,7 @@ class ControllerCatalogPurchase extends Controller {
 
 	protected function getForm() {
 		$data['heading_title'] = $this->language->get('heading_title');
-		
+
 		$data['text_form'] = !isset($this->request->get['purchase_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
@@ -607,8 +647,8 @@ class ControllerCatalogPurchase extends Controller {
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$data['entry_price'] = $this->language->get('entry_price');
-        $data['entry_price_step'] = $this->language->get('entry_price_step');
-        $data['entry_tax_class'] = $this->language->get('entry_tax_class');
+		$data['entry_price_step'] = $this->language->get('entry_price_step');
+		$data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$data['entry_points'] = $this->language->get('entry_points');
 		$data['entry_option_points'] = $this->language->get('entry_option_points');
 		$data['entry_subtract'] = $this->language->get('entry_subtract');
@@ -666,8 +706,8 @@ class ControllerCatalogPurchase extends Controller {
 		$data['button_option_value_add'] = $this->language->get('button_option_value_add');
 		$data['button_discount_add'] = $this->language->get('button_discount_add');
 		$data['button_special_add'] = $this->language->get('button_special_add');
-        $data['button_auction_add'] = $this->language->get('button_auction_add');
-        $data['button_image_add'] = $this->language->get('button_image_add');
+		$data['button_auction_add'] = $this->language->get('button_auction_add');
+		$data['button_image_add'] = $this->language->get('button_image_add');
 		$data['button_remove'] = $this->language->get('button_remove');
 		$data['button_recurring_add'] = $this->language->get('button_recurring_add');
 
@@ -678,8 +718,8 @@ class ControllerCatalogPurchase extends Controller {
 		$data['tab_recurring'] = $this->language->get('tab_recurring');
 		$data['tab_discount'] = $this->language->get('tab_discount');
 		$data['tab_special'] = $this->language->get('tab_special');
-        $data['tab_auction'] = $this->language->get('tab_auction');
-        $data['tab_image'] = $this->language->get('tab_image');
+		$data['tab_auction'] = $this->language->get('tab_auction');
+		$data['tab_image'] = $this->language->get('tab_image');
 		$data['tab_links'] = $this->language->get('tab_links');
 		$data['tab_reward'] = $this->language->get('tab_reward');
 		$data['tab_design'] = $this->language->get('tab_design');
@@ -714,13 +754,13 @@ class ControllerCatalogPurchase extends Controller {
 		} else {
 			$data['error_date_available'] = '';
 		}
-		
+
 		if (isset($this->error['keyword'])) {
 			$data['error_keyword'] = $this->error['keyword'];
 		} else {
 			$data['error_keyword'] = '';
 		}
-		
+
 		$url = '';
 
 		if (isset($this->request->get['filter_name'])) {
@@ -758,13 +798,13 @@ class ControllerCatalogPurchase extends Controller {
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+				'text' => $this->language->get('text_home'),
+				'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
 		);
 
 		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/purchase', 'token=' . $this->session->data['token'] . $url, 'SSL')
+				'text' => $this->language->get('heading_title'),
+				'href' => $this->url->link('catalog/purchase', 'token=' . $this->session->data['token'] . $url, 'SSL')
 		);
 
 		if (!isset($this->request->get['purchase_id'])) {
@@ -775,23 +815,23 @@ class ControllerCatalogPurchase extends Controller {
 
 		$data['cancel'] = $this->url->link('catalog/purchase', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-        $data['is_edit'] = false;
+		$data['is_edit'] = false;
 
 		if (isset($this->request->get['purchase_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$purchase_info = $this->model_catalog_purchase->getPurchase($this->request->get['purchase_id']);
-            $data['is_edit'] = true;
+			$data['is_edit'] = true;
 		}
 
 		$data['token'] = $this->session->data['token'];
 
 		$this->load->model('localisation/language');
 
-        $data['languages'] = array();
-        $languages = $this->model_localisation_language->getLanguages();
-        foreach ($languages as $language) {
-            if (!$language['status']) continue;
-            $data['languages'][] = $language;
-        }
+		$data['languages'] = array();
+		$languages = $this->model_localisation_language->getLanguages();
+		foreach ($languages as $language) {
+			if (!$language['status']) continue;
+			$data['languages'][] = $language;
+		}
 
 		if (isset($this->request->post['purchase_description'])) {
 			$data['purchase_description'] = $this->request->post['purchase_description'];
@@ -816,8 +856,8 @@ class ControllerCatalogPurchase extends Controller {
 		$this->load->model('setting/store');
 
 		//$data['stores'] = $this->model_setting_store->getStores();
-        $data['stores'] = array();
-        $data['stores'][] = $this->model_setting_store->getStore($this->config->get('config_store_id'));
+		$data['stores'] = array();
+		$data['stores'][] = $this->model_setting_store->getStore($this->config->get('config_store_id'));
 
 		/*if (isset($this->request->post['product_store'])) {
 			$data['product_store'] = $this->request->post['product_store'];
@@ -835,35 +875,35 @@ class ControllerCatalogPurchase extends Controller {
 			$data['keyword'] = '';
 		}*/
 
-        // Categories
-        $this->load->model('catalog/category');
+		// Categories
+		$this->load->model('catalog/category');
 
-        if (isset($this->request->post['purchase_category'])) {
-            $categories = $this->request->post['purchase_category'];
-        } elseif (isset($this->request->get['purchase_id'])) {
-            $categories = $this->model_catalog_purchase->getPurchaseCategories($this->request->get['purchase_id']);
-        } else {
-            $categories = array();
-        }
+		if (isset($this->request->post['purchase_category'])) {
+			$categories = $this->request->post['purchase_category'];
+		} elseif (isset($this->request->get['purchase_id'])) {
+			$categories = $this->model_catalog_purchase->getPurchaseCategories($this->request->get['purchase_id']);
+		} else {
+			$categories = array();
+		}
 
-        $data['purchase_categories'] = array();
+		$data['purchase_categories'] = array();
 
-        foreach ($categories as $category_id) {
-            $category_info = $this->model_catalog_category->getCategory($category_id);
+		foreach ($categories as $category_id) {
+			$category_info = $this->model_catalog_category->getCategory($category_id);
 
-            if ($category_info) {
-                $data['purchase_categories'][$category_info['category_id']] = array(
-                    'category_id' => $category_info['category_id'],
-                    'name' => ($category_info['path']) ? $category_info['path'] . ' &gt; ' . $category_info['name'] : $category_info['name']
-                );
-            }
-        }
+			if ($category_info) {
+				$data['purchase_categories'][$category_info['category_id']] = array(
+						'category_id' => $category_info['category_id'],
+						'name' => ($category_info['path']) ? $category_info['path'] . ' &gt; ' . $category_info['name'] : $category_info['name']
+				);
+			}
+		}
 
-        $filter_data = array(
-            'sort'  => 'name',
-        );
+		$filter_data = array(
+				'sort'  => 'name',
+		);
 
-        $data['store_categories'] = $this->model_catalog_category->getCategories($filter_data);
+		$data['store_categories'] = $this->model_catalog_category->getCategories($filter_data);
 
 		if (isset($this->request->post['shipping_address'])) {
 			$data['shipping_address'] = $this->request->post['shipping_address'];
@@ -873,53 +913,69 @@ class ControllerCatalogPurchase extends Controller {
 			$data['shipping_address'] = '';
 		}
 
-        if (isset($this->request->post['supply_area'])) {
-            $data['supply_area'] = $this->request->post['supply_area'];
-        } elseif (!empty($purchase_info)) {
-            $data['supply_area'] = $purchase_info['supply_area'];
-        } else {
-            $data['supply_area'] = '';
-        }
+		if (isset($this->request->post['recommend'])) {
+			$data['recommend'] = $this->request->post['recommend'];
+		} elseif (!empty($purchase_info)) {
+			$data['recommend'] = $purchase_info['recommend'];
+		} else {
+			$data['recommend'] = '';
+		}
 
-        if (isset($this->request->post['invoice_type'])) {
-            $data['invoice_type'] = $this->request->post['invoice_type'];
-        } elseif (!empty($purchase_info)) {
-            $data['invoice_type'] = $purchase_info['invoice_type'];
-        } else {
-            $data['invoice_type'] = 0;
-        }
+		if (isset($this->request->post['latest'])) {
+			$data['latest'] = $this->request->post['latest'];
+		} elseif (!empty($purchase_info)) {
+			$data['latest'] = $purchase_info['latest'];
+		} else {
+			$data['latest'] = '';
+		}
 
-        if (isset($this->request->post['trade_type'])) {
-            $data['trade_type'] = $this->request->post['trade_type'];
-        } elseif (!empty($purchase_info)) {
-            $data['trade_type'] = $purchase_info['trade_type'];
-        } else {
-            $data['trade_type'] = 0;
-        }
+		if (isset($this->request->post['supply_area'])) {
+			$data['supply_area'] = $this->request->post['supply_area'];
+		} elseif (!empty($purchase_info)) {
+			$data['supply_area'] = $purchase_info['supply_area'];
+		} else {
+			$data['supply_area'] = '';
+		}
 
-        if (isset($this->request->post['price_type'])) {
-            $data['price_type'] = $this->request->post['price_type'];
-        } elseif (!empty($purchase_info)) {
-            $data['price_type'] = $purchase_info['price_type'];
-        } else {
-            $data['price_type'] = 0;
-        }
+		if (isset($this->request->post['invoice_type'])) {
+			$data['invoice_type'] = $this->request->post['invoice_type'];
+		} elseif (!empty($purchase_info)) {
+			$data['invoice_type'] = $purchase_info['invoice_type'];
+		} else {
+			$data['invoice_type'] = 0;
+		}
 
-        if (isset($this->request->post['date_available'])) {
-            $data['date_available'] = $this->request->post['date_available'];
-        } elseif (!empty($purchase_info)) {
-            $data['date_available'] = date('Y-m-d', strtotime($purchase_info['date_available']));
-        } else {
-            $data['date_available'] = date('Y-m-d', strtotime('+5 day'));
-        }
+		if (isset($this->request->post['trade_type'])) {
+			$data['trade_type'] = $this->request->post['trade_type'];
+		} elseif (!empty($purchase_info)) {
+			$data['trade_type'] = $purchase_info['trade_type'];
+		} else {
+			$data['trade_type'] = 0;
+		}
 
-        if (isset($this->request->post['date_expect'])) {
-            $data['date_expect'] = $this->request->post['date_expect'];
-        } elseif (!empty($purchase_info)) {
-            $data['date_expect'] = date('Y-m-d', strtotime($purchase_info['date_expect']));
-        } else {
-            $data['date_expect'] = date('Y-m-d', strtotime('+10 day'));
-        }
+		if (isset($this->request->post['price_type'])) {
+			$data['price_type'] = $this->request->post['price_type'];
+		} elseif (!empty($purchase_info)) {
+			$data['price_type'] = $purchase_info['price_type'];
+		} else {
+			$data['price_type'] = 0;
+		}
+
+		if (isset($this->request->post['date_available'])) {
+			$data['date_available'] = $this->request->post['date_available'];
+		} elseif (!empty($purchase_info)) {
+			$data['date_available'] = date('Y-m-d', strtotime($purchase_info['date_available']));
+		} else {
+			$data['date_available'] = date('Y-m-d', strtotime('+5 day'));
+		}
+
+		if (isset($this->request->post['date_expect'])) {
+			$data['date_expect'] = $this->request->post['date_expect'];
+		} elseif (!empty($purchase_info)) {
+			$data['date_expect'] = date('Y-m-d', strtotime($purchase_info['date_expect']));
+		} else {
+			$data['date_expect'] = date('Y-m-d', strtotime('+10 day'));
+		}
 
 		if (isset($this->request->post['sort_order'])) {
 			$data['sort_order'] = $this->request->post['sort_order'];
@@ -941,29 +997,29 @@ class ControllerCatalogPurchase extends Controller {
 		if (isset($this->request->post['purchase_product'])) {
 			$purchase_product = $this->request->post['purchase_product'];
 		} elseif (isset($this->request->get['purchase_id'])) {
-            $purchase_product = $this->model_catalog_purchase->getPurchaseProducts($this->request->get['purchase_id']);
+			$purchase_product = $this->model_catalog_purchase->getPurchaseProducts($this->request->get['purchase_id']);
 		} else {
-            $purchase_product = array();
+			$purchase_product = array();
 		}
 
-        foreach ($purchase_product as $pk => $product) {
-            foreach ($product['product_image'] as $ik => $product_image) {
-                if (is_file(DIR_IMAGE . $product_image['image'])) {
-                    $image = $product_image['image'];
-                    $thumb = $product_image['image'];
-                } else {
-                    $image = '';
-                    $thumb = 'no_image.png';
-                }
+		foreach ($purchase_product as $pk => $product) {
+			foreach ($product['product_image'] as $ik => $product_image) {
+				if (is_file(DIR_IMAGE . $product_image['image'])) {
+					$image = $product_image['image'];
+					$thumb = $product_image['image'];
+				} else {
+					$image = '';
+					$thumb = 'no_image.png';
+				}
 
-                $purchase_product[$pk]['product_image'][$ik] = array(
-                    'image'      => $image,
-                    'thumb'      => $this->model_tool_image->resize($thumb, 100, 100)
-                );
-            }
-        }
+				$purchase_product[$pk]['product_image'][$ik] = array(
+						'image'      => $image,
+						'thumb'      => $this->model_tool_image->resize($thumb, 100, 100)
+				);
+			}
+		}
 
-        $data['purchase_product'] = $purchase_product;
+		$data['purchase_product'] = $purchase_product;
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
@@ -990,7 +1046,7 @@ class ControllerCatalogPurchase extends Controller {
 		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');
 		}*/
-		
+
 		/*if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('catalog/url_alias');
 
@@ -1054,10 +1110,10 @@ class ControllerCatalogPurchase extends Controller {
 			}
 
 			$filter_data = array(
-				'filter_name'  => $filter_name,
-				'filter_model' => $filter_model,
-				'start'        => 0,
-				'limit'        => $limit
+					'filter_name'  => $filter_name,
+					'filter_model' => $filter_model,
+					'start'        => 0,
+					'limit'        => $limit
 			);
 
 			$results = $this->model_catalog_purchase->getProducts($filter_data);
@@ -1078,33 +1134,33 @@ class ControllerCatalogPurchase extends Controller {
 
 							if ($option_value_info) {
 								$product_option_value_data[] = array(
-									'product_option_value_id' => $product_option_value['product_option_value_id'],
-									'option_value_id'         => $product_option_value['option_value_id'],
-									'name'                    => $option_value_info['name'],
-									'price'                   => (float)$product_option_value['price'] ? $this->currency->format($product_option_value['price'], $this->config->get('config_currency')) : false,
-									'price_prefix'            => $product_option_value['price_prefix']
+										'product_option_value_id' => $product_option_value['product_option_value_id'],
+										'option_value_id'         => $product_option_value['option_value_id'],
+										'name'                    => $option_value_info['name'],
+										'price'                   => (float)$product_option_value['price'] ? $this->currency->format($product_option_value['price'], $this->config->get('config_currency')) : false,
+										'price_prefix'            => $product_option_value['price_prefix']
 								);
 							}
 						}
 
 						$option_data[] = array(
-							'product_option_id'    => $product_option['product_option_id'],
-							'product_option_value' => $product_option_value_data,
-							'option_id'            => $product_option['option_id'],
-							'name'                 => $option_info['name'],
-							'type'                 => $option_info['type'],
-							'value'                => $product_option['value'],
-							'required'             => $product_option['required']
+								'product_option_id'    => $product_option['product_option_id'],
+								'product_option_value' => $product_option_value_data,
+								'option_id'            => $product_option['option_id'],
+								'name'                 => $option_info['name'],
+								'type'                 => $option_info['type'],
+								'value'                => $product_option['value'],
+								'required'             => $product_option['required']
 						);
 					}
 				}
 
 				$json[] = array(
-					'product_id' => $result['product_id'],
-					'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
-					'model'      => $result['model'],
-					'option'     => $option_data,
-					'price'      => $result['price']
+						'product_id' => $result['product_id'],
+						'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
+						'model'      => $result['model'],
+						'option'     => $option_data,
+						'price'      => $result['price']
 				);
 			}
 		}

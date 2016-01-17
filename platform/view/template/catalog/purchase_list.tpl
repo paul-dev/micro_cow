@@ -55,6 +55,42 @@
                     </select>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="input-status">首页推荐</label>
+                    <select name="recommend" id="input-status" class="form-control">
+                        <option value="*"></option>
+                        <?php if ($recommend == 1) { ?>
+                        <option value="1" selected="selected">是</option>
+                        <?php } else { ?>
+                        <option value="1">是</option>
+                        <?php } ?>
+                        <?php if ($recommend == 0) { ?>
+                        <option value="0" selected="selected">否</option>
+                        <?php } else { ?>
+                        <option value="0">否</option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="input-status">名企采购</label>
+                    <select name="latest" id="input-status" class="form-control">
+                        <option value="*"></option>
+                        <?php if ($latest == 1) { ?>
+                        <option value="1" selected="selected">是</option>
+                        <?php } else { ?>
+                        <option value="1">是</option>
+                        <?php } ?>
+                        <?php if ($latest == 0) { ?>
+                        <option value="0" selected="selected">否</option>
+                        <?php } else { ?>
+                        <option value="0">否</option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
             <div class="col-sm-4" style="padding-top: 22px;">
               <button type="button" id="button-filter" class="btn btn-primary pull-left"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
             </div>
@@ -138,7 +174,7 @@
       });
 
 $('#button-filter').on('click', function() {
-	var url = 'index.php?route=catalog/product&token=<?php echo $token; ?>';
+	var url = 'index.php?route=catalog/purchase&token=<?php echo $token; ?>';
 
 	var filter_name = $('input[name=\'filter_name\']').val();
 
@@ -169,6 +205,18 @@ $('#button-filter').on('click', function() {
 	if (filter_status != '*') {
 		url += '&filter_status=' + encodeURIComponent(filter_status);
 	}
+
+    var recommend = $('select[name=\'recommend\']').val();
+
+    if (recommend != '*') {
+        url += '&recommend=' + encodeURIComponent(recommend);
+    }
+
+    var latest = $('select[name=\'latest\']').val();
+
+    if (latest != '*') {
+        url += '&latest=' + encodeURIComponent(latest);
+    }
 
 	location = url;
 });

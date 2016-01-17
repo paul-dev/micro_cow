@@ -34,6 +34,7 @@ class ControllerCommonMenu extends Controller {
 		$data['text_dashboard'] = $this->language->get('text_dashboard');
 		$data['text_help'] = $this->language->get('text_help');
 		$data['text_information'] = $this->language->get('text_information');
+		$data['text_banner'] = $this->language->get('text_banner');
 		$data['text_installer'] = $this->language->get('text_installer');
 		$data['text_language'] = $this->language->get('text_language');
 		$data['text_layout'] = $this->language->get('text_layout');
@@ -194,6 +195,7 @@ class ControllerCommonMenu extends Controller {
 		$data['openbay_link_amazonus'] = $this->url->link('openbay/amazonus', 'token=' . $this->session->data['token'], 'SSL');
 		$data['openbay_link_amazonus_settings'] = $this->url->link('openbay/amazonus/settings', 'token=' . $this->session->data['token'], 'SSL');
 		$data['openbay_link_amazonus_links'] = $this->url->link('openbay/amazonus/itemlinks', 'token=' . $this->session->data['token'], 'SSL');
+		$data['banner_link_management_links'] = $this->url->link('design/banner', 'token=' . $this->session->data['token'], 'SSL');
 		$data['openbay_markets'] = array(
 			'ebay' => $this->config->get('ebay_status'),
 			'amazon' => $this->config->get('openbay_amazon_status'),
