@@ -955,9 +955,8 @@ class ControllerCatalogProduct extends Controller {
 		} elseif (!empty($product_info)) {
 			$data['recommend'] = $product_info['recommend'];
 		} else {
-			$data['recommend'] = 1;
+			$data['recommend'] = 0;
 		}
-
 
 		if (isset($this->request->post['shipping'])) {
 			$data['shipping'] = $this->request->post['shipping'];
