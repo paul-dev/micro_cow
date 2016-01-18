@@ -144,7 +144,7 @@
 
       <div class="row" id="row-cols-4">
         <?php foreach ($products as $product) { ?>
-        <div class="good_store_wrap" style="border:1px solid red;">
+        <div class="good_store_wrap" style="border:0px solid red;">
           <div class="product-thumb good_shop_list">
             <div class="image">
               <a href="<?php echo $product['company_info']['company_url']; ?>">

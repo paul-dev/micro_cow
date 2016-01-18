@@ -554,7 +554,6 @@ class ModelCatalogPurchase extends Model {
 		return $query->rows;
 	}
 
-
 	public function getPurchases_TotalNum()
 	{
 		$sql = "SELECT COUNT(DISTINCT p.purchase_id) AS total " .
@@ -573,5 +572,26 @@ class ModelCatalogPurchase extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getPurchases_TotalSupplier()
+	{
+		$sql = "SELECT COUNT(DISTINCT cp.customer_id) AS total " .
+				"FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) " .
+				"LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id " .
+				"LEFT JOIN " . DB_PREFIX . "customer c on c.customer_id = p.customer_id " .
+				"LEFT JOIN " . DB_PREFIX . "company cp on cp.customer_id = p.customer_id " .
+				"LEFT JOIN " . DB_PREFIX . "company_description cd on cd.company_id = cp.company_id AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' " .
+				"LEFT JOIN " . DB_PREFIX . "country cty on cty.country_id = cp.company_country_id " .
+				"LEFT JOIN " . DB_PREFIX . "zone z on z.zone_id = cp.company_zone_id " .
+				"LEFT JOIN " . DB_PREFIX . "zone_city zc on zc.id = cp.company_city_id " .
+				"LEFT JOIN " . DB_PREFIX . "zone_area za on za.id = cp.company_area_id " .
+				"WHERE ps.store_id = '" . (int)$this->config->get('config_store_id') . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'"." AND date_sub(curdate(), INTERVAL 30 DAY) <= date(p.date_added)";
+
+		$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
+
+
 
 }

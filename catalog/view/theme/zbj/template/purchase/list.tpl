@@ -735,8 +735,8 @@
             <div style="clear:both;"></div>
           </div>
           <div  class="purched-ad-one">
-            <p><?php echo $text_nearly30_purchase_num; ?><span class="purched-font-red">11</span></p>
-            <p><?php echo $text_nearly30_active_suppliers; ?><span class="purched-font-red">222</span></p>
+            <p><?php echo $text_nearly30_purchase_num; ?><span class="purched-font-red"><?php echo $purchaseProductNum; ?></span></p>
+            <p><?php echo $text_nearly30_active_suppliers; ?><span class="purched-font-red"><?php echo $purchaseSupplierNum; ?></span></p>
           </div>
           <div>
             <!--

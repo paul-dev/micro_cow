@@ -92,10 +92,12 @@ class ControllerPurchaseList extends Controller
 		}
 
 		/*
-		 * @todo 获取参数--聚合数据--[求购列表];
+		 * @todo 获取近30天采购需求量;
 		 * */
 
 		$data['purchaseProductNum'] = $this->model_catalog_purchase->getPurchases_TotalNum($paging_parameters);
+
+		$data['purchaseSupplierNum'] = $this->model_catalog_purchase->getPurchases_TotalSupplier();
 
 		/*
 		 * @todo 求购列表--分页--[求购列表];

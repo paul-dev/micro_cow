@@ -87,7 +87,8 @@ class ControllerProductShop extends Controller {
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
 		} else {
-			$limit = $this->config->get('config_product_limit');
+			//$limit = $this->config->get('config_product_limit');
+			$limit = 16;
 		}
 
         $title = $this->language->get('heading_title');
@@ -731,7 +732,8 @@ class ControllerProductShop extends Controller {
 			$pagination->total = $product_total;
 			$pagination->page = $page;
 			$pagination->limit = $limit;
-			$pagination->url = $this->url->link('product/search', $url . '&page={page}');
+			//$pagination->url = $this->url->link('product/search', $url . '&page={page}');
+			$pagination->url = $this->url->link('product/shop', $url . '&page={page}');
 
 			$data['pagination'] = $pagination->render();
 
@@ -757,14 +759,15 @@ class ControllerProductShop extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-        switch ($type) {
+        /*switch ($type) {
             case 'shop' :
                 $template = 'shop';
                 break;
             default :
                 $template = 'search';
                 break;
-        }
+        }*/
+		$template = 'shop';
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/'.$template.'.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/'.$template.'.tpl', $data));
