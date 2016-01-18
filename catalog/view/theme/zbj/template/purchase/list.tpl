@@ -680,7 +680,7 @@
                       <?php echo $text_release_time; ?><time><?php echo $purchase_product['date_added']; ?></time>
                     </a>
                   </p>
-                  <img src="catalog/view/theme/zbj/image/product_purchase/purchedad.png" class="purched-div-2-img">
+                  <img src="<?php echo $purchase_product['purchase_product_img']?$purchase_product['purchase_product_img']:'catalog/view/theme/zbj/image/zbj_default_pic.png'; ?>" class="purched-div-2-img">
 
                   <?php if($purchase_product['date_remaining'] > 0){ ?>
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $purchase_product['date_remaining']; ?></span><?php echo $text_product_days; ?></a></p>

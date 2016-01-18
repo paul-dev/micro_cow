@@ -409,6 +409,13 @@ class ModelCatalogPurchase extends Model {
 
 		$query = $this->db->query($sql);
 
+		if(count($query->rows)>0){
+			foreach($query->rows as $key=>$info){
+				$search = $this->db->query("SELECT image FROM " . DB_PREFIX . "purchase_product_image ppi WHERE ppi.purchase_product_id = (SELECT DISTINCT purchase_product_id FROM " . DB_PREFIX . "purchase_product pp WHERE pp.purchase_id = '".$info['purchase_id']."' LIMIT 0,1) LIMIT 0,1");
+				$query->rows[$key]['purchase_product_img'] = isset($search->row['image'])?$search->row['image']:'catalog/view/theme/zbj/image/zbj_default_pic.png';
+			}
+		}
+
 		return $query->rows;
 	}
 

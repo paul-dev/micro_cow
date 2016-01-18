@@ -79,6 +79,10 @@ class ControllerPurchaseList extends Controller
 			$data['purchaseProduct'][$key]['date_available'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_available']))." 23:59:59";
 			$data['purchaseProduct'][$key]['date_added'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_added']));
 
+			//产品图片
+			$this->load->model('tool/image');
+			$data['purchaseProduct'][$key]['purchase_product_img'] = $this->model_tool_image->resize($data['purchaseProduct'][$key]['purchase_product_img'], 63, 63);
+
 			//剩余日期
 			$data['purchaseProduct'][$key]['date_remaining'] = floor((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000);
 
