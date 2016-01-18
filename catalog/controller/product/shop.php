@@ -293,9 +293,31 @@ class ControllerProductShop extends Controller {
 					$rating = false;
 				}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 //$product_store = $this->model_catalog_product->getProductStores($result['product_id']);
                 //$product_store = array_pop($product_store);
-                $product_store = $this->model_catalog_product->getProductStore($result['product_id']);
+/*
+				$product_store = $this->model_catalog_product->getProductStore($result['product_id']);
                 if ($product_store && isset($product_store['shop_name'])) {
                     // Shop home url.
                     $product_store['shop_url'] = HTTP_SERVER . $product_store['shop_key'];
@@ -341,6 +363,43 @@ class ControllerProductShop extends Controller {
                     $product_store['total_wish'] = '';
                     $product_store['ratings'] = array();
                 }
+*/
+
+				/*
+				 * GET COMPANY BY product_id
+				 * */
+
+				$this->load->model('catalog/category');
+				$company = $this->model_catalog_product->getCompanyInfo($result['product_id']);
+
+				$company['company_name'] = $company['company_name']?$company['company_name']:'';
+				$company['company_image'] = 'catalog/view/theme/zbj/image/zbj_default_pic.png';
+				$company['company_url'] = $this->url->link('product/shop', 'company_id=' . $company['company_id']);
+				$company['company_legal_name'] = $company['legal_name']?$company['legal_name']:'';
+				$company['company_contact_name'] = $company['contact_name']?$company['contact_name']:'';
+				$company['company_registered_capital'] = $company['registered_capital']?$company['registered_capital']:'';
+				$company['company_business_category'] = $company['business_category']?$company['business_category']:'';
+				$company['company_date_added'] = date('Y-m',strtotime($company['date_added']))?date('Y-m',strtotime($company['date_added'])):'';
+				/*$company['company_'] = $company['legal_name']?$company['legal_name']:'';
+				$company['company_'] = $company['legal_name']?$company['legal_name']:'';
+
+
+				$company['shop_name'] = '';
+				$company['shop_url'] = '';
+				$company['shop_logo'] = '';
+				$company['shop_image'] = '';
+				$company['shop_comment'] = '';
+				$company['total_product'] = '';
+				$company['total_sell'] = '';
+				$company['total_wish'] = '';
+				$company['ratings'] = array();*/
+
+
+				/*echo "<pre>";
+				print_r($company);
+				echo "<pre>";
+				exit;*/
+
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
@@ -353,11 +412,45 @@ class ControllerProductShop extends Controller {
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $rating,
-                    'shop_info'   => $product_store,
-                    'shop_name'   => $product_store['shop_name'],
+                    'company_info'   => $company,
+                    'company_name'   => $company['company_name'],
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 				);
 			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			$url = '';
 

@@ -1558,7 +1558,7 @@ a.product_enshrine:hover{background:#337ab7;color:#fff;}
 
 .online_show{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin:0px;}
 .good_shopinfo{padding:10px;}
-.good_shopinfo span{width:50%;float:left;padding-left:10px;}
+.good_shopinfo span{width:100%;float:left;padding-left:10px;}
 .good_shopinfo span em{font-style:normal;color:#444;}
 
 #gotop {

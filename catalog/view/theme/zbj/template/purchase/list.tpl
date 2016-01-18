@@ -12,7 +12,7 @@
       <div class="purehed" style="position: relative; margin-top: -15px;">
         <div class="purehed-body" style="width: 80%; float: left">
           <br/>
-          <div class="suoshuhangye">
+          <div class="suoshuhangye" style="display:none">
             <div  class="suoshuhangye-one">
               <?php echo $text_industry_involved;?>
             </div>
@@ -27,7 +27,7 @@
           <div class="sw-mod-filter sw-layout-mod" id="sw_mod_filter" trace="filtbar">
 
             <form id="buyer-quick-filter" class="fd-clr" method="get" action="<?php echo $purchase_list_url;?>">
-              <div class="filter-bottom-wrap">
+              <div class="filter-bottom-wrap" style='border:1px solid #e2e2e2'>
                 <div id="filter_bottom" class="filter-bottom">
                   <ul id="filter-bar" class="Bar">
                     <li id="purchase-type-widget" class="sw-ui-select sm-filter-showHideItems buyoffer" ctype="buyType" style="display: none">
@@ -727,7 +727,7 @@
           <div class="purched-ad-one" style='text-align:center;border: 0px solid green;padding-right:30px;'>
             <div style="border: 0px solid red;margin:5px auto;background-image: url('catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/rili.png');background-repeat:repeat-y;width:57px;height:54px;float: left;">
             <p style="height:26px;color:white;font-family:'Microsoft Yahei';font-weight:bold;font-size:15px;"><?php echo date('Y',time()); ?></p>
-            <p style="height:26px;font-family:'Microsoft Yahei';font-weight:bold;font-size:15px;"><?php echo date('m',time()); ?>/<?php echo date('d',time()); ?></p>
+            <p style="height:26px;font-family:'Microsoft Yahei';font-weight:bold;font-size:15px;color: #8C8FB3;"><?php echo date('m',time()); ?>/<?php echo date('d',time()); ?></p>
             </div>
             <div style="border:0px solid red;float:right;margin-left:5px;margin:8px auto;">
               <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/caigou.png">
@@ -739,7 +739,9 @@
             <p><?php echo $text_nearly30_active_suppliers; ?><span class="purched-font-red">222</span></p>
           </div>
           <div>
+            <!--
             <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/purchedad.png" class="purehed-ad-img">
+            -->
           </div>
         </div>
 
