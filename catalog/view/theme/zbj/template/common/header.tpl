@@ -67,73 +67,6 @@
 </head>
 <body>
 <!-- 原来的 start -->
-<nav id="top" style="margin: auto;display:none;">
-  <div class="container" style="padding: 0;">
-    <?php echo $currency; ?>
-    <?php echo $language; ?>
-    <div id="top-links" class="nav pull-right">
-      <ul class="list-inline" style="position:relative;margin-bottom:8px;">
-        <!--
-            <li><a href="#"><i class="fa fa-qq"></i><span class="hidden-xs hidden-sm hidden-md">QQ登录</span></a></li>
-            <li><a href="#"><i class="fa fa-weixin"></i><span class="hidden-xs hidden-sm hidden-md">微信登录</span></a></li>
-          <li><a href="#"><i></i><span class="hidden-xs hidden-sm hidden-md">登录</span></a></li>
-          <li><a href="#"><i></i><span class="hidden-xs hidden-sm hidden-md">注册</span></a></li>
-          <li><a href="#"><i></i><span class="hidden-xs hidden-sm hidden-md">帮助中心</span></a></li>
-        -->
-
-        <li style="display: none;"><a href="<?php echo $contact; ?>"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md"><?php echo $telephone; ?></span></li>
-        <?php if ($logged) { ?>
-        <li><a href="<?php echo $account; ?>"><img src="<?php echo $avatar; ?>" /></a></li>
-        <li class="dropdown"><a href="<?php echo $account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $nickname; ?> <span class="caret"></span></a>
-          <ul class="dropdown-menu dropdown-menu-left">
-            <?php if ($isSeller) { ?>
-            <li><a href="<?php echo $url_seller; ?>"><?php echo $text_seller; ?></a></li>
-            <?php } ?>
-            <li><a href="<?php echo $account; ?>"><?php echo $text_my_account; ?></a></li>
-            <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-          </ul>
-        </li>
-        <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
-        <?php } else { ?>
-        <li><a href="/connect/qzone/oauth/qq_login.php"><!-- <img src="/image/qq_login.png"> --><i class="i_qq"></i><?php echo $text_qqlogin; ?></a></li>
-        <li><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></li>
-        <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
-        <?php } ?>
-        <li class="dropdown" style="display: none;"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <?php if ($logged) { ?>
-            <li><a href="<?php echo $url_seller; ?>"><?php echo $text_seller; ?></a></li>
-            <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-            <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-            <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-            <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-            <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
-            <?php } else { ?>
-            <li><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></li>
-            <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
-            <?php } ?>
-          </ul>
-        </li>
-        <li style="display: none;"><a href="<?php echo $wishlist; ?>" id="wishlist-total" title="<?php echo $text_wishlist; ?>"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_wishlist; ?></span></a></li>
-        <li id="header-cart-label">
-          <a href="javascript:void(0);" onclick="$('#cart >ul').slideToggle();" title="<?php echo $text_shopping_cart; ?>">
-            <i class="fa fa-shopping-cart"></i>
-            <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_shopping_cart; ?></span>
-            <span class="shopping_cart_num">0</span>
-          </a>
-          <div class="shopping_cart_list">
-            <?php echo $cart; ?>
-          </div>
-        </li>
-
-        <li><a href="<?php echo $order; ?>"><i class="i_order"></i><?php echo $text_myorder; ?></a></li>
-        <li class="no_bor"><a href=""><i class="fa fa-question-circle fa-lg" style="margin-right:4px;font-size:18px;"></i><?php echo $text_helpcenter; ?></a></li>
-        <li class="no_bor" style="display: none;"><a href="<?php echo $checkout; ?>" title="<?php echo $text_checkout; ?>"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_checkout; ?></span></a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
 <nav id="top" style="margin: auto;">
   <div class="container" style="padding: 0;">
     <div id="top-links" class="nav">
@@ -150,47 +83,43 @@
         <div style="clear: both"></div>
       </ul>
       <ul class="top-link-right-ul">
-        <li style="margin-right: 8px"><a href="#"><?php echo $text_aboutus; ?></a></li>
-        <li style="margin-right: 8px"><a href="#"><img src="catalog/view/theme/zbj/image/weibo.png" style="margin-top: -2px"></a></li>
-        <li style="margin-right: 8px"><a href="#"><img src="catalog/view/theme/zbj/image/weixin.png"></a></li>
+        <li style="margin-right: 8px"><a><?php echo $text_aboutus; ?></a></li>
+        <li style="margin-right: 8px"><a href=""><img src="catalog/view/theme/zbj/image/weibo.png" style="margin-top: -2px"></a></li>
+        <li style="margin-right: 20px"><a href=""><img src="catalog/view/theme/zbj/image/weixin.png"></a></li>
         <li>
           <a href="/index.php?route=account/order"><?php echo $text_myorder; ?><i></i></a>
+        </li>
+        <li>
+          <a><?php echo $text_call_center; ?><i></i></a>
+          <ul style="width: 80px">
+            <?php foreach($newcomer_infomation as $infomation){ ?>
+            <li style="margin-right: 5px"><a href="<?php echo $infomation['href']; ?>"><?php echo $infomation['title']; ?></a></li>
+            <?php } ?>
+          </ul>
+        </li>
 
+        <li id="header-cart-label">
+          <a href="javascript:void(0);" onclick="$('#cart >ul').slideToggle();" title="<?php echo $text_shopping_cart; ?>">
+            <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_shopping_cart; ?></span>
+            <span class="shopping_cart_num">0</span>
+            <i class="fa fa-shopping-cart"></i>
+          </a>
+          <div class="shopping_cart_list">
+            <?php echo $cart; ?>
+          </div>
         </li>
+
         <li>
-          <a href="#"><?php echo $text_call_center; ?><i></i></a>
-          <ul style="width: 70px">
-            <li style="margin-right: 5px"><a href="#">新手入门</a></li>
-            <li style="margin-right: 5px"><a href="#">买家帮助</a></li>
-            <li style="margin-right: 5px"><a href="#">在线咨询</a></li>
-            <li style="margin-right: 5px"><a href="#">联系客服</a></li>
+          <a href="#"><?php echo $text_safe_infomation; ?><i></i></a>
+          <ul style="width: 80px">
+            <?php foreach($safe_infomation as $infomation){ ?>
+            <li style="margin-right: 5px"><a href="<?php echo $infomation['href']; ?>"><?php echo $infomation['title']; ?></a></li>
+            <?php } ?>
           </ul>
         </li>
-        <li>
-          <a href="#"><?php echo $text_favorite; ?><i></i></a>
-          <ul style="width: 102px">
-            <li style="margin-right: 5px"><a href="#">收藏的货品</a></li>
-            <li style="margin-right: 5px"><a href="#">收藏的供应商品</a></li>
-            <li style="margin-right: 5px"><a href="#">收藏的服务</a></li>
-            <li style="margin-right: 5px"><a href="#">交易过的供应商</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#"><?php echo $text_purchased_list; ?><i></i></a>
-          <!--<ul>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--<li><a href="#">内容</a></li>-->
-          <!--</ul>-->
-        </li>
-        <li>
-          <a href="#"><?php echo $text_power_merchants; ?><i></i></a>
-          <ul style="width: 72px">
-            <li style="margin-right: 5px"><a href="#">商家信息</a></li>
-            <li style="margin-right: 5px"><a href="#">招商标准</a></li>
-            <li style="margin-right: 5px"><a href="#">自费标准</a></li>
-            <li style="margin-right: 5px"><a href="#">推荐有礼</a></li>
-          </ul>
-        </li>
+
+
+
         <div style="clear: both"></div>
       </ul>
       <div style="clear: both"></div>
