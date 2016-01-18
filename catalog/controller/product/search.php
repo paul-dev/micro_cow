@@ -83,7 +83,8 @@ class ControllerProductSearch extends Controller {
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
 		} else {
-			$limit = $this->config->get('config_product_limit');
+			//$limit = $this->config->get('config_product_limit');
+			$limit = 16;
 		}
 
         $title = $this->language->get('heading_title');

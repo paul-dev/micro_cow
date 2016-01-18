@@ -381,25 +381,6 @@ class ControllerProductShop extends Controller {
 				$company['company_registered_capital'] = $company['registered_capital']?$company['registered_capital']:'';
 				$company['company_business_category'] = $company['business_category']?$company['business_category']:'';
 				$company['company_date_added'] = date('Y-m',strtotime($company['date_added']))?date('Y-m',strtotime($company['date_added'])):'';
-				/*$company['company_'] = $company['legal_name']?$company['legal_name']:'';
-				$company['company_'] = $company['legal_name']?$company['legal_name']:'';
-
-
-				$company['shop_name'] = '';
-				$company['shop_url'] = '';
-				$company['shop_logo'] = '';
-				$company['shop_image'] = '';
-				$company['shop_comment'] = '';
-				$company['total_product'] = '';
-				$company['total_sell'] = '';
-				$company['total_wish'] = '';
-				$company['ratings'] = array();*/
-
-
-				/*echo "<pre>";
-				print_r($company);
-				echo "<pre>";
-				exit;*/
 
 
 				$data['products'][] = array(
@@ -418,40 +399,6 @@ class ControllerProductShop extends Controller {
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 				);
 			}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 			$url = '';
 
@@ -549,17 +496,20 @@ class ControllerProductShop extends Controller {
             $data['sorts'][] = array(
                 'text'  => $this->language->get('text_viewed_desc'),
                 'value' => 'p.viewed-DESC',
-                'href'  => $this->url->link('product/search', '&sort=p.viewed&order=DESC' . $url)
+                //'href'  => $this->url->link('product/search', '&sort=p.viewed&order=DESC' . $url)
+                'href'  => $this->url->link('product/shop', '&sort=p.viewed&order=DESC' . $url)
             );
             $data['sorts'][] = array(
                 'text'  => $this->language->get('text_sell_desc'),
                 'value' => 'total_sell-DESC',
-                'href'  => $this->url->link('product/search', '&sort=total_sell&order=DESC' . $url)
+                //'href'  => $this->url->link('product/search', '&sort=total_sell&order=DESC' . $url)
+                'href'  => $this->url->link('product/shop', '&sort=total_sell&order=DESC' . $url)
             );
             $data['sorts'][] = array(
                 'text'  => $this->language->get('text_date_desc'),
                 'value' => 'p.date_added-DESC',
-                'href'  => $this->url->link('product/search', '&sort=p.date_added&order=DESC' . $url)
+                //'href'  => $this->url->link('product/search', '&sort=p.date_added&order=DESC' . $url)
+                'href'  => $this->url->link('product/shop', '&sort=p.date_added&order=DESC' . $url)
             );
 
 			$url = '';
