@@ -17,6 +17,38 @@ class ControllerCommonHome extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
+
+
+		$this->load->language('common/home');
+
+		$data['text_recommand'] = $this->language->get('text_recommand');
+		$data['text_purchase'] = $this->language->get('text_purchase');
+		$data['text_amount_purchased'] = $this->language->get('text_amount_purchased');
+		$data['text_release_time'] = $this->language->get('text_release_time');
+		$data['text_days_remaining'] = $this->language->get('text_days_remaining');
+		$data['text_day'] = $this->language->get('text_day');
+		$data['text_has_as'] = $this->language->get('text_has_as');
+		$data['text_registered_capital'] = $this->language->get('text_registered_capital');
+		$data['text_already_offer'] = $this->language->get('text_already_offer');
+		$data['text_offer_immediately'] = $this->language->get('text_offer_immediately');
+		$data['text_nwe_detail'] = $this->language->get('text_nwe_detail');
+		$data['text_name'] = $this->language->get('text_name');
+		$data['text_supply_num'] = $this->language->get('text_supply_num');
+		$data['text_quotation_as'] = $this->language->get('text_quotation_as');
+		$data['text_quotation_number'] = $this->language->get('text_quotation_number');
+		$data['text_company_name'] = $this->language->get('text_company_name');
+		$data['text_address'] = $this->language->get('text_address');
+		$data['text_operation'] = $this->language->get('text_operation');
+		$data['text_view_now'] = $this->language->get('text_view_now');
+		$data['text_item'] = $this->language->get('text_item');
+		$data['text_view_more'] = $this->language->get('text_view_more');
+		$data['text_supply'] = $this->language->get('text_supply');
+		$data['text_piece'] = $this->language->get('text_piece');
+
+
+
+
+
 		//今日推荐 ---------------------------------------------------------------------------------------------------------------------------------------------------- start
 		$this->load->model('catalog/product');
 		$limit = 15;

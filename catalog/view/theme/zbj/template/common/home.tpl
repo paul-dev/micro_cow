@@ -19,7 +19,7 @@
             <div class="list-purchased">
               <div class="main-product-list">
                 <div class="product-list-h3">
-                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/newest-recommend.png"> 最新推荐</span>
+                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/newest-recommend.png"> <?php echo $text_recommand; ?></span>
                 </div>
 
                 <?php if(count($RecommendProducts)>0){ ?>
@@ -52,7 +52,7 @@
               </div>
               <div class="main-purchased clearfix">
                 <div class="product-list-h3">
-                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/purchased-head.png"> 求购</span>
+                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/purchased-head.png"> <?php echo $text_purchase; ?></span>
                 </div>
 
                 <?php if(count($purchaseProduct)>0){ ?>
@@ -63,28 +63,28 @@
                       <a  target="_blank" href="<?php echo $purchase['url']; ?>"><?php echo $purchase['name']; ?></a>
                     </div>
                     <div class="purchased-left-botm">
-                      <p>采购量： <spanp><?php echo $purchase['total_product']; ?></spanp></p>
+                      <p><?php echo $text_amount_purchased; ?> <span><?php echo $purchase['total_product']; ?></span></p>
                     </div>
                   </div>
                   <div class="purchased-right clearfix new-recmd-div-margin">
                     <div class="purchased-right-l">
-                      <p>发布时间：<?php echo $purchase['date_added']; ?></p>
-                      <p>剩余天数：
+                      <p><?php echo $text_release_time; ?><?php echo $purchase['date_added']; ?></p>
+                      <p><?php echo $text_days_remaining; ?>
                         <?php if($purchase['date_remaining'] > 0){ ?>
-                        <span><?php echo $purchase['date_remaining']; ?></span>天
+                        <span><?php echo $purchase['date_remaining']; ?></span><?php echo $text_day; ?>
                         <?php }else{ ?>
-                <span>已截止
+                <span><?php echo $text_has_as; ?>
                   <?php } ?>
                       </p>
-                      <p>信息类型：现货/标准品</p>
-                      <p>已有报价：<span>8</span>家</p>
+                      <p><?php echo $text_registered_capital; ?><?php echo $purchase['registered_capital']; ?></p>
+                      <p><?php echo $text_already_offer; ?><span>8</span>家</p>
                     </div>
                     <div class="purchased-right-r">
                       <!--<div class="purchased-right-r-div"><h5><?php echo $purchase['contact_name']; ?></h5></div>-->
                       <div class="purchased-right-r-div" style="border:0px solid red;height:60px;width:80px">
                         <?php echo $purchase['company_name']; ?>
                       </div>
-                      <div><a  target="_blank" href="<?php echo $purchase['url']; ?>">立即报价</a></div>
+                      <div><a  target="_blank" href="<?php echo $purchase['url']; ?>"><?php echo $text_offer_immediately; ?></a></div>
                     </div>
                   </div>
                 </div>
@@ -94,19 +94,19 @@
               </div>
               <div class="dynamic-purchase">
                 <div>
-                  <h3 style="font-size: 22px">最新采购动态</h3>
+                  <h3 style="font-size: 22px"><?php echo $text_nwe_detail; ?></h3>
                 </div>
                 <div class="new-state">
                   <table>
                     <thead>
                     <tr>
-                      <th class="th-name">名称</th>
-                      <th class="th-common-new">采购量</th>
-                      <th class="th-common-new">报价截止</th>
-                      <th class="th-common-new">报价数</th>
-                      <th class="th-common-new">公司名称</th>
-                      <th class="th-common-new">所在地</th>
-                      <th class="th-operation">操作</th>
+                      <th class="th-name"><?php echo $text_name; ?></th>
+                      <th class="th-common-new"><?php echo $text_supply_num; ?></th>
+                      <th class="th-common-new"><?php echo $text_quotation_as; ?></th>
+                      <th class="th-common-new"><?php echo $text_quotation_number; ?></th>
+                      <th class="th-common-new"><?php echo $text_company_name; ?></th>
+                      <th class="th-common-new"><?php echo $text_address; ?></th>
+                      <th class="th-operation"><?php echo $text_operation; ?></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -114,13 +114,13 @@
                     <?php foreach($purchaseState as $purchase){ ?>
                     <tr>
                       <td class="th-name"><?php echo $purchase['name']; ?></td>
-                      <td class="td-center-new"><span><?php echo $purchase['product_amount']; ?></span>个</td>
-                      <td class="td-center-new"><?php if($purchase['date_remaining'] > 0){ ?><span><?php echo $purchase['date_remaining']; ?></span>天<?php }else{ ?><span>已截止<?php } ?></td>
-                      <td class="td-center-new"><span>15</span>条</td>
+                      <td class="td-center-new"><span><?php echo $purchase['product_amount']; ?></span><?php echo $text_piece; ?></td>
+                      <td class="td-center-new"><?php if($purchase['date_remaining'] > 0){ ?><span><?php echo $purchase['date_remaining']; ?></span><?php echo $text_day; ?><?php }else{ ?><span><?php echo $text_has_as; ?><?php } ?></td>
+                      <td class="td-center-new"><span>15</span><?php echo $text_item; ?></td>
                       <td class="td-center-new"><?php echo $purchase['company_name']; ?></td>
                       <td class="td-center-new"><?php echo $purchase['country_name']; ?> <?php echo $purchase['zone_name']; ?></td>
                       <td class="td-center-new">
-                        <div class="td-evaluate"><a  target="_blank" href="<?php echo $purchase['url']; ?>">立即查看</a></div>
+                        <div class="td-evaluate"><a  target="_blank" href="<?php echo $purchase['url']; ?>"><?php echo $text_view_now; ?></a></div>
                       </td>
                     </tr>
                     <?php } ?>
@@ -129,13 +129,13 @@
                     </tbody>
                   </table>
                   <div class="digital-seemore">
-                    <a  target="_blank" href="<?php echo $purchaseLink; ?>" target="_blank">查看更多&gt;</a>
+                    <a  target="_blank" href="<?php echo $purchaseLink; ?>" target="_blank"><?php echo $text_view_more; ?>&gt;</a>
                   </div>
                 </div>
               </div>
               <div class="supplier-main">
                 <div class="product-list-h3">
-                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/supply-header.png"> 供应</span>
+                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/supply-header.png"> <?php echo $text_supply; ?></span>
                 </div>
 
                 <?php if(count($category_tree)>0){ ?>
