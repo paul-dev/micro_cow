@@ -160,7 +160,7 @@
         </li>
         <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
         <?php } else { ?>
-        <li><a href="/connect/qzone/oauth/qq_login.php"><!-- <img src="/image/qq_login.png"> --><i class="i_qq"></i>QQ登录</a></li>
+        <!--<li><a href="/connect/qzone/oauth/qq_login.php"><!-- <img src="/image/qq_login.png"> --<i class="i_qq"></i>QQ登录</a></li>-->
         <li><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></li>
         <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
         <?php } ?>
