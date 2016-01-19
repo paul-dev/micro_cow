@@ -40,9 +40,7 @@
                     </div>
                     <div class="recmd-place-year">
                       <div class="recmd-place"><?php echo $recommend['country_name']; ?> <?php echo $recommend['zone_name']; ?> <?php echo $recommend['city_name']; ?></div>
-                      <div class="recmd-year">
-                        <img src="catalog/view/theme/zbj/image/chengxin.png" class="chengxin-img">
-                      </div>
+
                       <div style="clear: both"></div>
                     </div>
                   </div>
@@ -82,9 +80,11 @@
                       <p>已有报价：<span>8</span>家</p>
                     </div>
                     <div class="purchased-right-r">
-                      <div class="purchased-right-r-div"><h5><?php echo $purchase['contact_name']; ?></h5></div>
-                      <div class="purchased-right-r-div"><img src="catalog/view/theme/zbj/image/taobao-group.png"></div>
-                      <div><a  target="_blank" href="">立即报价</a></div>
+                      <!--<div class="purchased-right-r-div"><h5><?php echo $purchase['contact_name']; ?></h5></div>-->
+                      <div class="purchased-right-r-div" style="border:0px solid red;height:60px;width:80px">
+                        <?php echo $purchase['company_name']; ?>
+                      </div>
+                      <div><a  target="_blank" href="<?php echo $purchase['url']; ?>">立即报价</a></div>
                     </div>
                   </div>
                 </div>
@@ -104,7 +104,7 @@
                       <th class="th-common-new">采购量</th>
                       <th class="th-common-new">报价截止</th>
                       <th class="th-common-new">报价数</th>
-                      <th class="th-common-new">采购商身份</th>
+                      <th class="th-common-new">公司名称</th>
                       <th class="th-common-new">所在地</th>
                       <th class="th-operation">操作</th>
                     </tr>
@@ -117,7 +117,7 @@
                       <td class="td-center-new"><span><?php echo $purchase['product_amount']; ?></span>个</td>
                       <td class="td-center-new"><?php if($purchase['date_remaining'] > 0){ ?><span><?php echo $purchase['date_remaining']; ?></span>天<?php }else{ ?><span>已截止<?php } ?></td>
                       <td class="td-center-new"><span>15</span>条</td>
-                      <td class="td-center-new">名</td>
+                      <td class="td-center-new"><?php echo $purchase['company_name']; ?></td>
                       <td class="td-center-new"><?php echo $purchase['country_name']; ?> <?php echo $purchase['zone_name']; ?></td>
                       <td class="td-center-new">
                         <div class="td-evaluate"><a  target="_blank" href="<?php echo $purchase['url']; ?>">立即查看</a></div>
