@@ -165,12 +165,6 @@
                                             <?php $product_row++; ?>
                                             <?php } ?>
                                             </tbody>
-                                            <tfoot>
-                                            <tr>
-                                                <td colspan="3"></td>
-                                                <td class="text-left"><button type="button" onclick="addProduct();" data-toggle="tooltip" title="增加产品" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
-                                            </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -225,7 +219,7 @@
                         return false;
                     }
 
-                    var _title = '添加报价产品 - ' + $(obj).closest('tr').find('input[type="text"]:first').val();
+                    var _title = '添加报价产品 - ' + $(obj).closest('tr').find('td').eq(0).text() + '(' + $(obj).closest('tr').find('td').eq(1).text() + ')';
                     $.ajax({
                         url: 'index.php?route=seller/product/add&&dialog='+product_id,
                         type: 'get',
