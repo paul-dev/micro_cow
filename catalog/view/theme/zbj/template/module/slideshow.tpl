@@ -15,7 +15,7 @@
         <ul>
             <?php foreach ($banners as $banner) { ?>
             <?php if ($banner['link']) { ?>
-            <li><a href="<?php echo $banner['link']; ?>" target="_blank" title="<?php echo $banner['title']; ?>" style="background:url(<?php echo $banner['image']; ?>) no-repeat center 0"></a></li>
+            <li><a href="<?php echo $banner['link']; ?>" target="_blank" title="<?php echo $banner['title']; ?>" style="background:url(<?php echo $banner['image']; ?>) no-repeat center 0;background-size:1920px 450px;"></a></li>
             <?php } else { ?>
             <li><a href="javascript:void(0);" title="<?php echo $banner['title']; ?>" style="background:url(<?php echo $banner['image']; ?>) no-repeat center 0"></a></li>
             <?php } ?>
@@ -243,7 +243,7 @@
         <div style="width: 190px;margin: 0 auto;padding: 5px 0;border-bottom: 1px solid #f2f2f2;margin-bottom: 5px;border-bottom-style: dashed">
             <h4><?php echo $text_hot_recommend; ?></h4>
         </div>
-        <div style="width: 190px;margin: 0 auto;padding: 5px 0;text-align: left;margin-bottom: 5px;" class="clearfix">
+        <div style="width: 190px;margin: 0 auto;padding: 5px 0;text-align: left;margin-bottom: 5px;height: 450px" class="clearfix">
 
             <?php if(isset($special_products)){ ?>
                 <?php foreach($special_products as $special_products){ ?>

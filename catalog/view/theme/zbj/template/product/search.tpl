@@ -236,7 +236,7 @@
                   <span title="<?php echo $product['shop_info']['shop_zone'].$product['shop_info']['shop_city']; ?>"><?php echo $product['shop_info']['shop_zone'].$product['shop_info']['shop_city']; ?></span>
                 </div>
                 <div class="right">
-                  <span><a href="<?php echo $product['shop_info']['link_live_chat']; ?>"><i class="fa fa-comment"></i></a></span>
+                  <span><a href="<?php echo $product['shop_info']['link_live_chat']; ?>"></a></span>
                 </div>
               </div>             
             </div>

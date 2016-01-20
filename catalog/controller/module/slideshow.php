@@ -114,13 +114,13 @@ class ControllerModuleSlideshow extends Controller {
 
 		$data['module'] = $module++;
 
-        if(isset($this->session->data['customer_id'])){
+        /*if(isset($this->session->data['customer_id'])){
             $this->load->model('sale/customer');
             $data['customer_info'] = $this->model_sale_customer->getCustomer($this->session->data['customer_id']);
             if(isset($data['customer_info']['custom_field'])){
                 $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
             }
-        }
+        }*/
 
         //热门推荐 两个产品 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ start
         $this->load->model('catalog/product');

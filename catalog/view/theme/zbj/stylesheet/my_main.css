@@ -814,3 +814,45 @@ margin: 0 10px;
 .top-link-right-ul li ul{
  background-color: #f5f5f5;
 }
+.i_order{
+  margin-top: 10px;
+}
+#currency div button i{
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border-top: 5px solid #5c5e5d;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  margin-top: -4px;
+}
+#language div button i{
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border-top: 5px solid #5c5e5d;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  margin-top: -4px;
+}
+#language div button img {
+  margin-top: -2px;
+}
+#cart>ul>li{width: 278px}
+.owl-ri{
+  height: 450px;
+}
+#currency div ul li {
+  height: 23px;
+}
+#currency div ul li button{
+  height: 23px;
+  line-height: 23px;
+  padding: 0;
+  padding-left: 20px;
+}
+#currency>div>ul>li:hover{
+  background-color: red !important;
+}

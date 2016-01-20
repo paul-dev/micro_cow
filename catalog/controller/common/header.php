@@ -348,13 +348,13 @@ class ControllerCommonHeader extends Controller {
 			$data['class'] = 'common-home';
 		}
 
-        if(isset($this->session->data['customer_id'])){
+        /*if(isset($this->session->data['customer_id'])){
             $this->load->model('sale/customer');
             $data['customer_info'] = $this->model_sale_customer->getCustomer($this->session->data['customer_id']);
             if(isset($data['customer_info']['custom_field'])){
                 $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
             }
-        }
+        }*/
 
 
 
