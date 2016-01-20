@@ -51,14 +51,25 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-shipping-address">收货地:</label>
                                         <div class="col-sm-10">
+
+                                            <?php if($purchaseInfo){ ?>
+                                            <label class="control-label">
+                                                <?php echo $purchaseInfo['country_name']; ?>
+                                                <?php echo $purchaseInfo['zone_name']; ?>
+                                                <?php echo $purchaseInfo['city_name']; ?>
+                                                <?php echo $purchaseInfo['area_name']; ?>
+                                            </label>
+                                            <?php }else{ ?>
                                             <label class="control-label"><?php echo $shipping_address; ?></label>
+                                            <?php } ?>
+
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-supply-area">供应商所在地:</label>
                                         <div class="col-sm-10">
-                                            <label class="control-label"><?php echo $supply_area; ?></label>
+                                            <label class="control-label"><?php echo $purchaseInfo['supply_area']; ?></label>
                                         </div>
                                     </div>
 
@@ -67,9 +78,9 @@
                                         <div class="col-sm-10">
                                             <select name="invoice_type" id="input-invoice-type" class="form-control">
                                                 <option value="0"><?php echo $text_none; ?></option>
-                                                <option value="1"<?php if ($invoice_type == 1) echo ' selected="selected"'; ?>>不需要发票</option>
-                                                <option value="2"<?php if ($invoice_type == 2) echo ' selected="selected"'; ?>>普通发票</option>
-                                                <option value="3"<?php if ($invoice_type == 3) echo ' selected="selected"'; ?>>增值税发票</option>
+                                                <option value="1"<?php if ($purchaseInfo['invoice_type'] == 1) echo ' selected="selected"'; ?>>不需要发票</option>
+                                                <option value="2"<?php if ($purchaseInfo['invoice_type'] == 2) echo ' selected="selected"'; ?>>普通发票</option>
+                                                <option value="3"<?php if ($purchaseInfo['invoice_type'] == 3) echo ' selected="selected"'; ?>>增值税发票</option>
                                             </select>
                                         </div>
                                     </div>
@@ -79,9 +90,9 @@
                                         <div class="col-sm-10">
                                             <select name="trade_type" id="input-trade-type" class="form-control">
                                                 <option value="0"><?php echo $text_none; ?></option>
-                                                <option value="1"<?php if ($trade_type == 1) echo ' selected="selected"'; ?>>支付宝担保交易</option>
-                                                <option value="2"<?php if ($trade_type == 2) echo ' selected="selected"'; ?>>货到付款</option>
-                                                <option value="3"<?php if ($trade_type == 3) echo ' selected="selected"'; ?>>预付款</option>
+                                                <option value="1"<?php if ($purchaseInfo['trade_type'] == 1) echo ' selected="selected"'; ?>>支付宝担保交易</option>
+                                                <option value="2"<?php if ($purchaseInfo['trade_type'] == 2) echo ' selected="selected"'; ?>>货到付款</option>
+                                                <option value="3"<?php if ($purchaseInfo['trade_type'] == 3) echo ' selected="selected"'; ?>>预付款</option>
                                             </select>
                                         </div>
                                     </div>
@@ -91,8 +102,8 @@
                                         <div class="col-sm-10">
                                             <select name="price_type" id="input-price-type" class="form-control">
                                                 <option value="0"><?php echo $text_none; ?></option>
-                                                <option value="1"<?php if ($price_type == 1) echo ' selected="selected"'; ?>>含税价</option>
-                                                <option value="2"<?php if ($price_type == 2) echo ' selected="selected"'; ?>>不含税价</option>
+                                                <option value="1"<?php if ($purchaseInfo['price_type'] == 1) echo ' selected="selected"'; ?>>含税价</option>
+                                                <option value="2"<?php if ($purchaseInfo['price_type'] == 2) echo ' selected="selected"'; ?>>不含税价</option>
                                             </select>
                                         </div>
                                     </div>
@@ -100,14 +111,14 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-date-available">报价截止时间:</label>
                                         <div class="col-sm-3">
-                                            <label class="control-label"><?php echo $date_available; ?></label>
+                                            <label class="control-label"><?php echo date('Y-m-d',strtotime($purchaseInfo['date_available'])); ?></label>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-date-expect">期望收货时间:</label>
                                         <div class="col-sm-3">
-                                            <label class="control-label"><?php echo $date_expect; ?></label>
+                                            <label class="control-label"><?php echo date('Y-m-d',strtotime($purchaseInfo['date_expect'])); ?></label>
                                         </div>
                                     </div>
 
@@ -145,7 +156,7 @@
                                                     <?php } ?>
                                                 </td>
                                                 <td class="text-left">
-                                                    <button type="button" onclick="addOffer(<?php echo $product['purchase_product_id']; ?>, this)" data-toggle="tooltip" title="添加报价" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
+                                                    <button type="button" onclick="addOffer(<?php echo $product['purchase_product_id']; ?>,<?php echo $purchaseInfo['purchase_id']; ?>, this)" data-toggle="tooltip" title="添加报价" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -213,15 +224,19 @@
                     product_row++;
                 }
 
-                function addOffer(product_id, obj) {
+                function addOffer(product_id, purchase_id, obj) {
                     if ($('#modal-offer-'+product_id).length > 0) {
                         $('#modal-offer-'+product_id).modal('show');
+                        return false;
+                    }
+                    if ($('#modal-offer-'+purchase_id).length > 0) {
+                        $('#modal-offer-'+purchase_id).modal('show');
                         return false;
                     }
 
                     var _title = '添加报价产品 - ' + $(obj).closest('tr').find('td').eq(0).text() + '(' + $(obj).closest('tr').find('td').eq(1).text() + ')';
                     $.ajax({
-                        url: 'index.php?route=seller/product/add&&dialog='+product_id,
+                        url: 'index.php?route=seller/product/add&&dialog='+product_id+'&purchase_id='+purchase_id,
                         type: 'get',
                         dataType: 'html',
                         success: function(data) {

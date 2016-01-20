@@ -788,7 +788,8 @@ class ControllerSellerOffer extends Controller {
         $data['is_edit'] = false;
 
 		if (isset($this->request->get['purchase_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-			$purchase_info = $this->model_seller_offer->getPurchase($this->request->get['purchase_id']);
+			$this->load->model('catalog/purchase');
+			$purchase_info = $this->model_catalog_purchase->getPurchase($this->request->get['purchase_id']);
             $data['is_edit'] = true;
 		}
 
@@ -981,6 +982,8 @@ class ControllerSellerOffer extends Controller {
         $data['content_bottom'] = $this->load->controller('common/content_bottom');
         $data['footer'] = $this->load->controller('common/footer');
         $data['header'] = $this->load->controller('common/header');
+
+		$data['purchaseInfo'] = $purchase_info;
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/seller/offer_form.tpl')) {
             $this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/seller/offer_form.tpl', $data));

@@ -190,7 +190,7 @@
 			});
 		</script>
 
-    <div class="owl-ri right" style="width: 220px;background-color: white">
+    <div class="owl-ri right" style="width: 220px;background-color: white;border: 1px solid #e5e5e5;">
 
         <!--<div style="width: 70px;height: 70px;border-radius: 50%;background-color: #f2f2f2;margin: 10px auto">-->
         <!--</div>-->

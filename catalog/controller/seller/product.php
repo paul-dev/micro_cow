@@ -23,7 +23,8 @@ class ControllerSellerProduct extends Controller {
 		$this->getList();
 	}
 
-	public function add() {
+	//public function add() {
+	public function edit() {
         if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('seller/product/add', '', 'SSL');
 
@@ -99,8 +100,10 @@ class ControllerSellerProduct extends Controller {
 		$this->getForm();
 	}
 
-	public function edit() {
-        if (!$this->customer->isLogged()) {
+	//public function edit() {
+	public function add() {
+
+		if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('seller/product/edit', 'product_id='.$this->request->get['product_id'], 'SSL');
 
             $this->response->redirect($this->url->link('account/login', '', 'SSL'));
@@ -117,12 +120,17 @@ class ControllerSellerProduct extends Controller {
 
 		$this->load->model('seller/product');
 
+		/*
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+
             $this->request->post['product_store'] = array(
                 0, $this->config->get('config_store_id')
             );
             //$this->request->post['status'] = 0;
-
+			echo "<pre>";
+			print_r($this->request->post);
+			echo "</pre>";
+			exit;
             $_exist = $this->model_seller_product->getProduct($this->request->get['product_id']);
             if (!empty($_exist)) {
                 $this->model_seller_product->editProduct($this->request->get['product_id'], $this->request->post);
@@ -159,6 +167,81 @@ class ControllerSellerProduct extends Controller {
             if (isset($this->request->get['filter_type'])) {
                 $url .= '&filter_type=' . $this->request->get['filter_type'];
             }
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->response->redirect($this->url->link('seller/product', $url, 'SSL'));
+		}
+		*/
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+
+			$this->request->post['product_store'] = array(
+					0, $this->config->get('config_store_id')
+			);
+			$this->request->post['status'] = 0;
+
+			$product_id = $this->model_seller_product->addProduct($this->request->post);
+
+			if(isset($this->request->post['purchase_id'])){
+
+				$this->load->model('catalog/purchase');
+
+				$company = $this->model_catalog_purchase->getCompanyInfo($this->request->post['purchase_id']);
+
+				$purchase_offer_id = $this->model_seller_product->addOffer($this->request->post,$company);
+
+				$product_id = $this->model_seller_product->addOfferProduct($this->request->post,$purchase_offer_id);
+			}
+
+
+
+
+
+
+
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			if (isset($this->request->get['dialog'])) {
+				$this->response->redirect($this->url->link('seller/product/edit', 'product_id='.$product_id.'&dialog='.$this->request->get['dialog'], 'SSL'));
+			}
+
+			$url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['filter_model'])) {
+				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['filter_price'])) {
+				$url .= '&filter_price=' . $this->request->get['filter_price'];
+			}
+
+			if (isset($this->request->get['filter_quantity'])) {
+				$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+			}
+
+			if (isset($this->request->get['filter_status'])) {
+				$url .= '&filter_status=' . $this->request->get['filter_status'];
+			}
+
+			if (isset($this->request->get['filter_type'])) {
+				$url .= '&filter_type=' . $this->request->get['filter_type'];
+			}
 
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
@@ -918,6 +1001,12 @@ class ControllerSellerProduct extends Controller {
 
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		if (isset($this->request->get['purchase_id'])) {
+			$data['purchase_id'] = $this->request->get['purchase_id'];
+		}else{
+			$data['purchase_id'] = '';
 		}
 
 		$data['breadcrumbs'] = array();

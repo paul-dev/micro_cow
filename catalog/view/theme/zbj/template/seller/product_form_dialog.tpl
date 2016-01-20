@@ -47,6 +47,8 @@
                     <label class="col-sm-2 control-label" for="dialog-input-name<?php echo $language['language_id']; ?>"><?php echo $entry_name; ?></label>
                     <div class="col-sm-10">
                       <input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" placeholder="<?php echo $entry_name; ?>" id="dialog-input-name<?php echo $language['language_id']; ?>" class="form-control" />
+                      <input type="hidden" name="purchase_id" value="<?php echo $purchase_id; ?>" class="form-control" />
+                      <input type="hidden" name="purchase_product_id" value="<?php echo $dialog_id; ?>" class="form-control" />
                       <?php if (isset($error_name[$language['language_id']])) { ?>
                       <div class="text-danger"><?php echo $error_name[$language['language_id']]; ?></div>
                       <?php } ?>

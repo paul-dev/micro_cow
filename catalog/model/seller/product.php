@@ -770,4 +770,19 @@ class ModelSellerProduct extends Model{
 
         return $query->row['total'];
     }
+
+    public function addOffer($data,$company) {
+
+        $this->db->query("INSERT INTO " . DB_PREFIX . "purchase_offer SET purchase_id = '". (int)$data['purchase_id'] ."', company_name = '". $company['company_name'] ."', customer_id = '".$this->customer->getId()."', store_id = '". (int)$this->config->get('config_store_id') ."', date_added = NOW(), date_modified = NOW()");
+
+        $purchase_offer_id = $this->db->getLastId();
+
+        return $purchase_offer_id;
+    }
+
+    public function addOfferProduct($data,$purchase_offer_id){
+
+        $this->db->query("INSERT INTO " . DB_PREFIX . "purchase_offer_product SET purchase_product_id = '". (int)$data['purchase_product_id'] ."', purchase_offer_id = '". (int)$data['purchase_id'] ."', product_id = '". $purchase_offer_id ."'");
+
+    }
 }
