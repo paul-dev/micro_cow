@@ -31,10 +31,6 @@
 <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
 
   <!-- load style start -->
-
-  <script src="catalog/view/theme/zbj/js/jquery-1.9.1.min.js" type="text/javascript"></script>
-  <link href="catalog/view/theme/zbj/stylesheet/bootstrap.min.css" rel="stylesheet" media="screen">
-  <script src="catalog/view/theme/zbj/js/bootstrap.min.js" type="text/javascript"></script>
   <link href="catalog/view/theme/zbj/stylesheet/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/base.css">
   <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
@@ -246,7 +242,7 @@
   <div id="nav_home">
     <ul class="nav_list">
       <?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index.php?route=common/home'){ ?>
-      <li style="width: 260px;margin-left:-55px;background-color: #1686cc;"><a style="cursor: pointer"><?php echo $text_all_category; ?></a></li>
+      <li style="width: 260px;margin-left:-40px;background-color: #1686cc;"><a style="cursor: pointer"><?php echo $text_all_category; ?></a></li>
       <?php } ?>
       <?php foreach ($main_menu as $menu) { ?>
         <li><a href="<?php echo $menu['link']; ?>"><?php echo $menu['label']; ?></a></li>
