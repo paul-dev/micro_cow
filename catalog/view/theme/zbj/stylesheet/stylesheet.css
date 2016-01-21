@@ -240,8 +240,7 @@ div.required .control-label:before {
 .dropdown-menu li > a:hover {
 	text-decoration: none;
 	color: #ffffff;
-	background-color: #337ab7;
-	
+	background-color: #1997e5;
 	background-repeat: repeat-x;
 }
 /* top */
@@ -259,8 +258,8 @@ div.required .control-label:before {
 #top #currency .currency-select:hover {
 	text-shadow: none;
 	color: #ffffff;
-	background-color: #229ac8;
-	background-image: linear-gradient(to bottom, #23a1d1, #1f90bb);
+	background-color: #1997e5;
+	background-image: linear-gradient(to bottom, #23a1d1, #1997e5);
 	background-repeat: repeat-x;
 }
 #top .btn-link, #top-links li, #top-links a {
