@@ -41,14 +41,16 @@ class ControllerSellerProduct extends Controller {
 		$this->document->setTitle($this->language->get('heading_title').' - '.$this->language->get('seller_home'));
 
 		$this->load->model('seller/product');
-
+/*
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->request->post['product_store'] = array(
               0, $this->config->get('config_store_id')
             );
             $this->request->post['status'] = 0;
 
-            $product_id = $this->model_seller_product->addProduct($this->request->post);
+			//编辑报价产品
+
+            //$product_id = $this->model_seller_product->addProduct($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -96,6 +98,68 @@ class ControllerSellerProduct extends Controller {
 
 			$this->response->redirect($this->url->link('seller/product', $url, 'SSL'));
 		}
+*/
+
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+
+			$this->request->post['product_store'] = array(
+					0, $this->config->get('config_store_id')
+			);
+			//$this->request->post['status'] = 0;
+
+			$_exist = $this->model_seller_product->getProduct($this->request->get['product_id']);
+			if (!empty($_exist)) {
+				$this->model_seller_product->editProduct($this->request->get['product_id'], $this->request->post);
+
+				$this->session->data['success'] = $this->language->get('text_success');
+
+				if (isset($this->request->get['dialog'])) {
+					$this->response->redirect($this->url->link('seller/product/edit', 'product_id='.$this->request->get['product_id'].'&dialog='.$this->request->get['dialog'], 'SSL'));
+				}
+			}
+
+			$url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['filter_model'])) {
+				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['filter_price'])) {
+				$url .= '&filter_price=' . $this->request->get['filter_price'];
+			}
+
+			if (isset($this->request->get['filter_quantity'])) {
+				$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+			}
+
+			if (isset($this->request->get['filter_status'])) {
+				$url .= '&filter_status=' . $this->request->get['filter_status'];
+			}
+
+			if (isset($this->request->get['filter_type'])) {
+				$url .= '&filter_type=' . $this->request->get['filter_type'];
+			}
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->response->redirect($this->url->link('seller/product', $url, 'SSL'));
+		}
+
 
 		$this->getForm();
 	}
@@ -201,7 +265,7 @@ class ControllerSellerProduct extends Controller {
 
 				$purchase_offer_id = $this->model_seller_product->addOffer($this->request->post,$company);
 
-				$product_id = $this->model_seller_product->addOfferProduct($this->request->post,$purchase_offer_id);
+				$product_id = $this->model_seller_product->addOfferProduct($this->request->post,$product_id,$purchase_offer_id);
 			}
 
 
@@ -256,6 +320,7 @@ class ControllerSellerProduct extends Controller {
 			}
 
 			$this->response->redirect($this->url->link('seller/product', $url, 'SSL'));
+
 		}
 
 		$this->getForm();
@@ -834,6 +899,7 @@ class ControllerSellerProduct extends Controller {
 		$data['entry_description'] = $this->language->get('entry_description');
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
+		$data['entry_quotation_note'] = $this->language->get('entry_quotation_note');
 		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$data['entry_keyword'] = $this->language->get('entry_keyword');
 		$data['entry_model'] = $this->language->get('entry_model');
@@ -1007,6 +1073,12 @@ class ControllerSellerProduct extends Controller {
 			$data['purchase_id'] = $this->request->get['purchase_id'];
 		}else{
 			$data['purchase_id'] = '';
+		}
+
+		if (isset($this->request->get['product_id'])) {
+			$data['product_id'] = $this->request->get['product_id'];
+		}else{
+			$data['product_id'] = '';
 		}
 
 		$data['breadcrumbs'] = array();
@@ -1711,10 +1783,18 @@ class ControllerSellerProduct extends Controller {
         $data['header'] = $this->load->controller('common/header');
 
         $template = 'product_form.tpl';
+
         if (isset($this->request->get['dialog'])) {
             $data['dialog_id'] = $this->request->get['dialog'];
             $template = 'product_form_dialog.tpl';
         }
+
+		//编辑报价
+		if (isset($this->request->get['product_id'])) {
+			$data['product_id'] = $this->request->get['product_id'];
+			$template = 'product_edit_form_dialog.tpl';
+			$data['product_info'] = $product_info;
+		}
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/seller/' . $template)) {
             $this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/seller/' . $template, $data));

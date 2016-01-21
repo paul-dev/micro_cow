@@ -261,6 +261,58 @@ class ModelSellerOffer extends Model {
         return $purchase_product_data;
     }
 
+	public function getOfferPurchaseProducts($purchase_id) {
+		$purchase_product_data = array();
+
+		//$purchase_product_query = $this->db->query("SELECT purchase_product_id, quantity FROM " . DB_PREFIX . "purchase_product WHERE purchase_id = '" . (int)$purchase_id . "'");
+
+		$quantity = $this->db->query("SELECT purchase_product_id, quantity FROM " . DB_PREFIX . "purchase_product WHERE purchase_id = " . "(SELECT distinct(purchase_id) FROM " . DB_PREFIX . "purchase_offer WHERE purchase_id = '" . (int)$purchase_id . "')");
+
+		$purchase_product_query = $this->db->query("SELECT purchase_offer_id,purchase_id FROM " . DB_PREFIX . "purchase_offer WHERE purchase_id = '" . (int)$purchase_id . "'");
+
+		foreach($purchase_product_query->rows as $data){
+
+			$product_id = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "purchase_offer_product WHERE purchase_offer_id = '" . (int)$data['purchase_offer_id'] . "'");
+
+			$result[] = $product_id->row;
+
+		}
+
+		$data = array_map("array_merge",$quantity->rows,$result);
+
+		//foreach ($purchase_product_query->rows as $purchase_product) {
+		foreach ($data as $purchase_product) {
+			$purchase_product_description_data = array();
+
+			$purchase_product_description_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_product_description WHERE purchase_product_id = '" . (int)$purchase_product['purchase_product_id'] . "'");
+
+			foreach ($purchase_product_description_query->rows as $purchase_product_description) {
+				$purchase_product_description_data[$purchase_product_description['language_id']] = array(
+						'name' => $purchase_product_description['name'],
+						'unit' => $purchase_product_description['unit'],
+						'text' => $purchase_product_description['description']
+				);
+			}
+
+			$purchase_product_image_data = array();
+			$purchase_product_image_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_product_image WHERE purchase_product_id = '" . (int)$purchase_product['purchase_product_id'] . "'");
+
+			if ($purchase_product_image_query->rows) {
+				$purchase_product_image_data = $purchase_product_image_query->rows;
+			}
+
+			$purchase_product_data[] = array(
+					'purchase_product_id' => $purchase_product['purchase_product_id'],
+					'product_amount'      => $purchase_product['quantity'],
+					'product_id'      => $purchase_product['product_id'],
+					'product_description' => $purchase_product_description_data,
+					'product_image'       => $purchase_product_image_data
+			);
+		}
+
+		return $purchase_product_data;
+	}
+
 	public function getPurchaseCategories($purchase_id) {
 		$purchase_category_data = array();
 
@@ -333,10 +385,11 @@ class ModelSellerOffer extends Model {
 		return $purchase_related_data;
 	}
 
-	public function getTotalPurchases($data = array()) {
-		$sql = "SELECT COUNT(DISTINCT p.purchase_id) AS total FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id";
+	public function getTotalOfferPurchases($data = array()) {
+		//$sql = "SELECT COUNT(DISTINCT p.purchase_id) AS total FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id";
+		$sql = "SELECT COUNT(DISTINCT p.purchase_id) AS total FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) LEFT JOIN " . DB_PREFIX . "purchase_to_store ps ON p.purchase_id = ps.purchase_id LEFT JOIN " . DB_PREFIX . "purchase_offer po ON p.purchase_id = po.purchase_id";
 
-		$sql .= " WHERE p.customer_id = '".(int)$this->customer->getId()."' AND ps.store_id = '".(int)$this->config->get('config_store_id')."' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql .= " WHERE po.customer_id = '".(int)$this->customer->getId()."' AND po.store_id = '".(int)$this->config->get('config_store_id')."' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
@@ -350,4 +403,76 @@ class ModelSellerOffer extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getOfferPurchases($data = array()) {
+
+		$sql = "SELECT DISTINCT(p.purchase_id),p.*,pd.*,(SELECT COUNT(*) as total FROM " . DB_PREFIX . "purchase_offer po WHERE po.purchase_id = p.purchase_id ) as total_offer, ".
+				"(SELECT IF(COUNT(*) > 1, CONCAT(COUNT(*), '种'), (SELECT CONCAT(pp1.quantity,pd1.unit) as p_amount  FROM " . DB_PREFIX . "purchase_product pp1 LEFT JOIN " . DB_PREFIX . "purchase_product_description pd1 ON pp1.purchase_product_id = pd1.purchase_product_id WHERE pp1.purchase_id = p.purchase_id AND pd1.language_id = '".(int)$this->config->get('config_language_id')."')) as total FROM " . DB_PREFIX . "purchase_product pp WHERE pp.purchase_id = p.purchase_id) as total_product "
+				." FROM " . DB_PREFIX . "purchase p INNER JOIN ". DB_PREFIX ."purchase_offer po ON (p.purchase_id = po.purchase_id)  ".
+				"LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) ".
+				"LEFT JOIN " . DB_PREFIX . "purchase_to_store ps ON (p.purchase_id = ps.purchase_id) ".
+				"WHERE ps.store_id = '".(int)$this->config->get('config_store_id')."' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+			$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
+		}
+
+		//$sql .= " GROUP BY p.purchase_id";
+
+		$sort_data = array(
+				'pd.name',
+				'p.date_added',
+				'p.status',
+				'p.sort_order'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY " . $data['sort'];
+		} else {
+			$sql .= " ORDER BY p.date_added";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
+	public function getPurchaseOfferProduct($purchase_offer_id) {
+
+		$purchase_offer_id = $this->db->query("SELECT purchase_offer_id FROM " . DB_PREFIX . "purchase_offer WHERE purchase_id = '" . (int)$purchase_offer_id . "'");
+
+		foreach($purchase_offer_id->rows as $key=>$data){
+
+			$purchase_product_query = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "purchase_offer_product WHERE purchase_offer_id = '" . (int)$data['purchase_offer_id'] . "'");
+
+			$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$purchase_product_query->row['product_id'] . "') AS keyword FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$purchase_product_query->row['product_id'] . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+			$rows[] = $query->row;
+		}
+
+		return $rows;
+
+	}
+
 }

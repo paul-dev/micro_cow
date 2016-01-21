@@ -75,6 +75,14 @@
                       <textarea name="product_description[<?php echo $language['language_id']; ?>][meta_description]" rows="5" placeholder="<?php echo $entry_meta_description; ?>" id="dialog-input-meta-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="dialog-input-meta-description<?php echo $language['language_id']; ?>"><?php echo $entry_quotation_note; ?></label>
+                    <div class="col-sm-10">
+                      <textarea name="product_quotation_note" rows="5" placeholder="<?php echo $entry_quotation_note; ?>" id="dialog-input-meta-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($product_quotation_note) ? $product_quotation_note : ''; ?></textarea>
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="dialog-input-meta-keyword<?php echo $language['language_id']; ?>"><?php echo $entry_meta_keyword; ?></label>
                     <div class="col-sm-10">

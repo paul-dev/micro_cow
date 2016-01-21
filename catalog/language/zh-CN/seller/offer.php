@@ -14,8 +14,8 @@ $_['tab_data']               = '基本信息';
 
 // Text
 $_['text_success']           = '成功: 已经修改求购信息！';
-$_['text_list']              = '求购列表';
-$_['text_add']               = '发布求购';
+$_['text_list']              = '报价列表';
+$_['text_add']               = '发布报价';
 $_['text_edit']              = '发布报价';
 $_['text_plus']              = '+';
 $_['text_minus']             = '-';
@@ -50,6 +50,7 @@ $_['entry_description']      = '描述';
 $_['entry_meta_title'] 	     = 'Meta Tag 标题';
 $_['entry_meta_keyword'] 	 = 'Meta Tag 关键词';
 $_['entry_meta_description'] = 'Meta Tag 描述';
+$_['entry_quotation_note'] = '报价备注';
 $_['entry_keyword']          = 'SEO Keyword';
 $_['entry_model']            = '货号';
 $_['entry_sku']              = 'SKU';
