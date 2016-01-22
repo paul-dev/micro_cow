@@ -516,7 +516,7 @@ class ModelSellerOffer extends Model {
 				$strlen     = mb_strlen($query->rows[$key]['company_name'], 'utf-8');
 				$firstStr     = mb_substr($query->rows[$key]['company_name'], 0, 1, 'utf-8');
 				$lastStr     = mb_substr($query->rows[$key]['company_name'], -1, 1, 'utf-8');
-				$query->rows[$key]['company_name'] = $strlen == 2 ? $firstStr . str_repeat('*', mb_strlen($user_name, 'utf-8') - 1) : $firstStr . str_repeat("*", $strlen - 2) . $lastStr;
+				$query->rows[$key]['company_name'] = $strlen == 2 ? $firstStr . str_repeat('*', mb_strlen($query->rows[$key]['company_name'], 'utf-8') - 1) : $firstStr . str_repeat("*", $strlen - 2) . $lastStr;
 
 				$quotation_note = $this->db->query("SELECT quotation_note,product_id FROM " . DB_PREFIX . "purchase_offer_product WHERE purchase_offer_id = '". $query->rows[$key]['purchase_offer_id'] ."'");
 
