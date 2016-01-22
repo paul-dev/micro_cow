@@ -25,6 +25,6 @@ define('DIR_CATALOG', '/home/paul/Workspace/micro_cow/catalog/');
 define('DB_DRIVER', 'mysqli');
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', 'qaz1921db');
 define('DB_DATABASE', 'dev_mall');
 define('DB_PREFIX', 'mc_');
