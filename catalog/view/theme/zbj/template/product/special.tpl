@@ -140,7 +140,7 @@
           <p><?php echo $text_empty; ?></p>
           <?php } ?>
       </div>
-      <div class="row" style="margin-top: 20px;">
+      <div class="row" style="margin-top: 20px;margin-bottom: 20px">
         <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
         <div class="col-sm-6 text-right"><?php echo $results; ?></div>
       </div>

@@ -565,7 +565,7 @@ margin: 0 10px;
 .purchased-right-r{
   float: left;
   margin-left: 20px;
-  padding-top: 5px;
+
 }
 .purchased-left-top a {
   font-size: 14px;
@@ -855,4 +855,23 @@ margin: 0 10px;
 }
 #currency>div>ul>li:hover{
   background-color: red !important;
+}
+#top #currency .currency-select:hover {
+  text-shadow: none;
+  color: #ffffff;
+  background-color: #1997e5;
+  background-image: linear-gradient(to bottom, #1997e5, #1997e5);
+  background-repeat: repeat-x;
+}
+.dropdown-menu li > a:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #1997e5;
+  background-repeat: repeat-x;
+}
+.intoshop_btn_ico {
+  width: 0 !important;
+}
+.product-list-h3 img{
+  margin-top: -3px;
 }

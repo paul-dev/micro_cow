@@ -133,23 +133,24 @@
 
 
           <form action="" id="searchForm" name="searchForm">
-            <div id="search" class="form-control" style="border: 1px solid #1686cc">
+            <div id="search" class="form-control">
               <div class="search-tab">
-                <span class="cur" data-type="shop" style="height: 39px; border-bottom-left-radius: 5px; border-top-left-radius: 5px;padding-right: 4px">产品</span>
-                <div class="search-list" style="display: none;border-top-left-radius: 5px">
+                <span class="cur" data-type="">产品</span>
+                <input type="hidden" value="" name="search-type">
+                <div class="search-list" style="display: none;">
                   <ul>
-                    <li data-type="shop">产品</li>
-                    <li data-type="">供应商</li>
-                    <li data-type="">求购</li>
+                    <li data-type="">产品</li><li data-type="shop">供应商</li><li data-type="purchase">求购</li>
+
+
                   </ul>
                 </div>
-                <span class="caret-icon"><i class="fa fa-caret-up"></i></span>
+                <span class="caret-icon"><i class=""></i></span>
               </div>
               <div class="search-input">
-                <input type="text" name="search" value="" placeholder="请输入供应商名称">
+                <input type="text" name="search" value="" placeholder="请输入名称">
               </div>
               <div class="search-submit">
-                <a href="javascript:void(0)" style="height: 39px;">搜索</a>
+                <a href="javascript:void(0)"><i>搜索</i></a>
               </div>
             </div>
           </form>
@@ -299,12 +300,16 @@
   </script>
   <div class="container" style="position:relative;height:115px;">
     <div class="zbj-buttons">
-      <div class="prevbtn zbj-btn" style="opacity: 0;"><i class="fa fa-chevron-left fa-5x"></i></div>
-      <div class="nextbtn zbj-btn" style="opacity: 0;"><i class="fa fa-chevron-right fa-5x"></i></div>
-    </div>
-    <div class="zbj-buttons">
-      <div class="prevbtn zbj-btn" style="opacity: 1;"><i class="fa fa-chevron-left fa-5x"></i></div>
-      <div class="nextbtn zbj-btn" style="opacity: 1;"><i class="fa fa-chevron-right fa-5x"></i></div>
+      <div class="prevbtn zbj-btn" >
+         <div>
+           <img class="fa fa-chevron-left fa-5x" src="../image/roll-left.png">
+         </div>
+      </div>
+      <div class="nextbtn zbj-btn">
+        <div>
+          <img class="fa fa-chevron-right fa-5x" src="../image/roll-right.png">
+        </div>
+      </div>
     </div>
     <div class="nav-btn" style="width: 51px; height: 15px; margin-left: -25.5px;">
 
@@ -502,7 +507,7 @@
             <a href="#" style="margin: 10px auto;line-height: 25px;display: block;width: 146px; height: 24px;text-align: center;font-size: 14px; background-color: #1686cc; border-radius: 5px; color: white;">注册</a>
          </div>
         <div class="notice" style="border-top-style: none">
-          <div class="notice_top"><a href="http://dev.micro.com/#" class="br_ri on" style="background-color: white!important;border-right-style: none;border-bottom: 1px solid #f2f2f2">公告</a><a href="http://dev.micro.com/#" style="border-bottom: 1px solid #f2f2f2;background-color:white ">规则</a></div>
+          <div class="notice_top"><a href="http://dev.micro.com/#" class="br_ri on notice_top_a" >公告</a><a href="http://dev.micro.com/#" class="notice_top_a">规则</a></div>
           <div class="notice_conten">
             <ul>
               <li><a href="#">【逛呗】山姆厨房宝,主妇不慌！</a></li>
@@ -527,14 +532,14 @@
            <div class="owl-hot-recmmend">
               <img src="../image/hot-recommend1.png">
               <div>
-                <a href="#">夏配饰<span>新品</span></a>
+                <a href="#" style="width: 68px;height: 16px;overflow: hidden">夏配饰<span>新品</span></a>
                 <p>火热强势发布</p>
               </div>
            </div>
           <div class="owl-hot-recmmend">
               <img src="../image/hot-recommend2.png">
               <div>
-                <a href="#">夏配饰<span>新品</span></a>
+                <a href="#" style="width: 68px;height: 16px;overflow: hidden">夏配饰<span>新品</span></a>
                 <p>火热强势发布</p>
               </div>
            </div>

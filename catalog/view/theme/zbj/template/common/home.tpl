@@ -19,7 +19,7 @@
             <div class="list-purchased">
               <div class="main-product-list">
                 <div class="product-list-h3">
-                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/newest-recommend.png"> <?php echo $text_recommand; ?></span>
+                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/01.png"> <?php echo $text_recommand; ?></span>
                 </div>
 
                 <?php if(count($RecommendProducts)>0){ ?>
@@ -52,7 +52,7 @@
               </div>
               <div class="main-purchased clearfix">
                 <div class="product-list-h3">
-                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/purchased-head.png"> <?php echo $text_purchase; ?></span>
+                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/01.png"> <?php echo $text_purchase; ?></span>
                 </div>
 
                 <?php if(count($purchaseProduct)>0){ ?>
@@ -135,7 +135,7 @@
               </div>
               <div class="supplier-main">
                 <div class="product-list-h3">
-                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/supply-header.png"> <?php echo $text_supply; ?></span>
+                  <span style="display: inline-block;font-size: 22px;color: #333"><img src="catalog/view/theme/zbj/image/01.png"> <?php echo $text_supply; ?></span>
                 </div>
 
                 <?php if(count($category_tree)>0){ ?>

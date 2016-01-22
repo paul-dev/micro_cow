@@ -23,7 +23,7 @@
 			<input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_search; ?>">
 		</div>
 		<div class="search-submit">
-			<a href="javascript:void(0)"><i class="">搜索</i></a>
+			<a href="javascript:void(0)"><i >搜索</i></a>
 		</div>
 	</div>
 </form>

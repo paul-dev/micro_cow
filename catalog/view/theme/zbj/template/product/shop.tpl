@@ -156,7 +156,7 @@
                   <img src="<?php echo $product['company_info']['company_image']; ?>" alt="<?php echo $product['company_info']['company_name']; ?>" title="<?php echo $product['company_info']['company_name']; ?>" />
               </a>
               <span>
-                <h4 style="margin:0; overflow: hidden; white-space: nowrap; margin-top: 12px;"><a href="<?php echo $product['company_info']['company_url']; ?>" title="<?php echo $product['company_info']['company_name']; ?>" alt="<?php echo $product['company_info']['company_name']; ?>"><strong style="color: #f69;"><?php echo $product['company_info']['company_name']; ?></strong></a></h4>
+                <h4 style="margin:0; overflow: hidden; white-space: nowrap; margin-top: 12px;"><a href="<?php echo $product['company_info']['company_url']; ?>" title="<?php echo $product['company_info']['company_name']; ?>" alt="<?php echo $product['company_info']['company_name']; ?>"><strong style="color: #337ab7;"><?php echo $product['company_info']['company_name']; ?></strong></a></h4>
                 <p class="online_show"><?php echo $product['company_info']['country_name']; ?> <?php echo $product['company_info']['zone_name']; ?></p>
               </span>
               <div class="good_shopinfo clearfix">
@@ -176,7 +176,7 @@
         </div>
         <?php } ?>
       </div>
-      <div class="row" style="margin-top: 20px;">
+      <div class="row" style="margin-top: 20px;margin-bottom: 20px">
         <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
         <div class="col-sm-6 text-right"><?php echo $results; ?></div>
       </div>
