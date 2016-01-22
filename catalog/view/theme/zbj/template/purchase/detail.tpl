@@ -104,7 +104,7 @@
                           <?php } ?>
                       </ul>
                       <div class="q-action">
-                        <a href="#" class="quoted-price"><?php echo $text_offer_immediately; ?></a>
+                        <a href="<?php echo $purchase_offer_link; ?>" class="quoted-price" target="_blank"><?php echo $text_offer_immediately; ?></a>
                         <?php if($purchaseInfo['date_remaining'] > 0){ ?>
                           <span style="font-size: 14px;"><?php echo $text_offer_immediately_toend; ?> <?php echo $purchaseInfo['date_remaining']; ?> <?php echo $text_date; ?></span>
                         <?php }else{ ?>
@@ -117,6 +117,7 @@
                     </h3>
                     <table class="q-xq-table">
                       <thead>
+                      <tr>
                       <tr>
                         <th><?php echo $text_product_name; ?></th>
                         <th><?php echo $text_amount_purchased; ?></th>

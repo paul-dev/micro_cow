@@ -30,17 +30,46 @@ class ControllerPurchaseList extends Controller
 			$limit = 16;
 		}
 
-		//获取当前页码
+		$url = '';
+
 		if (isset($this->request->get['page'])) {
+			$url = '&page=' . $this->request->get['page'];
 			$page = $this->request->get['page'];
 		} else {
 			$page = '1';
 		}
 
+		$data['date_available'] = array(
+			'asc' => $this->url->link('purchase/list', '&date_available=ASC' . $url),
+			'desc' => $this->url->link('purchase/list', '&date_available=DESC' . $url)
+		);
+
+		$data['date_added'] = array(
+			'asc' => $this->url->link('purchase/list', '&date_added=ASC' . $url),
+			'desc' => $this->url->link('purchase/list', '&date_added=DESC' . $url)
+		);
+
 		$paging_parameters = array(
 				'start' => ($page - 1)*$limit,
-				'limit' => $limit
+				'limit' => $limit,
 		);
+
+		if (isset($this->request->get['date_available'])) {
+			$url = '&date_available=' . $this->request->get['date_available'];
+			$paging_parameters = array(
+					'sort' => 'p.date_available',
+					'order' => $this->request->get['date_available']
+			);
+		}
+
+		if (isset($this->request->get['date_added'])) {
+			$url = '&date_added=' . $this->request->get['date_added'];
+			$paging_parameters = array(
+					'sort' => 'p.date_added',
+					'order' => $this->request->get['date_added']
+			);
+		}
+
 		$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchases_Total($paging_parameters);
 
 		foreach($data['purchaseProduct'] as $key=>$val){
@@ -49,6 +78,10 @@ class ControllerPurchaseList extends Controller
 
 			$data['purchaseProduct'][$key]['date_available'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_available']))." 23:59:59";
 			$data['purchaseProduct'][$key]['date_added'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_added']));
+
+			//产品图片
+			$this->load->model('tool/image');
+			$data['purchaseProduct'][$key]['purchase_product_img'] = $this->model_tool_image->resize($data['purchaseProduct'][$key]['purchase_product_img'], 63, 63);
 
 			//剩余日期
 			$data['purchaseProduct'][$key]['date_remaining'] = floor((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000);
@@ -63,9 +96,12 @@ class ControllerPurchaseList extends Controller
 		}
 
 		/*
-		 * @todo 获取参数--聚合数据--[求购列表];
+		 * @todo 获取近30天采购需求量;
 		 * */
-		$data['purchaseProductNum'] = $this->model_catalog_purchase->getTotalPurchases();
+
+		$data['purchaseProductNum'] = $this->model_catalog_purchase->getPurchases_TotalNum($paging_parameters);
+
+		$data['purchaseSupplierNum'] = $this->model_catalog_purchase->getPurchases_TotalSupplier();
 
 		/*
 		 * @todo 求购列表--分页--[求购列表];

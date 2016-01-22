@@ -29,6 +29,7 @@ $_['entry_key']                        = '站内标识';
 $_['entry_ssl']                        = '使用 SSL';
 $_['entry_name']                       = '平台名称';
 $_['entry_owner']                      = '平台拥有者';
+$_['entry_license']                      = '增值电信业务经营许可证';
 $_['entry_address']                    = '地址';
 $_['entry_geocode']                    = '地理代码';
 $_['entry_email']                      = 'E-Mail';

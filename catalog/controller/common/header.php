@@ -45,6 +45,8 @@ class ControllerCommonHeader extends Controller {
         $shop_wish = $this->model_account_wishlist->getShopWishlist();
 
         $data['text_home'] = $this->language->get('text_home');
+        $data['text_newcomer_infomation'] = $this->language->get('text_newcomer_infomation');
+        $data['text_safe_infomation'] = $this->language->get('text_safe_infomation');
         $data['text_shop_home'] = $this->language->get('text_shop_home');
 		$data['text_wishlist'] = sprintf($this->language->get('text_wishlist'), (count($product_wish) + count($shop_wish)));
 		$data['text_shopping_cart'] = $this->language->get('text_shopping_cart');
@@ -81,6 +83,7 @@ class ControllerCommonHeader extends Controller {
         $data['text_free_pleaselogin'] = $this->language->get('text_free_pleaselogin');
         $data['text_aboutus'] = $this->language->get('text_aboutus');
         $data['text_call_center'] = $this->language->get('text_call_center');
+        $data['text_safe_trade'] = $this->language->get('text_safe_trade');
         $data['text_favorite'] = $this->language->get('text_favorite');
         $data['text_purchased_list'] = $this->language->get('text_purchased_list');
         $data['text_power_merchants'] = $this->language->get('text_power_merchants');
@@ -345,13 +348,34 @@ class ControllerCommonHeader extends Controller {
 			$data['class'] = 'common-home';
 		}
 
-//        if(isset($this->session->data['customer_id'])){
-//            $this->load->model('sale/customer');
-//            $data['customer_info'] = $this->model_sale_customer->getCustomer($this->session->data['customer_id']);
-//            if(isset($data['customer_info']['custom_field'])){
-//                $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
-//            }
-//        }
+        /*if(isset($this->session->data['customer_id'])){
+            $this->load->model('sale/customer');
+            $data['customer_info'] = $this->model_sale_customer->getCustomer($this->session->data['customer_id']);
+            if(isset($data['customer_info']['custom_field'])){
+                $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
+            }
+        }*/
+
+
+
+// 新手指南 文章列表
+
+        $this->load->model('catalog/information');
+
+        $data['newcomer_infomation'] = $this->model_catalog_information->getInformationBymetatitle($data['text_newcomer_infomation']);
+        if(count($data['newcomer_infomation'])>0){
+            foreach ($data['newcomer_infomation'] as $key=>$result) {
+                $data['newcomer_infomation'][$key]['href'] = $this->url->link('information/information', 'information_id=' . $result['information_id']);
+            }
+        }
+
+        // 交易安全 文章列表
+        $data['safe_infomation'] = $this->model_catalog_information->getInformationBymetatitle($data['text_safe_infomation']);
+        if(count($data['safe_infomation'])>0){
+            foreach ($data['safe_infomation'] as $key=>$result) {
+                $data['safe_infomation'][$key]['href'] = $this->url->link('information/information', 'information_id=' . $result['information_id']);
+            }
+        }
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/' . $template)) {
 			return $this->load->view($this->config->get('config_template') . '/template/' . $template, $data);

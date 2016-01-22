@@ -186,6 +186,11 @@ class ControllerCommonFooter extends Controller {
             return ($a['date'] > $b['date']) ? -1 : 1;
         });
 
+		//获取配置文件
+		$this->load->model('seller/setting');
+		$config_data = $this->model_seller_setting->getSetting('config',$this->config->get('config_store_id'));
+		$data['config_license_name'] = $config_data['config_license_name'];
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/footer.tpl')) {
 			return $this->load->view($this->config->get('config_template') . '/template/common/footer.tpl', $data);
 		} else {

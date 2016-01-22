@@ -1226,9 +1226,9 @@ a.product_enshrine:hover{background:#337ab7;color:#fff;}
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.zbj-buttons .prevbtn{left:225px;}
+.zbj-buttons .prevbtn{left:270px;}
 .zbj-buttons .nextbtn{right:225px;}
-.nav-btn{position:absolute;top:-60px;left:50%;margin:0px;padding:0px;}
+.nav-btn{position:absolute;top:-30px;left:50%;margin:0px;padding:0px;}
 
 .nav-btn span{
 	margin:3px;
@@ -1520,7 +1520,7 @@ a.product_enshrine:hover{background:#337ab7;color:#fff;}
 .br_ri{ border-right:1px solid #e1e1e1;}
 .notice{ border:1px solid #e1e1e1; overflow:hidden; margin-top:5px;}
 .notice .notice_top{ background:#f1f1f1;}
-.notice .notice_top a{ width:50%; height:30px; display:inline-block; border-bottom:1px solid #e1e1e1; text-align:center; line-height:30px; font-weight:bold; font-size:14px; border-bottom:none;}
+.notice .notice_top a{ width:50%; height:30px; display:inline-block; border-bottom:1px solid #e1e1e1; text-align:center; line-height:30px; font-weight:bold; font-size:14px;}
 .notice .notice_top .on{ background:#fff;}
 .notice .notice_conten{ padding:5px 0 0 10px}
 .notice .notice_conten li{ border:0; line-height:26px; height:27px; overflow:hidden; white-space:nowrap;} 
@@ -1557,7 +1557,7 @@ a.product_enshrine:hover{background:#337ab7;color:#fff;}
 
 .online_show{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin:0px;}
 .good_shopinfo{padding:10px;}
-.good_shopinfo span{width:50%;float:left;padding-left:10px;}
+.good_shopinfo span{width:100%;float:left;padding-left:10px;}
 .good_shopinfo span em{font-style:normal;color:#444;}
 
 #gotop {

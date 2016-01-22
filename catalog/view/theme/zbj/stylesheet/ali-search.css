@@ -2974,7 +2974,7 @@ a.select-window:hover {
 
 .sw-mod-filter .filter-bottom {
     height: 37px;
-    border: 1px solid #e2e2e2;
+/*    border: 1px solid #e2e2e2;*/
     border-top: 0;
     /*background-color: #f6f6f6;*/
     position: relative
@@ -3326,7 +3326,7 @@ a.select-window:hover {
 
 .sw-mod-filter .Area {
     margin: 6px 0 6px 6px;
-    width: 86px;
+    width: 90px;
     background-position: 74px -242px
 }
 

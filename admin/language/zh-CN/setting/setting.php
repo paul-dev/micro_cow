@@ -28,6 +28,7 @@ $_['text_google_analytics']            = '谷歌分析代码';
 // Entry
 $_['entry_name']                       = '商店名称';
 $_['entry_owner']                      = '商店拥有者';
+$_['entry_license']                      = '增值电信业务经营许可证';
 $_['entry_address']                    = '地址';
 $_['entry_geocode']                    = '地理代码';
 $_['entry_email']                      = 'E-Mail';

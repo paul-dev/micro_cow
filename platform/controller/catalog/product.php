@@ -76,6 +76,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->load->model('catalog/product');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+
 			$this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -320,6 +321,12 @@ class ControllerCatalogProduct extends Controller {
 			$filter_status = null;
 		}
 
+		if (isset($this->request->get['recommend'])) {
+			$recommend = $this->request->get['recommend'];
+		} else {
+			$recommend = '0';
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -360,6 +367,10 @@ class ControllerCatalogProduct extends Controller {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
 
+		if (isset($this->request->get['recommend'])) {
+			$url .= '&recommend=' . $this->request->get['recommend'];
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -397,6 +408,7 @@ class ControllerCatalogProduct extends Controller {
 			'filter_price'	  => $filter_price,
 			'filter_quantity' => $filter_quantity,
 			'filter_status'   => $filter_status,
+			'recommend'   => $recommend,
 			'sort'            => $sort,
 			'order'           => $order,
 			'start'           => ($page - 1) * $this->config->get('config_limit_admin'),
@@ -448,6 +460,8 @@ class ControllerCatalogProduct extends Controller {
 		$data['text_disabled'] = $this->language->get('text_disabled');
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
+		$data['text_yes'] = $this->language->get('text_yes');
+		$data['text_no'] = $this->language->get('text_no');
 
 		$data['column_image'] = $this->language->get('column_image');
 		$data['column_name'] = $this->language->get('column_name');
@@ -462,6 +476,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['entry_price'] = $this->language->get('entry_price');
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_status'] = $this->language->get('entry_status');
+		$data['entry_index_status'] = $this->language->get('entry_index_status');
 
 		$data['button_copy'] = $this->language->get('button_copy');
 		$data['button_add'] = $this->language->get('button_add');
@@ -576,6 +591,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['filter_price'] = $filter_price;
 		$data['filter_quantity'] = $filter_quantity;
 		$data['filter_status'] = $filter_status;
+		$data['recommend'] = $recommend;
 
 		$data['sort'] = $sort;
 		$data['order'] = $order;
@@ -621,6 +637,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['entry_location'] = $this->language->get('entry_location');
 		$data['entry_minimum'] = $this->language->get('entry_minimum');
 		$data['entry_shipping'] = $this->language->get('entry_shipping');
+		$data['entry_recommend'] = $this->language->get('entry_recommend');
 		$data['entry_date_available'] = $this->language->get('entry_date_available');
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_stock_status'] = $this->language->get('entry_stock_status');
@@ -933,6 +950,14 @@ class ControllerCatalogProduct extends Controller {
 			$data['keyword'] = '';
 		}*/
 
+		if (isset($this->request->post['recommend'])) {
+			$data['recommend'] = $this->request->post['recommend'];
+		} elseif (!empty($product_info)) {
+			$data['recommend'] = $product_info['recommend'];
+		} else {
+			$data['recommend'] = 0;
+		}
+
 		if (isset($this->request->post['shipping'])) {
 			$data['shipping'] = $this->request->post['shipping'];
 		} elseif (!empty($product_info)) {
@@ -940,6 +965,7 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$data['shipping'] = 1;
 		}
+
 
 		if (isset($this->request->post['price'])) {
 			$data['price'] = $this->request->post['price'];

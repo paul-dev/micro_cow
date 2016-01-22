@@ -72,8 +72,11 @@ class ControllerSellerOffer extends Controller {
 		$this->load->model('seller/offer');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$_check = $this->model_seller_offer->getPurchase($this->request->get['purchase_id']);
-            if ($_check) $this->model_seller_offer->editPurchase($this->request->get['purchase_id'], $this->request->post);
+
+			//修改报价信息
+			$_check = $this->model_seller_offer->getPurchase($this->request->get['purchase_offer_id']);
+
+            if ($_check) $this->model_seller_offer->editPurchase($this->request->get['purchase_offer_id'], $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -403,9 +406,11 @@ class ControllerSellerOffer extends Controller {
 
 		$this->load->model('tool/image');
 
-		$purchase_total = $this->model_seller_offer->getTotalPurchases($filter_data);
+		//获取报价过的产品
 
-		$results = $this->model_seller_offer->getPurchases($filter_data);
+		$purchase_total = $this->model_seller_offer->getTotalOfferPurchases($filter_data);
+
+		$results = $this->model_seller_offer->getOfferPurchases($filter_data);
 
 		foreach ($results as $result) {
             $image = $this->model_tool_image->resize('no_image.png', 40, 40);
@@ -417,10 +422,10 @@ class ControllerSellerOffer extends Controller {
                 'shipping_address' => $result['shipping_address'],
                 'total_product' => $result['total_product'],
                 'total_offer' => $result['total_offer'],
-                'company' => $result['company_name'],
+                'company' => isset($result['company_name'])?$result['company_name']:'',
 				'date_available' => date('Y-m-d', strtotime($result['date_available'])),
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'edit'       => $this->url->link('seller/offer/edit', 'purchase_id=' . $result['purchase_id'] . $url, 'SSL')
+				'edit'       => $this->url->link('seller/offer/edit', 'purchase_offer_id=' . $result['purchase_id'] . $url, 'SSL')
 			);
 		}
 
@@ -601,6 +606,7 @@ class ControllerSellerOffer extends Controller {
 		$data['entry_description'] = $this->language->get('entry_description');
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
+		$data['entry_quotation_note'] = $this->language->get('entry_quotation_note');
 		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$data['entry_keyword'] = $this->language->get('entry_keyword');
 		$data['entry_model'] = $this->language->get('entry_model');
@@ -788,8 +794,15 @@ class ControllerSellerOffer extends Controller {
         $data['is_edit'] = false;
 
 		if (isset($this->request->get['purchase_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-			$purchase_info = $this->model_seller_offer->getPurchase($this->request->get['purchase_id']);
+			$this->load->model('catalog/purchase');
+			$purchase_info = $this->model_catalog_purchase->getPurchase($this->request->get['purchase_id']);
             $data['is_edit'] = true;
+		}
+
+		if (isset($this->request->get['purchase_offer_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+			$this->load->model('catalog/purchase');
+			$purchase_info = $this->model_catalog_purchase->getPurchase($this->request->get['purchase_offer_id']);
+			$data['is_edit'] = true;
 		}
 
 		//$data['token'] = $this->session->data['token'];
@@ -807,6 +820,8 @@ class ControllerSellerOffer extends Controller {
 			$data['purchase_description'] = $this->request->post['purchase_description'];
 		} elseif (isset($this->request->get['purchase_id'])) {
 			$data['purchase_description'] = $this->model_seller_offer->getPurchaseDescriptions($this->request->get['purchase_id']);
+		} elseif (isset($this->request->get['purchase_offer_id'])) {
+			$data['purchase_description'] = $this->model_seller_offer->getPurchaseDescriptions($this->request->get['purchase_offer_id']);
 		} else {
 			$data['purchase_description'] = array();
 		}
@@ -852,7 +867,9 @@ class ControllerSellerOffer extends Controller {
             $categories = $this->request->post['purchase_category'];
         } elseif (isset($this->request->get['purchase_id'])) {
             $categories = $this->model_seller_offer->getPurchaseCategories($this->request->get['purchase_id']);
-        } else {
+        } elseif (isset($this->request->get['purchase_offer_id'])) {
+			$categories = $this->model_seller_offer->getPurchaseCategories($this->request->get['purchase_offer_id']);
+		} else {
             $categories = array();
         }
 
@@ -952,9 +969,16 @@ class ControllerSellerOffer extends Controller {
 			$purchase_product = $this->request->post['purchase_product'];
 		} elseif (isset($this->request->get['purchase_id'])) {
             $purchase_product = $this->model_seller_offer->getPurchaseProducts($this->request->get['purchase_id']);
+		} elseif (isset($this->request->get['purchase_offer_id'])) {
+			$purchase_product = $this->model_seller_offer->getOfferPurchaseProducts($this->request->get['purchase_offer_id']);
 		} else {
             $purchase_product = array();
 		}
+
+		/*echo "<pre>";
+		print_r($purchase_product);
+		echo "</pre>";
+		exit;*/
 
         foreach ($purchase_product as $pk => $product) {
             foreach ($product['product_image'] as $ik => $product_image) {
@@ -982,11 +1006,21 @@ class ControllerSellerOffer extends Controller {
         $data['footer'] = $this->load->controller('common/footer');
         $data['header'] = $this->load->controller('common/header');
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/seller/offer_form.tpl')) {
-            $this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/seller/offer_form.tpl', $data));
-        } else {
-            $this->response->setOutput($this->load->view('default/template/seller/offer_form.tpl', $data));
-        }
+		$data['purchaseInfo'] = $purchase_info;
+
+		$template = 'offer_form.tpl';
+
+		if (isset($this->request->get['purchase_offer_id'])) {
+			//报价编辑 页面
+			$template = 'offer_edit_form.tpl';
+		}
+
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/seller/' . $template)) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/seller/' . $template, $data));
+		} else {
+			$this->response->setOutput($this->load->view('default/template/seller/' . $template, $data));
+		}
+
 	}
 
 	protected function validateForm() {

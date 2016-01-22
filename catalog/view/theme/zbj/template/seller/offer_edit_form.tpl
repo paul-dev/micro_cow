@@ -29,7 +29,7 @@
             <div class="container-fluid">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-pencil"></i> <?php echo $text_form; ?></h3>
+                        <h3 class="panel-title"><i class="fa fa-pencil"></i> 报价编辑</h3>
                     </div>
                     <div class="panel-body">
                         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-purchase" class="form-horizontal">
@@ -156,7 +156,7 @@
                                                     <?php } ?>
                                                 </td>
                                                 <td class="text-left">
-                                                    <button type="button" onclick="addOffer(<?php echo $product['purchase_product_id']; ?>,<?php echo $purchaseInfo['purchase_id']; ?>, this)" data-toggle="tooltip" title="添加报价" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
+                                                    <button type="button" onclick="addOffer(<?php echo $product['product_id']; ?>,<?php echo $purchaseInfo['purchase_id']; ?>, this)" data-toggle="tooltip" title="编辑报价" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -234,9 +234,9 @@
                         return false;
                     }
 
-                    var _title = '添加报价产品 - ' + $(obj).closest('tr').find('td').eq(0).text() + '(' + $(obj).closest('tr').find('td').eq(1).text() + ')';
+                    var _title = '编辑报价产品 - ' + $(obj).closest('tr').find('td').eq(0).text() + '(' + $(obj).closest('tr').find('td').eq(1).text() + ')';
                     $.ajax({
-                        url: 'index.php?route=seller/product/add&&dialog='+product_id+'&purchase_id='+purchase_id,
+                        url: 'index.php?route=seller/product/edit&product_id='+product_id+'&purchase_id='+purchase_id,
                         type: 'get',
                         dataType: 'html',
                         success: function(data) {

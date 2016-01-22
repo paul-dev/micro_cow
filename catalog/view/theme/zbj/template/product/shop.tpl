@@ -144,31 +144,33 @@
 
       <div class="row" id="row-cols-4">
         <?php foreach ($products as $product) { ?>
-        <div class="good_store_wrap">
+        <div class="good_store_wrap" style="border:0px solid red;">
           <div class="product-thumb good_shop_list">
             <div class="image">
-              <a href="<?php echo $product['shop_info']['shop_url']; ?>">
-                <img style="display:inline-block" data-url="<?php echo $product['shop_info']['shop_image']; ?>" src="catalog/view/theme/zbj/image/zbj_default_pic.png" alt="<?php echo $product['shop_info']['shop_name']; ?>" title="<?php echo $product['shop_info']['shop_name']; ?>" class="img-responsive good_shop_pic" />
+              <a href="<?php echo $product['company_info']['company_url']; ?>">
+                <img style="display:inline-block" data-url="<?php echo $product['company_info']['company_image']; ?>" src="catalog/view/theme/zbj/image/zbj_default_pic.png" alt="<?php echo $product['company_info']['company_name']; ?>" title="<?php echo $product['company_info']['company_name']; ?>" class="img-responsive good_shop_pic" />
               </a>
             </div>
-            <div class="caption clearfix" style="padding-bottom: 0px;">
-              <a href="<?php echo $product['shop_info']['shop_url']; ?>" class="shop_avatar" target="_blank">
-                  <img src="<?php echo $product['shop_info']['shop_logo']; ?>" alt="<?php echo $product['shop_info']['shop_name']; ?>" title="<?php echo $product['shop_info']['shop_name']; ?>" />
+            <div class="caption clearfix" style="padding-bottom: 0px;text-align:center;">
+              <a href="<?php echo $product['company_info']['company_url']; ?>" class="shop_avatar" target="_blank" style="display:none">
+                  <img src="<?php echo $product['company_info']['company_image']; ?>" alt="<?php echo $product['company_info']['company_name']; ?>" title="<?php echo $product['company_info']['company_name']; ?>" />
               </a>
               <span>
-                <h4 style="margin:0; overflow: hidden; white-space: nowrap; margin-top: 12px;"><a href="<?php echo $product['shop_info']['shop_url']; ?>" title="<?php echo $product['shop_info']['shop_name']; ?>" alt="<?php echo $product['shop_info']['shop_name']; ?>"><strong style="color: #f69;"><?php echo $product['shop_info']['shop_name']; ?></strong></a></h4>
-                <p class="online_show"><?php echo $product['shop_info']['shop_comment']; ?></p>
+                <h4 style="margin:0; overflow: hidden; white-space: nowrap; margin-top: 12px;"><a href="<?php echo $product['company_info']['company_url']; ?>" title="<?php echo $product['company_info']['company_name']; ?>" alt="<?php echo $product['company_info']['company_name']; ?>"><strong style="color: #f69;"><?php echo $product['company_info']['company_name']; ?></strong></a></h4>
+                <p class="online_show"><?php echo $product['company_info']['country_name']; ?> <?php echo $product['company_info']['zone_name']; ?></p>
               </span>
               <div class="good_shopinfo clearfix">
-                    <span>粉丝: <em><?php echo $product['shop_info']['total_wish']; ?></em></span>
-                    <span>评分: <em><?php echo $product['shop_info']['ratings']['rating_average']; ?></em></span>
-                    <span>销量: <em><?php echo $product['shop_info']['total_sell']; ?></em></span>
-                    <span>商品: <em><?php echo $product['shop_info']['total_product']; ?></em></span>
+                    <span>注册资金: <em><?php echo $product['company_info']['company_registered_capital']; ?></em></span>
+                    <span>入驻日期: <em><?php echo $product['company_info']['company_date_added']; ?></em></span>
+                    <!--
+                    <span>销量: <em><?php echo $product['company_info']['total_sell']; ?></em></span>
+                    <span>商品: <em><?php echo $product['company_info']['total_product']; ?></em></span>
+                    -->
               </div>
             </div>
             <div class="good_shop_btn">
-              <a class="button" href="javascript:void(0);" onclick="wishlist.shop('<?php echo $product['shop_info']['store_id']; ?>');" style="margin-right:10px;"><i class="icon-add">+</i>关注</a>
-              <a class="button" href="<?php echo $product['shop_info']['shop_url']; ?>">去逛逛</a>
+              <a class="button" href="javascript:void(0);" onclick="wishlist.shop('<?php echo $product['company_info']['company_id']; ?>');" style="margin-right:10px;"><i class="icon-add">+</i>关注</a>
+              <a class="button" href="<?php echo $product['company_info']['company_url']; ?>">去逛逛</a>
             </div>
           </div>
         </div>

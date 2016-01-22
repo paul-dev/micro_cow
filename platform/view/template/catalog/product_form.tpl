@@ -240,6 +240,30 @@
               </div>
 
               <div class="form-group">
+                <label class="col-sm-2 control-label"><?php echo $entry_recommend; ?></label>
+                <div class="col-sm-10">
+                  <label class="radio-inline">
+                    <?php if ($recommend == 1) { ?>
+                    <input type="radio" name="recommend" value="1" checked="checked" />
+                    <?php echo $text_yes; ?>
+                    <?php } else { ?>
+                    <input type="radio" name="recommend" value="1" />
+                    <?php echo $text_yes; ?>
+                    <?php } ?>
+                  </label>
+                  <label class="radio-inline">
+                    <?php if ($recommend == 0) { ?>
+                    <input type="radio" name="recommend" value="0" checked="checked" />
+                    <?php echo $text_no; ?>
+                    <?php } else { ?>
+                    <input type="radio" name="recommend" value="0" />
+                    <?php echo $text_no; ?>
+                    <?php } ?>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-date-available"><?php echo $entry_date_available; ?></label>
                 <div class="col-sm-3">
                   <div class="input-group date">

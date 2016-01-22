@@ -84,6 +84,7 @@ $_['entry_description']      = '描述';
 $_['entry_meta_title'] 	     = 'Meta Tag 标题';
 $_['entry_meta_keyword'] 	 = 'Meta Tag 关键词';
 $_['entry_meta_description'] = 'Meta Tag 描述';
+$_['entry_quotation_note'] = '报价备注';
 $_['entry_keyword']          = 'SEO Keyword';
 $_['entry_model']            = '货号';
 $_['entry_sku']              = 'SKU';

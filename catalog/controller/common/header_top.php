@@ -52,7 +52,7 @@ class ControllerCommonHeaderTop extends Controller {
 
 		foreach ($modules as $module) {
 			$part = explode('.', $module['code']);
-			
+
 			if (isset($part[0]) && $this->config->get($part[0] . '_status')) {
 				$data['modules'][] = $this->load->controller('module/' . $part[0]);
 			}

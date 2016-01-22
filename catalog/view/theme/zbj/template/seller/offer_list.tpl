@@ -149,7 +149,7 @@
                 });
 
                 $('#button-filter').on('click', function() {
-                    var url = 'index.php?route=seller/purchase';
+                    var url = 'index.php?route=seller/offer';
 
                     var filter_name = $('input[name=\'filter_name\']').val();
 
@@ -188,7 +188,7 @@
                 $('input[name=\'filter_name\']').autocomplete({
                     'source': function(request, response) {
                         $.ajax({
-                            url: 'index.php?route=seller/purchase/autocomplete&filter_name=' +  encodeURIComponent(request),
+                            url: 'index.php?route=seller/offer/autocomplete&filter_name=' +  encodeURIComponent(request),
                             dataType: 'json',
                             success: function(json) {
                                 response($.map(json, function(item) {

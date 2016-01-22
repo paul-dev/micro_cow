@@ -1,10 +1,6 @@
 <?php
 class ControllerModuleSlideshow extends Controller {
-    /**
-     * @param $setting
-     * @return mixed
-     */
-    public function index($setting) {
+	public function index($setting) {
 		static $module = 0;
 
 		$this->load->model('design/banner');
@@ -118,13 +114,13 @@ class ControllerModuleSlideshow extends Controller {
 
 		$data['module'] = $module++;
 
-//        if(isset($this->session->data['customer_id'])){
-//            $this->load->model('sale/customer');
-//            $data['customer_info'] = $this->model_sale_customer->getCustomer($this->session->data['customer_id']);
-//            if(isset($data['customer_info']['custom_field'])){
-//                $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
-//            }
-//        }
+        /*if(isset($this->session->data['customer_id'])){
+            $this->load->model('sale/customer');
+            $data['customer_info'] = $this->model_sale_customer->getCustomer($this->session->data['customer_id']);
+            if(isset($data['customer_info']['custom_field'])){
+                $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
+            }
+        }*/
 
         //热门推荐 两个产品 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ start
         $this->load->model('catalog/product');
@@ -132,13 +128,17 @@ class ControllerModuleSlideshow extends Controller {
             'start' => '0',
             'limit' => '2'
         );
+
+        $this->load->model('tool/image');
+
         $data['special_products'] = $this->model_catalog_product->getProductSpecials($special_where);
         if(isset($data['special_products'])){
             foreach($data['special_products'] as $key=>$special_products){
-                $data['special_products'][$key]['image'] = 'image/'.$special_products['image'];
+                $data['special_products'][$key]['image'] = $this->model_tool_image->resize($special_products['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'))?$this->model_tool_image->resize($special_products['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height')):'catalog/view/theme/zbj/image/zbj_default_pic.png';
                 $data['special_products'][$key]['url'] = $this->url->link('product/product', 'product_id=' . $special_products['product_id']);;
             }
         }
+
         //热门推荐 两个产品 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ end
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/'.$template)) {

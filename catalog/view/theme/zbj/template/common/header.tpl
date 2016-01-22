@@ -31,10 +31,6 @@
 <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
 
   <!-- load style start -->
-
-  <script src="catalog/view/theme/zbj/js/jquery-1.9.1.min.js" type="text/javascript"></script>
-  <link href="catalog/view/theme/zbj/stylesheet/bootstrap.min.css" rel="stylesheet" media="screen">
-  <script src="catalog/view/theme/zbj/js/bootstrap.min.js" type="text/javascript"></script>
   <link href="catalog/view/theme/zbj/stylesheet/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/base.css">
   <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
@@ -67,7 +63,68 @@
 </head>
 <body>
 <!-- 原来的 start -->
-<nav id="top" style="margin: auto;display:none;">
+<nav id="top" style="margin: auto;display:none">
+  <div class="container" style="padding: 0;">
+    <div id="top-links" class="nav">
+      <ul class="top-link-left-ul">
+
+        <?php if(isset($customer_info)){ ?>
+        <li><a href="/index.php?route=account/edit"><?php echo $text_myinfo; ?></a></li>
+        <li><a href="/index.php?route=account/logout"><?php echo $text_safelogout; ?></a></li>
+        <?php }else{ ?>
+        <li><a href="/index.php?route=account/register" target="_blank"><?php echo $text_free_registration; ?></a></li>
+        <li><a href="/index.php?route=account/login" target="_blank"><?php echo $text_free_pleaselogin; ?></a></li>
+        <?php } ?>
+
+        <div style="clear: both"></div>
+      </ul>
+      <ul class="top-link-right-ul">
+        <li style="margin-right: 8px"><a><?php echo $text_aboutus; ?></a></li>
+        <li style="margin-right: 8px"><a href=""><img src="catalog/view/theme/zbj/image/weibo.png" style="margin-top: -2px"></a></li>
+        <li style="margin-right: 20px"><a href=""><img src="catalog/view/theme/zbj/image/weixin.png"></a></li>
+        <li>
+          <a href="/index.php?route=account/order"><?php echo $text_myorder; ?><i></i></a>
+        </li>
+        <li>
+          <a><?php echo $text_call_center; ?><i></i></a>
+          <ul style="width: 80px">
+            <?php foreach($newcomer_infomation as $infomation){ ?>
+            <li style="margin-right: 5px"><a href="<?php echo $infomation['href']; ?>"><?php echo $infomation['title']; ?></a></li>
+            <?php } ?>
+          </ul>
+        </li>
+
+        <li id="header-cart-label">
+          <a href="javascript:void(0);" onclick="$('#cart >ul').slideToggle();" title="<?php echo $text_shopping_cart; ?>">
+            <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_shopping_cart; ?></span>
+            <span class="shopping_cart_num">0</span>
+            <i class="fa fa-shopping-cart"></i>
+          </a>
+          <div class="shopping_cart_list">
+            <?php echo $cart; ?>
+          </div>
+        </li>
+
+        <li>
+          <a href="#"><?php echo $text_safe_infomation; ?><i></i></a>
+          <ul style="width: 80px">
+            <?php foreach($safe_infomation as $infomation){ ?>
+            <li style="margin-right: 5px"><a href="<?php echo $infomation['href']; ?>"><?php echo $infomation['title']; ?></a></li>
+            <?php } ?>
+          </ul>
+        </li>
+
+
+
+        <div style="clear: both"></div>
+      </ul>
+      <div style="clear: both"></div>
+
+    </div>
+  </div>
+</nav>
+
+<nav id="top" style="margin: auto;">
   <div class="container" style="padding: 0;">
     <?php echo $currency; ?>
     <?php echo $language; ?>
@@ -81,10 +138,14 @@
           <li><a href="#"><i></i><span class="hidden-xs hidden-sm hidden-md">帮助中心</span></a></li>
         -->
 
-        <li style="display: none;"><a href="<?php echo $contact; ?>"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md"><?php echo $telephone; ?></span></li>
+        <li style="display: none;"><a href="<?php echo $contact; ?>"><i class="fa fa-phone"></i></a>
+          <span class="hidden-xs hidden-sm hidden-md"><?php echo $telephone; ?></span>
+        </li>
         <?php if ($logged) { ?>
         <li><a href="<?php echo $account; ?>"><img src="<?php echo $avatar; ?>" /></a></li>
-        <li class="dropdown"><a href="<?php echo $account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $nickname; ?> <span class="caret"></span></a>
+        <li class="dropdown"><a href="<?php echo $account; ?>" class="dropdown-toggle" data-toggle="dropdown"> <?php echo $nickname; ?>
+            <!--<span class="caret"></span>-->
+          </a>
           <ul class="dropdown-menu dropdown-menu-left">
             <?php if ($isSeller) { ?>
             <li><a href="<?php echo $url_seller; ?>"><?php echo $text_seller; ?></a></li>
@@ -95,10 +156,13 @@
         </li>
         <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
         <?php } else { ?>
-        <li><a href="/connect/qzone/oauth/qq_login.php"><!-- <img src="/image/qq_login.png"> --><i class="i_qq"></i>QQ登录</a></li>
+        <!--<li><a href="/connect/qzone/oauth/qq_login.php"><!-- <img src="/image/qq_login.png"> --<i class="i_qq"></i>QQ登录</a></li>-->
         <li><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></li>
         <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
         <?php } ?>
+
+        <!--<li style="margin-right: 8px"><a><?php echo $text_aboutus; ?></a></li>-->
+
         <li class="dropdown" style="display: none;"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
           <ul class="dropdown-menu dropdown-menu-right">
             <?php if ($logged) { ?>
@@ -127,99 +191,11 @@
         </li>
 
         <li><a href="<?php echo $order; ?>"><i class="i_order"></i>我的订单</a></li>
-        <li class="no_bor"><a href=""><i class="fa fa-question-circle fa-lg" style="margin-right:4px;font-size:18px;"></i>帮助中心</a></li>
+        <li class="no_bor"><a href="">
+            <!--<i class="fa fa-question-circle fa-lg" style="margin-right:4px;font-size:18px;"></i>-->
+            帮助中心</a></li>
         <li class="no_bor" style="display: none;"><a href="<?php echo $checkout; ?>" title="<?php echo $text_checkout; ?>"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_checkout; ?></span></a></li>
       </ul>
-    </div>
-  </div>
-</nav>
-
-<nav id="top" style="margin: auto;">
-  <div class="container" style="padding: 0;">
-    <div id="top-links" class="nav">
-      <ul class="top-link-left-ul">
-        <li><a href="http://dev.micro.com/index.php?route=account/register" target="_blank">免费注册</a></li>
-        <li><a href="http://dev.micro.com/index.php?route=account/login" target="_blank">请登录</a></li>
-        <div style="clear: both"></div>
-      </ul>
-      <ul class="top-link-right-ul">
-        <li style="margin-right: 8px"><a href="#">关于我们</a></li>
-        <li style="margin-right: 8px"><a href="#"><img src="catalog/view/theme/zbj/image/weibo.png" style="margin-top: -2px"></a></li>
-        <li style="margin-right: 8px"><a href="#"><img src="catalog/view/theme/zbj/image/weixin.png"></a></li>
-        <li>
-          <a href="http://dev.micro.com/index.php?route=account/order">我的订单<i></i></a>
-          <ul>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">客服中心<i></i></a>
-          <ul>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">收藏夹<i></i></a>
-          <ul>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">进货单<i></i></a>
-          <ul>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">实力商家<i></i></a>
-          <ul>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-            <li>
-              <p class="text-center"><a href="#">您的购物车没有添加商品！</a></p>
-            </li>
-          </ul>
-        </li>
-        <div style="clear: both"></div>
-      </ul>
-      <div style="clear: both"></div>
-
     </div>
   </div>
 </nav>
@@ -265,7 +241,9 @@
 <div class="container">
   <div id="nav_home">
     <ul class="nav_list">
-      <li style="width: 260px;margin-left:-55px;background-color: #1686cc;"><a style="cursor: pointer">全部商品分类</a></li>
+      <?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index.php?route=common/home'){ ?>
+      <li style="width: 260px;margin-left:-40px;background-color: #1686cc;"><a style="cursor: pointer"><?php echo $text_all_category; ?></a></li>
+      <?php } ?>
       <?php foreach ($main_menu as $menu) { ?>
         <li><a href="<?php echo $menu['link']; ?>"><?php echo $menu['label']; ?></a></li>
       <?php } ?>

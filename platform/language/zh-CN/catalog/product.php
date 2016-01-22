@@ -15,6 +15,8 @@ $_['text_option']            = '选项';
 $_['text_option_value']      = '选项值';
 $_['text_percent']           = '百分比';
 $_['text_amount']            = '固定值';
+$_['text_yes']            = '是';
+$_['text_no']            = '否';
 
 // Button
 $_['button_auction_add']     = '添加竞拍';
@@ -47,6 +49,7 @@ $_['entry_isbn']             = 'ISBN';
 $_['entry_mpn']              = 'MPN';
 $_['entry_location']         = '生产地';
 $_['entry_shipping']         = '需要配送';
+$_['entry_recommend']         = '首页推荐';
 $_['entry_manufacturer']     = '制造商/品牌';
 $_['entry_store']            = '商店';
 $_['entry_date_available']   = '上架日期';
@@ -78,6 +81,7 @@ $_['entry_option']           = '选项';
 $_['entry_option_value']     = '选项值';
 $_['entry_required']         = '必填项';
 $_['entry_status']           = '状态';
+$_['entry_index_status']     = '首页推荐';
 $_['entry_sort_order']       = '排序';
 $_['entry_category']         = '分类';
 $_['entry_filter']           = '筛选';

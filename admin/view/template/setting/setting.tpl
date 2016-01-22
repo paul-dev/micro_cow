@@ -62,6 +62,15 @@
                 </div>
               </div>
               <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-name"><?php echo $entry_license; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_license_name" value="<?php echo $config_license_name; ?>" placeholder="<?php echo $config_license_name; ?>" id="input-name" class="form-control" />
+                  <?php if ($error_name) { ?>
+                  <div class="text-danger"><?php echo $error_name; ?></div>
+                  <?php } ?>
+                </div>
+              </div>
+              <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-address"><?php echo $entry_address; ?></label>
                 <div class="col-sm-10">
                   <textarea name="config_address" placeholder="<?php echo $entry_address; ?>" rows="5" id="input-address" class="form-control"><?php echo $config_address; ?></textarea>
