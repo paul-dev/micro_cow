@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<div class="container">
+<div class="container" style="height: 537px;padding-top: 50px">
 	 <?php if ($success) { ?>
 	  <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?></div>
 	  <?php } ?>
@@ -8,7 +8,10 @@
 	  <?php } ?>
 	<div class="main_login">
         <div class="left login-bg" style="width: 320px; margin-top: -15px;">
-            <!--<a href="#"><img src="/catalog/view/theme/zbj/image/registerbg.png" width="320" height="300" alt="注册背景图片" title="注册背景图片"></a>-->
+            <div>
+				<img src="/catalog/view/theme/zbj/image/register-left-img2.png" width="320" height="300" alt="注册背景图片" title="注册背景图片" style="margin-left: 70px;margin-bottom: 20px">
+				<img src="/catalog/view/theme/zbj/image/register-left-img1.png"  alt="注册背景图片" title="注册背景图片">
+			</div>
             <?php echo $content_top; ?>
         </div>
 		<div class="right register-content">
