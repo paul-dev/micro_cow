@@ -502,10 +502,21 @@ class ModelSellerOffer extends Model {
 		//查询该产品的所有报价信息
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_offer WHERE store_id = '" . (int)$this->config->get('config_store_id') . "' and purchase_id = '" . (int)$purchase_id . "' group by customer_id");
 
+
 		if(count($query->rows)>0){
 			foreach($query->rows as $key=>$value){
 
 				$query->rows[$key]['date_added'] = date('Y-m-d',strtotime($query->rows[$key]['date_added']));
+
+				/**
+				 * 只保留字符串首尾字符，隐藏中间用*代替（两个字符时只显示第一个）
+				 * @param string $query->rows[$key]['company_name'] 公司名称
+				 * @return string 格式化后的公司名称
+				 */
+				$strlen     = mb_strlen($query->rows[$key]['company_name'], 'utf-8');
+				$firstStr     = mb_substr($query->rows[$key]['company_name'], 0, 1, 'utf-8');
+				$lastStr     = mb_substr($query->rows[$key]['company_name'], -1, 1, 'utf-8');
+				$query->rows[$key]['company_name'] = $strlen == 2 ? $firstStr . str_repeat('*', mb_strlen($user_name, 'utf-8') - 1) : $firstStr . str_repeat("*", $strlen - 2) . $lastStr;
 
 				$quotation_note = $this->db->query("SELECT quotation_note,product_id FROM " . DB_PREFIX . "purchase_offer_product WHERE purchase_offer_id = '". $query->rows[$key]['purchase_offer_id'] ."'");
 
