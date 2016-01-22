@@ -266,33 +266,42 @@ class ModelSellerOffer extends Model {
 
 		//$purchase_product_query = $this->db->query("SELECT purchase_product_id, quantity FROM " . DB_PREFIX . "purchase_product WHERE purchase_id = '" . (int)$purchase_id . "'");
 
-		$quantity = $this->db->query("SELECT purchase_product_id, quantity FROM " . DB_PREFIX . "purchase_product WHERE purchase_id = " . "(SELECT distinct(purchase_id) FROM " . DB_PREFIX . "purchase_offer WHERE purchase_id = '" . (int)$purchase_id . "')");
-
+		//产品 ID
 		$purchase_product_query = $this->db->query("SELECT purchase_offer_id,purchase_id FROM " . DB_PREFIX . "purchase_offer WHERE purchase_id = '" . (int)$purchase_id . "'");
 
-		foreach($purchase_product_query->rows as $data){
-
-			$product_id = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "purchase_offer_product WHERE purchase_offer_id = '" . (int)$data['purchase_offer_id'] . "'");
-
-			$result[] = $product_id->row;
-
+		if(count($purchase_product_query->rows)>0){
+			foreach($purchase_product_query->rows as $data){
+				$product_id = $this->db->query("SELECT purchase_product_id,product_id FROM " . DB_PREFIX . "purchase_offer_product WHERE purchase_offer_id = '" . (int)$data['purchase_offer_id'] . "'");
+				$result[] = $product_id->row;
+			}
+		}else{
+			$this->response->redirect($this->url->link('seller/offer', 'SSL'));
 		}
 
-		$data = array_map("array_merge",$quantity->rows,$result);
+		foreach($result as $k=>$v){
+			if(!$v){
+				unset($result[$k]);
+			}
+		}
 
 		//foreach ($purchase_product_query->rows as $purchase_product) {
-		foreach ($data as $purchase_product) {
+		foreach ($result as $purchase_product) {
 			$purchase_product_description_data = array();
 
 			$purchase_product_description_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_product_description WHERE purchase_product_id = '" . (int)$purchase_product['purchase_product_id'] . "'");
 
 			foreach ($purchase_product_description_query->rows as $purchase_product_description) {
+
 				$purchase_product_description_data[$purchase_product_description['language_id']] = array(
 						'name' => $purchase_product_description['name'],
 						'unit' => $purchase_product_description['unit'],
 						'text' => $purchase_product_description['description']
 				);
 			}
+
+			//该条产品条数
+			$purchase_product_total_query = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "purchase_product WHERE purchase_product_id = '" . (int)$purchase_product['purchase_product_id'] . "'");
+			$purchase_product_total = $purchase_product_total_query->row['quantity'];
 
 			$purchase_product_image_data = array();
 			$purchase_product_image_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_product_image WHERE purchase_product_id = '" . (int)$purchase_product['purchase_product_id'] . "'");
@@ -303,7 +312,7 @@ class ModelSellerOffer extends Model {
 
 			$purchase_product_data[] = array(
 					'purchase_product_id' => $purchase_product['purchase_product_id'],
-					'product_amount'      => $purchase_product['quantity'],
+					'product_amount'      => $purchase_product_total,
 					'product_id'      => $purchase_product['product_id'],
 					'product_description' => $purchase_product_description_data,
 					'product_image'       => $purchase_product_image_data
@@ -474,5 +483,13 @@ class ModelSellerOffer extends Model {
 		return $rows;
 
 	}
+
+	public function getOfferNum($purchase_id){
+
+		$query = $this->db->query("SELECT COUNT(DISTINCT(purchase_id)) as total_offer FROM " . DB_PREFIX . "purchase_offer WHERE customer_id = '" . (int)$this->customer->getId() . "' and store_id = '" . (int)$this->config->get('config_store_id') . "' and purchase_id = '" . (int)$purchase_id . "'");
+
+		return $query->row['total_offer'];
+	}
+
 
 }

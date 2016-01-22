@@ -975,11 +975,6 @@ class ControllerSellerOffer extends Controller {
             $purchase_product = array();
 		}
 
-		/*echo "<pre>";
-		print_r($purchase_product);
-		echo "</pre>";
-		exit;*/
-
         foreach ($purchase_product as $pk => $product) {
             foreach ($product['product_image'] as $ik => $product_image) {
                 if (is_file(DIR_IMAGE . $product_image['image'])) {
