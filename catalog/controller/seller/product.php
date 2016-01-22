@@ -268,13 +268,6 @@ class ControllerSellerProduct extends Controller {
 				$product_id = $this->model_seller_product->addOfferProduct($this->request->post,$product_id,$purchase_offer_id);
 			}
 
-
-
-
-
-
-
-
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			if (isset($this->request->get['dialog'])) {

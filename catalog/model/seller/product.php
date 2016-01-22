@@ -147,6 +147,11 @@ class ModelSellerProduct extends Model{
             $this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
         }
 
+        //product_quotation_note
+        if (isset($data['product_quotation_note'])) {
+            $this->db->query("UPDATE " . DB_PREFIX . "purchase_offer_product SET quotation_note = '" . $data['product_quotation_note'] . "' WHERE product_id = '" . (int)$product_id . "'");
+        }
+
         $this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 
         foreach ($data['product_description'] as $language_id => $value) {
@@ -462,11 +467,16 @@ class ModelSellerProduct extends Model{
 
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 
+        //该条产品 报价备注
+        $product_quotation_note = $this->db->query("SELECT quotation_note FROM " . DB_PREFIX . "purchase_offer_product WHERE product_id = '" . (int)$product_id . "'");
+        $product_quotation_note = $product_quotation_note->row['quotation_note'];
+
         foreach ($query->rows as $result) {
             $product_description_data[$result['language_id']] = array(
                 'name' => $result['name'],
                 'description' => $result['description'],
                 'meta_title' => $result['meta_title'],
+                'quotation_note' => $product_quotation_note,
                 'meta_description' => $result['meta_description'],
                 'meta_keyword' => $result['meta_keyword'],
                 'tag' => $result['tag']
@@ -781,8 +791,8 @@ class ModelSellerProduct extends Model{
     }
 
     public function addOfferProduct($data,$product_id,$purchase_offer_id){
-echo "INSERT INTO " . DB_PREFIX . "purchase_offer_product SET purchase_product_id = '". (int)$data['purchase_product_id'] ."', purchase_offer_id = '". $purchase_offer_id ."', product_id = '". $product_id ."' quotation_note = '". $data['product_quotation_note'] ."' ";exit;
-        $this->db->query("INSERT INTO " . DB_PREFIX . "purchase_offer_product SET purchase_product_id = '". (int)$data['purchase_product_id'] ."', purchase_offer_id = '". $purchase_offer_id ."', product_id = '". $product_id ."' quotation_note = '". $data['product_quotation_note'] ."' ");
+
+        $this->db->query("INSERT INTO " . DB_PREFIX . "purchase_offer_product SET purchase_product_id = '". (int)$data['purchase_product_id'] ."', purchase_offer_id = '". $purchase_offer_id ."', product_id = '". $product_id ."', quotation_note = '". $data['product_quotation_note'] ."' ");
 
     }
 }

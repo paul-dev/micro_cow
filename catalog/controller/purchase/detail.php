@@ -122,7 +122,15 @@ class ControllerPurchaseDetail extends Controller
 		/*
 		 * @todo 点击报价——link;
 		 * */
-		$data['purchase_offer_link'] = $this->url->link('seller/offer/add','&purchase_id='.$purchase_id);
+		$this->load->model('seller/offer');
+
+		$data['offer_total'] = $this->model_seller_offer->getOfferNum($purchase_id);
+
+		if($data['offer_total'] == 0){
+			$data['purchase_offer_link'] = $this->url->link('seller/offer/add','&purchase_id='.$purchase_id);
+		}else{
+			$data['purchase_offer_link'] = $this->url->link('seller/offer/edit','&purchase_offer_id='.$purchase_id);
+		}
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/purchase/detail.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/purchase/detail.tpl', $data));
