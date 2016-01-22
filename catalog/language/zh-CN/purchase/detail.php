@@ -7,7 +7,7 @@ $_['heading_tag']		                           = '求购 - ';
 // Text
 $_['text_industry_involved']                      = '所属行业：';
 
-$_['text_date_added']                           = '发布日期：';
+$_['text_date_added']                           = '报价日期：';
 $_['text_date_available']                           = '截止日期：';
 $_['text_date_expect']                           = '期望收货：';
 $_['text_report']                                 = '举报';
@@ -31,7 +31,7 @@ $_['text_supplementary_instruction']               = '补充说明';
 
 $_['text_supplier']                               = '供应商';
 $_['text_region']                                = '所在地区';
-$_['text_this_quotation_terms']                   = '本次报价条款';
+$_['text_this_quotation_terms']                   = '报价备注';
 
 $_['text_contact_person']                        = '联系人：';
 $_['text_contact_tel']                            = '联系电话：';

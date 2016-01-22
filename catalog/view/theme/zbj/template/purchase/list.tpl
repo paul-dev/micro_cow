@@ -16,12 +16,6 @@
             <div  class="suoshuhangye-one">
               <?php echo $text_industry_involved;?>
             </div>
-            <ul style='display:none'>
-              <li class="suoshuhangye-li"><a href="#">手机显示屏</a></li>
-              <li class="suoshuhangye-li"><a href="#">iPad保护套</a></li>
-              <li class="suoshuhangye-li"><a href="#">平板电脑</a></li>
-              <li class="suoshuhangye-li"><a href="#">智能手机</a></li>
-            </ul>
           </div>
 
           <div class="sw-mod-filter sw-layout-mod" id="sw_mod_filter" trace="filtbar">
@@ -30,42 +24,6 @@
               <div class="filter-bottom-wrap" style='border:1px solid #e2e2e2'>
                 <div id="filter_bottom" class="filter-bottom">
                   <ul id="filter-bar" class="Bar">
-                    <li id="purchase-type-widget" class="sw-ui-select sm-filter-showHideItems buyoffer" ctype="buyType" style="display: none">
-                      <span class="Selected" title="所有信息类型">所有信息类型</span>
-
-                      <ul class="Select-item" id="sm-filter-purchaseType" style="display: none;">
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="现货/标准品询价" title="现货/标准品">现货/标准品询价</a></li>
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="加工/定制品询价" title="加工/定制品询价">加工/定制品询价</a></li>
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="供应商招募书" title="供应商招募书">供应商招募书</a></li>
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="招标/竞价" title="招标/竞价">招标/竞价</a>
-                        </li>
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="所有信息类型" title="所有信息类型">所有信息类型</a></li>
-                      </ul>
-
-                    </li>
-                    <li id="purchase-type-bid" class="sw-ui-select sm-filter-showHideItems priceinfo" ctype="purchasePrice" style="display: none">
-                      <span class="Selected" title="所有报价/报名">所有报价/报名</span>
-                      <ul class="Select-item" id="sm-filter-purchasePrice" style="display: none;">
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="有报价/报名" title="有报价/报名" >有报价/报名</a></li>
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="无报价/报名" title="无报价/报名" >无报价/报名</a></li>
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="所有报价/报名" title="所有报价/报名">所有报价/报名</a></li>
-                      </ul>
-                    </li>
-                    <li id="member-type-widget" class="sw-ui-select sm-filter-showHideItems membership" ctype="membership" style="display: none">
-                      <span class="Selected" title="所有会员">所有会员</span>
-
-                      <ul class="Select-item" id="sm-filter-memberType" style="display: none;">
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="诚信通会员" title="诚信通会员" >诚信通会员</a>
-                        </li>
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="淘宝会员" title="淘宝会员">淘宝会员</a></li>
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="免费会员" title="免费会员">免费会员</a></li>
-                        <li><a rel="nofollow" class="sm-filter-type" href="#" cvalue="所有会员" title="所有会员" >所有会员</a>
-                        </li>
-                      </ul>
-
-
-
-                    </li>
                     <li class="sw-ui-select Area " id="sw_mod_filter_area" currentprovince="" default="" industrydistricts=""><span class="Selected">所有地区</span>
 
                       <div class="sw-ui-area-box" style="display: none;">
@@ -688,7 +646,7 @@
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $text_date_remaining_of; ?></span></a></p>
                   <?php } ?>
 
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;">报价条数：0 </a></p>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;">报价条数：<?php echo $purchase_product['total_offer']; ?> 条</a></p>
 
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;">所在地：<?php echo $purchase_product['country_name']; ?> <?php echo $purchase_product['zone_name']; ?></a></p>
 

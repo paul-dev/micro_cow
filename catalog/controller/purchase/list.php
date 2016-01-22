@@ -55,16 +55,20 @@ class ControllerPurchaseList extends Controller
 		);
 
 		if (isset($this->request->get['date_available'])) {
-			$url = '&date_available=' . $this->request->get['date_available'];
+			$url .= '&date_available=' . $this->request->get['date_available'];
 			$paging_parameters = array(
+					'start' => ($page - 1)*$limit,
+					'limit' => $limit,
 					'sort' => 'p.date_available',
 					'order' => $this->request->get['date_available']
 			);
 		}
 
 		if (isset($this->request->get['date_added'])) {
-			$url = '&date_added=' . $this->request->get['date_added'];
+			$url .= '&date_added=' . $this->request->get['date_added'];
 			$paging_parameters = array(
+					'start' => ($page - 1)*$limit,
+					'limit' => $limit,
 					'sort' => 'p.date_added',
 					'order' => $this->request->get['date_added']
 			);
@@ -93,6 +97,9 @@ class ControllerPurchaseList extends Controller
 			//每条求购 产品总条数
 			$data['purchaseProduct'][$key]['product_amount'] = $this->model_catalog_purchase->getTotalPurchaseProduct($data['purchaseProduct'][$key]['purchase_id']);
 
+			//该产品总报价数量
+			$this->load->model('seller/offer');
+			$data['purchaseProduct'][$key]['total_offer'] = $this->model_seller_offer->getTotalOffer($data['purchaseProduct'][$key]['purchase_id']);
 		}
 
 		/*

@@ -267,7 +267,7 @@ class ModelSellerOffer extends Model {
 		//$purchase_product_query = $this->db->query("SELECT purchase_product_id, quantity FROM " . DB_PREFIX . "purchase_product WHERE purchase_id = '" . (int)$purchase_id . "'");
 
 		//产品 ID
-		$purchase_product_query = $this->db->query("SELECT purchase_offer_id,purchase_id FROM " . DB_PREFIX . "purchase_offer WHERE purchase_id = '" . (int)$purchase_id . "'");
+		$purchase_product_query = $this->db->query("SELECT purchase_offer_id,purchase_id FROM " . DB_PREFIX . "purchase_offer WHERE purchase_id = '" . (int)$purchase_id . "' AND customer_id = '". (int)$this->customer->getId() ."' AND store_id = '". (int)$this->config->get('config_store_id') ."'");
 
 		if(count($purchase_product_query->rows)>0){
 			foreach($purchase_product_query->rows as $data){
@@ -420,7 +420,7 @@ class ModelSellerOffer extends Model {
 				." FROM " . DB_PREFIX . "purchase p INNER JOIN ". DB_PREFIX ."purchase_offer po ON (p.purchase_id = po.purchase_id)  ".
 				"LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) ".
 				"LEFT JOIN " . DB_PREFIX . "purchase_to_store ps ON (p.purchase_id = ps.purchase_id) ".
-				"WHERE ps.store_id = '".(int)$this->config->get('config_store_id')."' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+				"WHERE ps.store_id = '".(int)$this->config->get('config_store_id')."' AND po.customer_id = '".$this->customer->getId()."' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
@@ -486,10 +486,49 @@ class ModelSellerOffer extends Model {
 
 	public function getOfferNum($purchase_id){
 
-		$query = $this->db->query("SELECT COUNT(DISTINCT(purchase_id)) as total_offer FROM " . DB_PREFIX . "purchase_offer WHERE customer_id = '" . (int)$this->customer->getId() . "' and store_id = '" . (int)$this->config->get('config_store_id') . "' and purchase_id = '" . (int)$purchase_id . "'");
+		$query = $this->db->query("SELECT COUNT(DISTINCT(purchase_id)) as num FROM " . DB_PREFIX . "purchase_offer WHERE customer_id = '" . (int)$this->customer->getId() . "' and store_id = '" . (int)$this->config->get('config_store_id') . "' and purchase_id = '" . (int)$purchase_id . "'");
+
+		return $query->row['num'];
+	}
+
+	public function getTotalOffer($purchase_id){
+
+		$query = $this->db->query("SELECT COUNT(DISTINCT(customer_id)) as total_offer FROM " . DB_PREFIX . "purchase_offer WHERE store_id = '" . (int)$this->config->get('config_store_id') . "' and purchase_id = '" . (int)$purchase_id . "'");
 
 		return $query->row['total_offer'];
 	}
 
+	public function getOfferInfo($purchase_id){
+		//查询该产品的所有报价信息
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_offer WHERE store_id = '" . (int)$this->config->get('config_store_id') . "' and purchase_id = '" . (int)$purchase_id . "' group by customer_id");
+
+		if(count($query->rows)>0){
+			foreach($query->rows as $key=>$value){
+
+				$query->rows[$key]['date_added'] = date('Y-m-d',strtotime($query->rows[$key]['date_added']));
+
+				$quotation_note = $this->db->query("SELECT quotation_note,product_id FROM " . DB_PREFIX . "purchase_offer_product WHERE purchase_offer_id = '". $query->rows[$key]['purchase_offer_id'] ."'");
+
+				$query->rows[$key]['quotation_note'] = isset($quotation_note->row['quotation_note'])?$quotation_note->row['quotation_note']:'';
+
+				$query->rows[$key]['product_id'] = isset($quotation_note->row['product_id'])?$quotation_note->row['product_id']:'';
+
+				if(isset($query->rows[$key]['product_id'])){
+					$this->load->model('catalog/category');
+					$company = $this->model_catalog_product->getCompanyInfo($query->rows[$key]['product_id']);
+					if(count($company)>0){
+						//$query->rows[$key]['company_address'] = $company['country_name']." ".$company['zone_name']." ".$company['city_name']." ".$company['area_name'];
+						$query->rows[$key]['company_address'] = $company['country_name']." ".$company['zone_name'];
+					}
+				}else{
+					$query->rows[$key]['company_address'] = '';
+				}
+
+			}
+		}
+
+		return $query->rows;
+
+	}
 
 }

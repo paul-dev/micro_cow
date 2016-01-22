@@ -77,7 +77,7 @@
                   <?php } ?>
                       </p>
                       <p><?php echo $text_registered_capital; ?><?php echo $purchase['registered_capital']; ?></p>
-                      <p><?php echo $text_already_offer; ?><span>8</span>家</p>
+                      <p><?php echo $text_already_offer; ?><span><?php echo $purchase['total_offer']; ?></span>家</p>
                     </div>
                     <div class="purchased-right-r">
                       <!--<div class="purchased-right-r-div"><h5><?php echo $purchase['contact_name']; ?></h5></div>-->
@@ -116,7 +116,7 @@
                       <td class="th-name"><?php echo $purchase['name']; ?></td>
                       <td class="td-center-new"><span><?php echo $purchase['product_amount']; ?></span><?php echo $text_piece; ?></td>
                       <td class="td-center-new"><?php if($purchase['date_remaining'] > 0){ ?><span><?php echo $purchase['date_remaining']; ?></span><?php echo $text_day; ?><?php }else{ ?><span><?php echo $text_has_as; ?><?php } ?></td>
-                      <td class="td-center-new"><span>15</span><?php echo $text_item; ?></td>
+                      <td class="td-center-new"><span><?php echo $purchase['total_offer']; ?></span><?php echo $text_item; ?></td>
                       <td class="td-center-new"><?php echo $purchase['company_name']; ?></td>
                       <td class="td-center-new"><?php echo $purchase['country_name']; ?> <?php echo $purchase['zone_name']; ?></td>
                       <td class="td-center-new">

@@ -96,6 +96,11 @@ class ControllerCommonHome extends Controller {
 			}
 			//每条求购 产品总条数
 			$data['purchaseProduct'][$key]['product_amount'] = $this->model_catalog_purchase->getTotalPurchaseProduct($data['purchaseProduct'][$key]['purchase_id']);
+
+			//该产品总报价数量
+			$this->load->model('seller/offer');
+			$data['purchaseProduct'][$key]['total_offer'] = $this->model_seller_offer->getTotalOffer($data['purchaseProduct'][$key]['purchase_id']);
+
 		}
 
 		//求购	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
@@ -124,6 +129,10 @@ class ControllerCommonHome extends Controller {
 			}
 			//每条求购 产品总条数
 			$data['purchaseState'][$key]['product_amount'] = $this->model_catalog_purchase->getTotalPurchaseProduct($data['purchaseState'][$key]['purchase_id']);
+
+			//该产品总报价数量
+			$this->load->model('seller/offer');
+			$data['purchaseProduct'][$key]['total_offer'] = $this->model_seller_offer->getTotalOffer($data['purchaseProduct'][$key]['purchase_id']);
 		}
 		$data['purchaseLink'] = $this->url->link('purchase/list');
 

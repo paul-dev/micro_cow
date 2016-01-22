@@ -124,9 +124,16 @@ class ControllerPurchaseDetail extends Controller
 		 * */
 		$this->load->model('seller/offer');
 
-		$data['offer_total'] = $this->model_seller_offer->getOfferNum($purchase_id);
+		//该产品是否已报价
+		$data['num'] = $this->model_seller_offer->getOfferNum($purchase_id);
 
-		if($data['offer_total'] == 0){
+		//该产品总报价数量
+		$data['total_offer'] = $this->model_seller_offer->getTotalOffer($purchase_id);
+
+		//具体报价信息
+		$data['offer_info'] = $this->model_seller_offer->getOfferInfo($purchase_id);
+
+		if($data['num'] == 0){
 			$data['purchase_offer_link'] = $this->url->link('seller/offer/add','&purchase_id='.$purchase_id);
 		}else{
 			$data['purchase_offer_link'] = $this->url->link('seller/offer/edit','&purchase_offer_id='.$purchase_id);

@@ -44,7 +44,6 @@
                   <div class="q-left-two" style="padding-bottom: 20px">
                     <h5 style="margin-bottom: 4px;"><?php echo $text_company_info; ?></h5>
 
-
                     <p><?php echo $text_date_join; ?><span><?php echo date('Y-m-d', strtotime($purchaseInfo['company_date_added'])); ?></span></p>
 
                       <p><?php echo $text_registered_assets; ?><span><?php echo $purchaseInfo['registered_capital']; ?></span></p>
@@ -62,20 +61,6 @@
 
                   </div>
 
-                  <div>
-                    <h5 style="margin-bottom: 4px"><?php echo $text_purchaser_other; ?></h5>
-                    <a>
-                      <span>秋冬季</span>
-                      <span>女</span>
-                      <span>内增高</span>
-                      <span>马靴</span>
-                      <span>高跟鞋</span>
-                    </a>
-                    <br/><br/>
-                  </div>
-                  <div>
-                    <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/purchedad.png" class="q-xa-imgad">
-                  </div>
 
                 </div>
               </div>
@@ -201,7 +186,7 @@
                 </div>
                 <!--已收到的报价-->
 
-                <h3 style="margin-left: 39px"><?php echo $text_receive_offerd; ?>（3<?php echo $text_item; ?>）</h3>
+                <h3 style="margin-left: 39px"><?php echo $text_receive_offerd; ?>（<?php echo $total_offer;?><?php echo $text_item; ?>）</h3>
                 <div class="q-xa-shoudao">
                   <table>
                     <thead>
@@ -213,28 +198,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td>
-                        <time>2015-12-15 &nbsp;15:57</time>
-                      </td>
-                      <td>z****5</td>
-                      <td>广东</td>
-                      <td>
-                        <p><img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/zhifubao.png"></p>
-                        <p><img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/zengzhi.png"></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <time>2015-12-15 &nbsp;15:57</time>
-                      </td>
-                      <td>z****5</td>
-                      <td>广东</td>
-                      <td>
-                        <p><img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/zhifubao.png"></p>
-                        <p><img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/zengzhi.png"></p>
-                      </td>
-                    </tr>
+                    <?php if(count($offer_info)>0){ ?>
+                      <?php foreach($offer_info as $info){ ?>
+                        <tr>
+                          <td><time><?php echo $info['date_added']; ?></time></td>
+                          <td><?php echo $info['company_name']; ?></td>
+                          <td><?php echo $info['company_address']; ?></td>
+                          <td><?php echo $info['quotation_note']; ?></td>
+                        </tr>
+                      <?php } ?>
+                    <?php } ?>
                     </tbody>
 
                   </table>

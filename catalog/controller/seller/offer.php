@@ -786,7 +786,7 @@ class ControllerSellerOffer extends Controller {
 		if (!isset($this->request->get['purchase_id'])) {
 			$data['action'] = $this->url->link('seller/offer/add', $url, 'SSL');
 		} else {
-			$data['action'] = $this->url->link('seller/offer/edit', 'purchase_id=' . $this->request->get['purchase_id'] . $url, 'SSL');
+			$data['action'] = $this->url->link('seller/offer/edit', 'purchase_offer_id=' . $this->request->get['purchase_id'] . $url, 'SSL');
 		}
 
 		$data['cancel'] = $this->url->link('seller/offer', $url, 'SSL');
