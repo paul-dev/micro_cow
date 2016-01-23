@@ -1783,10 +1783,13 @@ class ControllerSellerProduct extends Controller {
         }
 
 		//编辑报价
-		if (isset($this->request->get['product_id'])) {
-			$data['product_id'] = $this->request->get['product_id'];
-			$template = 'product_edit_form_dialog.tpl';
-			$data['product_info'] = $product_info;
+		if(count(explode("&", $_SERVER['HTTP_REFERER'])) > 1){
+			$referer_url = explode('=', explode("&", $_SERVER['HTTP_REFERER'])[1])[0];
+			if ($referer_url == "purchase_offer_id") {
+				$data['product_id'] = $this->request->get['product_id'];
+				$template = 'product_edit_form_dialog.tpl';
+				$data['product_info'] = $product_info;
+			}
 		}
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/seller/' . $template)) {
