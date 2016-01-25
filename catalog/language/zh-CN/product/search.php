@@ -1,11 +1,12 @@
 <?php
 
 // Heading
-$_['heading_title']     = '搜索';
+$_['heading_title']     = '搜索- ';
 $_['heading_title_reward']     = '福利社';
 $_['heading_title_latest']     = '新品上线';
 //$_['heading_title_shop']       = '推荐好店';
 $_['heading_title_shop']       = '优秀供应商';
+$_['heading_title_purchase']       = '求购商品';
 $_['heading_tag']		= '标签 - ';
 
 // Text

@@ -218,19 +218,16 @@ class ControllerProductSearch extends Controller {
 			);
 		}
 
-        if ($type) {
-            $title = $this->language->get('heading_title_'.$type);
-            $data['breadcrumbs'][] = array(
-                'text' => $this->language->get('heading_title_'.$type),
-                'href' => $this->url->link('product/search', 'type='.$type)
-            );
-            $data['heading_title'] = '';
-        } else {
-            $data['breadcrumbs'][] = array(
-                'text' => $this->language->get('heading_title'),
-                'href' => $this->url->link('product/search', $url)
-            );
-
+        if ($type == 'shop') {
+            $search = $this->language->get('heading_title');
+            $title = $this->language->get('heading_title_shop');
+            $data['heading_title'] = $search.$title;
+        }else if($type == 'purchase'){
+			$search = $this->language->get('heading_title');
+			$title = $this->language->get('heading_title_purchase');
+			$data['heading_title'] = $search.$title;
+		}
+		else {
             if (!empty($this->request->get['search'])) {
                 $data['heading_title'] = $this->language->get('heading_title') .  ' - ' . $this->request->get['search'];
             } else {

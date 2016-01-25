@@ -10,7 +10,7 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $heading_title; ?></h1>
+      <!--<h1><?php echo $heading_title; ?></h1>-->
       <!--<label class="control-label" for="input-search"><?php echo $entry_search; ?></label>-->
 
 
