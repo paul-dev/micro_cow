@@ -1,10 +1,5 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>
@@ -46,7 +41,7 @@
             <?php } ?>
           </select>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="display: none">
           <label class="checkbox-inline">
             <?php if ($sub_category) { ?>
             <input type="checkbox" name="sub_category" value="1" checked="checked" />
