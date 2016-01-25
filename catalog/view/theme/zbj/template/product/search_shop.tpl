@@ -97,7 +97,7 @@
         </div>
       </div>
 
-        <div class="cata_title clearfix">
+        <div class="cata_title clearfix" style="display: none">
           <span class="control-span"><?php echo $text_sort; ?></span>
           <ul class="category">
             <?php
