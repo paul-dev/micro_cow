@@ -401,7 +401,8 @@ class ControllerProductSearch extends Controller {
 
 					//产品图片
 					$this->load->model('tool/image');
-					$data['purchaseProduct'][$key]['purchase_product_img'] = $this->model_tool_image->resize($data['purchaseProduct'][$key]['purchase_product_img'], 63, 63);
+
+					$data['purchaseProduct'][$key]['purchase_product_img'] = $this->model_tool_image->resize(isset($data['purchaseProduct'][$key]['purchase_product_img'])?$data['purchaseProduct'][$key]['purchase_product_img']:'catalog/view/theme/zbj/image/zbj_default_pic.png', 63, 63);
 
 					//剩余日期
 					$data['purchaseProduct'][$key]['date_remaining'] = floor((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000);
@@ -417,9 +418,9 @@ class ControllerProductSearch extends Controller {
 					$this->load->model('seller/offer');
 					$data['purchaseProduct'][$key]['total_offer'] = $this->model_seller_offer->getTotalOffer($data['purchaseProduct'][$key]['purchase_id']);
 				}
+/*
 
-
-			/*	echo "<pre>";
+				echo "<pre>";
 				print_r($data['purchaseProduct']);
 				echo "</pre>";
 				exit;*/
