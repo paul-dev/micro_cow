@@ -60,7 +60,7 @@ class ControllerCommonHome extends Controller {
 		}
 
 		$this->load->model('tool/image');
-
+		$RecommendProducts = array_filter($RecommendProducts);
 		foreach($RecommendProducts as $key=>$val){
 			$RecommendProducts[$key]['url'] = $this->url->link("product/product", 'product_id=' . $RecommendProducts[$key]['product_id']);
 			$RecommendProducts[$key]['image'] = $this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):'catalog/view/theme/zbj/image/zbj_default_pic.png';
@@ -177,6 +177,7 @@ class ControllerCommonHome extends Controller {
 					'href'     => $href,
 					'filter'   => $filter
 			);
+
 		}
 
 //图文 商品分类 end
