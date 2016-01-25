@@ -24,7 +24,7 @@
               <div class="filter-bottom-wrap" style='border:1px solid #e2e2e2'>
                 <div id="filter_bottom" class="filter-bottom">
                   <ul id="filter-bar" class="Bar">
-                    <li class="sw-ui-select Area " id="sw_mod_filter_area" currentprovince="" default="" industrydistricts=""><span class="Selected">所有地区</span>
+                    <li class="sw-ui-select Area " id="sw_mod_filter_area" currentprovince="" default="" industrydistricts="" style="display: none;"><span class="Selected">所有地区</span>
 
                       <div class="sw-ui-area-box" style="display: none;">
                         <div class="sw-ui-area-bg"></div>
@@ -577,19 +577,19 @@
 
                     </li>
                     <li class="price-order noleftspliteline" ctype="postSort">
-                      <label>信息发布时间</label>
+                      <label><?php echo $text_Information_release; ?></label>
                       <?php if(isset($date_added)){ ?>
-                      <a cvalue="desc" class="price-desc sm-filter-type sm-filter-order" title="点击按信息发布时间从近到远排序" href="<?php echo $date_added['desc']; ?>" id="filter_postsortdesc"></a>
+                      <a cvalue="desc" class="price-desc sm-filter-type sm-filter-order" title="<?php echo $text_Information_rntf; ?>" href="<?php echo $date_added['desc']; ?>" id="filter_postsortdesc"></a>
                       <span class="filt-splitLine"></span>
-                      <a cvalue="asc" class="price-asc sm-filter-type sm-filter-order" descendorder="false" val="postTime" title="点击按信息发布时间从远到近排序" href="<?php echo $date_added['asc']; ?>" id="filter_postsortasc"></a>
+                      <a cvalue="asc" class="price-asc sm-filter-type sm-filter-order" descendorder="false" val="postTime" title="<?php echo $text_Information_rftn; ?>" href="<?php echo $date_added['asc']; ?>" id="filter_postsortasc"></a>
                       <?php } ?>
                     </li>
                     <li class="price-order" ctype="expireSort">
-                      <label>信息截止时间</label>
+                      <label><?php echo $text_Information_deadline; ?></label>
                       <?php if(isset($date_available)){ ?>
-                      <a cvalue="desc" class="price-desc sm-filter-order sm-filter-type" href="<?php echo $date_available['desc']; ?>" title="点击按报价截止时间从近到远排序" id="filter_expiresortdesc"></a>
+                      <a cvalue="desc" class="price-desc sm-filter-order sm-filter-type" href="<?php echo $date_available['desc']; ?>" title="<?php echo $text_Information_dntf; ?>" id="filter_expiresortdesc"></a>
                       <span class="filt-splitLine"></span>
-                      <a cvalue="asc" class="price-asc sm-filter-order sm-filter-type" href="<?php echo $date_available['asc']; ?>" title="点击按报价截止时间从远到近排序" id="filter_expiresortasc"></a>
+                      <a cvalue="asc" class="price-asc sm-filter-order sm-filter-type" href="<?php echo $date_available['asc']; ?>" title="<?php echo $text_Information_dftn; ?>" id="filter_expiresortasc"></a>
                       <?php } ?>
                     </li>
                   </ul>
@@ -646,15 +646,15 @@
                   <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $text_date_remaining_of; ?></span></a></p>
                   <?php } ?>
 
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;">报价条数：<?php echo $purchase_product['total_offer']; ?> 条</a></p>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_offer_total; ?><?php echo $purchase_product['total_offer']; ?> 条</a></p>
 
-                  <p> <a class="purehed-div-2-p" style="line-height: 25px;">所在地：<?php echo $purchase_product['country_name']; ?> <?php echo $purchase_product['zone_name']; ?></a></p>
+                  <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_location; ?><?php echo $purchase_product['country_name']; ?> <?php echo $purchase_product['zone_name']; ?></a></p>
 
                 </div>
 
                 <div class="purehed-div-3">
                   <p> <a href="<?php echo $purchase_product['url']; ?>"><?php echo $purchase_product['company_name']; ?></a></p>
-                  <p style="text-align: right">  <a href="<?php echo $purchase_product['url']; ?>" class="purehed-div-3-btn" style="color: #eea26f">立即报价 </a></p>
+                  <p style="text-align: right">  <a href="<?php echo $purchase_product['url']; ?>" class="purehed-div-3-btn" style="color: #eea26f"><?php echo $text_Offer_immediately; ?> </a></p>
                 </div>
               </div>
             </div>

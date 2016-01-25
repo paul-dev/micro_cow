@@ -27,5 +27,15 @@ $_['text_trade_type_1']                      = '支付宝担保交易';
 $_['text_trade_type_2']                      = '货到付款';
 $_['text_trade_type_3']                      = '预付款';
 
+$_['text_offer_total']                      = '报价条数：';
+$_['text_location']                      = '所在地：';
+$_['text_Offer_immediately']                      = '立即报价';
+$_['text_Information_release']                      = '信息发布时间';
+$_['text_Information_rntf']                      = '点击按信息发布时间从近到远排序';
+$_['text_Information_rftn']                      = '点击按信息发布时间从远到近排序';
+$_['text_Information_deadline']                      = '信息截止时间';
+$_['text_Information_dntf']                      = '点击按报价截止时间从近到远排序';
+$_['text_Information_dftn']                      = '点击按报价截止时间从远到近排序';
+
 // Entry
 $_['entry_search']      = '搜索标准';

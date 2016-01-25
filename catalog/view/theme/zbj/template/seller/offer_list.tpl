@@ -82,11 +82,11 @@
                                             <?php } else { ?>
                                             <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?></a>
                                             <?php } ?></td>
-                                        <td class="text-right"><a href="javascript:void(0);">采购量</a></td>
-                                        <td class="text-right"><a href="javascript:void(0);">报价截止</a></td>
-                                        <td class="text-right"><a href="javascript:void(0);">报价数</a></td>
-                                        <td class="text-right"><a href="javascript:void(0);">采购商</a></td>
-                                        <td class="text-right"><a href="javascript:void(0);">收货地</a></td>
+                                        <td class="text-right"><a href="javascript:void(0);"><?php echo $text_amount_purchased; ?></a></td>
+                                        <td class="text-right"><a href="javascript:void(0);"><?php echo $text_offer_end; ?></a></td>
+                                        <td class="text-right"><a href="javascript:void(0);"><?php echo $text_offer_num; ?></a></td>
+                                        <td class="text-right"><a href="javascript:void(0);"><?php echo $text_puchaser; ?></a></td>
+                                        <td class="text-right"><a href="javascript:void(0);"><?php echo $text_place_of_receipt; ?></a></td>
                                         <td class="text-center"><?php if ($sort == 'p.status') { ?>
                                             <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
                                             <?php } else { ?>

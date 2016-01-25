@@ -458,6 +458,34 @@ class ControllerSellerOffer extends Controller {
         $data['button_disable'] = $this->language->get('button_disable');
 		$data['button_filter'] = $this->language->get('button_filter');
 
+		$data['text_offer_edit'] = $this->language->get('text_offer_edit');
+		$data['text_purchase_product'] = $this->language->get('text_purchase_product');
+		$data['text_place_of_receipt'] = $this->language->get('text_place_of_receipt');
+		$data['text_Supplier_is_located'] = $this->language->get('text_Supplier_is_located');
+		$data['text_Invoice'] = $this->language->get('text_Invoice');
+		$data['text_Invoice1'] = $this->language->get('text_Invoice1');
+		$data['text_Invoice2'] = $this->language->get('text_Invoice2');
+		$data['text_Invoice3'] = $this->language->get('text_Invoice3');
+		$data['text_Trade'] = $this->language->get('text_Trade');
+		$data['text_Trade1'] = $this->language->get('text_Trade1');
+		$data['text_Trade2'] = $this->language->get('text_Trade2');
+		$data['text_Trade3'] = $this->language->get('text_Trade3');
+		$data['text_Offer'] = $this->language->get('text_Offer');
+		$data['text_Offer1'] = $this->language->get('text_Offer1');
+		$data['text_Offer2'] = $this->language->get('text_Offer2');
+		$data['text_offer_endtime'] = $this->language->get('text_offer_endtime');
+		$data['text_offer_expectation'] = $this->language->get('text_offer_expectation');
+		$data['text_product_name'] = $this->language->get('text_product_name');
+		$data['text_amount_purchased'] = $this->language->get('text_amount_purchased');
+		$data['text_product_description'] = $this->language->get('text_product_description');
+		$data['text_Edit_the_quotation'] = $this->language->get('text_Edit_the_quotation');
+		$data['text_edit_image'] = $this->language->get('text_edit_image');
+		$data['text_edit_product'] = $this->language->get('text_edit_product');
+		$data['text_offer_end'] = $this->language->get('text_offer_end');
+		$data['text_offer_num'] = $this->language->get('text_offer_num');
+		$data['text_puchaser'] = $this->language->get('text_puchaser');
+		$data['text_place_of_receipt'] = $this->language->get('text_place_of_receipt');
+
 		//$data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
@@ -601,6 +629,34 @@ class ControllerSellerOffer extends Controller {
 		$data['text_select'] = $this->language->get('text_select');
 		$data['text_percent'] = $this->language->get('text_percent');
 		$data['text_amount'] = $this->language->get('text_amount');
+
+		$data['text_offer_edit'] = $this->language->get('text_offer_edit');
+		$data['text_purchase_product'] = $this->language->get('text_purchase_product');
+		$data['text_place_of_receipt'] = $this->language->get('text_place_of_receipt');
+		$data['text_Supplier_is_located'] = $this->language->get('text_Supplier_is_located');
+		$data['text_Invoice'] = $this->language->get('text_Invoice');
+		$data['text_Invoice1'] = $this->language->get('text_Invoice1');
+		$data['text_Invoice2'] = $this->language->get('text_Invoice2');
+		$data['text_Invoice3'] = $this->language->get('text_Invoice3');
+		$data['text_Trade'] = $this->language->get('text_Trade');
+		$data['text_Trade1'] = $this->language->get('text_Trade1');
+		$data['text_Trade2'] = $this->language->get('text_Trade2');
+		$data['text_Trade3'] = $this->language->get('text_Trade3');
+		$data['text_Offer'] = $this->language->get('text_Offer');
+		$data['text_Offer1'] = $this->language->get('text_Offer1');
+		$data['text_Offer2'] = $this->language->get('text_Offer2');
+		$data['text_offer_endtime'] = $this->language->get('text_offer_endtime');
+		$data['text_offer_expectation'] = $this->language->get('text_offer_expectation');
+		$data['text_product_name'] = $this->language->get('text_product_name');
+		$data['text_amount_purchased'] = $this->language->get('text_amount_purchased');
+		$data['text_product_description'] = $this->language->get('text_product_description');
+		$data['text_Edit_the_quotation'] = $this->language->get('text_Edit_the_quotation');
+		$data['text_edit_image'] = $this->language->get('text_edit_image');
+		$data['text_edit_product'] = $this->language->get('text_edit_product');
+		$data['text_add_product_image'] = $this->language->get('text_add_product_image');
+		$data['text_add_product'] = $this->language->get('text_add_product');
+		$data['text_add_offer'] = $this->language->get('text_add_offer');
+		$data['text_unit'] = $this->language->get('text_unit');
 
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_description'] = $this->language->get('entry_description');

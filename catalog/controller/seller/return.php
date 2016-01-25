@@ -51,6 +51,9 @@ class ControllerSellerReturn extends Controller {
 		$data['column_status'] = $this->language->get('column_status');
 		$data['column_date_added'] = $this->language->get('column_date_added');
 		$data['column_customer'] = $this->language->get('column_customer');
+		$data['column_product'] = $this->language->get('column_product');
+		$data['column_model'] = $this->language->get('column_model');
+		$data['column_number'] = $this->language->get('column_number');
 
 		$data['button_view'] = $this->language->get('button_view');
 		$data['button_continue'] = $this->language->get('button_continue');

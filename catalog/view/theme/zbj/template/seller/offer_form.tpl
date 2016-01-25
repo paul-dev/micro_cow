@@ -35,7 +35,7 @@
                         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-purchase" class="form-horizontal">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#tab-purchase-data" data-toggle="tab"><?php echo $tab_data; ?></a></li>
-                                <li><a href="#tab-purchase-product" data-toggle="tab">求购产品</a></li>
+                                <li><a href="#tab-purchase-product" data-toggle="tab"><?php echo $text_purchase_product; ?></a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab-purchase-data">
@@ -49,7 +49,7 @@
                                     <?php } ?>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-shipping-address">收货地:</label>
+                                        <label class="col-sm-2 control-label" for="input-shipping-address"><?php echo $text_place_of_receipt; ?></label>
                                         <div class="col-sm-10">
 
                                             <?php if($purchaseInfo){ ?>
@@ -67,56 +67,56 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-supply-area">供应商所在地:</label>
+                                        <label class="col-sm-2 control-label" for="input-supply-area"><?php echo $text_Supplier_is_located; ?></label>
                                         <div class="col-sm-10">
                                             <label class="control-label"><?php echo $purchaseInfo['supply_area']; ?></label>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-invoice-type">发票要求:</label>
+                                        <label class="col-sm-2 control-label" for="input-invoice-type"><?php echo $text_Invoice; ?></label>
                                         <div class="col-sm-10">
                                             <select name="invoice_type" id="input-invoice-type" class="form-control">
                                                 <option value="0"><?php echo $text_none; ?></option>
-                                                <option value="1"<?php if ($purchaseInfo['invoice_type'] == 1) echo ' selected="selected"'; ?>>不需要发票</option>
-                                                <option value="2"<?php if ($purchaseInfo['invoice_type'] == 2) echo ' selected="selected"'; ?>>普通发票</option>
-                                                <option value="3"<?php if ($purchaseInfo['invoice_type'] == 3) echo ' selected="selected"'; ?>>增值税发票</option>
+                                                <option value="1"<?php if ($purchaseInfo['invoice_type'] == 1) echo ' selected="selected"'; ?><?php echo $text_Invoice1; ?></option>
+                                                <option value="2"<?php if ($purchaseInfo['invoice_type'] == 2) echo ' selected="selected"'; ?><?php echo $text_Invoice2; ?></option>
+                                                <option value="3"<?php if ($purchaseInfo['invoice_type'] == 3) echo ' selected="selected"'; ?><?php echo $text_Invoice3; ?></option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-trade-type">交易方式:</label>
+                                        <label class="col-sm-2 control-label" for="input-trade-type"><?php echo $text_Trade; ?></label>
                                         <div class="col-sm-10">
                                             <select name="trade_type" id="input-trade-type" class="form-control">
                                                 <option value="0"><?php echo $text_none; ?></option>
-                                                <option value="1"<?php if ($purchaseInfo['trade_type'] == 1) echo ' selected="selected"'; ?>>支付宝担保交易</option>
-                                                <option value="2"<?php if ($purchaseInfo['trade_type'] == 2) echo ' selected="selected"'; ?>>货到付款</option>
-                                                <option value="3"<?php if ($purchaseInfo['trade_type'] == 3) echo ' selected="selected"'; ?>>预付款</option>
+                                                <option value="1"<?php if ($purchaseInfo['trade_type'] == 1) echo ' selected="selected"'; ?><?php echo $text_Trade1; ?></option>
+                                                <option value="2"<?php if ($purchaseInfo['trade_type'] == 2) echo ' selected="selected"'; ?><?php echo $text_Trade2; ?></option>
+                                                <option value="3"<?php if ($purchaseInfo['trade_type'] == 3) echo ' selected="selected"'; ?><?php echo $text_Trade3; ?></option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-price-type">报价要求:</label>
+                                        <label class="col-sm-2 control-label" for="input-price-type"><?php echo $text_Offer; ?></label>
                                         <div class="col-sm-10">
                                             <select name="price_type" id="input-price-type" class="form-control">
                                                 <option value="0"><?php echo $text_none; ?></option>
-                                                <option value="1"<?php if ($purchaseInfo['price_type'] == 1) echo ' selected="selected"'; ?>>含税价</option>
-                                                <option value="2"<?php if ($purchaseInfo['price_type'] == 2) echo ' selected="selected"'; ?>>不含税价</option>
+                                                <option value="1"<?php if ($purchaseInfo['price_type'] == 1) echo ' selected="selected"'; ?><?php echo $text_Offer1; ?></option>
+                                                <option value="2"<?php if ($purchaseInfo['price_type'] == 2) echo ' selected="selected"'; ?><?php echo $text_Offer2; ?></option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-date-available">报价截止时间:</label>
+                                        <label class="col-sm-2 control-label" for="input-date-available"><?php echo $text_offer_endtime; ?></label>
                                         <div class="col-sm-3">
                                             <label class="control-label"><?php echo date('Y-m-d',strtotime($purchaseInfo['date_available'])); ?></label>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="input-date-expect">期望收货时间:</label>
+                                        <label class="col-sm-2 control-label" for="input-date-expect"><?php echo $text_offer_expectation; ?></label>
                                         <div class="col-sm-3">
                                             <label class="control-label"><?php echo date('Y-m-d',strtotime($purchaseInfo['date_expect'])); ?></label>
                                         </div>
@@ -129,9 +129,9 @@
                                         <table id="purchase-product" class="table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
-                                                <td class="text-left" style="width: 35%;">产品名称</td>
-                                                <td class="text-left" style="width: 15%;">采购量</td>
-                                                <td class="text-left">产品描述</td>
+                                                <td class="text-left" style="width: 35%;"><?php echo $text_product_name; ?></td>
+                                                <td class="text-left" style="width: 15%;"><?php echo $text_amount_purchased; ?></td>
+                                                <td class="text-left"><?php echo $text_product_description; ?></td>
                                                 <td></td>
                                             </tr>
                                             </thead>
@@ -156,7 +156,7 @@
                                                     <?php } ?>
                                                 </td>
                                                 <td class="text-left">
-                                                    <button type="button" onclick="addOffer(<?php echo $product['purchase_product_id']; ?>,<?php echo $purchaseInfo['purchase_id']; ?>, this)" data-toggle="tooltip" title="添加报价" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
+                                                    <button type="button" onclick="addOffer(<?php echo $product['purchase_product_id']; ?>,<?php echo $purchaseInfo['purchase_id']; ?>, this)" data-toggle="tooltip" title="<?php echo $text_add_offer; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -165,7 +165,7 @@
                                                     <?php $image_row = 0; ?>
                                                     <?php foreach ($product['product_image'] as $product_image) { ?>
                                                     <div style="float: left; padding-right: 4px; padding-bottom: 4px;">
-                                                        <a href="" id="thumb-image-<?php echo $product_row; ?>-<?php echo $image_row; ?>" data-toggle="image" class="img-thumbnail"><img src="<?php echo $product_image['thumb']; ?>" alt=""  title="点击修改产品图片" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="purchase_product[<?php echo $product_row; ?>][product_image][<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="input-image-<?php echo $product_row; ?>-<?php echo $image_row; ?>" />
+                                                        <a href="" id="thumb-image-<?php echo $product_row; ?>-<?php echo $image_row; ?>" data-toggle="image" class="img-thumbnail"><img src="<?php echo $product_image['thumb']; ?>" alt=""  title="<?php echo $text_Edit_the_quotation; ?>" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="purchase_product[<?php echo $product_row; ?>][product_image][<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="input-image-<?php echo $product_row; ?>-<?php echo $image_row; ?>" />
                                                     </div>
                                                     <?php $image_row++; ?>
                                                     <?php } ?>
@@ -198,25 +198,25 @@
                     html  = '<tr id="product-row' + product_row + '">';
                     html += '  <td class="text-left">';
                 <?php foreach ($languages as $language) { ?>
-                        html += '<div class="input-group"><span class="input-group-addon"><img src="/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /></span><input type="text" name="purchase_product[' + product_row + '][product_description][<?php echo $language['language_id']; ?>][name]" value="" placeholder="产品名称" class="form-control" /></div>';
+                        html += '<div class="input-group"><span class="input-group-addon"><img src="/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /></span><input type="text" name="purchase_product[' + product_row + '][product_description][<?php echo $language['language_id']; ?>][name]" value="" placeholder="<?php echo $text_product_name; ?>" class="form-control" /></div>';
                     <?php } ?>
                     html += '  </td>';
                     html += '  <td class="text-left"><input type="text" name="purchase_product[' + product_row + '][product_amount]" value="" placeholder="采购量" class="form-control" />';
                 <?php foreach ($languages as $language) { ?>
-                        html += '<div class="input-group"><span class="input-group-addon"><img src="/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /></span><input type="text" name="purchase_product[' + product_row + '][product_description][<?php echo $language['language_id']; ?>][unit]" value="" placeholder="单位" class="form-control" /></div>';
+                        html += '<div class="input-group"><span class="input-group-addon"><img src="/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /></span><input type="text" name="purchase_product[' + product_row + '][product_description][<?php echo $language['language_id']; ?>][unit]" value="" placeholder="<?php echo $text_unit; ?>" class="form-control" /></div>';
                     <?php } ?>
                     html += '  </td>';
                     html += '  <td class="text-left">';
                 <?php foreach ($languages as $language) { ?>
-                        html += '<div class="input-group"><span class="input-group-addon"><img src="/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /></span><textarea name="purchase_product[' + product_row + '][product_description][<?php echo $language['language_id']; ?>][text]" rows="5" placeholder="产品描述" class="form-control"></textarea></div>';
+                        html += '<div class="input-group"><span class="input-group-addon"><img src="/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /></span><textarea name="purchase_product[' + product_row + '][product_description][<?php echo $language['language_id']; ?>][text]" rows="5" placeholder="<?php echo $text_product_description; ?>" class="form-control"></textarea></div>';
                     <?php } ?>
                     html += '  </td>';
                     html += '  <td class="text-left"><button type="button" onclick="$(\'#product-row' + product_row + '\').next(\'tr\').remove();$(\'#product-row' + product_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
                     html += '</tr><tr>';
                     html += '  <td class="text-left" colspan="3"><div style="float: left; padding-right: 4px; padding-bottom: 4px;">';
-                    html += '<a href="" id="thumb-image-' + product_row + '-0" data-toggle="image" class="img-thumbnail" title="点击修改产品图片"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="purchase_product[' + product_row + '][product_image][0][image]" value="" id="input-image-' + product_row + '-0" />';
+                    html += '<a href="" id="thumb-image-' + product_row + '-0" data-toggle="image" class="img-thumbnail" title="<?php echo $text_edit_image; ?>"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="purchase_product[' + product_row + '][product_image][0][image]" value="" id="input-image-' + product_row + '-0" />';
                     html += '  </div></td>';
-                    html += '  <td class="text-left"><button type="button" onclick="addImage(' + product_row + ');" data-toggle="tooltip" title="增加产品图片" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>';
+                    html += '  <td class="text-left"><button type="button" onclick="addImage(' + product_row + ');" data-toggle="tooltip" title="<?php echo $text_add_product_image; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>';
                     html += '  </td></tr>';
 
                     $('#purchase-product tbody').append(html);
@@ -300,7 +300,7 @@
             <script type="text/javascript"><!--
                 function addImage(image_row) {
                     var image_col = $('#product-row'+image_row).next('tr').find('a[id^="thumb-image-"]').length;
-                    html = '<div style="float: left; padding-right: 4px; padding-bottom: 4px;"><a href="" id="thumb-image-' + image_row + '-'+image_col+'" data-toggle="image" class="img-thumbnail" title="点击修改产品图片"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /><input type="hidden" name="purchase_product[' + image_row + '][product_image]['+image_col+'][image]" value="" id="input-image-' + image_row + '-'+image_col+'" /></div>';
+                    html = '<div style="float: left; padding-right: 4px; padding-bottom: 4px;"><a href="" id="thumb-image-' + image_row + '-'+image_col+'" data-toggle="image" class="img-thumbnail" title="<?php echo $text_edit_image; ?>"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /><input type="hidden" name="purchase_product[' + image_row + '][product_image]['+image_col+'][image]" value="" id="input-image-' + image_row + '-'+image_col+'" /></div>';
 
                     $('#product-row'+image_row).next('tr').find('td').first().append(html);
                 }

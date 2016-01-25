@@ -29,6 +29,37 @@ $_['text_enabled']           = '启用';
 $_['text_disabled']          = '停用';
 $_['text_confirm']           = '确定吗?';
 
+$_['text_offer_edit']           = '报价编辑';
+$_['text_purchase_product']           = '求购产品';
+$_['text_place_of_receipt']           = '收货地:	';
+$_['text_Supplier_is_located']           = '供应商所在地:';
+$_['text_Invoice']           = '发票要求:';
+$_['text_Invoice1']           = '>不需要发票';
+$_['text_Invoice2']           = '>普通发票';
+$_['text_Invoice3']           = '>增值税发票';
+$_['text_Trade']           = '交易方式:';
+$_['text_Trade1']           = '>支付宝担保交易';
+$_['text_Trade2']           = '>货到付款';
+$_['text_Trade3']           = '>预付款';
+$_['text_Offer']           = '报价要求:';
+$_['text_Offer1']           = '>含税价';
+$_['text_Offer2']           = '>不含税价';
+$_['text_offer_endtime']           = '报价截止时间:';
+$_['text_offer_expectation']           = '期望收货时间:';
+$_['text_product_name']           = '产品名称';
+$_['text_amount_purchased']           = '采购量';
+$_['text_product_description']           = '产品描述';
+$_['text_Edit_the_quotation']           = '编辑报价';
+$_['text_edit_image']           = '点击修改产品图片';
+$_['text_edit_product']           = '编辑报价产品';
+$_['text_offer_end']           = '报价截止';
+$_['text_offer_num']           = '报价数';
+$_['text_puchaser']           = '采购商';
+$_['text_place_of_receipt']           = '收货地';
+$_['text_add_product_image']           = '增加产品图片';
+$_['text_add_product']           = '添加报价';
+$_['text_unit']           = '单位';
+
 // Button
 $_['button_auction_add']     = '添加竞拍';
 

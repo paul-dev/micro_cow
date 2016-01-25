@@ -27,6 +27,12 @@ $_['text_amount']            = '固定值';
 $_['text_no_results']        = '没有符合条件的结果！';
 $_['text_enabled']           = '启用';
 $_['text_disabled']          = '停用';
+$_['text_amount_purchased']          = '采购量';
+$_['text_offer_end']          = '报价截止';
+$_['text_offer_num']          = '报价数';
+$_['text_puchaser']          = '采购商';
+$_['text_place_of_receipt']          = '收货地';
+
 $_['text_confirm']           = '确定吗?';
 
 // Button

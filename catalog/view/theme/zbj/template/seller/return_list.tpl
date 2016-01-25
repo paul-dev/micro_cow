@@ -36,9 +36,9 @@
                                         <td class="text-right"><?php echo $column_return_id; ?></td>
                                         <td class="text-right"><?php echo $column_order_id; ?></td>
                                         <td class="text-left"><?php echo $column_customer; ?></td>
-                                        <td class="text-left">商品</td>
-                                        <td class="text-left">型号</td>
-                                        <td class="text-left">数量</td>
+                                        <td class="text-left"><?php echo $column_product; ?></td>
+                                        <td class="text-left"><?php echo $column_model; ?></td>
+                                        <td class="text-left"><?php echo $column_number; ?></td>
                                         <td class="text-left"><?php echo $column_status; ?></td>
                                         <td class="text-left"><?php echo $column_date_added; ?></td>
                                         <td></td>

@@ -453,6 +453,12 @@ class ControllerSellerPurchase extends Controller {
         $data['button_disable'] = $this->language->get('button_disable');
 		$data['button_filter'] = $this->language->get('button_filter');
 
+		$data['text_amount_purchased'] = $this->language->get('text_amount_purchased');
+		$data['text_offer_end'] = $this->language->get('text_offer_end');
+		$data['text_offer_num'] = $this->language->get('text_offer_num');
+		$data['text_puchaser'] = $this->language->get('text_puchaser');
+		$data['text_place_of_receipt'] = $this->language->get('text_place_of_receipt');
+
 		//$data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {

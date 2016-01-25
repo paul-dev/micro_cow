@@ -152,6 +152,17 @@ class ControllerPurchaseList extends Controller
 		$data['text_trade_type_1'] = $this->language->get('text_trade_type_1');
 		$data['text_trade_type_2'] = $this->language->get('text_trade_type_2');
 		$data['text_trade_type_3'] = $this->language->get('text_trade_type_3');
+
+		$data['text_offer_total'] = $this->language->get('text_offer_total');
+		$data['text_location'] = $this->language->get('text_location');
+		$data['text_Offer_immediately'] = $this->language->get('text_Offer_immediately');
+		$data['text_Information_release'] = $this->language->get('text_Information_release');
+		$data['text_Information_rntf'] = $this->language->get('text_Information_rntf');
+		$data['text_Information_rftn'] = $this->language->get('text_Information_rftn');
+		$data['text_Information_deadline'] = $this->language->get('text_Information_deadline');
+		$data['text_Information_dntf'] = $this->language->get('text_Information_dntf');
+		$data['text_Information_dftn'] = $this->language->get('text_Information_dftn');
+
 		$this->document->setTitle($title);
 
 		$data['content_top'] = $this->load->controller('common/content_top');

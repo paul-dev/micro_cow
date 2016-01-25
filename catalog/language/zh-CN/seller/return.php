@@ -37,6 +37,9 @@ $_['column_opened']      = '已开包装';
 $_['column_comment']     = '备注';
 $_['column_reason']      = '原因';
 $_['column_action']      = '操作';
+$_['column_product']      = '商品';
+$_['column_model']      = '型号';
+$_['column_number']      = '数量';
 
 // Entry
 $_['entry_order_id']     = '订单号 ID';
