@@ -727,6 +727,7 @@ class ModelCatalogProduct extends Model {
     }
 
 	public function getLatestProducts($limit) {
+
 		$product_data = $this->cache->get('product.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $this->config->get('config_customer_group_id') . '.' . (int)$limit);
 
 		if (!$product_data) {
@@ -740,6 +741,17 @@ class ModelCatalogProduct extends Model {
 		}
 
 		return $product_data;
+	}
+
+	public function getTotalLatestProducts($limit) {
+		$product_data = $this->cache->get('product.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $this->config->get('config_customer_group_id') . '.' . (int)$limit);
+
+		if (!$product_data) {
+			$query = $this->db->query("SELECT count(p.product_id) as total FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND p2s.on_sale=1 ORDER BY p.date_added DESC LIMIT " . (int)$limit);
+
+		}
+
+		return $query->row['total'];
 	}
 
 	public function getPopularProducts($limit, $store_id = 0) {
