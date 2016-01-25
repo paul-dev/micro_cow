@@ -148,7 +148,7 @@
                 -->
               </div>
             </div>
-            <div class="good_shop_btn" style="display: none">
+            <div class="good_shop_btn" style="">
               <a class="button" href="javascript:void(0);" onclick="wishlist.shop('<?php echo $info['company_id']; ?>');" style="margin-right:10px;"><i class="icon-add">+</i>关注</a>
               <a class="button" href="<?php echo $info['company_url']; ?>">去逛逛</a>
             </div>
