@@ -113,7 +113,8 @@
       </div>
 
       <div class="row">
-<div>
+
+      <div>
         <?php if ($purchaseProduct) { ?>
         <?php foreach ($purchaseProduct as $purchase_product) { ?>
         <div style="width: 20%;float: left; padding-right: 8px; padding-left: 2px;">
@@ -149,11 +150,7 @@
                   <?php echo $text_release_time; ?><time><?php echo $purchase_product['date_added']; ?></time>
                 </a>
               </p>
-              <img src="<?php echo $purchase_product['purchase_product_img']; ?>" class="purched-div-2-img" style="    width: 64px;
-    height: 64px;
-    position: absolute;
-    right: 10px;
-    top: 18px;">
+              <img src="<?php echo isset($purchase_product['purchase_product_img'])?$purchase_product['purchase_product_img']:'catalog/view/theme/zbj/image/zbj_default_pic.png'; ?>" class="purched-div-2-img" style="width: 64px;height: 64px;position: absolute;right: 10px;top: 18px;">
 
               <?php if($purchase_product['date_remaining'] > 0){ ?>
               <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $purchase_product['date_remaining']; ?></span><?php echo $text_product_days; ?></a></p>
