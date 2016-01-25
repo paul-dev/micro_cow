@@ -556,7 +556,7 @@
                                 </div>
                                 <ul class="shop_detail">
                                     <li><?php echo $text_company_name; ?><?php echo $product_info['company_name']; ?></li>
-                                    <li><?php echo $text_contact_address; ?><?php echo $product_info['contact_address']; ?></li>
+                                    <li class="clearfix"><div style="float: left"><?php echo $text_contact_address; ?></div><div style="float: left;width: 150px"><?php echo $product_info['contact_address']; ?></div></li>
                                     <li><?php echo $text_date_added; ?><?php echo date('Y-m-d', strtotime($product_info['company_date_added'])); ?></li>
                                     <li><?php echo $text_legal_name; ?><?php echo $product_info['legal_name']; ?></li>
                                     <li><?php echo $text_contact_email; ?><?php echo $product_info['contact_email']; ?></li>

@@ -166,19 +166,29 @@
       </div>
 
       <div class="row">
+<div>
         <?php if ($purchaseProduct) { ?>
         <?php foreach ($purchaseProduct as $purchase_product) { ?>
-        <div style="width: 25%;float: left; padding-right: 8px; padding-left: 2px;">
-          <div class="purehed-body-div-2" style="min-height: 265px;">
-            <div class="purehed-div-1">
+        <div style="width: 20%;float: left; padding-right: 8px; padding-left: 2px;">
+          <div class="purehed-body-div-2" style="min-height: 265px;    border: 1px solid #e4e4e4;margin-bottom: 15px">
+            <div class="purehed-div-1" style=" background-color: #eef3f9;
+    padding: 10px;">
               <p>
-                <a href="<?php echo $purchase_product['url']; ?>" target="_blank" class="purehed-div-1-a" style="width: 224px"><?php echo $purchase_product['name']; ?></a>
+                <a href="<?php echo $purchase_product['url']; ?>" target="_blank" class="purehed-div-1-a" style="width: 224px;height: 42px;
+    line-height: 22px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+    word-break: break-all;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e50a2;"><?php echo $purchase_product['name']; ?></a>
               </p>
 
               <label class="purehed-div-L">
                 <?php echo $text_amount_purchased; ?>
                 <?php if($purchase_product['total_product']){ ?>
-                    <span class="purched-font-red">
+                    <span class="purched-font-red" style="    color: #ff7300;">
                       <?php echo $purchase_product['total_product']; ?>
                     </span>
                 <?php } ?>
@@ -186,13 +196,17 @@
 
             </div>
 
-            <div class="purehed-div-2">
+            <div class="purehed-div-2" style="padding: 10px;  position: relative; padding-bottom: 0px; border-bottom: 1px solid #eee; border-bottom-style: dotted; padding-bottom: 10px;">
               <p >
                 <a class="purehed-div-2-p" style="line-height: 25px;">
                   <?php echo $text_release_time; ?><time><?php echo $purchase_product['date_added']; ?></time>
                 </a>
               </p>
-              <img src="<?php echo $purchase_product['purchase_product_img']; ?>" class="purched-div-2-img">
+              <img src="<?php echo $purchase_product['purchase_product_img']; ?>" class="purched-div-2-img" style="    width: 64px;
+    height: 64px;
+    position: absolute;
+    right: 10px;
+    top: 18px;">
 
               <?php if($purchase_product['date_remaining'] > 0){ ?>
               <p> <a class="purehed-div-2-p" style="line-height: 25px;"><?php echo $text_days_rest; ?><span class="purched-font-red"><?php echo $purchase_product['date_remaining']; ?></span><?php echo $text_product_days; ?></a></p>
@@ -206,9 +220,17 @@
 
             </div>
 
-            <div class="purehed-div-3">
+            <div class="purehed-div-3" style="    padding: 10px;">
               <p> <a href="<?php echo $purchase_product['url']; ?>"><?php echo $purchase_product['company_name']; ?></a></p>
-              <p style="text-align: right">  <a href="<?php echo $purchase_product['url']; ?>" class="purehed-div-3-btn" style="color: #eea26f">立即报价 </a></p>
+              <p style="text-align: right">  <a href="<?php echo $purchase_product['url']; ?>" class="purehed-div-3-btn" style="color: #eea26f;    height: 25px; display: inline-block; margin-top: 2px;
+    padding: 0 8px;
+    line-height: 18px;
+    line-height: 22px;
+    background-color: #fffaf6;
+    border: 1px solid #feddc7;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;">立即报价 </a></p>
             </div>
           </div>
         </div>
@@ -216,7 +238,9 @@
         <?php } else { ?>
         <div class="col-xs-12"><p><?php echo $text_empty; ?></p></div>
         <?php } ?>
+        </div>
       </div>
+
       <div class="row" style="margin-top: 20px;margin-bottom: 20px">
         <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
         <div class="col-sm-6 text-right"><?php echo $results; ?></div>
