@@ -630,7 +630,7 @@ class ModelCatalogPurchase extends Model
 					"WHERE ps.store_id = '" . (int)$this->config->get('config_store_id') . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 			if (!empty($data['filter_name'])) {
-				$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+				$sql .= " AND pd.name LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
 			}
 
 			/*if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
@@ -638,7 +638,7 @@ class ModelCatalogPurchase extends Model
 			}
 
 			//$sql .= " GROUP BY p.purchase_id";
-
+*/
 			$sort_data = array(
 					'pd.name',
 					'p.date_added',
@@ -657,7 +657,7 @@ class ModelCatalogPurchase extends Model
 				$sql .= " DESC";
 			} else {
 				$sql .= " ASC";
-			}*/
+			}
 
 			if (isset($data['start']) || isset($data['limit'])) {
 				if ($data['start'] < 0) {

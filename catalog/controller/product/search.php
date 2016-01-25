@@ -218,22 +218,25 @@ class ControllerProductSearch extends Controller {
 			);
 		}
 
-        if ($type == 'shop') {
-            $search = $this->language->get('heading_title');
-            $title = $this->language->get('heading_title_shop');
-            $data['heading_title'] = $search.$title;
-        }else if($type == 'purchase'){
-			$search = $this->language->get('heading_title');
-			$title = $this->language->get('heading_title_purchase');
-			$data['heading_title'] = $search.$title;
+		if ($type) {
+			$title = $this->language->get('heading_title_'.$type);
+			$data['breadcrumbs'][] = array(
+					'text' => $this->language->get('heading_title_'.$type),
+					'href' => $this->url->link('product/search', 'type='.$type)
+			);
+			$data['heading_title'] = '';
+		} else {
+			$data['breadcrumbs'][] = array(
+					'text' => $this->language->get('heading_title'),
+					'href' => $this->url->link('product/search', $url)
+			);
+
+			if (!empty($this->request->get['search'])) {
+				$data['heading_title'] = $this->language->get('heading_title') .  ' - ' . $this->request->get['search'];
+			} else {
+				$data['heading_title'] = $this->language->get('heading_title');
+			}
 		}
-		else {
-            if (!empty($this->request->get['search'])) {
-                $data['heading_title'] = $this->language->get('heading_title') .  ' - ' . $this->request->get['search'];
-            } else {
-                $data['heading_title'] = $this->language->get('heading_title');
-            }
-        }
 
         $this->document->setTitle($title);
 
@@ -385,42 +388,76 @@ class ControllerProductSearch extends Controller {
 				$data['text_trade_type_2'] = $this->language->get('text_trade_type_2');
 				$data['text_trade_type_3'] = $this->language->get('text_trade_type_3');
 
-				$data['purchaseProduct'] = $this->model_catalog_purchase->getSearchPurchases($filter_data);
+				$data['date_available'] = array(
+						'asc' => $this->url->link('product/search', $url.'&date_available=ASC'),
+						'desc' => $this->url->link('product/search', $url.'&date_available=DESC')
+				);
+
+				$data['date_added'] = array(
+						'asc' => $this->url->link('product/search', $url.'&date_added=ASC'),
+						'desc' => $this->url->link('product/search', $url.'&date_added=DESC')
+				);
+
+				if(isset($filter_data['sort'])){
+					unset($filter_data['sort']);
+				}
+
+				if(isset($filter_data['order'])){
+					unset($filter_data['order']);
+				}
+
+				if (isset($this->request->get['date_available'])) {
+					$url .= '&date_available=' . $this->request->get['date_available'];
+
+					foreach($filter_data as $value){
+						$filter_data['sort'] = 'p.date_available';
+						$filter_data['order'] = $this->request->get['date_available'];
+					}
+
+				}
+
+				if (isset($this->request->get['date_added'])) {
+					$url .= '&date_added=' . $this->request->get['date_added'];
+
+					foreach($filter_data as $value){
+						$filter_data['sort'] = 'p.date_added';
+						$filter_data['order'] = $this->request->get['date_added'];
+					}
+
+				}
+
+				$results = $this->model_catalog_purchase->getSearchPurchases($filter_data);
 
 				$product_total = $this->model_catalog_purchase->getSearchTotalPurchases($filter_data);
 
-				foreach($data['purchaseProduct'] as $key=>$val){
+				foreach($results as $key=>$val){
 
-					$data['purchaseProduct'][$key]['url'] = $this->url->link('purchase/detail', 'purchase_id='.$val['purchase_id'], 'SSL');
+					$results[$key]['url'] = $this->url->link('purchase/detail', 'purchase_id='.$val['purchase_id'], 'SSL');
 
-					$data['purchaseProduct'][$key]['date_available'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_available']))." 23:59:59";
-					$data['purchaseProduct'][$key]['date_added'] = date('Y-m-d',strtotime($data['purchaseProduct'][$key]['date_added']));
+					$results[$key]['date_available'] = date('Y-m-d',strtotime($results[$key]['date_available']))." 23:59:59";
+					$results[$key]['date_added'] = date('Y-m-d',strtotime($results[$key]['date_added']));
 
 					//产品图片
 					$this->load->model('tool/image');
 
-					$data['purchaseProduct'][$key]['purchase_product_img'] = $this->model_tool_image->resize(isset($data['purchaseProduct'][$key]['purchase_product_img'])?$data['purchaseProduct'][$key]['purchase_product_img']:'catalog/view/theme/zbj/image/zbj_default_pic.png', 63, 63);
+					$results[$key]['purchase_product_img'] = $this->model_tool_image->resize(isset($results[$key]['purchase_product_img'])?$results[$key]['purchase_product_img']:'catalog/view/theme/zbj/image/zbj_default_pic.png', 63, 63);
 
 					//剩余日期
-					$data['purchaseProduct'][$key]['date_remaining'] = floor((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000);
+					$results[$key]['date_remaining'] = floor((strtotime($results[$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000);
 
-					if($data['purchaseProduct'][$key]['date_remaining']==0){
-						$data['purchaseProduct'][$key]['date_remaining'] = round((strtotime($data['purchaseProduct'][$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000,1);
+					if($results[$key]['date_remaining']==0){
+						$results[$key]['date_remaining'] = round((strtotime($results[$key]['date_available'])-strtotime(date('Y-m-d H:i:s',time())))/86000,1);
 					}
 
 					//每条求购 产品总条数
-					$data['purchaseProduct'][$key]['product_amount'] = $this->model_catalog_purchase->getTotalPurchaseProduct($data['purchaseProduct'][$key]['purchase_id']);
+					$results[$key]['product_amount'] = $this->model_catalog_purchase->getTotalPurchaseProduct($results[$key]['purchase_id']);
 
 					//该产品总报价数量
 					$this->load->model('seller/offer');
-					$data['purchaseProduct'][$key]['total_offer'] = $this->model_seller_offer->getTotalOffer($data['purchaseProduct'][$key]['purchase_id']);
+					$results[$key]['total_offer'] = $this->model_seller_offer->getTotalOffer($results[$key]['purchase_id']);
 				}
-/*
 
-				echo "<pre>";
-				print_r($data['purchaseProduct']);
-				echo "</pre>";
-				exit;*/
+				$data['purchaseProduct'] = $results;
 
 
 			}elseif(empty($type)){
