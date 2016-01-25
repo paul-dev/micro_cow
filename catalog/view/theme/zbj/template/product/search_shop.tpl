@@ -11,7 +11,7 @@
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
       <h1><?php echo $heading_title; ?></h1>
       <!--<label class="control-label" for="input-search"><?php echo $entry_search; ?></label>-->
-      <div class="row">
+      <div class="row" style="display: none">
         <div class="col-sm-4">
           <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_keyword; ?>" id="input-search" class="form-control" />
         </div>
@@ -41,7 +41,7 @@
             <?php } ?>
           </select>
         </div>
-        <div class="col-sm-4" style="display: none">
+        <div class="col-sm-4">
           <label class="checkbox-inline">
             <?php if ($sub_category) { ?>
             <input type="checkbox" name="sub_category" value="1" checked="checked" />
@@ -59,7 +59,6 @@
             <input type="button" value="<?php echo $button_search; ?>" id="button-search" class="btn btn-primary" />
         </div>
       </div>
-      <h2><?php //echo $text_search; ?>&nbsp;</h2>
       <?php if (count($company) > 0) { ?>
       <div class="row" style="margin-top: 10px; display: none;">
         <div class="col-sm-3 hidden-xs">
