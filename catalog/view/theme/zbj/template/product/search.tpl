@@ -134,12 +134,12 @@
 
                 <span class="control-span"><?php echo $text_sort; ?></span>
                 <ul class="category">
-                  <?php 
-                  $_i=0; 
-                  foreach ($sorts as $sort_data) { 
+                  <?php
+                  $_i=0;
+                  foreach ($sorts as $sort_data) {
                     $_i++;
                     ?>
-                    <li><a class="<?php 
+                    <li><a class="<?php
                     if ($sort_data['value'] == $sort . '-' . $order) { echo ' active '; };
                      if($_i ==1){echo ' first ';};
                       if($_i==count($sorts)){echo ' last ';};
@@ -149,12 +149,12 @@
 
                 <span class="control-span">价格:</span>
                 <ul class="category">
-                  <?php 
-                  $_i=0; 
-                  foreach ($filter_prices as $price) { 
+                  <?php
+                  $_i=0;
+                  foreach ($filter_prices as $price) {
                     $_i++;
                     ?>
-                    <li><a class="<?php 
+                    <li><a class="<?php
                     if ($price['value'] == $filter_price) { echo ' active '; };
                      if($_i ==1){echo ' first ';};
                       if($_i==count($filter_prices)){echo ' last ';};
@@ -176,13 +176,17 @@
               <span><img src="http://d06.res.meilishuo.net/ap/a/35/c9/89c6945418bd7c15196a496cc06b_100_100.c6.jpg" alt=""></span>
               -->
             </div>
-            <div class="image"><a href="<?php echo $product['href']; ?>"><img data-url="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" src="catalog/view/theme/zbj/image/zbj_default_pic.png" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
+            <div class="image">
+              <a href="<?php echo $product['href']; ?>">
+                <img data-url="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" src="catalog/view/theme/zbj/image/zbj_default_pic.png" title="<?php echo $product['name']; ?>" class="img-responsive" />
+              </a>
+            </div>
 
 
             <!-- <div class="caption" style="padding-bottom: 0px;">
               <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
-                <?php if ($product['shop_name']) { ?>
-                <strong><a href="<?php echo $product['shop_info']['shop_url']; ?>"><?php echo $product['shop_name']; ?></a></strong>
+                <?php if ($product['company_name']) { ?>
+                <strong><a href="<?php echo $product['company_info']['company_url']; ?>"><?php echo $product['company_name']; ?></a></strong>
                 <?php } ?>
                 <p style="display: none;"><?php echo $product['description']; ?></p>
               <?php if ($product['price']) { ?>
@@ -229,16 +233,16 @@
                 <?php if ($product['points']) { ?>
                 <h4 style="height: auto; margin-top: -5px; margin-bottom: 0px;">可使用积分：<?php echo $product['points']; ?> points</h4>
                 <?php } ?>
-                <span><a href="<?php echo $product['shop_info']['shop_url']; ?>"><strong><?php echo $product['shop_name']; ?></strong></a></span>
+                <span><a href="<?php echo $product['company_info']['company_url']; ?>"><strong><?php echo $product['company_info']['company_name']; ?></strong></a></span>
               <p style="display: none;"><?php echo $product['description']; ?></p>
               <div class="authentication-icon" style="margin-top: 0px;">
                 <div class="left" style="width:150px;overflow:hidden">
-                  <span title="<?php echo $product['shop_info']['shop_zone'].$product['shop_info']['shop_city']; ?>"><?php echo $product['shop_info']['shop_zone'].$product['shop_info']['shop_city']; ?></span>
+                  <span title="<?php echo $product['company_info']['zone_name'].$product['company_info']['city_name']; ?>"><?php echo $product['company_info']['zone_name'].$product['company_info']['city_name']; ?></span>
                 </div>
                 <div class="right">
-                  <span><a href="<?php echo $product['shop_info']['link_live_chat']; ?>"></a></span>
+                  <span><a href="<?php echo $product['company_info']['link_live_chat']; ?>"></a></span>
                 </div>
-              </div>             
+              </div>
             </div>
             <!-- <div class="button-group">
               <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
@@ -263,27 +267,27 @@
 <script type="text/javascript"><!--
 $('#button-search').bind('click', function() {
 	url = '<?php echo $search_url; ?>'.replace('&amp;', '&');
-	
+
 	var search = $('#content input[name=\'search\']').prop('value');
-	
+
 	if (search) {
 		url += '&search=' + encodeURIComponent(search);
 	}
 
 	var category_id = $('#content select[name=\'category_id\']').prop('value');
-	
+
 	if (category_id > 0) {
 		url += '&category_id=' + encodeURIComponent(category_id);
 	}
-	
+
 	var sub_category = $('#content input[name=\'sub_category\']:checked').prop('value');
-	
+
 	if (sub_category) {
 		url += '&sub_category=true';
 	}
-		
+
 	var filter_description = $('#content input[name=\'description\']:checked').prop('value');
-	
+
 	if (filter_description) {
 		url += '&description=true';
 	}
@@ -306,5 +310,5 @@ $('select[name=\'category_id\']').on('change', function() {
 });
 
 $('select[name=\'category_id\']').trigger('change');
---></script> 
-<?php echo $footer; ?> 
+--></script>
+<?php echo $footer; ?>

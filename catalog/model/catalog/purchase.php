@@ -1,6 +1,8 @@
 <?php
-class ModelCatalogPurchase extends Model {
-	public function addPurchase($data) {
+class ModelCatalogPurchase extends Model
+{
+	public function addPurchase($data)
+	{
 		$this->event->trigger('pre.admin.purchase.add', $data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "purchase SET shipping_address = '" . $this->db->escape($data['shipping_address']) . "', supply_area = '" . $this->db->escape($data['supply_area']) . "', invoice_type = '" . $this->db->escape($data['invoice_type']) . "', trade_type = '" . $this->db->escape($data['trade_type']) . "', price_type = '" . $this->db->escape($data['price_type']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', date_expect = '" . $this->db->escape($data['date_expect']) . "', status = '" . (int)$data['status'] . "', date_added = NOW(), date_modified = NOW()");
@@ -33,7 +35,7 @@ class ModelCatalogPurchase extends Model {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_product SET purchase_id = '" . (int)$purchase_id . "', quantity = '" . (int)$product['product_amount'] . "'");
 					$product_id = $this->db->getLastId();
 					foreach ($product['product_description'] as $language_id => $product_description) {
-						$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_product_description SET purchase_product_id = '" . (int)$product_id . "', name = '" . $this->db->escape($product_description['name']) . "', language_id = '" . (int)$language_id . "', unit = '" .  $this->db->escape($product_description['unit']) . "', description = '" .  $this->db->escape($product_description['text']) . "'");
+						$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_product_description SET purchase_product_id = '" . (int)$product_id . "', name = '" . $this->db->escape($product_description['name']) . "', language_id = '" . (int)$language_id . "', unit = '" . $this->db->escape($product_description['unit']) . "', description = '" . $this->db->escape($product_description['text']) . "'");
 					}
 					if (isset($product['product_image'])) {
 						foreach ($product['product_image'] as $product_image) {
@@ -53,7 +55,8 @@ class ModelCatalogPurchase extends Model {
 		return $purchase_id;
 	}
 
-	public function editPurchase($purchase_id, $data) {
+	public function editPurchase($purchase_id, $data)
+	{
 		$this->event->trigger('pre.admin.product.edit', $data);
 
 		$this->db->query("UPDATE " . DB_PREFIX . "purchase SET shipping_address = '" . $this->db->escape($data['shipping_address']) . "', supply_area = '" . $this->db->escape($data['supply_area']) . "', invoice_type = '" . $this->db->escape($data['invoice_type']) . "', trade_type = '" . $this->db->escape($data['trade_type']) . "', price_type = '" . $this->db->escape($data['price_type']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', date_expect = '" . $this->db->escape($data['date_expect']) . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE purchase_id = '" . (int)$purchase_id . "'");
@@ -72,7 +75,7 @@ class ModelCatalogPurchase extends Model {
 			}
 		}*/
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "purchase_to_category p2c LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON p2c.category_id = c2s.category_id WHERE p2c.product_id = '" . (int)$purchase_id . "' AND c2s.store_id = '".(int)$this->config->get('config_store_id')."'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "purchase_to_category p2c LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON p2c.category_id = c2s.category_id WHERE p2c.product_id = '" . (int)$purchase_id . "' AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
 
 		if (isset($data['purchase_category'])) {
 			foreach ($data['purchase_category'] as $category_id) {
@@ -90,7 +93,7 @@ class ModelCatalogPurchase extends Model {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_product SET purchase_id = '" . (int)$purchase_id . "', quantity = '" . (int)$product['product_amount'] . "'");
 					$product_id = $this->db->getLastId();
 					foreach ($product['product_description'] as $language_id => $product_description) {
-						$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_product_description SET purchase_product_id = '" . (int)$product_id . "', name = '" . $this->db->escape($product_description['name']) . "', language_id = '" . (int)$language_id . "', unit = '" .  $this->db->escape($product_description['unit']) . "', description = '" .  $this->db->escape($product_description['text']) . "'");
+						$this->db->query("INSERT INTO " . DB_PREFIX . "purchase_product_description SET purchase_product_id = '" . (int)$product_id . "', name = '" . $this->db->escape($product_description['name']) . "', language_id = '" . (int)$language_id . "', unit = '" . $this->db->escape($product_description['unit']) . "', description = '" . $this->db->escape($product_description['text']) . "'");
 					}
 					if (isset($product['product_image'])) {
 						foreach ($product['product_image'] as $product_image) {
@@ -114,12 +117,14 @@ class ModelCatalogPurchase extends Model {
 		$this->event->trigger('post.admin.purchase.edit', $purchase_id);
 	}
 
-	public function disablePurchase($purchase_id) {
+	public function disablePurchase($purchase_id)
+	{
 		$this->db->query("UPDATE " . DB_PREFIX . "purchase SET status = '0', date_modified = NOW() WHERE purchase_id = '" . (int)$purchase_id . "'");
 		$this->event->trigger('post.admin.purchase.edit', $purchase_id);
 	}
 
-	public function deletePurchase($purchase_id) {
+	public function deletePurchase($purchase_id)
+	{
 		$this->event->trigger('pre.admin.purchase.delete', $purchase_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "purchase_product_description pd INNER JOIN " . DB_PREFIX . "purchase_product p ON pd.purchase_product_id = p.purchase_product_id WHERE p.purchase_id = '" . (int)$purchase_id . "'");
@@ -134,7 +139,8 @@ class ModelCatalogPurchase extends Model {
 		$this->event->trigger('post.admin.purchase.delete', $purchase_id);
 	}
 
-	public function getPurchase($purchase_id) {
+	public function getPurchase($purchase_id)
+	{
 		//$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id WHERE p.purchase_id = '" . (int)$purchase_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND ps.store_id = '" . (int)$this->config->get('config_store_id') . "'");
 
 		$query = $this->db->query("SELECT c.*, cd.*, p.*, pd.*, p.date_added, c.date_added as company_date_added, cty.name as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) LEFT JOIN " . DB_PREFIX . "purchase_to_store ps ON (p.purchase_id = ps.purchase_id) LEFT JOIN " . DB_PREFIX . "company c ON (p.customer_id = c.customer_id) LEFT JOIN " . DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) LEFT JOIN " . DB_PREFIX . "country AS cty ON (cty.country_id = c.company_country_id) LEFT JOIN " . DB_PREFIX . "zone AS z ON (z.zone_id = c.company_zone_id) LEFT JOIN " . DB_PREFIX . "zone_city AS zc ON (zc.id = c.company_city_id) LEFT JOIN " . DB_PREFIX . "zone_area AS za ON (za.id = c.company_area_id) WHERE p.purchase_id = '" . (int)$purchase_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND ps.store_id = '" . (int)$this->config->get('config_store_id') . "'");
@@ -142,8 +148,9 @@ class ModelCatalogPurchase extends Model {
 		return $query->row;
 	}
 
-	public function getPurchases($data = array()) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id WHERE ps.store_id = '".(int)$this->config->get('config_store_id')."' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+	public function getPurchases($data = array())
+	{
+		$sql = "SELECT * FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id WHERE ps.store_id = '" . (int)$this->config->get('config_store_id') . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
@@ -156,10 +163,10 @@ class ModelCatalogPurchase extends Model {
 		//$sql .= " GROUP BY p.purchase_id";
 
 		$sort_data = array(
-			'pd.name',
-			'p.date_added',
-			'p.status',
-			'p.sort_order'
+				'pd.name',
+				'p.date_added',
+				'p.status',
+				'p.sort_order'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
@@ -191,32 +198,34 @@ class ModelCatalogPurchase extends Model {
 		return $query->rows;
 	}
 
-	public function getPurchaseDescriptions($purchase_id,$language_id=false) {
+	public function getPurchaseDescriptions($purchase_id, $language_id = false)
+	{
 
 		$purchase_description_data = array();
 
-		if($language_id==false){
+		if ($language_id == false) {
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_description WHERE purchase_id = '" . (int)$purchase_id . "'");
-		}else{
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_description WHERE language_id = ".$language_id." AND purchase_id = '" . (int)$purchase_id . "'");
+		} else {
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_description WHERE language_id = " . $language_id . " AND purchase_id = '" . (int)$purchase_id . "'");
 		}
 
 		foreach ($query->rows as $result) {
-            $purchase_description_data[$result['language_id']] = array(
-				'name'             => $result['name'],
-				'description'      => $result['description'],
-				'meta_title'       => $result['meta_title'],
-				'meta_description' => $result['meta_description'],
-				'meta_keyword'     => $result['meta_keyword'],
-				'tag'              => $result['tag']
+			$purchase_description_data[$result['language_id']] = array(
+					'name' => $result['name'],
+					'description' => $result['description'],
+					'meta_title' => $result['meta_title'],
+					'meta_description' => $result['meta_description'],
+					'meta_keyword' => $result['meta_keyword'],
+					'tag' => $result['tag']
 			);
 		}
 
 		return $purchase_description_data;
 	}
 
-    public function getPurchaseProducts($purchase_id) {
-        $purchase_product_data = array();
+	public function getPurchaseProducts($purchase_id)
+	{
+		$purchase_product_data = array();
 
 		$purchase_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "purchase_product p LEFT JOIN " . DB_PREFIX . "purchase_product_description pd ON p.purchase_product_id = pd.purchase_product_id WHERE p.purchase_id = '" . (int)$purchase_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -409,10 +418,10 @@ class ModelCatalogPurchase extends Model {
 
 		$query = $this->db->query($sql);
 
-		if(count($query->rows)>0){
-			foreach($query->rows as $key=>$info){
-				$search = $this->db->query("SELECT image FROM " . DB_PREFIX . "purchase_product_image ppi WHERE ppi.purchase_product_id = (SELECT DISTINCT purchase_product_id FROM " . DB_PREFIX . "purchase_product pp WHERE pp.purchase_id = '".$info['purchase_id']."' LIMIT 0,1) LIMIT 0,1");
-				$query->rows[$key]['purchase_product_img'] = isset($search->row['image'])?$search->row['image']:'catalog/view/theme/zbj/image/zbj_default_pic.png';
+		if (count($query->rows) > 0) {
+			foreach ($query->rows as $key => $info) {
+				$search = $this->db->query("SELECT image FROM " . DB_PREFIX . "purchase_product_image ppi WHERE ppi.purchase_product_id = (SELECT DISTINCT purchase_product_id FROM " . DB_PREFIX . "purchase_product pp WHERE pp.purchase_id = '" . $info['purchase_id'] . "' LIMIT 0,1) LIMIT 0,1");
+				$query->rows[$key]['purchase_product_img'] = isset($search->row['image']) ? $search->row['image'] : 'catalog/view/theme/zbj/image/zbj_default_pic.png';
 			}
 		}
 
@@ -433,7 +442,8 @@ class ModelCatalogPurchase extends Model {
 		return $result;
 	}
 
-	public function getRecommendPurchases_Total($data){
+	public function getRecommendPurchases_Total($data)
+	{
 
 		$sql = "SELECT p.*, pd.*, cd.company_name, cd.contact_name, cp.*, cty.name as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name, (SELECT COUNT(*) as total FROM " . DB_PREFIX . "purchase_offer po WHERE po.purchase_id = p.purchase_id ) as total_offer, " .
 				"p.date_added as date_added, " .
@@ -497,7 +507,8 @@ class ModelCatalogPurchase extends Model {
 		return $query->rows;
 	}
 
-	public function getLatestPurchases_Total($data){
+	public function getLatestPurchases_Total($data)
+	{
 
 		$sql = "SELECT p.*, pd.*, cd.company_name, cd.contact_name, cp.*, cty.name as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name, (SELECT COUNT(*) as total FROM " . DB_PREFIX . "purchase_offer po WHERE po.purchase_id = p.purchase_id ) as total_offer, " .
 				"p.date_added as date_added, " .
@@ -573,7 +584,7 @@ class ModelCatalogPurchase extends Model {
 				"LEFT JOIN " . DB_PREFIX . "zone z on z.zone_id = cp.company_zone_id " .
 				"LEFT JOIN " . DB_PREFIX . "zone_city zc on zc.id = cp.company_city_id " .
 				"LEFT JOIN " . DB_PREFIX . "zone_area za on za.id = cp.company_area_id " .
-				"WHERE ps.store_id = '" . (int)$this->config->get('config_store_id') . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'"." AND date_sub(curdate(), INTERVAL 30 DAY) <= date(p.date_added)";
+				"WHERE ps.store_id = '" . (int)$this->config->get('config_store_id') . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'" . " AND date_sub(curdate(), INTERVAL 30 DAY) <= date(p.date_added)";
 
 		$query = $this->db->query($sql);
 
@@ -592,13 +603,141 @@ class ModelCatalogPurchase extends Model {
 				"LEFT JOIN " . DB_PREFIX . "zone z on z.zone_id = cp.company_zone_id " .
 				"LEFT JOIN " . DB_PREFIX . "zone_city zc on zc.id = cp.company_city_id " .
 				"LEFT JOIN " . DB_PREFIX . "zone_area za on za.id = cp.company_area_id " .
-				"WHERE ps.store_id = '" . (int)$this->config->get('config_store_id') . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'"." AND date_sub(curdate(), INTERVAL 30 DAY) <= date(p.date_added)";
+				"WHERE ps.store_id = '" . (int)$this->config->get('config_store_id') . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'" . " AND date_sub(curdate(), INTERVAL 30 DAY) <= date(p.date_added)";
 
 		$query = $this->db->query($sql);
 
 		return $query->row['total'];
 	}
 
+	public function getSearchPurchases($data = array()){
+
+		if (isset($data) && count($data) > 0 && isset($data['filter_name'])) {
+
+			$sql = "SELECT p.*, pd.*, cd.company_name, cd.contact_name, cp.*, cty.name as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name, (SELECT COUNT(*) as total FROM " . DB_PREFIX . "purchase_offer po WHERE po.purchase_id = p.purchase_id ) as total_offer, " .
+					"p.date_added as date_added, " .
+					"(SELECT IF(COUNT(*) > 1, CONCAT(COUNT(*), '种'), (SELECT CONCAT(pp1.quantity,pd1.unit) as p_amount  FROM " . DB_PREFIX . "purchase_product pp1 LEFT JOIN " . DB_PREFIX . "purchase_product_description pd1 ON pp1.purchase_product_id = pd1.purchase_product_id WHERE pp1.purchase_id = p.purchase_id AND pd1.language_id = '" . (int)$this->config->get('config_language_id') . "')) as total FROM " . DB_PREFIX . "purchase_product pp WHERE pp.purchase_id = p.purchase_id) as total_product " .
+					"FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) " .
+					"LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id " .
+					"LEFT JOIN " . DB_PREFIX . "customer c on c.customer_id = p.customer_id " .
+					"LEFT JOIN " . DB_PREFIX . "company cp on cp.customer_id = p.customer_id " .
+					"LEFT JOIN " . DB_PREFIX . "company_description cd on cd.company_id = cp.company_id AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' " .
+
+					"LEFT JOIN " . DB_PREFIX . "country cty on cty.country_id = cp.company_country_id " .
+					"LEFT JOIN " . DB_PREFIX . "zone z on z.zone_id = cp.company_zone_id " .
+					"LEFT JOIN " . DB_PREFIX . "zone_city zc on zc.id = cp.company_city_id " .
+					"LEFT JOIN " . DB_PREFIX . "zone_area za on za.id = cp.company_area_id " .
+					"WHERE ps.store_id = '" . (int)$this->config->get('config_store_id') . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+			if (!empty($data['filter_name'])) {
+				$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+			}
+
+			/*if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+				$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
+			}
+
+			//$sql .= " GROUP BY p.purchase_id";
+
+			$sort_data = array(
+					'pd.name',
+					'p.date_added',
+					'p.date_available',
+					'p.status',
+					'p.sort_order'
+			);
+
+			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+				$sql .= " ORDER BY " . $data['sort'];
+			} else {
+				$sql .= " ORDER BY p.date_added";
+			}
+
+			if (isset($data['order']) && ($data['order'] == 'DESC')) {
+				$sql .= " DESC";
+			} else {
+				$sql .= " ASC";
+			}*/
+
+			if (isset($data['start']) || isset($data['limit'])) {
+				if ($data['start'] < 0) {
+					$data['start'] = 0;
+				}
+
+				if ($data['limit'] < 1) {
+					$data['limit'] = 20;
+				}
+
+				$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+			}
+
+			$query = $this->db->query($sql);
+
+			if (count($query->rows) > 0) {
+				foreach ($query->rows as $key => $info) {
+					$search = $this->db->query("SELECT image FROM " . DB_PREFIX . "purchase_product_image ppi WHERE ppi.purchase_product_id = (SELECT DISTINCT purchase_product_id FROM " . DB_PREFIX . "purchase_product pp WHERE pp.purchase_id = '" . $info['purchase_id'] . "' LIMIT 0,1) LIMIT 0,1");
+					$query->rows[$key]['purchase_product_img'] = isset($search->row['image']) ? $search->row['image'] : 'catalog/view/theme/zbj/image/zbj_default_pic.png';
+				}
+			}
+
+			return $query->rows;
+		} else {
+			return array();
+		}
+
+
+	}
+
+	public function getSearchTotalPurchases($data = array()){
+
+		if (isset($data) && count($data) > 0 && isset($data['filter_name'])) {
+
+			$sql = "SELECT count(*) as total FROM " . DB_PREFIX . "purchase p LEFT JOIN " . DB_PREFIX . "purchase_description pd ON (p.purchase_id = pd.purchase_id) LEFT JOIN " . DB_PREFIX . "purchase_to_store ps on p.purchase_id = ps.purchase_id WHERE ps.store_id = '" . (int)$this->config->get('config_store_id') . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+			if (!empty($data['filter_name'])) {
+				$sql .= " AND pd.name LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+			}
+
+			/*$sort_data = array(
+					'pd.name',
+					'p.date_added',
+					'p.status',
+					'p.sort_order'
+			);
+
+			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+				$sql .= " ORDER BY " . $data['sort'];
+			} else {
+				$sql .= " ORDER BY p.date_added";
+			}
+
+			if (isset($data['order']) && ($data['order'] == 'DESC')) {
+				$sql .= " DESC";
+			} else {
+				$sql .= " ASC";
+			}*/
+
+			if (isset($data['start']) || isset($data['limit'])) {
+				if ($data['start'] < 0) {
+					$data['start'] = 0;
+				}
+
+				if ($data['limit'] < 1) {
+					$data['limit'] = 20;
+				}
+
+				$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+			}
+
+			$query = $this->db->query($sql);
+
+			return $query->row['total'];
+		} else {
+			return 0;
+		}
+
+
+	}
 
 
 }

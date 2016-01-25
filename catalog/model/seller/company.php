@@ -175,4 +175,126 @@ class ModelSellerCompany extends Model {
 
         return $company_category_data;
     }
+
+    function getCompanyInfo($data){
+
+        if(isset($data) && count($data)>0 && isset($data['filter_name'])){
+
+            $sql = "SELECT * FROM " . DB_PREFIX . "company c LEFT JOIN " . DB_PREFIX . "company_description cd ON c.company_id = cd.company_id WHERE cd.company_name LIKE '%". $data['filter_name'] ."%' AND cd.language_id = '".(int)$this->config->get('config_language_id')."'";
+
+            if (isset($data['start']) || isset($data['limit'])) {
+                if ($data['start'] < 0) {
+                    $data['start'] = 0;
+                }
+
+                if ($data['limit'] < 1) {
+                    $data['limit'] = 20;
+                }
+
+                $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+            }
+
+            $query = $this->db->query($sql);
+
+            return $query->rows;
+
+        }else{
+            return array();
+        }
+
+
+
+    }
+
+    function getTotalCompanyInfo($data){
+
+        if(isset($data) && count($data)>0 && isset($data['filter_name'])){
+
+            $sql = "SELECT count(*) as total FROM " . DB_PREFIX . "company c LEFT JOIN " . DB_PREFIX . "company_description cd ON c.company_id = cd.company_id WHERE cd.company_name LIKE '%". $data['filter_name'] ."%' AND cd.language_id = '".(int)$this->config->get('config_language_id')."'";
+
+            if (isset($data['start']) || isset($data['limit'])) {
+                if ($data['start'] < 0) {
+                    $data['start'] = 0;
+                }
+
+                if ($data['limit'] < 1) {
+                    $data['limit'] = 20;
+                }
+
+                $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+            }
+
+            $query = $this->db->query($sql);
+
+            return $query->row['total'];
+
+        }else{
+            return array();
+        }
+
+
+
+    }
+
+    function getSearchCompanyInfo($data){
+
+        if(isset($data) && count($data)>0 && isset($data['filter_name'])){
+
+            $sql = "SELECT cty.`name` as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name,c.*,cd.* FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) LEFT JOIN ". DB_PREFIX . "country AS cty ON cty.country_id = c.company_country_id LEFT JOIN ". DB_PREFIX . "zone AS z ON z.zone_id = c.company_zone_id LEFT JOIN ". DB_PREFIX . "zone_city AS zc ON zc.id = c.company_city_id LEFT JOIN ". DB_PREFIX . "zone_area AS za ON za.id = c.company_area_id WHERE cd.company_name LIKE '%". $data['filter_name'] ."%' AND cd.language_id = '".(int)$this->config->get('config_language_id')."'";
+
+
+            //$sql = "SELECT * FROM " . DB_PREFIX . "company c LEFT JOIN " . DB_PREFIX . "company_description cd ON c.company_id = cd.company_id WHERE cd.company_name LIKE '%". $data['filter_name'] ."%' AND cd.language_id = '".(int)$this->config->get('config_language_id')."'";
+
+            if (isset($data['start']) || isset($data['limit'])) {
+                if ($data['start'] < 0) {
+                    $data['start'] = 0;
+                }
+
+                if ($data['limit'] < 1) {
+                    $data['limit'] = 20;
+                }
+
+                $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+            }
+
+            $query = $this->db->query($sql);
+
+            return $query->rows;
+
+        }else{
+            return array();
+        }
+
+    }
+
+    function getSearchTotalCompanyInfo($data){
+
+        if(isset($data) && count($data)>0 && isset($data['filter_name'])){
+
+            $sql = "SELECT count(*) as total FROM " . DB_PREFIX . "company c LEFT JOIN " . DB_PREFIX . "company_description cd ON c.company_id = cd.company_id WHERE cd.company_name LIKE '%". $data['filter_name'] ."%' AND cd.language_id = '".(int)$this->config->get('config_language_id')."'";
+
+            if (isset($data['start']) || isset($data['limit'])) {
+                if ($data['start'] < 0) {
+                    $data['start'] = 0;
+                }
+
+                if ($data['limit'] < 1) {
+                    $data['limit'] = 20;
+                }
+
+                $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+            }
+
+            $query = $this->db->query($sql);
+
+            return $query->row['total'];
+
+        }else{
+            return 0;
+        }
+
+    }
+
+
+
 }
