@@ -468,8 +468,9 @@ class ControllerProductSearch extends Controller {
 				$product_total = $this->model_catalog_product->getTotalLatestProducts($filter_data);
 
 				$results = $this->model_catalog_product->getLatestProducts($filter_data['limit']);
-
-				foreach ($results as $result) {
+				$results = array_filter($results);
+				if(count($results)>0){
+					foreach ($results as $result) {
 
 					$this->load->model('catalog/product');
 					$product_company = $this->model_catalog_product->getCompanyInfo($result['product_id']);
@@ -490,7 +491,7 @@ class ControllerProductSearch extends Controller {
 							'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 					);
 				}
-
+				}
 			}
 			elseif(empty($type)){
 
