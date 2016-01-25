@@ -8,13 +8,13 @@
 <form action="" id="searchForm" name="searchForm">
 	<div id="search" class="form-control">
 		<div class="search-tab">
-			<span class="cur" data-type="1">产品</span>
+			<span class="cur" data-type="1"><?php echo $data['search_tab']; ?></span>
 			<input type="hidden" value="" name="search-type">
 			<div class="search-list">
 				<ul>
-					<li data-type="">产品</li>
-					<li data-type="shop">供应商</li>
-					<li data-type="purchase">求购</li>
+					<li data-type=""><?php echo $search_title['default']; ?></li>
+					<li data-type="shop"><?php echo $search_title['shop']; ?></li>
+					<li data-type="purchase"><?php echo $search_title['purchase']; ?></li>
 				</ul>
 			</div>
 			<span class="caret-icon"><i class=""></i></span>
