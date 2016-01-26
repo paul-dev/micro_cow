@@ -92,7 +92,7 @@
          var timer = setInterval(autoPlay,3000);
     });
 </script>
-<div class="container" style="position:relative;height:115px;">
+<div class="container" style="position:relative;">
     <div class="zbj-buttons">
         <div class="prevbtn zbj-btn"><i class="fa fa-chevron-left fa-5x"></i></div>
         <div class="nextbtn zbj-btn"><i class="fa fa-chevron-right fa-5x"></i></div>
@@ -101,52 +101,6 @@
 <div class="xbanner" >
 <div class="owl-lf left">
 	<ul>
-    	<!--
-        <?php
-    	$_li = 0;
-    	foreach ($category_tree as $category) {
-    	$_li++;
-    	?>
-        <li<?php if ($_li == 1) echo ' class="last"'; ?>>
-            <h3><?php echo $category['name']; ?></h3>
-            <?php if (!empty($category['children'])) { ?>
-            <p>
-                <?php
-                $_ai = 0;
-                foreach ($category['children'] as $child) {
-                $_ai++;
-                ?>
-                <a<?php if ($_ai == 1) echo ' class="red_a"'; ?> href="<?php echo $child['href']; ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
-                <?php } ?>
-            </p>
-            <?php } ?>
-
-            <?php if ($category['filter']) { ?>
-            <span class="owl-lb">></span>
-            <div class="owl-drop">
-                <?php
-                foreach ($category['filter'] as $filter) {
-                $filter_name = explode('_', $filter['name']);
-                if (count($filter_name) > 1) {
-                $filter_name = array_pop($filter_name);
-                } else {
-                $filter_name = $filter['name'];
-                }
-                ?>
-                    <h3><a href="#"><?php echo $filter_name; ?></a></h3>
-                    <?php if ($filter['filter']) { ?>
-                    <p style="height: auto;">
-                        <?php foreach ($filter['filter'] as $_filter) { ?>
-                        <a href="<?php echo $category['href'].'&filter='.$_filter['filter_id']?>"><?php echo $_filter['name']; ?></a>
-                        <?php } ?>
-                    </p>
-                    <?php } ?>
-                <?php } ?>
-            </div>
-            <?php } ?>
-        </li>
-        <?php } ?>
-        -->
 
         <?php  	$_li = 0; 	foreach ($category_tree as $category) {    	$_li++;    	?>
         <li <?php if ($_li == 1) echo ' class="last"'; ?>>
