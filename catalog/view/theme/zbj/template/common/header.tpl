@@ -190,10 +190,8 @@
           </div>
         </li>
 
-        <li><a href="<?php echo $order; ?>"><i class="i_order"></i>我的订单</a></li>
-        <li class="no_bor"><a href="">
-            <!--<i class="fa fa-question-circle fa-lg" style="margin-right:4px;font-size:18px;"></i>-->
-            帮助中心</a></li>
+        <li><a href="<?php echo $order; ?>"><i class="i_order"></i><?php echo $text_my_order; ?></a></li>
+        <li class="no_bor"><a href=""><?php echo $text_help_center; ?></a></li>
         <li class="no_bor" style="display: none;"><a href="<?php echo $checkout; ?>" title="<?php echo $text_checkout; ?>"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_checkout; ?></span></a></li>
       </ul>
     </div>
