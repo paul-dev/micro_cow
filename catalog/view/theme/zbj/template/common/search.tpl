@@ -20,7 +20,7 @@
 			<span class="caret-icon"><i class=""></i></span>
 		</div>
 		<div class="search-input">
-			<input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_search; ?>">
+			<input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_search; ?>" id="main-search-input">
 		</div>
 		<div class="search-submit">
 			<a href="javascript:void(0)"><i >搜索</i></a>
@@ -47,21 +47,29 @@
 
 		});
 		$('#search .search-submit a').click(function(){
-			//$('#searchForm').submit();
-            var url = $('base').attr('href') + 'index.php?route=product/search';
 
-            var type = $('header input[name=\'search-type\']').val();
-            if (type) {
-                url += '&type=' + encodeURIComponent(type);
-            }
+			var inputval= $("input[id='main-search-input']").val();
+			if (inputval==""){
 
-            var value = $('header input[name=\'search\']').val();
+			}
+			else {
+				//$('#searchForm').submit();
+				var url = $('base').attr('href') + 'index.php?route=product/search';
 
-            if (value) {
-                url += '&search=' + encodeURIComponent(value);
-            }
+				var type = $('header input[name=\'search-type\']').val();
+				if (type) {
+					url += '&type=' + encodeURIComponent(type);
+				}
 
-            location = url;
+				var value = $('header input[name=\'search\']').val();
+
+				if (value) {
+					url += '&search=' + encodeURIComponent(value);
+				}
+
+				location = url;
+			}
+
 		});
 		$('#search .search-submit a').on('keydown', function(e) {
 		if (e.keyCode == 13) {
