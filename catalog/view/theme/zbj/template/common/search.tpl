@@ -51,6 +51,11 @@
             var url = $('base').attr('href') + 'index.php?route=product/search';
 
             var type = $('header input[name=\'search-type\']').val();
+
+			if(type !== 'shop' && type !== 'purchase'){
+				var url = $('base').attr('href') + 'index.php?route=product/search_product';
+			}
+
             if (type) {
                 url += '&type=' + encodeURIComponent(type);
             }
