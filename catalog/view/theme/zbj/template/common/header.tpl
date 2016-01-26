@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<!--[if IE]><![endif]-->
-<!--[if IE 8 ]><html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>" class="ie8"><![endif]-->
-<!--[if IE 9 ]><html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>" class="ie9"><![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
 <html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
 <!--<![endif]-->
 <head>
 <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=9">
 
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" data-id="<?php echo $store_id; ?>" />
