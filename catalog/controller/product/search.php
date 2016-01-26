@@ -241,6 +241,7 @@ class ControllerProductSearch extends Controller {
         $this->document->setTitle($title);
 
 		$data['text_empty'] = $this->language->get('text_empty');
+		$data['text_empty_shop'] = $this->language->get('text_empty_shop');
 		$data['text_search'] = $this->language->get('text_search');
 		$data['text_keyword'] = $this->language->get('text_keyword');
 		$data['text_category'] = $this->language->get('text_category');

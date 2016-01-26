@@ -15,6 +15,7 @@ $_['text_keyword']      = '关键词';
 $_['text_category']     = '所有分类';
 $_['text_sub_category'] = '在子分类中检索';
 $_['text_empty']        = '没有符合搜索标准的商品。';
+$_['text_empty_shop']        = '没有符合搜索标准的供应商。';
 $_['text_quantity']     = '数量:';
 $_['text_manufacturer'] = '品牌:';
 $_['text_model']        = '型号:';
