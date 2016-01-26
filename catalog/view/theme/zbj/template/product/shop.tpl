@@ -138,7 +138,6 @@
                   <?php } ?>
                 </ul>
 
-                <p style="float: right; padding-left: 10px;"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></p>
             </div>
         </div>
 
