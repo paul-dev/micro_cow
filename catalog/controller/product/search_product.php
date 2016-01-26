@@ -255,134 +255,30 @@ class ControllerProductSearchProduct extends Controller {
 				'limit'               => $limit
 			);
 
-			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
 
-			$results = $this->model_catalog_product->getProducts($filter_data);
-
+			//默认查询产品
+			$product_total = $this->model_catalog_product->getTotalSearchProducts($filter_data);
+			$results = $this->model_catalog_product->getSearchProducts($filter_data);
+			$results = array_filter($results);
 			foreach ($results as $result) {
-				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-				}
 
-				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
-				} else {
-					$price = false;
-				}
-
-				if ((float)$result['special']) {
-					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
-				} else {
-					$special = false;
-				}
-
-				if ($this->config->get('config_tax')) {
-					$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price']);
-				} else {
-					$tax = false;
-				}
-
-				if ($this->config->get('config_review_status')) {
-					$rating = (int)$result['rating'];
-				} else {
-					$rating = false;
-				}
-
-                //$product_store = $this->model_catalog_product->getProductStores($result['product_id']);
-                //$product_store = array_pop($product_store);
-                $product_store = $this->model_catalog_product->getProductStore($result['product_id']);
-                if ($product_store && isset($product_store['shop_name'])) {
-                    // Shop home url.
-                    $product_store['shop_url'] = HTTP_SERVER . $product_store['shop_key'];
-
-                    if ($product_store['shop_logo']) {
-                        $product_store['shop_logo'] = $this->model_tool_image->resize($product_store['shop_logo'], 50, 50);
-                    } else {
-                        $product_store['shop_logo'] = $this->model_tool_image->resize('placeholder.png', 50, 50);
-                    }
-
-                    if ($product_store['shop_image']) {
-                        $product_store['shop_image'] = $this->model_tool_image->resize($product_store['shop_image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-                    } else {
-                        $product_store['shop_image'] = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-                    }
-
-                    $product_store['shop_comment'] = $product_store['shop_comment'] ? utf8_substr(strip_tags(html_entity_decode($product_store['shop_comment'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..' : '店主好懒，没有描述';
-
-                    $this->load->model('catalog/product');
-                    $product_store['total_product'] = $this->model_catalog_product->getTotalProducts(array(
-                        'filter_store_id' => $product_store['store_id']
-                    ));
-
-                    $this->load->model('sale/order');
-                    $product_store['total_sell'] = $this->model_sale_order->getTotalSellProducts($product_store['store_id']);
-                    if (empty($product_store['total_sell'])) $product_store['total_sell'] = '0';
-
-                    $this->load->model('account/wishlist');
-                    $product_store['total_wish'] = $this->model_account_wishlist->getTotalShopWished($product_store['store_id']);
-
-                    $this->load->model('seller/shop');
-                    $product_store['ratings'] = $this->model_seller_shop->getStoreRatings($product_store['store_id']);
-
-                    $this->load->model('setting/setting');
-                    $shop_data = $this->model_setting_setting->getSetting('config', $product_store['store_id']);
-
-                    $this->load->model('localisation/zone');
-                    $product_store['shop_zone'] = '';
-                    if (isset($shop_data['config_zone_id'])) {
-                        $zone_info = $this->model_localisation_zone->getZone($shop_data['config_zone_id']);
-                        if ($zone_info) $product_store['shop_zone'] = $zone_info['name'];
-                    }
-                    $product_store['shop_city'] = '';
-                    if (isset($shop_data['config_city_id'])) {
-                        $city_info = $this->model_localisation_zone->getCity($shop_data['config_city_id']);
-                        if ($city_info) $product_store['shop_city'] = $city_info['name'];
-                    }
-
-                    if ($this->customer->isLogged()) {
-                        $avatar = $this->model_tool_image->resize('no_image.png', 50, 50);
-                        $product_store['custom_field'] = unserialize($product_store['custom_field']);
-                        if (isset($product_store['custom_field'][2]) && is_file(DIR_IMAGE . $product_store['custom_field'][2])) {
-                            $avatar = $this->model_tool_image->resize($product_store['custom_field'][2], 50, 50);
-                        }
-                        $product_store['link_live_chat'] = 'javascript:void(0);" onclick="activeLiveChat(this)" data-user="'.$product_store['customer_id'].'" data-name="'.$product_store['fullname'].'" data-avatar="'.$avatar;
-                    } else {
-                        $product_store['link_live_chat'] = $this->url->link('account/login', '', 'SSL');
-                    }
-                } else {
-                    if ($type == 'shop') {
-                        $product_total--;
-                        continue;
-                    }
-                    $product_store['shop_name'] = '';
-                    $product_store['shop_url'] = '';
-                    $product_store['shop_image'] = '';
-                    $product_store['shop_comment'] = '';
-                    $product_store['total_product'] = '';
-                    $product_store['total_sell'] = '';
-                    $product_store['total_wish'] = '';
-                    $product_store['shop_zone'] = '';
-                    $product_store['shop_city'] = '';
-                    $product_store['link_live_chat'] = 'javascript:void(0);';
-                    $product_store['ratings'] = array();
-                }
+				$this->load->model('catalog/product');
+				$product_company = $this->model_catalog_product->getCompanyInfo($result['product_id']);
 
 				$data['products'][] = array(
-					'product_id'  => $result['product_id'],
-					'thumb'       => $image,
-					'name'        => $result['name'],
-					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
-					'points'      => $type == 'reward' ? $result['points'] : '0',
-                    'price'       => $price,
-					'special'     => $special,
-					'tax'         => $tax,
-					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
-					'rating'      => $rating,
-                    'shop_info'   => $product_store,
-                    'shop_name'   => $product_store['shop_name'],
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+						'product_id'  => $result['product_id'],
+						'thumb'       => isset($image)?$image:'',
+						'name'        => $result['name'],
+						'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
+						'points'      => $type == 'reward' ? $result['points'] : '0',
+						'price'       => isset($price)?$price:'',
+						'special'     => isset($special)?$special:'',
+						'tax'         => isset($tax)?$tax:'',
+						'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
+						'rating'      => isset($rating)?$rating:'',
+						'company_info'   => isset($product_company)?$product_company:array(),
+						'company_name'   => isset($product_company['company_name'])?$product_company['company_name']:'',
+						'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 				);
 			}
 
