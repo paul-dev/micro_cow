@@ -461,44 +461,10 @@ class ControllerProductSearch extends Controller {
 
 
 			}
-			elseif($type == 'latest'){
-
-				//查询 新品上线
-
-				$product_total = $this->model_catalog_product->getTotalLatestProducts($filter_data);
-
-				$results = $this->model_catalog_product->getLatestProducts($filter_data['limit']);
-				$results = array_filter($results);
-				if(count($results)>0){
-					foreach ($results as $result) {
-
-					$this->load->model('catalog/product');
-					$product_company = $this->model_catalog_product->getCompanyInfo($result['product_id']);
-
-					$data['products'][] = array(
-							'product_id'  => $result['product_id'],
-							'thumb'       => isset($image)?$image:'',
-							'name'        => $result['name'],
-							'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
-							'points'      => $type == 'reward' ? $result['points'] : '0',
-							'price'       => isset($price)?$price:'',
-							'special'     => isset($special)?$special:'',
-							'tax'         => isset($tax)?$tax:'',
-							'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
-							'rating'      => isset($rating)?$rating:'',
-							'company_info'   => isset($product_company)?$product_company:array(),
-							'company_name'   => isset($product_company['company_name'])?$product_company['company_name']:'',
-							'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
-					);
-				}
-				}
-			}
 			elseif(empty($type)){
 
 				//默认查询产品
-				//$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
 				$product_total = $this->model_catalog_product->getTotalSearchProducts($filter_data);
-				//$results = $this->model_catalog_product->getProducts($filter_data);
 				$results = $this->model_catalog_product->getSearchProducts($filter_data);
 
 				foreach ($results as $result) {

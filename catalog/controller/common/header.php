@@ -128,7 +128,7 @@ class ControllerCommonHeader extends Controller {
 
         $data['main_menu'][] = array(
             'label' => $this->language->get('text_supplies'),
-            'link' => $this->url->link('product/search', 'type=latest&sort=p.date_added&order=DESC')
+            'link' => $this->url->link('product/latest', 'type=latest&sort=p.date_added&order=DESC')
         );
 
         $data['main_menu'][] = array(

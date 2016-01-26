@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
+  <ul class="breadcrumb" style="display: none">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
     <?php } ?>
@@ -16,7 +16,7 @@
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
       <h1><?php echo $heading_title; ?></h1>
       <!--<label class="control-label" for="input-search"><?php echo $entry_search; ?></label>-->
-      <div class="row">
+      <div class="row" style="display: none">
         <div class="col-sm-4">
           <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_keyword; ?>" id="input-search" class="form-control" />
         </div>
@@ -64,14 +64,15 @@
             <input type="button" value="<?php echo $button_search; ?>" id="button-search" class="btn btn-primary" />
         </div>
       </div>
-      <h2><?php //echo $text_search; ?>&nbsp;</h2>
+      <h2 style="display: none"><?php //echo $text_search; ?>&nbsp;</h2>
 
       <div class="row" style="margin-top: 10px; display: none;">
         <div class="col-sm-3 hidden-xs">
           <div class="btn-group">
             <button type="button" id="list-view1" class="btn btn-default" data-toggle="tooltip" title="<?php echo $button_list; ?>"><i class="fa fa-th-list"></i></button>
             <button type="button" id="grid-view1" class="btn btn-default" data-toggle="tooltip" title="<?php echo $button_grid; ?>"><i class="fa fa-th"></i></button>
-            &nbsp;&nbsp;<p style="float: right;"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></p>
+            &nbsp;&nbsp;
+            <!--<p style="float: right;display: none"><a style="display: none" href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></p>-->
           </div>
         </div>
         <div class="col-sm-1 col-sm-offset-2 text-right">
@@ -162,7 +163,6 @@
                   <?php } ?>
                 </ul>
 
-                <p style="float: right; padding-left: 10px;"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></p>
         </div>
 
       <div class="row">
