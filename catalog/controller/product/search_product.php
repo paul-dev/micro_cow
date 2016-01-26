@@ -255,11 +255,16 @@ class ControllerProductSearchProduct extends Controller {
 				'limit'               => $limit
 			);
 
+			if(!empty($filter_data['filter_name'])){
+				$product_total = $this->model_catalog_product->getTotalSearchProducts($filter_data);
+				$results = $this->model_catalog_product->getSearchProducts($filter_data);
+			}else{
+				$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+				$results = $this->model_catalog_product->getProducts($filter_data);
+			}
 
-			//默认查询产品
-			$product_total = $this->model_catalog_product->getTotalSearchProducts($filter_data);
-			$results = $this->model_catalog_product->getSearchProducts($filter_data);
 			$results = array_filter($results);
+
 			foreach ($results as $result) {
 
 				$this->load->model('catalog/product');
