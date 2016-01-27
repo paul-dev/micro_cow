@@ -226,7 +226,7 @@
 <div class="container">
   <div id="nav_home">
     <ul class="nav_list">
-      <?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index.php?route=common/home'){ ?>
+      <?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index.php?route=common/home' || $_SERVER['REQUEST_URI'] == '/common/home'){ ?>
       <li style="width: 260px;margin-left:-40px;background-color: #1686cc;"><a style="cursor: pointer"><?php echo $text_all_category; ?></a></li>
       <?php } ?>
       <?php foreach ($main_menu as $menu) { ?>
