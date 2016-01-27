@@ -45,9 +45,21 @@
   width:980px;height:428px;background:blue;margin:0 auto;
   position: relative;
 }
+
+.form-control:focus{
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+}
+
 /* margin:0 auto 是可以让元素居中显示;
      overflow:hidden;是隐藏滚动蓝
 */
+
+ul li .dropdown-menu-left li{
+  width: 160px;
+}
 
 /*position:relative 可以让图片循环滚动*/
 .hidden_yyl{width:980px;height:100%;background:grey;margin:0 auto;position:relative;overflow:hidden;}
