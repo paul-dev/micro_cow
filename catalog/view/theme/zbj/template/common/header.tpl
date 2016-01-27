@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<!--[if IE]><![endif]-->
-<!--[if IE 8 ]><html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>" class="ie8"><![endif]-->
-<!--[if IE 9 ]><html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>" class="ie9"><![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
 <html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
 <!--<![endif]-->
 <head>
 <meta charset="UTF-8" />
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=9">
 
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" data-id="<?php echo $store_id; ?>" />
@@ -27,22 +25,11 @@
 <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/base.css">
 <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
 
   <!-- load style start -->
-  <link href="catalog/view/theme/zbj/stylesheet/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/base.css">
-  <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
-  <!--[if (lt IE 9)]>
-  <link href="catalog/view/theme/zbj/stylesheet/stylesheet-ltie9.css" rel="stylesheet"><![endif]-->
-  <link href="catalog/view/theme/zbj/stylesheet/owl.carousel.css" type="text/css" rel="stylesheet" media="screen">
-  <link href="catalog/view/theme/zbj/stylesheet/owl.transitions.css" type="text/css" rel="stylesheet" media="screen">
-  <script src="catalog/view/theme/zbj/js/jquery.scrollLoading-min.js" type="text/javascript"></script>
-  <script src="catalog/view/theme/zbj/js/common.js" type="text/javascript"></script>
-  <script src="catalog/view/theme/zbj/js/owl.carousel.min.js" type="text/javascript"></script>
-
-
   <!--my-main-page -->
   <script src="catalog/view/theme/zbj/js/index_my.js" type="text/javascript"></script>
   <!--<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>-->
