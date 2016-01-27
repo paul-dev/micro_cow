@@ -3,6 +3,7 @@
 <!--<![endif]-->
 <head>
 <meta charset="UTF-8" />
+  <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=9">
 
 <title><?php echo $title; ?></title>
@@ -24,22 +25,11 @@
 <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/base.css">
 <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
 
   <!-- load style start -->
-  <link href="catalog/view/theme/zbj/stylesheet/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="catalog/view/theme/zbj/stylesheet/base.css">
-  <link href="catalog/view/theme/zbj/stylesheet/stylesheet.css" rel="stylesheet">
-  <!--[if (lt IE 9)]>
-  <link href="catalog/view/theme/zbj/stylesheet/stylesheet-ltie9.css" rel="stylesheet"><![endif]-->
-  <link href="catalog/view/theme/zbj/stylesheet/owl.carousel.css" type="text/css" rel="stylesheet" media="screen">
-  <link href="catalog/view/theme/zbj/stylesheet/owl.transitions.css" type="text/css" rel="stylesheet" media="screen">
-  <script src="catalog/view/theme/zbj/js/jquery.scrollLoading-min.js" type="text/javascript"></script>
-  <script src="catalog/view/theme/zbj/js/common.js" type="text/javascript"></script>
-  <script src="catalog/view/theme/zbj/js/owl.carousel.min.js" type="text/javascript"></script>
-
-
   <!--my-main-page -->
   <script src="catalog/view/theme/zbj/js/index_my.js" type="text/javascript"></script>
   <!--<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>-->
