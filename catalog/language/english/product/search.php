@@ -28,6 +28,11 @@ $_['text_rating_desc']  = 'Rating (Highest)';
 $_['text_model_asc']    = 'Model (A - Z)';
 $_['text_model_desc']   = 'Model (Z - A)';
 $_['text_limit']        = 'Show:';
+$_['text_viewed_desc']  = 'Popular';
+$_['text_sell_desc']    = 'Sales';
+$_['text_date_desc']    = 'NEW';
+$_['text_limit']        = 'SHOW:';
+$_['text_pagination_short']        = 'FROM';
 
 // Entry
 $_['entry_search']      = 'Search Criteria';

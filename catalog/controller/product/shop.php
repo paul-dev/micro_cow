@@ -192,6 +192,11 @@ class ControllerProductShop extends Controller {
 		$data['text_sort'] = $this->language->get('text_sort');
 		$data['text_limit'] = $this->language->get('text_limit');
 
+		$data['text_Registered_Capital'] = $this->language->get('text_Registered_Capital');
+		$data['text_The_occupancy_date'] = $this->language->get('text_The_occupancy_date');
+		$data['text_gofor_astroll'] = $this->language->get('text_gofor_astroll');
+		$data['text_Concern'] = $this->language->get('text_Concern');
+
 		$data['entry_search'] = $this->language->get('entry_search');
 		$data['entry_description'] = $this->language->get('entry_description');
 

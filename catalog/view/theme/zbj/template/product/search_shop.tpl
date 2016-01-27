@@ -134,8 +134,8 @@
                 <p class="online_show"><?php echo $info['country_name']; ?> <?php echo $info['zone_name']; ?></p>
               </span>
               <div class="good_shopinfo clearfix">
-                <span>注册资金: <em><?php echo $info['company_registered_capital']; ?></em></span>
-                <span>入驻日期: <em><?php echo $info['company_date_added']; ?></em></span>
+                <span><?php echo $text_Registered_Capital; ?><em><?php echo $info['company_registered_capital']; ?></em></span>
+                <span><?php echo $text_The_occupancy_date; ?><em><?php echo $info['company_date_added']; ?></em></span>
                 <!--
                 <span>销量: <em><?php echo $info['total_sell']; ?></em></span>
                 <span>商品: <em><?php echo $info['total_product']; ?></em></span>
@@ -143,8 +143,8 @@
               </div>
             </div>
             <div class="good_shop_btn" style="">
-              <a class="button" href="javascript:void(0);" onclick="wishlist.shop('<?php echo $info['company_id']; ?>');" style="margin-right:10px;"><i class="icon-add">+</i>关注</a>
-              <a class="button" href="<?php echo $info['company_url']; ?>">去逛逛</a>
+              <a class="button" href="javascript:void(0);" onclick="wishlist.shop('<?php echo $info['company_id']; ?>');" style="margin-right:10px;"><i class="icon-add">+</i><?php echo $text_Concern; ?></a>
+              <a class="button" href="<?php echo $info['company_url']; ?>"><?php echo $text_gofor_astroll; ?></a>
             </div>
           </div>
         </div>

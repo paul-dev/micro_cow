@@ -13,11 +13,11 @@
 
     <a href="<?php echo $url_order; ?>" class="list-group-item<?php if (isset($active_class['order']['all'])) echo ' active'; ?>"><?php echo $text_order; ?> <span class="caret"></span></a>
         <?php if (isset($active_class['order'])) { ?>
-            <a href="<?php echo $url_order; ?>&filter_order_status=1" class="list-group-item<?php if (isset($active_class['order']['1'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- 待付款订单</a>
-            <a href="<?php echo $url_order; ?>&filter_order_status=2" class="list-group-item<?php if (isset($active_class['order']['2'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- 已付款订单</a>
-            <a href="<?php echo $url_order; ?>&filter_order_status=15" class="list-group-item<?php if (isset($active_class['order']['15'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- 待发货订单</a>
-            <a href="<?php echo $url_order; ?>&filter_order_status=3" class="list-group-item<?php if (isset($active_class['order']['3'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- 已发货订单</a>
-            <a href="<?php echo $url_order; ?>&filter_order_status=5" class="list-group-item<?php if (isset($active_class['order']['5'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- 已收货订单</a>
+            <a href="<?php echo $url_order; ?>&filter_order_status=1" class="list-group-item<?php if (isset($active_class['order']['1'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_obligation; ?></a>
+            <a href="<?php echo $url_order; ?>&filter_order_status=2" class="list-group-item<?php if (isset($active_class['order']['2'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_Paid; ?></a>
+            <a href="<?php echo $url_order; ?>&filter_order_status=15" class="list-group-item<?php if (isset($active_class['order']['15'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_toSend; ?></a>
+            <a href="<?php echo $url_order; ?>&filter_order_status=3" class="list-group-item<?php if (isset($active_class['order']['3'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_delivered; ?></a>
+            <a href="<?php echo $url_order; ?>&filter_order_status=5" class="list-group-item<?php if (isset($active_class['order']['5'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_have_goods; ?></a>
         <?php } ?>
     <a href="<?php echo $url_return; ?>" class="list-group-item"><?php echo $text_return; ?></a>
     <a href="<?php echo $transaction; ?>" class="list-group-item"><?php echo $text_transaction; ?></a>

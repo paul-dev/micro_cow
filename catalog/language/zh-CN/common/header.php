@@ -57,4 +57,5 @@ $_['text_safelogout']       = '安全退出';
 $_['text_free_registration']       = '免费注册';
 $_['text_loginplease']       = '请登录';
 $_['text_rules']       = '规则';
+$_['text_notice']       = '公告';
 $_['text_hot_recommend']       = '热门推荐';

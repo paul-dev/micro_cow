@@ -37,6 +37,11 @@ $_['text_sell_desc']    = '销量';
 $_['text_date_desc']    = '上新';
 $_['text_limit']        = '显示:';
 
+$_['text_Registered_Capital']        = '注册资金: ';
+$_['text_The_occupancy_date']        = '入驻日期: ';
+$_['text_gofor_astroll']        = '去逛逛';
+$_['text_Concern']        = '关注';
+
 // Entry
 $_['entry_search']      = '搜索标准';
 $_['entry_description'] = '在商品描述中检索';

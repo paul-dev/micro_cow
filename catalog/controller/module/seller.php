@@ -37,6 +37,11 @@ class ControllerModuleSeller extends Controller {
         $data['text_product'] = $this->language->get('text_product');
         $data['text_purchase'] = $this->language->get('text_purchase');
         $data['text_offer'] = $this->language->get('text_offer');
+        $data['text_obligation'] = $this->language->get('text_obligation');
+        $data['text_Paid'] = $this->language->get('text_Paid');
+        $data['text_toSend'] = $this->language->get('text_toSend');
+        $data['text_delivered'] = $this->language->get('text_delivered');
+        $data['text_have_goods'] = $this->language->get('text_have_goods');
 /*
         $data['text_category'] = $this->language->get('text_category');
         $data['text_option'] = $this->language->get('text_option');
@@ -160,6 +165,12 @@ class ControllerModuleSeller extends Controller {
         $data['url_design'] = $this->url->link('seller/design/edit', '', 'SSL');
         $data['url_download'] = $this->url->link('seller/download', '', 'SSL');
         $data['url_return'] = $this->url->link('seller/return', '', 'SSL');
+
+        $data['text_obligation'] = $this->language->get('text_obligation');
+        $data['text_Paid'] = $this->language->get('text_Paid');
+        $data['text_toSend'] = $this->language->get('text_toSend');
+        $data['text_delivered'] = $this->language->get('text_delivered');
+        $data['text_have_goods'] = $this->language->get('text_have_goods');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/seller.tpl')) {
 			return $this->load->view($this->config->get('config_template') . '/template/module/seller.tpl', $data);
