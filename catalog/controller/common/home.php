@@ -61,9 +61,20 @@ class ControllerCommonHome extends Controller {
 
 		$this->load->model('tool/image');
 		$RecommendProducts = array_filter($RecommendProducts);
+
 		foreach($RecommendProducts as $key=>$val){
 			$RecommendProducts[$key]['url'] = $this->url->link("product/product", 'product_id=' . $RecommendProducts[$key]['product_id']);
 			$RecommendProducts[$key]['image'] = $this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):'catalog/view/theme/zbj/image/zbj_default_pic.png';
+
+			if (($this->config->get('config_customer_price')) || !$this->config->get('config_customer_price')) {
+				$RecommendProducts[$key]['price'] = $this->currency->format($this->tax->calculate($RecommendProducts[$key]['price'], $this->config->get('config_tax')));
+			} else {
+				$RecommendProducts[$key]['price'] = $RecommendProducts[$key]['price'];
+			}
+
+			$RecommendProducts[$key]['image'] = $this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):'catalog/view/theme/zbj/image/zbj_default_pic.png';
+
+
 		}
 
 		$data['RecommendProducts'] = $RecommendProducts;

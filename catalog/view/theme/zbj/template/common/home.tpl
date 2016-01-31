@@ -30,7 +30,7 @@
                   </div>
                   <div>
                     <div class="recmd-price">
-                      <h3>￥<?php echo $recommend['price']; ?></h3>
+                      <h3><?php echo $recommend['price']; ?></h3>
                     </div>
                     <div class="recmd-name">
                       <span style="height:15px;"><a  target="_blank" href="<?php echo $recommend['url']; ?>" title="<?php echo $recommend['name']; ?>"><?php echo $recommend['name']; ?></a></span>
