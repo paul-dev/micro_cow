@@ -23,7 +23,7 @@
                   <div class="q-left-one">
 
                     <h5 style="margin-bottom: 4px"><?php echo $purchaseInfo['company_name']; ?></h5>
-                    <div class="q-left-one-img">
+                    <div class="q-left-one-img" style="display: none">
                       <img src="catalog/view/theme/<?php echo $config_template; ?>/image/product_purchase/chengxin.png">
                     </div>
 
