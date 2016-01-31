@@ -115,13 +115,16 @@ class ControllerModuleSlideshow extends Controller {
 
 		$data['module'] = $module++;
 
-        /*if(isset($this->session->data['customer_id'])){
+        if(isset($this->session->data['customer_id'])){
             $this->load->model('sale/customer');
             $data['customer_info'] = $this->model_sale_customer->getCustomer($this->session->data['customer_id']);
-            if(isset($data['customer_info']['custom_field'])){
+
+            if(!empty(($data['customer_info']['custom_field']['2']))){
                 $data['customer_info']['image'] = 'image/'.unserialize($data['customer_info']['custom_field'])['2'];
+            }else{
+                $data['customer_info']['image'] = 'catalog/view/theme/zbj/image/zbj_default_pic.png';
             }
-        }*/
+        }
 
         //热门推荐 两个产品 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ start
         $this->load->model('catalog/product');
