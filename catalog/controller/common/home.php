@@ -64,7 +64,7 @@ class ControllerCommonHome extends Controller {
 
 		foreach($RecommendProducts as $key=>$val){
 			$RecommendProducts[$key]['url'] = $this->url->link("product/product", 'product_id=' . $RecommendProducts[$key]['product_id']);
-			$RecommendProducts[$key]['image'] = $this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):'catalog/view/theme/zbj/image/zbj_default_pic.png';
+			$RecommendProducts[$key]['image'] = !empty($this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):$this->model_tool_image->resize('catalog/zbj_default_pic.png', $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 
 			if (($this->config->get('config_customer_price')) || !$this->config->get('config_customer_price')) {
 				$RecommendProducts[$key]['price'] = $this->currency->format($this->tax->calculate($RecommendProducts[$key]['price'], $this->config->get('config_tax')));
@@ -72,7 +72,7 @@ class ControllerCommonHome extends Controller {
 				$RecommendProducts[$key]['price'] = $RecommendProducts[$key]['price'];
 			}
 
-			$RecommendProducts[$key]['image'] = $this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):'catalog/view/theme/zbj/image/zbj_default_pic.png';
+			$RecommendProducts[$key]['image'] = $this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):$this->model_tool_image->resize('catalog/zbj_default_pic.png', $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 
 
 		}
@@ -182,7 +182,7 @@ class ControllerCommonHome extends Controller {
 			$data['category_tree'][] = array(
 					'name'     => $category['name'],
 					'category_id'     => $category['category_id'],
-					'category_image'     => $this->model_tool_image->resize($category['image'], 300, 250)?$this->model_tool_image->resize($category['image'], 300, 250):'catalog/view/theme/zbj/image/zbj_default_pic.png',
+					'category_image'     => !empty($this->model_tool_image->resize($category['image'], 251, 251))?$this->model_tool_image->resize($category['image'], 251, 251):$this->model_tool_image->resize('catalog/zbj_default_pic.png', 251, 251),
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
 					'href'     => $href,

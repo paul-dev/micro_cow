@@ -618,7 +618,7 @@
               <div class="purehed-body-div-2" style="min-height: 265px;">
                 <div class="purehed-div-1">
                   <p>
-                    <a href="<?php echo $purchase_product['url']; ?>" target="_blank" class="purehed-div-1-a" style="width: 224px"><?php echo $purchase_product['name']; ?></a>
+                    <a href="<?php echo $purchase_product['url']; ?>"  class="purehed-div-1-a" style="width: 224px"><?php echo $purchase_product['name']; ?></a>
                   </p>
 
                   <label class="purehed-div-L">

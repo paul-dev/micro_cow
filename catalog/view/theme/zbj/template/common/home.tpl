@@ -26,14 +26,14 @@
                 <?php foreach($RecommendProducts as $recommend){ ?>
                 <div class="new-recmd-div">
                   <div class="new-recmd-img">
-                    <a  target="_blank" href="<?php echo $recommend['url']; ?>"><img src="<?php echo $recommend['image']; ?>"></a>
+                    <a   href="<?php echo $recommend['url']; ?>"><img src="<?php echo $recommend['image']; ?>"></a>
                   </div>
                   <div>
                     <div class="recmd-price">
                       <h3><?php echo $recommend['price']; ?></h3>
                     </div>
                     <div class="recmd-name">
-                      <span style="height:15px;"><a  target="_blank" href="<?php echo $recommend['url']; ?>" title="<?php echo $recommend['name']; ?>"><?php echo $recommend['name']; ?></a></span>
+                      <span style="height:15px;"><a   href="<?php echo $recommend['url']; ?>" title="<?php echo $recommend['name']; ?>"><?php echo $recommend['name']; ?></a></span>
                     </div>
                     <div class="recmd-company">
                       <a><?php echo $recommend['company_name']; ?></a>
@@ -60,7 +60,7 @@
                 <div class="purched-div clearfix">
                   <div class="purchased-left">
                     <div class="purchased-left-top">
-                      <a  target="_blank" href="<?php echo $purchase['url']; ?>"><?php echo $purchase['name']; ?></a>
+                      <a   href="<?php echo $purchase['url']; ?>"><?php echo $purchase['name']; ?></a>
                     </div>
                     <div class="purchased-left-botm">
                       <p><?php echo $text_amount_purchased; ?> <span><?php echo $purchase['total_product']; ?></span></p>
@@ -84,7 +84,7 @@
                       <div class="purchased-right-r-div" style="border:0px solid red;height:60px;width:80px">
                         <?php echo $purchase['company_name']; ?>
                       </div>
-                      <div><a  target="_blank" href="<?php echo $purchase['url']; ?>"><?php echo $text_offer_immediately; ?></a></div>
+                      <div><a   href="<?php echo $purchase['url']; ?>"><?php echo $text_offer_immediately; ?></a></div>
                     </div>
                   </div>
                 </div>
@@ -120,7 +120,7 @@
                       <td class="td-center-new"><?php echo $purchase['company_name']; ?></td>
                       <td class="td-center-new"><?php echo $purchase['country_name']; ?> <?php echo $purchase['zone_name']; ?></td>
                       <td class="td-center-new">
-                        <div class="td-evaluate"><a  target="_blank" href="<?php echo $purchase['url']; ?>"><?php echo $text_view_now; ?></a></div>
+                        <div class="td-evaluate"><a   href="<?php echo $purchase['url']; ?>"><?php echo $text_view_now; ?></a></div>
                       </td>
                     </tr>
                     <?php } ?>
@@ -129,7 +129,7 @@
                     </tbody>
                   </table>
                   <div class="digital-seemore">
-                    <a  target="_blank" href="<?php echo $purchaseLink; ?>" target="_blank"><?php echo $text_view_more; ?>&gt;</a>
+                    <a   href="<?php echo $purchaseLink; ?>" ><?php echo $text_view_more; ?>&gt;</a>
                   </div>
                 </div>
               </div>
@@ -149,7 +149,7 @@
                     <div class="mid-h4-text">
                       <?php if (!empty($category_tree['children'])) { ?>
                       <?php foreach($category_tree['children'] as $children){ ?>
-                      <a  target="_blank" href="<?php echo $children['href']; ?>"><?php echo $children['name']; ?></a>
+                      <a   href="<?php echo $children['href']; ?>"><?php echo $children['name']; ?></a>
                       <?php } ?>
                       <?php } ?>
                       <div style="clear: both"></div>
@@ -157,21 +157,21 @@
                   </div>
                   <div class="sup-list-right">
                     <div class="list-right-a-div">
-                      <p><a  target="_blank" href="#">ABB旗舰店</a></p>
-                      <p><a  target="_blank" href="#">5折起囤积</a></p>
+                      <p><a   href="#">ABB旗舰店</a></p>
+                      <p><a   href="#">5折起囤积</a></p>
                     </div>
                     <div class="list-right-a-two">
-                      <p><a  target="_blank" href="#">德利西官方旗舰店</a></p>
-                      <p><a  target="_blank" href="#">599包邮，更有3.9折</a></p>
+                      <p><a   href="#">德利西官方旗舰店</a></p>
+                      <p><a   href="#">599包邮，更有3.9折</a></p>
                     </div>
                     <div style="clear: both"></div>
                     <div class="list-right-a-div">
-                      <p><a  target="_blank" href="#">ABB旗舰店</a></p>
-                      <p><a  target="_blank" href="#">5折起囤积</a></p>
+                      <p><a   href="#">ABB旗舰店</a></p>
+                      <p><a   href="#">5折起囤积</a></p>
                     </div>
                     <div class="list-right-a-two">
-                      <p><a  target="_blank" href="#">德利西官方旗舰店</a></p>
-                      <p><a  target="_blank" href="#">599包邮，更有3.9折</a></p>
+                      <p><a   href="#">德利西官方旗舰店</a></p>
+                      <p><a   href="#">599包邮，更有3.9折</a></p>
                     </div>
                     <div style="clear: both"></div>
                   </div>
@@ -187,38 +187,38 @@
                           <div class="suppplier-list-midd">
                             <h3>日用百货</h3>
                             <div class="mid-h4-text">
-                              <a  target="_blank" href="#">电池</a>
-                              <a  target="_blank" href="#">18202电池</a>
-                              <a  target="_blank" href="#">干电池</a>
-                              <a  target="_blank" href="#">电线</a>
-                              <a  target="_blank" href="#">墙壁开关</a>
-                              <a  target="_blank" href="#">墙壁插座</a>
-                              <a  target="_blank" href="#">电源</a>
-                              <a  target="_blank" href="#">开关电源</a>
-                              <a  target="_blank" href="#">逆变器</a>
-                              <a  target="_blank" href="#">工控</a>
-                              <a  target="_blank" href="#">微型断路器</a>
-                              <a  target="_blank" href="#">配电箱</a>
+                              <a   href="#">电池</a>
+                              <a   href="#">18202电池</a>
+                              <a   href="#">干电池</a>
+                              <a   href="#">电线</a>
+                              <a   href="#">墙壁开关</a>
+                              <a   href="#">墙壁插座</a>
+                              <a   href="#">电源</a>
+                              <a   href="#">开关电源</a>
+                              <a   href="#">逆变器</a>
+                              <a   href="#">工控</a>
+                              <a   href="#">微型断路器</a>
+                              <a   href="#">配电箱</a>
                               <div style="clear: both"></div>
                             </div>
                             <div class="mid-h4-text">
-                              <a  target="_blank" href="#">电池</a>
-                              <a  target="_blank" href="#">18202电池</a>
-                              <a  target="_blank" href="#">干电池</a>
-                              <a  target="_blank" href="#">电线</a>
-                              <a  target="_blank" href="#">墙壁开关</a>
-                              <a  target="_blank" href="#">墙壁插座</a>
-                              <a  target="_blank" href="#">电源</a>
-                              <a  target="_blank" href="#">开关电源</a>
-                              <a  target="_blank" href="#">逆变器</a>
-                              <a  target="_blank" href="#">工控</a>
-                              <a  target="_blank" href="#">微型断路器</a>
-                              <a  target="_blank" href="#">配电箱</a>
+                              <a   href="#">电池</a>
+                              <a   href="#">18202电池</a>
+                              <a   href="#">干电池</a>
+                              <a   href="#">电线</a>
+                              <a   href="#">墙壁开关</a>
+                              <a   href="#">墙壁插座</a>
+                              <a   href="#">电源</a>
+                              <a   href="#">开关电源</a>
+                              <a   href="#">逆变器</a>
+                              <a   href="#">工控</a>
+                              <a   href="#">微型断路器</a>
+                              <a   href="#">配电箱</a>
                               <div style="clear: both"></div>
                             </div>
                             <div class="mid-h4-text-last">
-                              <a  target="_blank" href="#">进口</a>
-                              <a  target="_blank" href="#">蓄电池</a>
+                              <a   href="#">进口</a>
+                              <a   href="#">蓄电池</a>
                               <div style="clear: both"></div>
                             </div>
                           </div>

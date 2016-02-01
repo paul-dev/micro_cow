@@ -102,7 +102,7 @@
             <div class="purehed-div-1" style=" background-color: #eef3f9;
     padding: 10px;">
               <p>
-                <a href="<?php echo $purchase_product['url']; ?>" target="_blank" class="purehed-div-1-a" style="width: 224px;height: 42px;
+                <a href="<?php echo $purchase_product['url']; ?>"  class="purehed-div-1-a" style="width: 224px;height: 42px;
     line-height: 22px;
     overflow: hidden;
     margin-bottom: 5px;

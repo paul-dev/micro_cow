@@ -126,7 +126,7 @@
               </a>
             </div>
             <div class="caption clearfix" style="padding-bottom: 0px;text-align:center;">
-              <a href="<?php echo $info['company_url']; ?>" class="shop_avatar" target="_blank" style="display:none">
+              <a href="<?php echo $info['company_url']; ?>" class="shop_avatar"  style="display:none">
                 <img src="<?php echo $info['company_image']; ?>" alt="<?php echo $info['company_name']; ?>" title="<?php echo $info['company_name']; ?>" />
               </a>
               <span>
