@@ -148,7 +148,7 @@ class ModelSellerCompany extends Model {
     }
 
     function getCompany($company_id) {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company c LEFT JOIN " . DB_PREFIX . "company_description cd ON c.company_id = cd.company_id WHERE c.company_id = '".(int)$company_id."' AND cd.language_id = '".(int)$this->config->get('config_language_id')."'");
+        $query = $this->db->query("SELECT cty.`name` as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name,c.*,cd.* FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) LEFT JOIN ". DB_PREFIX . "country AS cty ON cty.country_id = c.company_country_id LEFT JOIN ". DB_PREFIX . "zone AS z ON z.zone_id = c.company_zone_id LEFT JOIN ". DB_PREFIX . "zone_city AS zc ON zc.id = c.company_city_id LEFT JOIN ". DB_PREFIX . "zone_area AS za ON za.id = c.company_area_id WHERE c.company_id = '".(int)$company_id."' AND cd.language_id = '".(int)$this->config->get('config_language_id')."'");
 
         return $query->row;
     }
@@ -302,7 +302,6 @@ class ModelSellerCompany extends Model {
 
     }
 
-
     function getAboutInfo($company_id){
         // 获取 关于我们 信息
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_about WHERE company_id = '".(int)$company_id."'");
@@ -318,6 +317,7 @@ class ModelSellerCompany extends Model {
     function getContactInfo($company_id){
         // 获取 联系我们 信息
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_contact WHERE company_id = '".(int)$company_id."'");
+
         return $query->rows;
     }
 
@@ -335,12 +335,28 @@ class ModelSellerCompany extends Model {
         $this->db->query("INSERT INTO " . DB_PREFIX . "company_honor SET company_id = '". (int)$company_id ."', language_id = '".(int)$language_id."', content = '".$text."'");
     }
 
-    function editContactInfo($company_id,$language_id,$text){
+    function editContactInfo($company_id,$language_id,$text,$contact_content1,$contact_content2,$contact_content3,$contact_content4){
         // 删除原信息
         $this->db->query("DELETE FROM " . DB_PREFIX . "company_contact WHERE company_id = '". (int)$company_id ."'AND language_id = '".(int)$language_id." ' ");
         // 更新 联系我们 信息
-        $this->db->query("INSERT INTO " . DB_PREFIX . "company_contact SET company_id = '". (int)$company_id ."', language_id = '".(int)$language_id."', content = '".$text."'");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "company_contact SET company_id = '". (int)$company_id ."', language_id = '".(int)$language_id."', content = '".$text."', contact_content1 = '".$contact_content1."', contact_content2 = '".$contact_content2."', contact_content3 = '".$contact_content3."', contact_content4 = '".$contact_content4."'");
     }
 
+    function getAboutInfomation($company_id){
+        // 获取 关于我们 信息
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_about WHERE company_id = '".(int)$company_id."' AND language_id = '". (int)$this->config->get('config_language_id') ."'");
+        return $query->row;
+    }
 
+    function getHonorInfomation($company_id){
+        // 获取 荣誉证书 信息
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_honor WHERE company_id = '".(int)$company_id."' AND language_id = '". (int)$this->config->get('config_language_id') ."'");
+        return $query->row;
+    }
+
+    function getContactInfomation($company_id){
+        // 获取 联系我们 信息
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_contact WHERE company_id = '".(int)$company_id."' AND language_id = '". (int)$this->config->get('config_language_id') ."'");
+        return $query->row;
+    }
 }

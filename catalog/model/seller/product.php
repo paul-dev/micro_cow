@@ -795,4 +795,37 @@ class ModelSellerProduct extends Model{
         $this->db->query("INSERT INTO " . DB_PREFIX . "purchase_offer_product SET purchase_product_id = '". (int)$data['purchase_product_id'] ."', purchase_offer_id = '". $purchase_offer_id ."', product_id = '". $product_id ."', quotation_note = '". $data['product_quotation_note'] ."' ");
 
     }
+
+    public function getCompanyProducts($data){
+        $sql = "SELECT * FROM " . DB_PREFIX . "product p INNER JOIN " . DB_PREFIX . "product_to_store as p2s ON p.product_id=p2s.product_id AND p2s.store_id='" . $this->config->get('config_store_id') . "' LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.customer_id = '". $data['customer_id'] ."' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = 1";
+
+        $sql .= " GROUP BY p.product_id";
+
+        $sort_data = array(
+            'pd.name',
+            'p.model',
+            'p.price',
+            'p.quantity',
+            'p.status',
+            'p.sort_order',
+            'p.date_added',
+            'p.date_modified'
+        );
+
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
+
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
+
+            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+        }
+
+        $query = $this->db->query($sql);
+
+        return $query->rows;
+    }
 }

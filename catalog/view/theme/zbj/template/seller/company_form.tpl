@@ -40,6 +40,43 @@
                                                         <textarea name="company_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['description'] : ''; ?></textarea>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact; ?></label>
+                                                <div class="col-sm-10">
+                                                    <textarea name="company_description[<?php echo $language['language_id']; ?>][contact_content1]" rows="1" placeholder="<?php echo $text_Brief_contact; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control">
+                                                        <?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['contact_content1'] : ''; ?>
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact; ?></label>
+                                                <div class="col-sm-10">
+                                                    <textarea name="company_description[<?php echo $language['language_id']; ?>][contact_content2]" rows="1" placeholder="<?php echo $text_Brief_contact; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control">
+                                                        <?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['contact_content2'] : ''; ?>
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact; ?></label>
+                                                <div class="col-sm-10">
+                                                    <textarea name="company_description[<?php echo $language['language_id']; ?>][contact_content3]" rows="1" placeholder="<?php echo $text_Brief_contact; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control">
+                                                        <?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['contact_content3'] : ''; ?>
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact; ?></label>
+                                                <div class="col-sm-10">
+                                                    <textarea name="company_description[<?php echo $language['language_id']; ?>][contact_content4]" rows="1" placeholder="<?php echo $text_Brief_contact; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control">
+                                                        <?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['contact_content4'] : ''; ?>
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <?php } ?>
                                     </div>

@@ -380,7 +380,8 @@ class ControllerProductShop extends Controller {
 
 				$company['company_name'] = $company['company_name']?$company['company_name']:'';
 				$company['company_image'] = 'catalog/view/theme/zbj/image/zbj_default_pic.png';
-				$company['company_url'] = $this->url->link('product/shop', 'company_id=' . $company['company_id']);
+				//$company['company_url'] = $this->url->link('product/shop', 'company_id=' . $company['company_id']);
+				$company['company_url'] = $this->url->link('shop/company', 'company_id=' . $company['company_id']);
 				$company['company_legal_name'] = $company['legal_name']?$company['legal_name']:'';
 				$company['company_contact_name'] = $company['contact_name']?$company['contact_name']:'';
 				$company['company_registered_capital'] = $company['registered_capital']?$company['registered_capital']:'';

@@ -166,3 +166,21 @@ $_['error_name']             = 'Product name must be between 3-255 characters!';
 $_['error_meta_title']       = 'Meta title must be between 3-255 characters!';
 $_['error_model']            = 'Commodity type must be between 1-64 characters!';
 $_['error_keyword']          = 'The SEO keyword already exists!';
+
+//Text
+$_['text_quantity']          	 = 'Quantity:';
+$_['text_hot_style']          	 = 'Autumn and winter hot style';
+
+
+$_['text_Company_Information']          	 = "Company's basic information";
+$_['text_Company_name']          	 = 'Company name:';
+$_['text_Company_address']          	 = 'Company address:';
+$_['text_Company_Dadded']          	 = 'In time:';
+$_['text_Corporate']          	 = 'Company legal person:';
+$_['text_Contact_email']          	 = 'Contact email:';
+$_['text_Capital']          	 = 'Registered capital:';
+$_['text_Address']          	 = 'Area:';
+$_['text_Contact_company']          	 = 'Contact Us ';
+$_['text_Customer_service']          	 = 'Customer service consultation center';
+$_['text_Workday']          	 = 'Work time:';
+$_['text_Brief_contact']          	 = 'Brief contact';

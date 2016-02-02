@@ -50,9 +50,6 @@ class ControllerSellerCompany extends Controller {
 		$this->load->model('seller/company');
 
 		//新增方法 进行 增加修改操作
-
-
-
 		$data['heading_title'] = $this->language->get('heading_title');
 
 		$this->getForm();
@@ -143,8 +140,12 @@ class ControllerSellerCompany extends Controller {
 			foreach($info as $key=>$val){
 				$key = isset($key)?$key:'1';
 				$val['description'] = isset($val['description'])?$val['description']:'';
+				$val['contact_content1'] = isset($val['contact_content1'])?$val['contact_content1']:'';
+				$val['contact_content2'] = isset($val['contact_content2'])?$val['contact_content2']:'';
+				$val['contact_content3'] = isset($val['contact_content3'])?$val['contact_content3']:'';
+				$val['contact_content4'] = isset($val['contact_content4'])?$val['contact_content4']:'';
 				//收集 联系我们 公司信息
-				$this->model_seller_company->editContactInfo($company_id,$key,$val['description']);
+				$this->model_seller_company->editContactInfo($company_id,$key,$val['description'],$val['contact_content1'],$val['contact_content2'],$val['contact_content3'],$val['contact_content4']);
 			}
 			$this->response->redirect($this->url->link('seller/company', '&company=contact', 'SSL'));
 		}
@@ -193,6 +194,7 @@ class ControllerSellerCompany extends Controller {
 
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_description'] = $this->language->get('entry_description');
+		$data['text_Brief_contact'] = $this->language->get('text_Brief_contact');
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$data['entry_quotation_note'] = $this->language->get('entry_quotation_note');

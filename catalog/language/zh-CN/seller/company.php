@@ -166,3 +166,21 @@ $_['error_name']             = '产品名称必须介于3-255字符之间！';
 $_['error_meta_title']       = 'Meta 标题必须介于3-255字符之间！';
 $_['error_model']            = '商品型号必须介于1-64字符之间！';
 $_['error_keyword']          = '该 SEO keyword 已经存在了！';
+
+//Text
+$_['text_quantity']          	 = '数量：';
+$_['text_hot_style']          	 = '秋冬爆款';
+
+
+$_['text_Company_Information']          	 = '公司基本信息';
+$_['text_Company_name']          	 = '公司名称：';
+$_['text_Company_address']          	 = '公司地址：';
+$_['text_Company_Dadded']          	 = '入驻时间：';
+$_['text_Corporate']          	 = '公司法人：';
+$_['text_Contact_email']          	 = '联系邮箱：';
+$_['text_Capital']          	 = '注册资本：';
+$_['text_Address']          	 = '所在地区：';
+$_['text_Contact_company']          	 = '联系公司';
+$_['text_Customer_service']          	 = '客服咨询中心';
+$_['text_Workday']          	 = '上班时间：';
+$_['text_Brief_contact']          	 = '简要联系方式';
