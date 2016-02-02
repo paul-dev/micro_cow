@@ -21,10 +21,16 @@
                 $("#company-information-a-div").toggle();
             });
         });
+
+        varCts =window.location.href;
+        if(varCts.indexOf("company") > 0 ){
+            $("#company-information-a-div").css("display","block");
+        }
+
     </script>
     <!-- 公司信息 end -->
 
-    <a href="<?php echo $url_product; ?>" class="list-group-item<?php if (isset($active_class['product']['all'])) echo ' active'; ?>"><?php echo $text_product; ?></a>
+    <a href="<?php echo $url_product; ?>" class="list-group-item"><?php echo $text_product; ?></a>
     <a href="<?php echo $url_purchase; ?>" class="list-group-item"><?php echo $text_purchase; ?></a>
     <a href="<?php echo $url_offer; ?>" class="list-group-item"><?php echo $text_offer; ?></a>
 
