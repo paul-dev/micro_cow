@@ -135,6 +135,8 @@ class ControllerSellerCompany extends Controller {
 		if (isset($this->request->get['company']) && $this->request->get['company'] == 'contact' && ($this->request->server['REQUEST_METHOD'] = 'POST')) {
 			$data['heading_title'] = $this->language->get('heading_title_contact');
 
+			$data['display_contact'] = 1;
+
 			$info = isset($this->request->post['company_description'])?$this->request->post['company_description']:'';
 
 			foreach($info as $key=>$val){
@@ -195,6 +197,10 @@ class ControllerSellerCompany extends Controller {
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_description'] = $this->language->get('entry_description');
 		$data['text_Brief_contact'] = $this->language->get('text_Brief_contact');
+		$data['text_Brief_contact1'] = $this->language->get('text_Brief_contact1');
+		$data['text_Brief_contact2'] = $this->language->get('text_Brief_contact2');
+		$data['text_Brief_contact3'] = $this->language->get('text_Brief_contact3');
+		$data['text_Brief_contact4'] = $this->language->get('text_Brief_contact4');
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$data['entry_quotation_note'] = $this->language->get('entry_quotation_note');
@@ -341,6 +347,9 @@ class ControllerSellerCompany extends Controller {
 		//查询 联系我们 公司信息
 		if (isset($this->request->get['company']) && $this->request->get['company'] == 'contact' && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$data['heading_title'] = $this->language->get('heading_title_contact');
+
+			$data['display_contact'] = 1;
+
 			$data['company_description'] = $this->model_seller_company->getContactInfo($company_id);
 			foreach($data['company_description'] as $key=>$val){
 				$data['company_description'][$key]['description'] = $val['content'];
@@ -348,7 +357,7 @@ class ControllerSellerCompany extends Controller {
 		}
 
 		if(isset($data['company_description'])){
-			foreach ($data['company_description'] as $key=>$val ) {
+			foreach ($data['company_description'] as $key=>$val) {
 				$key = $key+'1';
 				$result[$key] = $val;
 			}

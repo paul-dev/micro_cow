@@ -40,9 +40,9 @@
                                                         <textarea name="company_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['description'] : ''; ?></textarea>
                                                 </div>
                                             </div>
-
+<?php if(isset($display_contact) && $display_contact ==1){ ?>
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact; ?></label>
+                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact1; ?></label>
                                                 <div class="col-sm-10">
                                                     <textarea name="company_description[<?php echo $language['language_id']; ?>][contact_content1]" rows="1" placeholder="<?php echo $text_Brief_contact; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control">
                                                         <?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['contact_content1'] : ''; ?>
@@ -51,7 +51,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact; ?></label>
+                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact2; ?></label>
                                                 <div class="col-sm-10">
                                                     <textarea name="company_description[<?php echo $language['language_id']; ?>][contact_content2]" rows="1" placeholder="<?php echo $text_Brief_contact; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control">
                                                         <?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['contact_content2'] : ''; ?>
@@ -60,7 +60,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact; ?></label>
+                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact3; ?></label>
                                                 <div class="col-sm-10">
                                                     <textarea name="company_description[<?php echo $language['language_id']; ?>][contact_content3]" rows="1" placeholder="<?php echo $text_Brief_contact; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control">
                                                         <?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['contact_content3'] : ''; ?>
@@ -69,14 +69,14 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact; ?></label>
+                                                <label class="col-sm-2 control-label" style="" for="input-description<?php echo $language['language_id']; ?>"><?php echo $text_Brief_contact4; ?></label>
                                                 <div class="col-sm-10">
                                                     <textarea name="company_description[<?php echo $language['language_id']; ?>][contact_content4]" rows="1" placeholder="<?php echo $text_Brief_contact; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control">
                                                         <?php echo isset($company_description[$language['language_id']]) ? $company_description[$language['language_id']]['contact_content4'] : ''; ?>
                                                     </textarea>
                                                 </div>
                                             </div>
-
+<?php } ?>
                                         </div>
                                         <?php } ?>
                                     </div>

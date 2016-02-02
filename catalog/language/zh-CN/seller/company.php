@@ -184,3 +184,7 @@ $_['text_Contact_company']          	 = '联系公司';
 $_['text_Customer_service']          	 = '客服咨询中心';
 $_['text_Workday']          	 = '上班时间：';
 $_['text_Brief_contact']          	 = '简要联系方式';
+$_['text_Brief_contact1']          	 = '自定义联系方式-1';
+$_['text_Brief_contact2']          	 = '自定义联系方式-2';
+$_['text_Brief_contact3']          	 = '自定义联系方式-3';
+$_['text_Brief_contact4']          	 = '自定义联系方式-4';

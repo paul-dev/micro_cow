@@ -184,3 +184,7 @@ $_['text_Contact_company']          	 = 'Contact Us ';
 $_['text_Customer_service']          	 = 'Customer service consultation center';
 $_['text_Workday']          	 = 'Work time:';
 $_['text_Brief_contact']          	 = 'Brief contact';
+$_['text_Brief_contact1']          	 = 'The custom contact-1';
+$_['text_Brief_contact2']          	 = 'The custom contact-2';
+$_['text_Brief_contact3']          	 = 'The custom contact-3';
+$_['text_Brief_contact4']          	 = 'The custom contact-4';
