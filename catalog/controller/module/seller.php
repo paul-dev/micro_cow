@@ -27,6 +27,12 @@ class ControllerModuleSeller extends Controller {
 		$data['text_address'] = $this->language->get('text_address');
 		$data['text_wishlist'] = $this->language->get('text_wishlist');
 		$data['text_order'] = $this->language->get('text_order');
+		$data['text_company_info'] = $this->language->get('text_company_info');
+
+		$data['text_company_about'] = $this->language->get('text_company_about');
+		$data['text_company_honor'] = $this->language->get('text_company_honor');
+		$data['text_company_contact'] = $this->language->get('text_company_contact');
+
         $data['text_download'] = $this->language->get('text_download');
 		$data['text_reward'] = $this->language->get('text_reward');
 		$data['text_return'] = $this->language->get('text_return');
@@ -57,6 +63,7 @@ class ControllerModuleSeller extends Controller {
 
         $data['active_class'] = array();
         $_parts = explode('/', $this->request->get['route']);
+
         switch ($_parts[1]) {
             case 'shop' :
                 $data['text_shop'] = '> '.$data['text_shop'];
@@ -86,7 +93,7 @@ class ControllerModuleSeller extends Controller {
                 $data['text_offer'] = '> '.$data['text_offer'];
                 break;
             case 'order' :
-                $data['text_order'] = '> '.$data['text_order'];
+                $data['text_order'] = $data['text_order'];
                 if (isset($this->request->get['filter_order_status']) && $this->request->get['filter_order_status'] == '1') {
                     $data['active_class']['order']['1'] = 'active';
                 } elseif (isset($this->request->get['filter_order_status']) && $this->request->get['filter_order_status'] == '2') {
@@ -101,6 +108,23 @@ class ControllerModuleSeller extends Controller {
                     $data['active_class']['order']['all'] = 'active';
                 }
                 break;
+
+            //编辑公司信息
+            case 'company' :
+                $data['text_company_info'] = '> '.$data['text_company_info'];
+                if (isset($this->request->get['about'])) {
+                    $data['active_class']['company']['about'] = 'active';
+                } elseif (isset($this->request->get['honor'])) {
+                    $data['active_class']['company']['honor'] = 'active';
+                } elseif (isset($this->request->get['contact'])) {
+                    $data['active_class']['company']['contact'] = 'active';
+                } else {
+                    $data['active_class']['company']['all'] = 'active';
+                }
+                break;
+
+
+
             case 'shipping' :
                 $data['text_shipping'] = '> '.$data['text_shipping'];
                 break;
@@ -154,6 +178,9 @@ class ControllerModuleSeller extends Controller {
         $data['url_purchase'] = $this->url->link('seller/purchase', '', 'SSL');
         $data['url_offer'] = $this->url->link('seller/offer', '', 'SSL');
         $data['url_order'] = $this->url->link('seller/order', '', 'SSL');
+
+        $data['url_company'] = $this->url->link('seller/company', '', 'SSL');
+
 /*
         $data['url_category'] = $this->url->link('seller/category', '', 'SSL');
         $data['url_option'] = $this->url->link('seller/option', '', 'SSL');

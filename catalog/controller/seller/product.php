@@ -11,7 +11,7 @@ class ControllerSellerProduct extends Controller {
         if (!$this->customer->isSeller()) {
             $this->session->data['redirect'] = $this->url->link('seller/product', '', 'SSL');
 
-            $this->response->redirect($this->url->link('seller/shop/add', '', 'SSL'));
+			$this->response->redirect($this->url->link('seller/shop/add', '', 'SSL'));
         }
 
         $this->load->language('seller/product');

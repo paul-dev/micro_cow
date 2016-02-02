@@ -39,3 +39,8 @@ $_['text_Paid']           = 'Has been payment order';
 $_['text_toSend']           = 'To order';
 $_['text_delivered']           = 'Is the delivery order';
 $_['text_have_goods']           = 'Have been receiving orders';
+$_['text_company_info']           = 'Company Information ';
+
+$_['text_company_about']           = 'About Us';
+$_['text_company_honor']           = 'HONOR';
+$_['text_company_contact']           = 'Contact Us';

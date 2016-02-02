@@ -39,3 +39,9 @@ $_['text_Paid']           = '已付款订单';
 $_['text_toSend']           = '待发货订单';
 $_['text_delivered']           = '已发货订单';
 $_['text_have_goods']           = '已收货订单';
+$_['text_company_info']           = '公司信息';
+
+$_['text_company_about']           = '关于我们';
+$_['text_company_honor']           = '荣誉证书';
+$_['text_company_contact']           = '联系我们';
+

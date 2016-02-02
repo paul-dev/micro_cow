@@ -54,6 +54,13 @@ class ModelSellerCompany extends Model {
         return $company_id;
     }
 
+    public function getCompanyId($customer_id){
+
+        $query = $this->db->query("SELECT company_id FROM " . DB_PREFIX . "company  WHERE customer_id = '".(int)$customer_id."'");
+
+        return $query->row['company_id'];
+    }
+
     public function editCompany($company_id, $data) {
         $this->event->trigger('pre.admin.company.edit', $data);
 
@@ -295,6 +302,45 @@ class ModelSellerCompany extends Model {
 
     }
 
+
+    function getAboutInfo($company_id){
+        // 获取 关于我们 信息
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_about WHERE company_id = '".(int)$company_id."'");
+        return $query->rows;
+    }
+
+    function getHonorInfo($company_id){
+        // 获取 荣誉证书 信息
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_honor WHERE company_id = '".(int)$company_id."'");
+        return $query->rows;
+    }
+
+    function getContactInfo($company_id){
+        // 获取 联系我们 信息
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_contact WHERE company_id = '".(int)$company_id."'");
+        return $query->rows;
+    }
+
+    function editAboutInfo($company_id,$language_id,$text){
+        // 删除原信息
+        $this->db->query("DELETE FROM " . DB_PREFIX . "company_about WHERE company_id = '". (int)$company_id ."'AND language_id = '".(int)$language_id." ' ");
+        // 更新 关于我们 信息
+        $this->db->query("INSERT INTO " . DB_PREFIX . "company_about SET company_id = '". (int)$company_id ."', language_id = '".(int)$language_id."', content = '".$text."'");
+    }
+
+    function editHonorInfo($company_id,$language_id,$text){
+        // 删除原信息
+        $this->db->query("DELETE FROM " . DB_PREFIX . "company_honor WHERE company_id = '". (int)$company_id ."'AND language_id = '".(int)$language_id." ' ");
+        // 更新 荣誉证书 信息
+        $this->db->query("INSERT INTO " . DB_PREFIX . "company_honor SET company_id = '". (int)$company_id ."', language_id = '".(int)$language_id."', content = '".$text."'");
+    }
+
+    function editContactInfo($company_id,$language_id,$text){
+        // 删除原信息
+        $this->db->query("DELETE FROM " . DB_PREFIX . "company_contact WHERE company_id = '". (int)$company_id ."'AND language_id = '".(int)$language_id." ' ");
+        // 更新 联系我们 信息
+        $this->db->query("INSERT INTO " . DB_PREFIX . "company_contact SET company_id = '". (int)$company_id ."', language_id = '".(int)$language_id."', content = '".$text."'");
+    }
 
 
 }
