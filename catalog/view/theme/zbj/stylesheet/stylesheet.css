@@ -1264,10 +1264,14 @@ a.product_enshrine:hover{background:#337ab7;color:#fff;}
 .owl-lf ul li .owl-drop{ position:absolute; left:217px; top:-1px; z-index:100; border:1px solid #e5e5e5; background:#fff; padding:10px; display:none;}
 .owl-lf ul li .owl-drop h3 a{ color:#337ab7;}
 .owl-lf ul li h3{ margin:9px 0 8px -2px; font-size:14px; height:18px;  }
-.owl-lf ul li p{ height:72px; line-height:25px; overflow:hidden; white-space:nowrap; width:190px; }
+.owl-lf ul li p{ line-height:25px; overflow:hidden; white-space:nowrap; width:190px; }
 .owl-lf ul li p a{ float:left; margin-right:14px; color:#666;}
 .owl-lf ul li p a:hover{ color:#337ab7;}
 .owl-lf ul li p .red_a{ color:#337ab7;}
+.nav_big_class p{
+	height: 52px;
+	overflow: hidden;
+}
 .owl-lb{ color:#999; font-size:14px; position:absolute; top:43px; right:8px;height: 478px;}
 
 .owl-ri{position:absolute;top:-450px;right:0px;}

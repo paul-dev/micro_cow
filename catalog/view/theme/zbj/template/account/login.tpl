@@ -9,8 +9,8 @@
 	<div class="main_login">
         <div class="left login-bg" style="width: 320px; margin-top: -15px;">
             <div>
-				<img src="/catalog/view/theme/zbj/image/register-left-img2.png" width="320" height="300" alt="注册背景图片" title="注册背景图片" style="margin-left: 70px;margin-bottom: 20px">
-				<img src="/catalog/view/theme/zbj/image/register-left-img1.png"  alt="注册背景图片" title="注册背景图片">
+				<img src="/catalog/view/theme/zbj/image/register-left-img2.png" width="320" height="300" alt="注册背景图片" title="注册背景图片" style="margin-top: -30px;margin-left: 70px;margin-bottom: 20px">
+				<img src="/catalog/view/theme/zbj/image/register-left-img1.png"  alt="注册背景图片" title="注册背景图片" style="margin-left: 78px">
 			</div>
             <?php echo $content_top; ?>
         </div>
