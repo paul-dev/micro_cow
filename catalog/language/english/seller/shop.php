@@ -90,7 +90,7 @@ $_['entry_height']                     = 'Height';
 $_['entry_secure']                     = 'Use SSL';
 
 // Help
-$_['help_url']                         = 'Please enter your online store complete url. Pay attention to add \ '/ \' at last. Example: http://www.yourdomain.com/path/ < br / > < br / > please use the new domain name or secondary domain name assigned to your host.';
+$_['help_url']                         = 'Please enter your online store complete url. Pay attention to add at last. Example: http://www.yourdomain.com/path/ < br / > < br / > please use the new domain name or secondary domain name assigned to your host.';
 $_['help_shop_key']                    = 'Station logo is made up of a to z a unique identifier。';
 $_['help_ssl']                         = 'To use SSL, you need to install SSL in your service and have SSL certificates in profile。';
 $_['help_geocode']                     = 'Please manually enter your shop geocoding。';
