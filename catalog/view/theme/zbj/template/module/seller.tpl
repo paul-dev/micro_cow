@@ -9,7 +9,7 @@
     <a href="<?php echo $url_design; ?>" class="list-group-item" style="display: none;"><?php echo $text_design; ?></a>
 
     <!-- 公司信息 start -->
-    <a id="company-information-a" class="list-group-item"><?php echo $text_company_info; ?> <span class="caret"></span></a>
+    <a style="cursor: pointer" id="company-information-a" class="list-group-item"><?php echo $text_company_info; ?> <span class="caret"></span></a>
     <div style="display: none;height: 103px" id="company-information-a-div">
         <a href="<?php echo $url_company; ?>&company=about" class="list-group-item<?php if (isset($active_class['order']['about'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_company_about; ?></a>
         <a href="<?php echo $url_company; ?>&company=honor" class="list-group-item<?php if (isset($active_class['order']['honor'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_company_honor; ?></a>
