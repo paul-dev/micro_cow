@@ -359,4 +359,57 @@ class ModelSellerCompany extends Model {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_contact WHERE company_id = '".(int)$company_id."' AND language_id = '". (int)$this->config->get('config_language_id') ."'");
         return $query->row;
     }
+
+    function getCompanies($data = array()) {
+        $sql = "SELECT c.*, cd.*, cgd.name as cert_type_name, IF(c.company_country_id > 0, (SELECT cty.name FROM " . DB_PREFIX . "country cty WHERE cty.country_id = c.company_country_id), '') as company_country, IF(c.company_zone_id > 0, (SELECT z.name FROM " . DB_PREFIX . "zone z WHERE z.zone_id = c.company_zone_id), '') as company_zone, IF(c.company_city_id > 0, (SELECT zc.name FROM " . DB_PREFIX . "zone_city zc WHERE zc.id = c.company_city_id), '') as company_city, IF(c.company_area_id > 0, (SELECT za.name FROM " . DB_PREFIX . "zone_area za WHERE za.id = c.company_area_id), '') as company_area FROM " . DB_PREFIX . "company c LEFT JOIN " . DB_PREFIX . "company_description cd ON c.company_id = cd.company_id LEFT JOIN " . DB_PREFIX . "customer_group cg ON c.cert_type = cg.customer_group_id LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cg.customer_group_id = cgd.customer_group_id AND cgd.language_id = '".(int)$this->config->get('config_language_id')."') WHERE cd.language_id = '".(int)$this->config->get('config_language_id')."'";
+
+        if (!empty($data['filter_name'])) {
+            $sql .= " AND cd.company_name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+        }
+
+        $sort_data = array(
+            'company_name',
+            'date_added'
+        );
+
+        if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+            $sql .= " ORDER BY " . $data['sort'];
+        } else {
+            $sql .= " ORDER BY date_added";
+        }
+
+        if (isset($data['order']) && ($data['order'] == 'DESC')) {
+            $sql .= " DESC";
+        } else {
+            $sql .= " ASC";
+        }
+
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
+
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
+
+            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+        }
+
+        $query = $this->db->query($sql);
+
+        return $query->rows;
+    }
+
+    function getTotalCompanies($data = array()) {
+        $sql = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "company c LEFT JOIN " . DB_PREFIX . "company_description cd ON c.company_id = cd.company_id WHERE cd.language_id = '".(int)$this->config->get('config_language_id')."'";
+
+        if (!empty($data['filter_name'])) {
+            $sql .= " AND cd.company_name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+        }
+
+        $query = $this->db->query($sql);
+
+        return $query->row['total'];
+    }
 }

@@ -264,147 +264,31 @@ class ControllerProductShop extends Controller {
 				'limit'               => $limit
 			);
 
-			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+			$this->load->model('seller/company');
 
-			$results = $this->model_catalog_product->getProducts($filter_data);
+			$product_total = $this->model_seller_company->getTotalCompanies($filter_data);
 
-			foreach ($results as $result) {
-				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-				}
+			$companyInfo = $this->model_seller_company->getCompanies($filter_data);
 
-				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
-				} else {
-					$price = false;
-				}
+			foreach($companyInfo as $key=>$val){
 
-				if ((float)$result['special']) {
-					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
-				} else {
-					$special = false;
-				}
+				$results[] = $this->model_seller_company->getCompany($val['company_id']);
 
-				if ($this->config->get('config_tax')) {
-					$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price']);
-				} else {
-					$tax = false;
-				}
-
-				if ($this->config->get('config_review_status')) {
-					$rating = (int)$result['rating'];
-				} else {
-					$rating = false;
-				}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                //$product_store = $this->model_catalog_product->getProductStores($result['product_id']);
-                //$product_store = array_pop($product_store);
-/*
-				$product_store = $this->model_catalog_product->getProductStore($result['product_id']);
-                if ($product_store && isset($product_store['shop_name'])) {
-                    // Shop home url.
-                    $product_store['shop_url'] = HTTP_SERVER . $product_store['shop_key'];
-
-                    if ($product_store['shop_logo']) {
-                        $product_store['shop_logo'] = $this->model_tool_image->resize($product_store['shop_logo'], 50, 50);
-                    } else {
-                        $product_store['shop_logo'] = $this->model_tool_image->resize('placeholder.png', 50, 50);
-                    }
-
-                    if ($product_store['shop_image']) {
-                        $product_store['shop_image'] = $this->model_tool_image->resize($product_store['shop_image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-                    } else {
-                        $product_store['shop_image'] = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-                    }
-
-                    $product_store['shop_comment'] = $product_store['shop_comment'] ? utf8_substr(strip_tags(html_entity_decode($product_store['shop_comment'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..' : '店主好懒，没有描述';
-
-                    $this->load->model('catalog/product');
-                    $product_store['total_product'] = $this->model_catalog_product->getTotalProducts(array(
-                        'filter_store_id' => $product_store['store_id']
-                    ));
-
-                    $this->load->model('sale/order');
-                    $product_store['total_sell'] = $this->model_sale_order->getTotalSellProducts($product_store['store_id']);
-                    if (empty($product_store['total_sell'])) $product_store['total_sell'] = '0';
-
-                    $this->load->model('account/wishlist');
-                    $product_store['total_wish'] = $this->model_account_wishlist->getTotalShopWished($product_store['store_id']);
-
-                    $this->load->model('seller/shop');
-                    $product_store['ratings'] = $this->model_seller_shop->getStoreRatings($product_store['store_id']);
-                } else {
-                    $product_total--;
-                    continue;
-                    $product_store['shop_name'] = '';
-                    $product_store['shop_url'] = '';
-                    $product_store['shop_logo'] = '';
-                    $product_store['shop_image'] = '';
-                    $product_store['shop_comment'] = '';
-                    $product_store['total_product'] = '';
-                    $product_store['total_sell'] = '';
-                    $product_store['total_wish'] = '';
-                    $product_store['ratings'] = array();
-                }
-*/
-
-				/*
-				 * GET COMPANY BY product_id
-				 * */
-
-				$this->load->model('catalog/category');
-				$company = $this->model_catalog_product->getCompanyInfo($result['product_id']);
-
-				$company['company_name'] = $company['company_name']?$company['company_name']:'';
-				$company['company_image'] = 'catalog/view/theme/zbj/image/zbj_default_pic.png';
-				//$company['company_url'] = $this->url->link('product/shop', 'company_id=' . $company['company_id']);
-				$company['company_url'] = $this->url->link('shop/company', 'company_id=' . $company['company_id']);
-				$company['company_legal_name'] = $company['legal_name']?$company['legal_name']:'';
-				$company['company_contact_name'] = $company['contact_name']?$company['contact_name']:'';
-				$company['company_registered_capital'] = $company['registered_capital']?$company['registered_capital']:'';
-				$company['company_business_category'] = $company['business_category']?$company['business_category']:'';
-				$company['company_date_added'] = date('Y-m',strtotime($company['date_added']))?date('Y-m',strtotime($company['date_added'])):'';
-
-
-				$data['products'][] = array(
-					'product_id'  => $result['product_id'],
-					'thumb'       => $image,
-					'name'        => $result['name'],
-					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
-					'points'      => $type == 'reward' ? $result['points'] : '0',
-                    'price'       => $price,
-					'special'     => $special,
-					'tax'         => $tax,
-					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
-					'rating'      => $rating,
-                    'company_info'   => $company,
-                    'company_name'   => $company['company_name'],
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
-				);
 			}
+
+			foreach ($results as $key=>$result) {
+
+				$results[$key]['company_name'] = $result['company_name']?$result['company_name']:'';
+				$results[$key]['company_image'] = 'catalog/view/theme/zbj/image/zbj_default_pic.png';
+				$results[$key]['company_url'] = $this->url->link('shop/company', 'company_id=' . $result['company_id']);
+				$results[$key]['company_legal_name'] = $result['legal_name']?$result['legal_name']:'';
+				$results[$key]['company_contact_name'] = $result['contact_name']?$result['contact_name']:'';
+				$results[$key]['company_registered_capital'] = $result['registered_capital']?$result['registered_capital']:'';
+				$results[$key]['company_business_category'] = $result['business_category']?$result['business_category']:'';
+				$results[$key]['company_date_added'] = date('Y-m',strtotime($result['date_added']))?date('Y-m',strtotime($result['date_added'])):'';
+
+			}
+			$data['companies'] = array_filter($results);
 
 			$url = '';
 
@@ -441,64 +325,6 @@ class ControllerProductShop extends Controller {
 			}
 
 			$data['sorts'] = array();
-            /*
-          			$data['sorts'][] = array(
-                            'text'  => $this->language->get('text_default'),
-                            'value' => 'p.sort_order-ASC',
-                            'href'  => $this->url->link('product/search', 'sort=p.sort_order&order=ASC' . $url)
-                        );
-
-                        $data['sorts'][] = array(
-                            'text'  => $this->language->get('text_name_asc'),
-                            'value' => 'pd.name-ASC',
-                            'href'  => $this->url->link('product/search', 'sort=pd.name&order=ASC' . $url)
-                        );
-
-                        $data['sorts'][] = array(
-                            'text'  => $this->language->get('text_name_desc'),
-                            'value' => 'pd.name-DESC',
-                            'href'  => $this->url->link('product/search', 'sort=pd.name&order=DESC' . $url)
-                        );
-
-                        $data['sorts'][] = array(
-                            'text'  => $this->language->get('text_price_asc'),
-                            'value' => 'p.price-ASC',
-                            'href'  => $this->url->link('product/search', 'sort=p.price&order=ASC' . $url)
-                        );
-
-                        $data['sorts'][] = array(
-                            'text'  => $this->language->get('text_price_desc'),
-                            'value' => 'p.price-DESC',
-                            'href'  => $this->url->link('product/search', 'sort=p.price&order=DESC' . $url)
-                        );
-
-                        if ($this->config->get('config_review_status')) {
-                            $data['sorts'][] = array(
-                                'text'  => $this->language->get('text_rating_desc'),
-                                'value' => 'rating-DESC',
-                                'href'  => $this->url->link('product/search', 'sort=rating&order=DESC' . $url)
-                            );
-
-                            $data['sorts'][] = array(
-                                'text'  => $this->language->get('text_rating_asc'),
-                                'value' => 'rating-ASC',
-                                'href'  => $this->url->link('product/search', 'sort=rating&order=ASC' . $url)
-                            );
-                        }
-
-                        $data['sorts'][] = array(
-                            'text'  => $this->language->get('text_model_asc'),
-                            'value' => 'p.model-ASC',
-                            'href'  => $this->url->link('product/search', 'sort=p.model&order=ASC' . $url)
-                        );
-
-                        $data['sorts'][] = array(
-                            'text'  => $this->language->get('text_model_desc'),
-                            'value' => 'p.model-DESC',
-                            'href'  => $this->url->link('product/search', 'sort=p.model&order=DESC' . $url)
-                        );
-            */
-
             $data['sorts'][] = array(
                 'text'  => $this->language->get('text_viewed_desc'),
                 'value' => 'p.viewed-DESC',
@@ -715,14 +541,6 @@ class ControllerProductShop extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-        /*switch ($type) {
-            case 'shop' :
-                $template = 'shop';
-                break;
-            default :
-                $template = 'search';
-                break;
-        }*/
 		$template = 'shop';
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/'.$template.'.tpl')) {

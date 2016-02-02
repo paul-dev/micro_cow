@@ -65,7 +65,7 @@
         </div>
       </div>
       <!--<h2><?php //echo $text_search; ?>&nbsp;</h2>-->
-      <?php if ($products) { ?>
+      <?php if ($companies) { ?>
       <div class="row" style="margin-top: 10px; display: none;">
         <div class="col-sm-3 hidden-xs">
           <div class="btn-group">
@@ -105,26 +105,14 @@
 
         <div class="row cata_title clearfix">
             <div class="col-xs-12">
-                <!-- <label class="control-label" style="font-weight: bold;"><?php echo $text_limit; ?></label>
-                <a href="javascript:void(0);" id="list-view" style="color: #f69;"><?php echo $button_list; ?></a>
-                <a href="javascript:void(0);" id="grid-view" style="color: #f69;"><?php echo $button_grid; ?></a>
-
-                <label class="control-label" style="font-weight: bold; padding-left: 20px;"><?php echo $text_sort; ?></label>
-                <?php foreach ($sorts as $sort_data) { ?>
-                <?php if ($sort_data['value'] == $sort . '-' . $order) { ?>
-                <a href="<?php echo $sort_data['href']; ?>" style="background-color: #f69; color: #fff; font-weight: bold;"><?php echo $sort_data['text']; ?></a>
-                <?php } else { ?>
-                <a href="<?php echo $sort_data['href']; ?>" style="color: #f69;"><?php echo $sort_data['text']; ?></a>
-                <?php } ?>
-                <?php } ?> -->
-                <span class="control-span"><?php echo $text_limit; ?></span>
-                <ul class="category">
+                <span class="control-span" style="display:none"><?php echo $text_limit; ?></span>
+                <ul class="category" style="display:none">
                     <li><a id="list-view"  class="first" href="javascript:void(0);"><?php echo $button_list; ?></a></li>
                     <li><a id="grid-view" class=" last" href="javascript:void(0);"><?php echo $button_grid; ?></a></li>
                 </ul>
 
-                <span class="control-span"><?php echo $text_sort; ?></span>
-                <ul class="category">
+                <span class="control-span" style="display:none"><?php echo $text_sort; ?></span>
+                <ul class="category" style="display:none">
                   <?php 
                   $_i=0; 
                   foreach ($sorts as $sort_data) { 
@@ -142,34 +130,30 @@
         </div>
 
       <div class="row" id="row-cols-4">
-        <?php foreach ($products as $product) { ?>
+        <?php foreach ($companies as $company) { ?>
         <div class="good_store_wrap" style="border:0px solid red;">
           <div class="product-thumb good_shop_list">
             <div class="image">
-              <a href="<?php echo $product['company_info']['company_url']; ?>">
-                <img style="display:inline-block" data-url="<?php echo $product['company_info']['company_image']; ?>" src="catalog/view/theme/zbj/image/zbj_default_pic.png" alt="<?php echo $product['company_info']['company_name']; ?>" title="<?php echo $product['company_info']['company_name']; ?>" class="img-responsive good_shop_pic" />
+              <a href="<?php echo $company['company_url']; ?>">
+                <img style="display:inline-block" data-url="<?php echo $company['company_image']; ?>" src="catalog/view/theme/zbj/image/zbj_default_pic.png" alt="<?php echo $company['company_name']; ?>" title="<?php echo $company['company_name']; ?>" class="img-responsive good_shop_pic" />
               </a>
             </div>
             <div class="caption clearfix" style="padding-bottom: 0px;text-align:center;">
-              <a href="<?php echo $product['company_info']['company_url']; ?>" class="shop_avatar" target="_blank" style="display:none">
-                  <img src="<?php echo $product['company_info']['company_image']; ?>" alt="<?php echo $product['company_info']['company_name']; ?>" title="<?php echo $product['company_info']['company_name']; ?>" />
+              <a href="<?php echo $company['company_url']; ?>" class="shop_avatar" target="_blank" style="display:none">
+                  <img src="<?php echo $company['company_image']; ?>" alt="<?php echo $company['company_name']; ?>" title="<?php echo $company['company_name']; ?>" />
               </a>
               <span>
-                <h4 style="margin:0; overflow: hidden; white-space: nowrap; margin-top: 12px;"><a href="<?php echo $product['company_info']['company_url']; ?>" title="<?php echo $product['company_info']['company_name']; ?>" alt="<?php echo $product['company_info']['company_name']; ?>"><strong style="color: #337ab7;"><?php echo $product['company_info']['company_name']; ?></strong></a></h4>
-                <p class="online_show"><?php echo $product['company_info']['country_name']; ?> <?php echo $product['company_info']['zone_name']; ?></p>
+                <h4 style="margin:0; overflow: hidden; white-space: nowrap; margin-top: 12px;"><a href="<?php echo $company['company_url']; ?>" title="<?php echo $company['company_name']; ?>" alt="<?php echo $company['company_name']; ?>"><strong style="color: #337ab7;"><?php echo $company['company_name']; ?></strong></a></h4>
+                <p class="online_show"><?php echo $company['country_name']; ?> <?php echo $company['zone_name']; ?></p>
               </span>
               <div class="good_shopinfo clearfix">
-                    <span><?php echo $text_Registered_Capital; ?><em><?php echo $product['company_info']['company_registered_capital']; ?></em></span>
-                    <span><?php echo $text_The_occupancy_date; ?><em><?php echo $product['company_info']['company_date_added']; ?></em></span>
-                    <!--
-                    <span>销量: <em><?php echo $product['company_info']['total_sell']; ?></em></span>
-                    <span>商品: <em><?php echo $product['company_info']['total_product']; ?></em></span>
-                    -->
+                    <span><?php echo $text_Registered_Capital; ?><em><?php echo $company['company_registered_capital']; ?></em></span>
+                    <span><?php echo $text_The_occupancy_date; ?><em><?php echo $company['company_date_added']; ?></em></span>
               </div>
             </div>
             <div class="good_shop_btn">
-              <a class="button" href="javascript:void(0);" onclick="wishlist.shop('<?php echo $product['company_info']['company_id']; ?>');" style="margin-right:10px;"><i class="icon-add">+</i><?php echo $text_Concern; ?></a>
-              <a class="button" href="<?php echo $product['company_info']['company_url']; ?>"><?php echo $text_gofor_astroll; ?></a>
+              <a class="button" href="javascript:void(0);" onclick="wishlist.shop('<?php echo $company['company_id']; ?>');" style="margin-right:10px;"><i class="icon-add">+</i><?php echo $text_Concern; ?></a>
+              <a class="button" href="<?php echo $company['company_url']; ?>"><?php echo $text_gofor_astroll; ?></a>
             </div>
           </div>
         </div>
