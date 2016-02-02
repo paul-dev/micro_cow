@@ -9,12 +9,19 @@
     <a href="<?php echo $url_design; ?>" class="list-group-item" style="display: none;"><?php echo $text_design; ?></a>
 
     <!-- 公司信息 start -->
-    <a class="list-group-item<?php if (isset($active_class['order']['all'])) echo ' active'; ?>"><?php echo $text_company_info; ?> <span class="caret"></span></a>
-    <?php if (isset($active_class['order'])) { ?>
-    <a href="<?php echo $url_company; ?>&company=about" class="list-group-item<?php if (isset($active_class['order']['about'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_company_about; ?></a>
-    <a href="<?php echo $url_company; ?>&company=honor" class="list-group-item<?php if (isset($active_class['order']['honor'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_company_honor; ?></a>
-    <a href="<?php echo $url_company; ?>&company=contact" class="list-group-item<?php if (isset($active_class['order']['contact'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_company_contact; ?></a>
-    <?php } ?>
+    <a id="company-information-a" class="list-group-item"><?php echo $text_company_info; ?> <span class="caret"></span></a>
+    <div style="display: none;height: 103px" id="company-information-a-div">
+        <a href="<?php echo $url_company; ?>&company=about" class="list-group-item<?php if (isset($active_class['order']['about'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_company_about; ?></a>
+        <a href="<?php echo $url_company; ?>&company=honor" class="list-group-item<?php if (isset($active_class['order']['honor'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_company_honor; ?></a>
+        <a  style=" border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;border-bottom-style: none" href="<?php echo $url_company; ?>&company=contact" class="list-group-item<?php if (isset($active_class['order']['contact'])) echo ' active'; ?>">&nbsp;&nbsp;&nbsp;- <?php echo $text_company_contact; ?></a>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#company-information-a").click(function(){
+                $("#company-information-a-div").toggle();
+            });
+        });
+    </script>
     <!-- 公司信息 end -->
 
     <a href="<?php echo $url_product; ?>" class="list-group-item<?php if (isset($active_class['product']['all'])) echo ' active'; ?>"><?php echo $text_product; ?></a>
