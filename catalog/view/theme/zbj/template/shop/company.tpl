@@ -40,10 +40,10 @@
 
                         <div class="company-kefu">
                             <ul>
-                                <li><?php echo isset($infomation['contact_content1'])?htmlspecialchars_decode($infomation['contact_content1']):''; ?></li>
-                                <li><?php echo isset($infomation['contact_content2'])?htmlspecialchars_decode($infomation['contact_content2']):''; ?></li>
-                                <li><?php echo isset($infomation['contact_content3'])?htmlspecialchars_decode($infomation['contact_content3']):''; ?></li>
-                                <li><?php echo isset($infomation['contact_content4'])?htmlspecialchars_decode($infomation['contact_content4']):''; ?></li>
+                                <li><?php echo isset($contact['contact_content1'])?htmlspecialchars_decode($contact['contact_content1']):''; ?></li>
+                                <li><?php echo isset($contact['contact_content2'])?htmlspecialchars_decode($contact['contact_content2']):''; ?></li>
+                                <li><?php echo isset($contact['contact_content3'])?htmlspecialchars_decode($contact['contact_content3']):''; ?></li>
+                                <li><?php echo isset($contact['contact_content4'])?htmlspecialchars_decode($contact['contact_content4']):''; ?></li>
                             </ul>
                         </div>
                     </div>

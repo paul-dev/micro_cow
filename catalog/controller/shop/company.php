@@ -67,24 +67,25 @@ class ControllerShopCompany extends Controller {
 			case 'about':
 				$data['heading_title'] = $this->language->get('heading_title_about');
 				$data['infomation'] = $this->model_seller_company->getAboutInfomation($company_id);
+				$data['contact'] = $this->model_seller_company->getContactInfomation($company_id);
 				break;
 			case 'contact':
 				$data['heading_title'] = $this->language->get('heading_title_contact');
 				$data['text_Brief_contact'] = $this->language->get('text_Brief_contact');
 				$data['infomation'] = $this->model_seller_company->getContactInfomation($company_id);
+				$data['contact'] = $this->model_seller_company->getContactInfomation($company_id);
 			  break;
 			case 'honor':
 				$data['heading_title'] = $this->language->get('heading_title_honor');
 				$data['infomation'] = $this->model_seller_company->getHonorInfomation($company_id);
+				$data['contact'] = $this->model_seller_company->getContactInfomation($company_id);
 			  break;
 			default:
-				$data['heading_title'] = $this->language->get('heading_title_about');
-				$data['infomation'] = $this->model_seller_company->getAboutInfomation($company_id);
+				$data['heading_title'] = $this->language->get('heading_title_contact');
+				$data['infomation'] = $this->model_seller_company->getContactInfomation($company_id);
+				$data['contact'] = $this->model_seller_company->getContactInfomation($company_id);
 		}
-		/*echo "<pre>";
-		print_r($data['infomation']);
-		echo "</pre>";
-		exit;*/
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/shop/company.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/shop/company.tpl', $data));
 		} else {
