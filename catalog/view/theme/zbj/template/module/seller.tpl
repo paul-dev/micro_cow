@@ -21,6 +21,12 @@
                 $("#company-information-a-div").toggle();
             });
         });
+
+        varCts =window.location.href;
+        if(varCts.indexOf("company") > 0 ){
+            $("#company-information-a-div").css("display","block");
+        }
+
     </script>
     <!-- 公司信息 end -->
 
