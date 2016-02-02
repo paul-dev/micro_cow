@@ -105,23 +105,24 @@
         <?php  	$_li = 0; 	foreach ($category_tree as $category) {    	$_li++;    	?>
         <li <?php if ($_li == 1) echo ' class="last"'; ?>>
             <div class="nav_big_class">
-                <h3><span class="nav_class_icon nav_icon_one"></span><?php echo $category['name']; ?></h3>
+                <h3><?php echo $category['name']; ?></h3>
                 <?php if (!empty($category['children'])) { ?>
                     <p>
                         <?php  $_ai = 0; foreach ($category['children'] as $child) { $_ai++; ?>
-                            <a <?php if ($_ai == 1) echo ' class="red_a"'; ?> href="<?php echo $child['href']; ?>" title="<?php echo $child['name']; ?>" target="_blank"><?php echo $child['name']; ?></span>
+                            <a <?php if ($_ai == 1) echo ' class="red_a"'; ?> href="<?php echo $child['href']; ?>" title="<?php echo $child['name']; ?>" target="_blank"><?php echo $child['name']; ?>
                         <?php } ?>
                     </p>
                 <?php } ?>
-                <span class="owl-lb"></span>
+
             </div>
 
+
             <div class="owl-drop">
-                <h3><span class="nav_class_icon nav_icon_one"></span><?php echo $category['name']; ?></h3>
+                <h3><?php echo $category['name']; ?></h3>
                 <?php if (!empty($category['children'])) { ?>
                 <p>
                     <?php  $_ai = 0; foreach ($category['children'] as $child) { $_ai++; ?>
-                    <a <?php if ($_ai == 1) echo ' class="red_a"'; ?> href="<?php echo $child['href']; ?>" title="<?php echo $child['name']; ?>" target="_blank"><?php echo $child['name']; ?></span>
+                    <a <?php if ($_ai == 1) echo ' class="red_a"'; ?> href="<?php echo $child['href']; ?>" title="<?php echo $child['name']; ?>" target="_blank"><?php echo $child['name']; ?>
                     <?php } ?>
                 </p>
                 <?php } ?>
