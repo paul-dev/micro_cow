@@ -294,10 +294,19 @@ class ControllerProductLatest extends Controller {
 
 				$this->load->model('catalog/product');
 
-				$product_company = $this->model_catalog_product->getCompanyInfo($result['product_id']);
-
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+					'contact_email'  => $result['contact_email'],
+					'registered_capital'  => $result['registered_capital'],
+					'company_id'  => $result['company_id'],
+					'company_name'  => $result['company_name'],
+					'legal_name'  => $result['legal_name'],
+					'contact_name'  => $result['contact_name'],
+					'contact_address'  => $result['contact_address'],
+					'country_name'  => $result['country_name'],
+					'zone_name'  => $result['zone_name'],
+					'city_name'  => $result['city_name'],
+					'company_date_added'  => $result['company_date_added'],
 					'thumb'       => isset($image)?$image:'',
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
@@ -307,8 +316,6 @@ class ControllerProductLatest extends Controller {
 					'tax'         => isset($tax)?$tax:'',
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => isset($rating)?$rating:'',
-					'company_info'   => isset($product_company)?$product_company:array(),
-					'company_name'   => isset($product_company['company_name'])?$product_company['company_name']:'',
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 				);
 

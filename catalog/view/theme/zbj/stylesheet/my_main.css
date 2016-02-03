@@ -297,8 +297,8 @@ h3{
   margin-top: 10px;
 }
 .suppplier-list-img{
-  width: 300px;
-  height: 251px;
+/*  width: 300px;
+  height: 251px;*/
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border: 1px solid #f2f2f2;
@@ -333,7 +333,7 @@ h3{
   width: 298px;
   float: left;
   margin: 40px;
-  padding-top: 15px;
+  padding-top: 20px;
   padding-bottom: 22px;
   margin-top: 30px;
 }

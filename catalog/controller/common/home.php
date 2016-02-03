@@ -182,6 +182,7 @@ class ControllerCommonHome extends Controller {
 			$data['category_tree'][] = array(
 					'name'     => $category['name'],
 					'category_id'     => $category['category_id'],
+					'description'     => $category['description'],
 					'category_image'     => !empty($this->model_tool_image->resize($category['image'], 251, 251))?$this->model_tool_image->resize($category['image'], 251, 251):$this->model_tool_image->resize('catalog/zbj_default_pic.png', 251, 251),
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
@@ -190,7 +191,6 @@ class ControllerCommonHome extends Controller {
 			);
 
 		}
-
 //图文 商品分类 end
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/home.tpl')) {

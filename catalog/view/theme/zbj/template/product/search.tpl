@@ -186,7 +186,7 @@
             <!-- <div class="caption" style="padding-bottom: 0px;">
               <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
                 <?php if ($product['company_name']) { ?>
-                <strong><a href="<?php echo $product['company_info']['company_url']; ?>"><?php echo $product['company_name']; ?></a></strong>
+                <strong><a href="<?php echo $product['company_url']; ?>"><?php echo $product['company_name']; ?></a></strong>
                 <?php } ?>
                 <p style="display: none;"><?php echo $product['description']; ?></p>
               <?php if ($product['price']) { ?>
@@ -233,14 +233,14 @@
                 <?php if ($product['points']) { ?>
                 <h4 style="height: auto; margin-top: -5px; margin-bottom: 0px;">可使用积分：<?php echo $product['points']; ?> points</h4>
                 <?php } ?>
-                <span><a href="<?php echo $product['company_info']['company_url']; ?>"><strong><?php echo $product['company_info']['company_name']; ?></strong></a></span>
+                <span><a href="<?php echo $product['company_url']; ?>"><strong><?php echo $product['company_name']; ?></strong></a></span>
               <p style="display: none;"><?php echo $product['description']; ?></p>
               <div class="authentication-icon" style="margin-top: 0px;">
                 <div class="left" style="width:150px;overflow:hidden">
-                  <span title="<?php echo $product['company_info']['zone_name'].$product['company_info']['city_name']; ?>"><?php echo $product['company_info']['zone_name'].$product['company_info']['city_name']; ?></span>
+                  <span title="<?php echo $product['zone_name'].$product['city_name']; ?>"><?php echo $product['zone_name'].$product['city_name']; ?></span>
                 </div>
                 <div class="right">
-                  <span><a href="<?php echo $product['company_info']['link_live_chat']; ?>"></a></span>
+                  <span><a href="<?php echo $product['link_live_chat']; ?>"></a></span>
                 </div>
               </div>
             </div>

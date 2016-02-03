@@ -86,11 +86,14 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProducts($data = array()) {
-        if (!isset($data['filter_store_id'])) {
-            $data['filter_store_id'] = $this->config->get('config_store_id');
-        }
+		if (!isset($data['filter_store_id'])) {
+			$data['filter_store_id'] = $this->config->get('config_store_id');
+		}
 
-        $sql = "SELECT p.product_id, p2s.store_id, (SELECT SUM(op.quantity) as total FROM " . DB_PREFIX . "order_product op INNER JOIN " . DB_PREFIX . "order o ON op.order_id=o.order_id AND o.parent_id>0 AND o.order_status_id IN (2,3,5,15) WHERE op.product_id=p.product_id) AS total_sell, (SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review r1 WHERE r1.product_id = p.product_id AND r1.status = '1' GROUP BY r1.product_id) AS rating, (SELECT price FROM " . DB_PREFIX . "product_discount pd2 WHERE pd2.product_id = p.product_id AND pd2.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND pd2.quantity = '1' AND ((pd2.date_start = '0000-00-00' OR pd2.date_start < NOW()) AND (pd2.date_end = '0000-00-00' OR pd2.date_end > NOW())) ORDER BY pd2.priority ASC, pd2.price ASC LIMIT 1) AS discount, (SELECT price FROM " . DB_PREFIX . "product_special ps WHERE ps.product_id = p.product_id AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND ((ps.date_start = '0000-00-00 00:00:00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00 00:00:00' OR ps.date_end > NOW())) ORDER BY ps.priority ASC, ps.price ASC LIMIT 1) AS special";
+		$sql = "SELECT p.product_id, p2s.store_id, (SELECT SUM(op.quantity) as total FROM " . DB_PREFIX . "order_product op INNER JOIN " . DB_PREFIX . "order o ON op.order_id=o.order_id AND o.parent_id>0 AND o.order_status_id IN (2,3,5,15) WHERE op.product_id=p.product_id) AS total_sell, (SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review r1 WHERE r1.product_id = p.product_id AND r1.status = '1' GROUP BY r1.product_id) AS rating, (SELECT price FROM " . DB_PREFIX . "product_discount pd2 WHERE pd2.product_id = p.product_id AND pd2.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND pd2.quantity = '1' AND ((pd2.date_start = '0000-00-00' OR pd2.date_start < NOW()) AND (pd2.date_end = '0000-00-00' OR pd2.date_end > NOW())) ORDER BY pd2.priority ASC, pd2.price ASC LIMIT 1) AS discount, (SELECT price FROM " . DB_PREFIX . "product_special ps WHERE ps.product_id = p.product_id AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND ((ps.date_start = '0000-00-00 00:00:00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00 00:00:00' OR ps.date_end > NOW())) ORDER BY ps.priority ASC, ps.price ASC LIMIT 1) AS special";
+
+		//company_info part1
+		$sql .= " , p.customer_id, cty.`name` as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name,c.*,cd.*";
 
 		if (!empty($data['filter_category_id'])) {
 			if (!empty($data['filter_sub_category'])) {
@@ -99,59 +102,56 @@ class ModelCatalogProduct extends Model {
 				$sql .= " FROM " . DB_PREFIX . "product_to_category p2c";
 			}
 
-            //$sql .= " INNER JOIN " . DB_PREFIX . "category c ON p2c.category_id = c.category_id AND c.status = 1";
-            $sql .= " INNER JOIN " . DB_PREFIX . "product p ON (p2c.product_id = p.product_id)";
+			$sql .= " INNER JOIN " . DB_PREFIX . "product p ON (p2c.product_id = p.product_id)";
 
-			/*if (!empty($data['filter_filter'])) {
-				//$sql .= " LEFT JOIN " . DB_PREFIX . "product_filter pf ON (p2c.product_id = pf.product_id) LEFT JOIN " . DB_PREFIX . "product p ON (pf.product_id = p.product_id)";
-
-                $filters = explode(',', $data['filter_filter']);
-
-                foreach ($filters as $filter_id) {
-                    $sql .= " INNER JOIN " . DB_PREFIX . "product_filter pf_".(int)$filter_id." ON (p.product_id = pf_".(int)$filter_id.".product_id) AND pf_".(int)$filter_id.".filter_id = '".(int)$filter_id."'";
-                }
-			}*/
-			/* else {
-				$sql .= " LEFT JOIN " . DB_PREFIX . "product p ON (p2c.product_id = p.product_id)";
-			}*/
 		} else {
 			$sql .= " FROM " . DB_PREFIX . "product p";
 		}
 
-        if (!empty($data['filter_filter'])) {
-            $implode = array();
-            $filters = explode(',', $data['filter_filter']);
+		if (!empty($data['filter_filter'])) {
+			$implode = array();
+			$filters = explode(',', $data['filter_filter']);
 
-            foreach ($filters as $filter_id) {
-                $implode[] = (int)$filter_id;
-                //filter filter id AND
-                $sql .= " INNER JOIN " . DB_PREFIX . "product_filter pf_".(int)$filter_id." ON (p.product_id = pf_".(int)$filter_id.".product_id) AND pf_".(int)$filter_id.".filter_id = '".(int)$filter_id."'";
-            }
+			foreach ($filters as $filter_id) {
+				$implode[] = (int)$filter_id;
+				//filter filter id AND
+				$sql .= " INNER JOIN " . DB_PREFIX . "product_filter pf_".(int)$filter_id." ON (p.product_id = pf_".(int)$filter_id.".product_id) AND pf_".(int)$filter_id.".filter_id = '".(int)$filter_id."'";
+			}
 
-            //filter filter id OR
-            //$sql .= " INNER JOIN " . DB_PREFIX . "product_filter pf ON (p.product_id = pf.product_id) AND pf.filter_id IN (" . implode(',', $implode) . ")";
-        }
+			//filter filter id OR
+			//$sql .= " INNER JOIN " . DB_PREFIX . "product_filter pf ON (p.product_id = pf.product_id) AND pf.filter_id IN (" . implode(',', $implode) . ")";
+		}
 
-		$sql .= " LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) LEFT JOIN " . DB_PREFIX . "store s ON p2s.store_id=s.store_id WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p2s.on_sale=1 AND p.date_available <= NOW()";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) LEFT JOIN " . DB_PREFIX . "store s ON p2s.store_id=s.store_id";
 
-        if (isset($data['filter_preview']) && $data['filter_preview'] === true) {
-            //shop preview
-        } else {
-            $sql .= " AND p.status = '1'";
-        }
+		//拼装 查询公司信息 sql
+		$sql .= " LEFT JOIN mc_company c ON (p.customer_id = c.customer_id)
+				LEFT JOIN mc_company_description AS cd ON (c.company_id = cd.company_id)
+				LEFT JOIN mc_country AS cty ON cty.country_id = c.company_country_id
+				LEFT JOIN mc_zone AS z ON z.zone_id = c.company_zone_id
+				LEFT JOIN mc_zone_city AS zc ON zc.id = c.company_city_id
+				LEFT JOIN mc_zone_area AS za ON za.id = c.company_area_id";
+
+		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p2s.on_sale=1 AND p.date_available <= NOW()";
+
+		if (isset($data['filter_preview']) && $data['filter_preview'] === true) {
+			//shop preview
+		} else {
+			$sql .= " AND p.status = '1'";
+		}
 
 		if (!empty($data['filter_category_id'])) {
-            $implode = array();
-            foreach (explode(',', $data['filter_category_id']) as $category_id) {
-                $implode[] = (int)$category_id;
-            }
+			$implode = array();
+			foreach (explode(',', $data['filter_category_id']) as $category_id) {
+				$implode[] = (int)$category_id;
+			}
 
-            if (!empty($data['filter_sub_category'])) {
-                //$sql .= " AND cp.path_id = '" . (int)$data['filter_category_id'] . "'";
-                $sql .= " AND cp.path_id IN (" . implode(',', $implode) . ")";
+			if (!empty($data['filter_sub_category'])) {
+				//$sql .= " AND cp.path_id = '" . (int)$data['filter_category_id'] . "'";
+				$sql .= " AND cp.path_id IN (" . implode(',', $implode) . ")";
 			} else {
-                //$sql .= " AND p2c.category_id = '" . (int)$data['filter_category_id'] . "'";
-                $sql .= " AND p2c.category_id IN (" . implode(',', $implode) . ")";
+				//$sql .= " AND p2c.category_id = '" . (int)$data['filter_category_id'] . "'";
+				$sql .= " AND p2c.category_id IN (" . implode(',', $implode) . ")";
 			}
 
 			/*if (!empty($data['filter_filter'])) {
@@ -167,41 +167,41 @@ class ModelCatalogProduct extends Model {
 			}*/
 		}
 
-        if ((int)$data['filter_store_id'] > 0) {
-            $sql .= " AND p2s.store_id = '" . (int)$data['filter_store_id'] . "'";
-        } else {
-            $sql .= " AND p2s.store_id > 0";
-        }
+		if ((int)$data['filter_store_id'] > 0) {
+			$sql .= " AND p2s.store_id = '" . (int)$data['filter_store_id'] . "'";
+		} else {
+			$sql .= " AND p2s.store_id > 0";
+		}
 
-        $sql .= " AND s.status = '1'";
+		$sql .= " AND s.status = '1'";
 
-        if (!empty($data['filter_type'])) {
-            switch ($data['filter_type']) {
-                case 'reward' :
-                    //$sql .= " AND p2s.store_id = '" . (int)$data['filter_store_id'] . "' AND p.points > 0";
-                    $sql .= "' AND p.points > 0";
-                    break;
-                case 'shop' :
-                    //$sql .= " AND p2s.store_id > 0";
-                    if (!empty($data['filter_name'])) {
-                        $sql .= " AND s.name LIKE '%" .$this->db->escape($data['filter_name']). "%'";
-                    }
-                    break;
-                default :
-                    //$sql .= " AND p2s.store_id = '" . (int)$data['filter_store_id'] . "'";
-            }
-        } else {
-            //$sql .= " AND p2s.store_id = '" . (int)$data['filter_store_id'] . "'";
-        }
+		if (!empty($data['filter_type'])) {
+			switch ($data['filter_type']) {
+				case 'reward' :
+					//$sql .= " AND p2s.store_id = '" . (int)$data['filter_store_id'] . "' AND p.points > 0";
+					$sql .= "' AND p.points > 0";
+					break;
+				case 'shop' :
+					//$sql .= " AND p2s.store_id > 0";
+					if (!empty($data['filter_name'])) {
+						$sql .= " AND s.name LIKE '%" .$this->db->escape($data['filter_name']). "%'";
+					}
+					break;
+				default :
+					//$sql .= " AND p2s.store_id = '" . (int)$data['filter_store_id'] . "'";
+			}
+		} else {
+			//$sql .= " AND p2s.store_id = '" . (int)$data['filter_store_id'] . "'";
+		}
 
-        if (!empty($data['filter_price'])) {
-            $prices = explode('~', $data['filter_price']);
-            if (count($prices) == 2) {
-                $sql .= " AND p.price >= " . (int)$prices[0] . " AND p.price <= " . (int)$prices[1];
-            } else {
-                $sql .= " AND p.price >= " . (int)$prices[0];
-            }
-        }
+		if (!empty($data['filter_price'])) {
+			$prices = explode('~', $data['filter_price']);
+			if (count($prices) == 2) {
+				$sql .= " AND p.price >= " . (int)$prices[0] . " AND p.price <= " . (int)$prices[1];
+			} else {
+				$sql .= " AND p.price >= " . (int)$prices[0];
+			}
+		}
 
 		if ((empty($data['filter_type']) || $data['filter_type'] <> 'shop') && (!empty($data['filter_name']) || !empty($data['filter_tag']))) {
 			$sql .= " AND (";
@@ -250,22 +250,22 @@ class ModelCatalogProduct extends Model {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
 
-        if (!empty($data['filter_type']) && $data['filter_type'] == 'shop') {
-            $sql .= " GROUP BY p2s.store_id";
-        } else {
-            $sql .= " GROUP BY p.product_id";
-        }
+		if (!empty($data['filter_type']) && $data['filter_type'] == 'shop') {
+			$sql .= " GROUP BY p2s.store_id";
+		} else {
+			$sql .= " GROUP BY p.product_id";
+		}
 
 		$sort_data = array(
-			'pd.name',
-			'p.model',
-			'p.quantity',
-			'p.price',
-			'rating',
-			'p.sort_order',
-			'p.date_added',
-            'p.viewed',
-            'total_sell'
+				'pd.name',
+				'p.model',
+				'p.quantity',
+				'p.price',
+				'rating',
+				'p.sort_order',
+				'p.date_added',
+				'p.viewed',
+				'total_sell'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {

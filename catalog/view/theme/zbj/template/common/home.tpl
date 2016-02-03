@@ -147,33 +147,17 @@
                   <div class="suppplier-list-midd">
                     <h3><?php echo $category_tree['name']; ?></h3>
                     <div class="mid-h4-text">
-                      <?php if (!empty($category_tree['children'])) { ?>
-                      <?php foreach($category_tree['children'] as $children){ ?>
-                      <a   href="<?php echo $children['href']; ?>"><?php echo $children['name']; ?></a>
-                      <?php } ?>
-                      <?php } ?>
+                      <?php echo htmlspecialchars_decode($category_tree['description']); ?>
                       <div style="clear: both"></div>
                     </div>
                   </div>
                   <div class="sup-list-right">
-                    <div class="list-right-a-div">
-                      <p><a   href="#">ABB旗舰店</a></p>
-                      <p><a   href="#">5折起囤积</a></p>
-                    </div>
-                    <div class="list-right-a-two">
-                      <p><a   href="#">德利西官方旗舰店</a></p>
-                      <p><a   href="#">599包邮，更有3.9折</a></p>
-                    </div>
-                    <div style="clear: both"></div>
-                    <div class="list-right-a-div">
-                      <p><a   href="#">ABB旗舰店</a></p>
-                      <p><a   href="#">5折起囤积</a></p>
-                    </div>
-                    <div class="list-right-a-two">
-                      <p><a   href="#">德利西官方旗舰店</a></p>
-                      <p><a   href="#">599包邮，更有3.9折</a></p>
-                    </div>
-                    <div style="clear: both"></div>
+                    <h3></h3>
+                    <?php if (!empty($category_tree['children'])) { ?>
+                    <?php foreach($category_tree['children'] as $children){ ?>
+                      <a href="<?php echo $children['href']; ?>"><?php echo $children['name']; ?></a>
+                    <?php } ?>
+                    <?php } ?>
                   </div>
                 </div>
                 <?php } ?>
