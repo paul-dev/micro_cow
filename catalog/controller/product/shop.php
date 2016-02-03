@@ -69,7 +69,7 @@ class ControllerProductShop extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'p.sort_order';
+			$sort = 'c.date_added';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -263,7 +263,10 @@ class ControllerProductShop extends Controller {
 				'start'               => ($page - 1) * $limit,
 				'limit'               => $limit
 			);
-
+			/*echo "<pre>";
+			print_r($filter_data);
+			echo "</pre>";
+			exit;*/
 			$this->load->model('seller/company');
 
 			$product_total = $this->model_seller_company->getTotalCompanies($filter_data);
@@ -326,23 +329,15 @@ class ControllerProductShop extends Controller {
 
 			$data['sorts'] = array();
             $data['sorts'][] = array(
-                'text'  => $this->language->get('text_viewed_desc'),
-                'value' => 'p.viewed-DESC',
-                //'href'  => $this->url->link('product/search', '&sort=p.viewed&order=DESC' . $url)
-                'href'  => $this->url->link('product/shop', '&sort=p.viewed&order=DESC' . $url)
+                'text'  => '入驻日期从近到远',
+                'value' => 'c.date_added-ASC',
+                'href'  => $this->url->link('product/shop', '&sort=c.date_added&order=ASC' . $url)
             );
-            $data['sorts'][] = array(
-                'text'  => $this->language->get('text_sell_desc'),
-                'value' => 'total_sell-DESC',
-                //'href'  => $this->url->link('product/search', '&sort=total_sell&order=DESC' . $url)
-                'href'  => $this->url->link('product/shop', '&sort=total_sell&order=DESC' . $url)
-            );
-            $data['sorts'][] = array(
-                'text'  => $this->language->get('text_date_desc'),
-                'value' => 'p.date_added-DESC',
-                //'href'  => $this->url->link('product/search', '&sort=p.date_added&order=DESC' . $url)
-                'href'  => $this->url->link('product/shop', '&sort=p.date_added&order=DESC' . $url)
-            );
+			$data['sorts'][] = array(
+					'text'  => '入驻日期从远到近',
+					'value' => 'c.date_added-DESC',
+					'href'  => $this->url->link('product/shop', '&sort=c.date_added&order=DESC' . $url)
+			);
 
 			$url = '';
 
@@ -434,70 +429,7 @@ class ControllerProductShop extends Controller {
                 $url .= '&limit=' . $this->request->get['limit'];
             }
 
-            $data['filter_prices'] = array();
-            $data['filter_prices'][] = array(
-                'text'  => '全部',
-                'value' => '',
-                'href'  => $this->url->link('product/search', $url)
-            );
-            $data['filter_prices'][] = array(
-                'text'  => '0~1000',
-                'value' => '0~1000',
-                'href'  => $this->url->link('product/search', '&price=0~1000' . $url)
-            );
-            $data['filter_prices'][] = array(
-                'text'  => '1001~5000',
-                'value' => '1001~5000',
-                'href'  => $this->url->link('product/search', '&price=1001~5000' . $url)
-            );
-            $data['filter_prices'][] = array(
-                'text'  => '5001~10000',
-                'value' => '5001~10000',
-                'href'  => $this->url->link('product/search', '&price=5001~10000' . $url)
-            );
-            $data['filter_prices'][] = array(
-                'text'  => '10001~100000',
-                'value' => '10001~100000',
-                'href'  => $this->url->link('product/search', '&price=10001~100000' . $url)
-            );
-            $data['filter_prices'][] = array(
-                'text'  => '10万以上',
-                'value' => '100001',
-                'href'  => $this->url->link('product/search', '&price=100001' . $url)
-            );
-
-            $data['filter_price'] = $filter_price;
-
 			$url = '';
-
-            if (!empty($type)) {
-                $url .= '&type=' . $type;
-            }
-
-            if (!empty($filter_price)) {
-                $url .= '&price=' . $filter_price;
-            }
-
-			if (isset($this->request->get['search'])) {
-				$url .= '&search=' . urlencode(html_entity_decode($this->request->get['search'], ENT_QUOTES, 'UTF-8'));
-			}
-
-			if (isset($this->request->get['tag'])) {
-				$url .= '&tag=' . urlencode(html_entity_decode($this->request->get['tag'], ENT_QUOTES, 'UTF-8'));
-			}
-
-			if (isset($this->request->get['description'])) {
-				$url .= '&description=' . $this->request->get['description'];
-			}
-
-			if (isset($this->request->get['category_id'])) {
-				$url .= '&category_id=' . $this->request->get['category_id'];
-			}
-
-			if (isset($this->request->get['sub_category'])) {
-				$url .= '&sub_category=' . $this->request->get['sub_category'];
-			}
-
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}

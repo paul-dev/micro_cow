@@ -105,14 +105,9 @@
 
         <div class="row cata_title clearfix">
             <div class="col-xs-12">
-                <span class="control-span" style="display:none"><?php echo $text_limit; ?></span>
-                <ul class="category" style="display:none">
-                    <li><a id="list-view"  class="first" href="javascript:void(0);"><?php echo $button_list; ?></a></li>
-                    <li><a id="grid-view" class=" last" href="javascript:void(0);"><?php echo $button_grid; ?></a></li>
-                </ul>
 
-                <span class="control-span" style="display:none"><?php echo $text_sort; ?></span>
-                <ul class="category" style="display:none">
+                <span class="control-span"><?php echo $text_sort; ?></span>
+                <ul class="category">
                   <?php 
                   $_i=0; 
                   foreach ($sorts as $sort_data) { 
