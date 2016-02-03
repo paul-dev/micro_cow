@@ -23,9 +23,30 @@
                             </li>
                             <li><?php echo $text_Company_Dadded; ?><?php echo isset($company['date_added'])?date('Y-m-d',strtotime($company['date_added'])):'' ?></li>
                             <li><?php echo $text_Corporate; ?><?php echo isset($company['legal_name'])?$company['legal_name']:'' ?></li>
-                            <li><?php echo $text_Contact_email; ?><?php echo isset($company['contact_email'])?$company['contact_email']:'' ?></li>
-                            <li><?php echo $text_Capital; ?><?php echo isset($company['registered_capital'])?$company['registered_capital']:'' ?></li>
-                            <li><?php echo $text_Address; ?><?php echo isset($company['country_name'])?$company['country_name'].' '.$company['zone_name'].' '.$company['city_name'].' '.$company['area_name']:'' ?></li>
+                            <li class="clearfix">
+                                <div class="li-company-left">
+                                <?php echo $text_Contact_email; ?>
+                                </div>
+                                <div class="li-company-right">
+                                <?php echo isset($company['contact_email'])?$company['contact_email']:'' ?>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="li-company-left">
+                                <?php echo $text_Capital; ?>
+                                </div>
+                                <div class="li-company-right">
+                                <?php echo isset($company['registered_capital'])?$company['registered_capital']:'' ?>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="li-company-left">
+                                <?php echo $text_Address; ?>
+                                </div>
+                                <div class="li-company-right">
+                                <?php echo isset($company['country_name'])?$company['country_name'].' '.$company['zone_name'].' '.$company['city_name'].' '.$company['area_name']:'' ?>
+                                </div>
+                            </li>
                         </ul>
                         <div class="li-company-a">
                             <a href="tencent://message/?uin=<?php echo isset($company['contact_qq'])?$company['contact_qq']:'' ?>&Site=sc.chinaz.com&Menu=yes"><?php echo $text_Contact_company; ?></a>
