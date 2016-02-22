@@ -163,69 +163,6 @@
                 <?php } ?>
                 <?php } ?>
 
-                <!--
-                        <div class="suppplier-list" style="display: none">
-                          <div class="suppplier-list-left">
-                            <img src="catalog/view/theme/zbj/image/everyday-goods.png" class="suppplier-list-img">
-                          </div>
-                          <div class="suppplier-list-midd">
-                            <h3>日用百货</h3>
-                            <div class="mid-h4-text">
-                              <a   href="#">电池</a>
-                              <a   href="#">18202电池</a>
-                              <a   href="#">干电池</a>
-                              <a   href="#">电线</a>
-                              <a   href="#">墙壁开关</a>
-                              <a   href="#">墙壁插座</a>
-                              <a   href="#">电源</a>
-                              <a   href="#">开关电源</a>
-                              <a   href="#">逆变器</a>
-                              <a   href="#">工控</a>
-                              <a   href="#">微型断路器</a>
-                              <a   href="#">配电箱</a>
-                              <div style="clear: both"></div>
-                            </div>
-                            <div class="mid-h4-text">
-                              <a   href="#">电池</a>
-                              <a   href="#">18202电池</a>
-                              <a   href="#">干电池</a>
-                              <a   href="#">电线</a>
-                              <a   href="#">墙壁开关</a>
-                              <a   href="#">墙壁插座</a>
-                              <a   href="#">电源</a>
-                              <a   href="#">开关电源</a>
-                              <a   href="#">逆变器</a>
-                              <a   href="#">工控</a>
-                              <a   href="#">微型断路器</a>
-                              <a   href="#">配电箱</a>
-                              <div style="clear: both"></div>
-                            </div>
-                            <div class="mid-h4-text-last">
-                              <a   href="#">进口</a>
-                              <a   href="#">蓄电池</a>
-                              <div style="clear: both"></div>
-                            </div>
-                          </div>
-                          <div class="sup-list-right">
-                            <div class="list-right-a-div">
-                              <img src="catalog/view/theme/zbj/image/company-logo1.png" class="right-div-img">
-                            </div>
-                            <div class="list-right-a-two">
-                              <img src="catalog/view/theme/zbj/image/company-logo2.png" class="right-div-img">
-                            </div>
-                            <div style="clear: both"></div>
-                            <div class="list-right-a-div">
-                              <img src="catalog/view/theme/zbj/image/company-logo3.png" class="right-div-img">
-                            </div>
-                            <div class="list-right-a-two">
-                              <img src="catalog/view/theme/zbj/image/company-logo4.png" class="right-div-img">
-                            </div>
-                            <div style="clear: both"></div>
-
-
-                          </div>
-                        </div>
-                -->
               </div>
 
             </div>

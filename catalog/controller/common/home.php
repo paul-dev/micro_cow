@@ -46,12 +46,15 @@ class ControllerCommonHome extends Controller {
 		$data['text_piece'] = $this->language->get('text_piece');
 
 
-
-
-
 		//今日推荐 ---------------------------------------------------------------------------------------------------------------------------------------------------- start
 		$this->load->model('catalog/product');
-		$limit = 15;
+
+		if($this->config->get('config_template') == 'digital'){
+			$limit = 10;
+		}else{
+			$limit = 15;
+		}
+
 
 		if($this->config->get('config_store_id') == 0){
 			$RecommendProducts = $this->model_catalog_product->getPopularProducts($limit);
@@ -62,7 +65,32 @@ class ControllerCommonHome extends Controller {
 		$this->load->model('tool/image');
 		$RecommendProducts = array_filter($RecommendProducts);
 
+
+
+
 		foreach($RecommendProducts as $key=>$val){
+
+
+
+
+			if ($RecommendProducts[$key]['image']) {
+				$RecommendProducts[$key]['popup'] = $this->model_tool_image->resize($RecommendProducts[$key]['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
+			} else {
+				$RecommendProducts[$key]['popup'] = $this->model_tool_image->resize('no_image.png', $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));;
+			}
+
+			if ($RecommendProducts[$key]['image']) {
+				$RecommendProducts[$key]['thumb'] = $this->model_tool_image->resize($RecommendProducts[$key]['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+			} else {
+				$RecommendProducts[$key]['thumb'] =  $this->model_tool_image->resize('no_image.png', $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+			}
+
+			if ($RecommendProducts[$key]['image']) {
+				$RecommendProducts[$key]['mini'] = $this->model_tool_image->resize($RecommendProducts[$key]['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'));
+			} else {
+				$RecommendProducts[$key]['mini'] =  $this->model_tool_image->resize('no_image.png', $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'));
+			}
+
 			$RecommendProducts[$key]['url'] = $this->url->link("product/product", 'product_id=' . $RecommendProducts[$key]['product_id']);
 			$RecommendProducts[$key]['image'] = !empty($this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):$this->model_tool_image->resize('catalog/zbj_default_pic.png', $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 
@@ -72,10 +100,32 @@ class ControllerCommonHome extends Controller {
 				$RecommendProducts[$key]['price'] = $RecommendProducts[$key]['price'];
 			}
 
-			$RecommendProducts[$key]['image'] = $this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'))?$this->model_tool_image->resize($val['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')):$this->model_tool_image->resize('catalog/zbj_default_pic.png', $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+			$results = $this->model_catalog_product->getProductImages($val['product_id']);
 
+			if(!empty($results) && count($results)>0){
+
+				$proimgs = array();
+
+				foreach ($results as $k=>$result) {
+					$proimgs[] = array(
+						'popup' => $this->model_tool_image->resize($result['image'], 212, 212),
+						'mini' => $this->model_tool_image->resize($result['image'], 30, 30),
+						'thumb'  => $this->model_tool_image->resize($result['image'], 30, 30)
+					);
+				}
+
+				foreach($proimgs as $k=>$img){
+					if($img['mini'] == ''){
+						unset($proimgs[$k]);
+					}
+				}
+
+			}
+
+			$RecommendProducts[$key]['product_images'] = array_slice($proimgs,0,3);
 
 		}
+
 
 		$data['RecommendProducts'] = $RecommendProducts;
 
@@ -83,11 +133,34 @@ class ControllerCommonHome extends Controller {
 
 		//求购	 ----------------------------------------------------------------------------------------------------------------------------------------------------  start
 		$this->load->model('catalog/purchase');
-		$paging_parameters = array(
-				'start' => 0,
-				'limit' => 15
-		);
 
+		if($this->config->get('config_template') == 'agricultural'){
+			$paging_parameters = array(
+					'start' => 0,
+					'limit' => 10
+			);
+		}elseif($this->config->get('config_template') == 'clothes'){
+			$paging_parameters = array(
+					'start' => 0,
+					'limit' => 25
+			);
+		}elseif($this->config->get('config_template') == 'digital'){
+			$paging_parameters = array(
+					'start' => 0,
+					'limit' => 20
+			);
+		}elseif($this->config->get('config_template') == 'household'){
+			$paging_parameters = array(
+					'start' => 0,
+					'limit' => 16
+			);
+
+		}else{
+			$paging_parameters = array(
+					'start' => 0,
+					'limit' => 15
+			);
+		}
 		if($this->config->get('config_store_id') == 0){
 			$data['purchaseProduct'] = $this->model_catalog_purchase->getPurchases_Total($paging_parameters);
 		}else{
@@ -112,6 +185,10 @@ class ControllerCommonHome extends Controller {
 			$this->load->model('seller/offer');
 			$data['purchaseProduct'][$key]['total_offer'] = $this->model_seller_offer->getTotalOffer($data['purchaseProduct'][$key]['purchase_id']);
 
+		}
+
+		if($this->config->get('config_template') == 'digital' || $this->config->get('config_template') == 'household'){
+			$data['purchaseProduct'] = array_chunk($data['purchaseProduct'],2);
 		}
 
 		//求购	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  end
@@ -143,7 +220,7 @@ class ControllerCommonHome extends Controller {
 
 			//该产品总报价数量
 			$this->load->model('seller/offer');
-			$data['purchaseProduct'][$key]['total_offer'] = $this->model_seller_offer->getTotalOffer($data['purchaseProduct'][$key]['purchase_id']);
+			$data['purchaseProduct'][$key]['total_offer'] = $this->model_seller_offer->getTotalOffer($data['purchaseState'][$key]['purchase_id']);
 		}
 		$data['purchaseLink'] = $this->url->link('purchase/list');
 
@@ -170,6 +247,7 @@ class ControllerCommonHome extends Controller {
 				$children_data[] = array(
 					//'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
 						'name'  => $child['name'],
+						'image'  => !empty($child['image'])?$this->model_tool_image->resize($child['image'], 102, 102):$this->model_tool_image->resize('catalog/zbj_default_pic.png', 102, 102),
 						'href'  => $href
 				);
 			}
@@ -179,19 +257,78 @@ class ControllerCommonHome extends Controller {
 
 			$href = $this->url->link('product/category', 'path=' . $category['category_id']);
 
-			$data['category_tree'][] = array(
-					'name'     => $category['name'],
-					'category_id'     => $category['category_id'],
-					'description'     => $category['description'],
-					'category_image'     => !empty($this->model_tool_image->resize($category['image'], 251, 251))?$this->model_tool_image->resize($category['image'], 251, 251):$this->model_tool_image->resize('catalog/zbj_default_pic.png', 251, 251),
-					'children' => $children_data,
-					'column'   => $category['column'] ? $category['column'] : 1,
-					'href'     => $href,
-					'filter'   => $filter
-			);
+			if($this->config->get('config_template') == 'household'){
+				//分类下的公司[图片]
+				if(isset($category['category_id'])){
+					$this->load->model('seller/company');
+					$companyImages = $this->model_seller_company->getCompaniesImageByCategory($category['category_id'],4);
+					if(isset($companyImages) && count($companyImages)>0){
+						foreach($companyImages as $key=>$value){
+							$companyImages[$key]['company_url'] = $this->url->link("shop/company", 'company_id=' . $value['company_id']);
+							$companyImages[$key]['company_image'] = $this->model_tool_image->resize($value['image'], 80, 40);
+						}
+					}
+
+					$data['category_tree'][] = array(
+							'name'     => $category['name'],
+							'category_id'     => $category['category_id'],
+							'description'     => $category['description'],
+							'category_image'     => !empty($this->model_tool_image->resize($category['image'], 251, 251))?$this->model_tool_image->resize($category['image'], 251, 251):$this->model_tool_image->resize('catalog/zbj_default_pic.png', 251, 251),
+							'children' => $children_data,
+							'column'   => $category['column'] ? $category['column'] : 1,
+							'href'     => $href,
+							'companyImages'     => !empty($companyImages)?$companyImages:'',
+							'filter'   => $filter
+					);
+				}
+
+			}elseif($this->config->get('config_template') == 'machine'){
+				//分类下的公司[图片]
+				if(isset($category['category_id'])){
+					$this->load->model('seller/company');
+					$companyImages = $this->model_seller_company->getCompaniesImageByCategory($category['category_id'],2);
+					if(isset($companyImages) && count($companyImages)>0){
+						foreach($companyImages as $key=>$value){
+							$companyImages[$key]['company_url'] = $this->url->link("shop/company", 'company_id=' . $value['company_id']);
+							$companyImages[$key]['company_image'] = $this->model_tool_image->resize($value['image'], 80, 40);
+						}
+					}
+
+					$data['category_tree'][] = array(
+							'name'     => $category['name'],
+							'category_id'     => $category['category_id'],
+							'description'     => $category['description'],
+							'category_image'     => !empty($this->model_tool_image->resize($category['image'], 251, 251))?$this->model_tool_image->resize($category['image'], 251, 251):$this->model_tool_image->resize('catalog/zbj_default_pic.png', 251, 251),
+							'children' => $children_data,
+							'column'   => $category['column'] ? $category['column'] : 1,
+							'href'     => $href,
+							'companyImages'     => !empty($companyImages)?$companyImages:'',
+							'filter'   => $filter
+					);
+				}
+
+			}{
+
+				$data['category_tree'][] = array(
+						'name'     => $category['name'],
+						'category_id'     => $category['category_id'],
+						'description'     => $category['description'],
+						'category_image'     => !empty($this->model_tool_image->resize($category['image'], 251, 251))?$this->model_tool_image->resize($category['image'], 251, 251):$this->model_tool_image->resize('catalog/zbj_default_pic.png', 251, 251),
+						'children' => $children_data,
+						'column'   => $category['column'] ? $category['column'] : 1,
+						'href'     => $href,
+						'filter'   => $filter
+				);
+			}
 
 		}
+
 //图文 商品分类 end
+		if($this->config->get('config_template') == 'agricultural' || $this->config->get('config_template') == 'machine'){
+			$data['category_tree'] = array_slice($data['category_tree'],0,4);
+		}elseif($this->config->get('config_template') == 'clothes'){
+			$data['category_tree'] = array_slice($data['category_tree'],0,6);
+		}
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/home.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/home.tpl', $data));

@@ -147,13 +147,13 @@ class ModelSellerCompany extends Model {
         return $company_id;
     }
 
-    function getCompany($company_id) {
+    public function getCompany($company_id) {
         $query = $this->db->query("SELECT cty.`name` as country_name, z.name as zone_name, zc.name as city_name, za.name as area_name,c.*,cd.* FROM " . DB_PREFIX . "company AS c LEFT JOIN ". DB_PREFIX . "company_description AS cd ON (c.company_id = cd.company_id) LEFT JOIN ". DB_PREFIX . "country AS cty ON cty.country_id = c.company_country_id LEFT JOIN ". DB_PREFIX . "zone AS z ON z.zone_id = c.company_zone_id LEFT JOIN ". DB_PREFIX . "zone_city AS zc ON zc.id = c.company_city_id LEFT JOIN ". DB_PREFIX . "zone_area AS za ON za.id = c.company_area_id WHERE c.company_id = '".(int)$company_id."' AND cd.language_id = '".(int)$this->config->get('config_language_id')."'");
 
         return $query->row;
     }
 
-    function getCompanyDescription($company_id) {
+    public function getCompanyDescription($company_id) {
         $company_description_data = array();
 
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_description cd WHERE cd.company_id = '".(int)$company_id."'");
@@ -165,13 +165,13 @@ class ModelSellerCompany extends Model {
         return $company_description_data;
     }
 
-    function getCompanyCertImage($company_id) {
+    public function getCompanyCertImage($company_id) {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_image ci WHERE ci.company_id = '".(int)$company_id."' AND `type` = 'cert'");
 
         return $query->rows;
     }
 
-    function getCompanyCategories($company_id) {
+    public function getCompanyCategories($company_id) {
         $company_category_data = array();
 
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_to_category cc WHERE cc.company_id = '".(int)$company_id."' AND cc.store_id = '".(int)$this->config->get('config_store_id')."'");
@@ -183,7 +183,7 @@ class ModelSellerCompany extends Model {
         return $company_category_data;
     }
 
-    function getCompanyInfo($data){
+    public function getCompanyInfo($data){
 
         if(isset($data) && count($data)>0 && isset($data['filter_name'])){
 
@@ -213,7 +213,7 @@ class ModelSellerCompany extends Model {
 
     }
 
-    function getTotalCompanyInfo($data){
+    public function getTotalCompanyInfo($data){
 
         if(isset($data) && count($data)>0 && isset($data['filter_name'])){
 
@@ -243,7 +243,7 @@ class ModelSellerCompany extends Model {
 
     }
 
-    function getSearchCompanyInfo($data){
+    public function getSearchCompanyInfo($data){
 
         if(isset($data) && count($data)>0 && isset($data['filter_name'])){
 
@@ -274,7 +274,7 @@ class ModelSellerCompany extends Model {
 
     }
 
-    function getSearchTotalCompanyInfo($data){
+    public function getSearchTotalCompanyInfo($data){
 
         if(isset($data) && count($data)>0 && isset($data['filter_name'])){
 
@@ -302,65 +302,65 @@ class ModelSellerCompany extends Model {
 
     }
 
-    function getAboutInfo($company_id){
+    public function getAboutInfo($company_id){
         // 获取 关于我们 信息
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_about WHERE company_id = '".(int)$company_id."'");
         return $query->rows;
     }
 
-    function getHonorInfo($company_id){
+    public function getHonorInfo($company_id){
         // 获取 荣誉证书 信息
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_honor WHERE company_id = '".(int)$company_id."'");
         return $query->rows;
     }
 
-    function getContactInfo($company_id){
+    public function getContactInfo($company_id){
         // 获取 联系我们 信息
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_contact WHERE company_id = '".(int)$company_id."'");
 
         return $query->rows;
     }
 
-    function editAboutInfo($company_id,$language_id,$text){
+    public function editAboutInfo($company_id,$language_id,$text){
         // 删除原信息
         $this->db->query("DELETE FROM " . DB_PREFIX . "company_about WHERE company_id = '". (int)$company_id ."'AND language_id = '".(int)$language_id." ' ");
         // 更新 关于我们 信息
         $this->db->query("INSERT INTO " . DB_PREFIX . "company_about SET company_id = '". (int)$company_id ."', language_id = '".(int)$language_id."', content = '".$text."'");
     }
 
-    function editHonorInfo($company_id,$language_id,$text){
+    public function editHonorInfo($company_id,$language_id,$text){
         // 删除原信息
         $this->db->query("DELETE FROM " . DB_PREFIX . "company_honor WHERE company_id = '". (int)$company_id ."'AND language_id = '".(int)$language_id." ' ");
         // 更新 荣誉证书 信息
         $this->db->query("INSERT INTO " . DB_PREFIX . "company_honor SET company_id = '". (int)$company_id ."', language_id = '".(int)$language_id."', content = '".$text."'");
     }
 
-    function editContactInfo($company_id,$language_id,$text,$contact_content1,$contact_content2,$contact_content3,$contact_content4){
+    public function editContactInfo($company_id,$language_id,$text,$contact_content1,$contact_content2,$contact_content3,$contact_content4){
         // 删除原信息
         $this->db->query("DELETE FROM " . DB_PREFIX . "company_contact WHERE company_id = '". (int)$company_id ."'AND language_id = '".(int)$language_id." ' ");
         // 更新 联系我们 信息
         $this->db->query("INSERT INTO " . DB_PREFIX . "company_contact SET company_id = '". (int)$company_id ."', language_id = '".(int)$language_id."', content = '".$text."', contact_content1 = '".$contact_content1."', contact_content2 = '".$contact_content2."', contact_content3 = '".$contact_content3."', contact_content4 = '".$contact_content4."'");
     }
 
-    function getAboutInfomation($company_id){
+    public function getAboutInfomation($company_id){
         // 获取 关于我们 信息
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_about WHERE company_id = '".(int)$company_id."' AND language_id = '". (int)$this->config->get('config_language_id') ."'");
         return $query->row;
     }
 
-    function getHonorInfomation($company_id){
+    public function getHonorInfomation($company_id){
         // 获取 荣誉证书 信息
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_honor WHERE company_id = '".(int)$company_id."' AND language_id = '". (int)$this->config->get('config_language_id') ."'");
         return $query->row;
     }
 
-    function getContactInfomation($company_id){
+    public function getContactInfomation($company_id){
         // 获取 联系我们 信息
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "company_contact WHERE company_id = '".(int)$company_id."' AND language_id = '". (int)$this->config->get('config_language_id') ."'");
         return $query->row;
     }
 
-    function getCompanies($data = array()) {
+    public function getCompanies($data = array()) {
         $sql = "SELECT c.*, cd.*, cgd.name as cert_type_name, IF(c.company_country_id > 0, (SELECT cty.name FROM " . DB_PREFIX . "country cty WHERE cty.country_id = c.company_country_id), '') as company_country, IF(c.company_zone_id > 0, (SELECT z.name FROM " . DB_PREFIX . "zone z WHERE z.zone_id = c.company_zone_id), '') as company_zone, IF(c.company_city_id > 0, (SELECT zc.name FROM " . DB_PREFIX . "zone_city zc WHERE zc.id = c.company_city_id), '') as company_city, IF(c.company_area_id > 0, (SELECT za.name FROM " . DB_PREFIX . "zone_area za WHERE za.id = c.company_area_id), '') as company_area FROM " . DB_PREFIX . "company c LEFT JOIN " . DB_PREFIX . "company_description cd ON c.company_id = cd.company_id LEFT JOIN " . DB_PREFIX . "customer_group cg ON c.cert_type = cg.customer_group_id LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cg.customer_group_id = cgd.customer_group_id AND cgd.language_id = '".(int)$this->config->get('config_language_id')."') WHERE cd.language_id = '".(int)$this->config->get('config_language_id')."'";
 
         if (!empty($data['filter_name'])) {
@@ -401,7 +401,7 @@ class ModelSellerCompany extends Model {
         return $query->rows;
     }
 
-    function getTotalCompanies($data = array()) {
+    public function getTotalCompanies($data = array()) {
         $sql = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "company c LEFT JOIN " . DB_PREFIX . "company_description cd ON c.company_id = cd.company_id WHERE cd.language_id = '".(int)$this->config->get('config_language_id')."'";
 
         if (!empty($data['filter_name'])) {
@@ -411,5 +411,19 @@ class ModelSellerCompany extends Model {
         $query = $this->db->query($sql);
 
         return $query->row['total'];
+    }
+
+    public function getCompaniesImageByCategory($category_id,$limit){
+        // 获取 某个分类下的公司 图片
+        $res = $this->db->query("SELECT company_id FROM " . DB_PREFIX . "company_to_category WHERE category_id = '".(int)$category_id."' AND store_id = '".(int)$this->config->get('config_store_id')."' LIMIT 0,".(int)$limit);
+        $result = $res->rows;
+        if(count($result)>0) {
+            foreach ($result as $val) {
+                $query = $this->db->query("SELECT company_id,image FROM " . DB_PREFIX . "company_image WHERE company_id = '".(int)$val['company_id']."'");
+                $info[] = $query->row;
+            }
+            return $info;
+        }
+
     }
 }
