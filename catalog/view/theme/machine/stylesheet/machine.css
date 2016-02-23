@@ -86,14 +86,17 @@
     border:1px solid #f2f2f2;
 }
 .supbody-left{
-    float:left;
+    float: left;
     width: 135px;
     padding: 10px;
     height: inherit;
     border-right: 1px solid #f2f2f2;
+    padding-top: 20px;
+    padding-bottom: 43px;
 }
 .supbody-right{
     float: left;
+    width: 450px;
 }
 .supbody-left h3{
     text-align: center;
@@ -107,13 +110,14 @@
     height: 110px;
 }
 .supbody-r-l{
-    width: 430px;
+    width: 205px;
     padding: 20px;
     line-height: 1.429;
     font-size: 14px;
     padding-right: 0;
     float: left;
-    margin-top: 24px;
+    height: 208px;
+    overflow: hidden;
 }
 .supbody-r-l a{
     margin-right: 10px;
@@ -125,18 +129,22 @@ text-align: center;
     margin-top: 15px;
 }
 .supbody-r-r{
-    width: 220px;
+    width: 224px;
     padding: 20px;
     line-height: 1.429;
     font-size: 14px;
     padding-right: 0;
     float: left;
+    height: 208px;
+    overflow: hidden;
 }
 .supbody-r-r a{
     margin-right: 10px;
     word-break: keep-all;
 }
-
+.supbody-r-r p{
+    font-size: 14px;
+}
 .supbody-r-r>div{
 text-align: center;
     margin-top: 15px;
