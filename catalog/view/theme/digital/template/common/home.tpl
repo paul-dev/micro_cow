@@ -34,12 +34,20 @@
                     </div>
                     <div class="album-bottom">
                       <ul>
-                        <?php foreach($recommend['product_images'] as $img){ ?>
-                        <li>
-                          <div>
-                            <img src="<?php echo $img['popup']; ?>" onclick="changeimg(this)">
-                          </div>
-                        </li>
+                        <?php if(!empty($recommend['product_images']) && count($recommend['product_images'])>0){ ?>
+                          <?php foreach($recommend['product_images'] as $img){ ?>
+                          <li>
+                            <div>
+                              <img src="<?php echo $img['popup']; ?>" onclick="changeimg(this)">
+                            </div>
+                          </li>
+                          <?php } ?>
+                        <?php }else{ ?>
+                          <li>
+                            <div>
+                              <img src="<?php echo $recommend['image']; ?>" onclick="changeimg(this)">
+                            </div>
+                          </li>
                         <?php } ?>
 
                         <div style="clear: both"></div>
