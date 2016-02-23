@@ -544,8 +544,7 @@ h3{
   height: 212px;
 }
 .album-bottom{
-  margin-top: 15px;
-  margin-bottom: 10px;
+  margin-top: 5px;
 }
 .album-bottom ul li {
   list-style-type: none;
@@ -667,4 +666,8 @@ h3{
 }
 .dropdown-menu li > a:hover{
   background-color: #002A80;
+}
+.album-body{
+  margin-bottom: 5px;
+  height: 247px;
 }
