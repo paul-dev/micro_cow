@@ -12,6 +12,12 @@ a:hover{
     background-color: #f85360;
     border-color: #f85360;
 }
+#top .btn-link:hover, #top-links a:hover{
+    color:#f85360 ;
+}
+.dropdown-menu li > a:hover{
+    background-color: #f85360;
+}
 .clearfix:after {
     content:"\200B";
     display:block;
@@ -20,10 +26,6 @@ a:hover{
 }
 .clearfix {*zoom:1;}/*IE/7/6*/
 
-h3{
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-}
 .specific-h2-center{
     width: 100px;
     margin: 0 auto;

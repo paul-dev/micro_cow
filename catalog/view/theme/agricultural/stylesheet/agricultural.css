@@ -20,10 +20,6 @@ a:hover{
 }
 .clearfix {*zoom:1;}/*IE/7/6*/
 
-h3{
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-}
 .specific-h2-center{
     width: 100px;
     margin: 0 auto;
@@ -598,7 +594,7 @@ h3{
     color: #333;
 }
 .owl-lf ul li p a:hover {
-    color: #3d4d99;
+    color: #2e9952;
 }
 .owl-lf ul li p a{
     margin-right: 20px;
@@ -756,7 +752,7 @@ h3{
 .sup-word{
     float: left;
     margin-left: 10px;
-    height: 250px;
+    height: 130px;
     overflow: hidden;
 }
 .sup-head{
@@ -799,4 +795,10 @@ h3{
 }
 .nav_list li:first-child{
     background-color: #268044 !important;
+}
+#top .btn-link:hover, #top-links a:hover{
+    color: #2e9952;
+}
+.dropdown-menu li > a:hover{
+    background-color: #2e9952;
 }

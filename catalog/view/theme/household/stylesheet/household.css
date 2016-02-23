@@ -192,3 +192,22 @@ h2{
 .notice_top a:hover {
     border-bottom-color: #e6992e!important;
 }
+.owl-lf ul li p .red_a {
+    color: #e6992e;
+}
+.owl-lf ul li p a:hover {
+    color: #e6992e;
+}
+#top .btn-link:hover, #top-links a:hover {
+    color: #e6992e;
+}
+.dropdown-menu li > a:hover{
+    background-color: #e6992e;
+}
+.owl-hot-recmmend div a{
+    color: #e6992e;
+}
+.list-purchsed-head{
+    text-align: left;
+    margin-top: 20px;
+}
